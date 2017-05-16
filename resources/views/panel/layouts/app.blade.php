@@ -6,7 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html lang="en">
 
 @section('htmlheader')
-    @include('layouts.partials.htmlheader')
+    @include('panel.layouts.partials.htmlheader')
 @show
 
 <!--
@@ -32,14 +32,14 @@ desired effect
 <body class="skin-blue sidebar-mini">
 <div class="wrapper">
 
-    @include('layouts.partials.mainheader')
+    @include('panel.layouts.partials.mainheader')
 
-    @include('layouts.partials.sidebar')
+    @include('panel.layouts.partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-        @include('layouts.partials.contentheader')
+        @include('panel.layouts.partials.contentheader')
 
         <!-- Main content -->
         <section class="content">
@@ -48,14 +48,14 @@ desired effect
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
-    @include('layouts.partials.controlsidebar')
+    @include('panel.layouts.partials.controlsidebar')
 
-    @include('layouts.partials.footer')
+    @include('panel.layouts.partials.footer')
 
 </div><!-- ./wrapper -->
 
 @section('scripts')
-    @include('layouts.partials.scripts')
+    @include('panel.layouts.partials.scripts')
 @show
 
 </body>

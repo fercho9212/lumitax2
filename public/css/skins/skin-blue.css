@@ -1,10 +1,11 @@
 /*
  * Skin: Blue
  * ----------
- */
+*/
 .skin-blue .main-header .navbar {
-  background-color: #3c8dbc;
+  background-color: #222222;
 }
+
 .skin-blue .main-header .navbar .nav > li > a {
   color: #ffffff;
 }
@@ -140,3 +141,8 @@
 .skin-blue.layout-top-nav .main-header > .logo:hover {
   background-color: #3b8ab8;
 }
+/*css Ferney
+.skin-blue .main-header .navbar {
+    background-color: #222d32 !important;
+}
+*/

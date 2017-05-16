@@ -1,6 +1,6 @@
-@extends('layouts.auth')
+@extends('panel.layouts.auth')
 
-@section('htmlheader_title')
+@section('panel.htmlheader_title')
     Log in
 @endsection
 
@@ -8,7 +8,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            <a href="{{ url('/dashboard') }}"><b>LUMITAX</b></a>
         </div><!-- /.login-logo -->
 
     @if (count($errors) > 0)
@@ -48,16 +48,16 @@
         </div>
     </form>
 
-    @include('auth.partials.social_login')
+  <!--  @include('auth.partials.social_login')
 
     <a href="{{ url('/password/reset') }}">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>
     <a href="{{ url('/register') }}" class="text-center">{{ trans('adminlte_lang::message.registermember') }}</a>
-
+-->
 </div><!-- /.login-box-body -->
 
 </div><!-- /.login-box -->
 
-    @include('layouts.partials.scripts_auth')
+   @include('panel.layouts.partials.scripts_auth')
 
     <script>
         $(function () {

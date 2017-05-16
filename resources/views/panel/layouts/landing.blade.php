@@ -55,7 +55,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#home" class="smoothScroll">{{ trans('adminlte_lang::message.home') }}</a></li>
+                <li class="active"><a href="#dashboard" class="smoothScroll">{{ trans('adminlte_lang::message.home') }}</a></li>
                 <li><a href="#desc" class="smoothScroll">{{ trans('adminlte_lang::message.description') }}</a></li>
                 <li><a href="#showcase" class="smoothScroll">{{ trans('adminlte_lang::message.showcase') }}</a></li>
                 <li><a href="#contact" class="smoothScroll">{{ trans('adminlte_lang::message.contact') }}</a></li>
@@ -65,7 +65,7 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                     <li><a href="{{ url('/login') }}">{{ trans('adminlte_lang::message.login') }}</a></li>
                     <li><a href="{{ url('/register') }}">{{ trans('adminlte_lang::message.register') }}</a></li>
                 @else
-                    <li><a href="/home">{{ Auth::user()->name }}</a></li>
+                    <li><a href="/dashboard">{{ Auth::user()->name }}</a></li>
                 @endif
             </ul>
         </div><!--/.nav-collapse -->

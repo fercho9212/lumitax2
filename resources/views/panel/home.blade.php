@@ -1,6 +1,6 @@
 @extends('panel.layouts.app')
 
-@section('htmlheader_title')
+@section('panel.htmlheader_title')
 	Home
 @endsection
 
@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
 				<div class="panel panel-default">
-					<div class="panel-heading">Homedasssssssssssssssssssss</div>
+					<div class="panel-heading">Home</div>
 
 					<div class="panel-body">
 						{{ trans('adminlte_lang::message.logged') }}
