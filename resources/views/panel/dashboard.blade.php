@@ -1,4 +1,4 @@
-@extends('panel.layouts.app')
+@extends('panel.layouts.main')
 
 @section('panel.htmlheader_title')
 	Home

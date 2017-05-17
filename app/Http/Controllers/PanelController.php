@@ -33,6 +33,6 @@ class PanelController extends Controller
      */
     public function index()
     {
-        return view('panel.home');
+        return view('panel.dashboard');
     }
 }
