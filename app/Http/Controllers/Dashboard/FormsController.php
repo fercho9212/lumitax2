@@ -12,7 +12,7 @@ class FormsController extends Controller
     }
 
     //Visualiza el formularios
-    public function frm_create_user(){
-      echo "Estes es el resultado";
+    public function frm_create_driver(){
+      return view('panel.modules.driver.forms.frm_create_user');
     }
 }
