@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-      <center>  @yield('contentheader_title', 'Panel de Control Lumitax')</center>
+      <center>  @yield('contentheader_title', 'Panel de ración Administ Lumitax')</center>
         <small>@yield('contentheader_description')</small>
     </h1>
     <ol class="breadcrumb">
