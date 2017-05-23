@@ -13,7 +13,7 @@
 					<div class="panel-heading">Homesss</div>
 					<div class="panel-body">
 						<div id="contenido_principal">
-								contenido Principal
+
 						</div>
 					</div>
 				</div>

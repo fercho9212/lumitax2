@@ -8,3 +8,26 @@ function load_frm(opt){
           $("#contenido_principal").html(resul);
       })
 }
+$(document).on("submit",".form_entrada",function(e){
+
+  e.preventDefault();
+
+  console.log("Entra");
+  var frm=$(this);
+  var id_frm=$(this).attr("id");
+  if (id_frm=="add_driver"){
+    var url="create_driver"
+  }
+  $.ajax({
+
+        type: "POST",
+        url : url,
+        datatype:'json',
+        data : frm.serialize(),
+        success : function(resul){
+
+        alert(resul);
+      }
+        });
+
+});

@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/dashboard', 'PanelController@index');
 
 Route::get('/frm_create_driver', 'Dashboard\FormsController@frm_create_driver');
+
+Route::post('/create_driver', 'Dashboard\DriversController@CreateDriver');
