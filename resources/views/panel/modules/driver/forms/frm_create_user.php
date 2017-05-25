@@ -1,26 +1,26 @@
-<form role="form" id="add_driver" action="create_driver" class="form_entrada">
+<form role="form" method="POST" id="add_driver" action="create_driver" class="form_entrada">
   <!-- start roe-->
-
-    <!-- start row-->
+  <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
     <div class="row">
+
       <div class="col-md-12">
           <div class="">
             <div class="col-md-4">
               <div class="form-group">
                 <label for="exampleInputEmail1">Nombre</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <input name="dri_name" type="text"  class="form-control" id="exampleInputEmail1" placeholder="Enter email">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="exampleInputPassword1">Apellido</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input name="dri_last" type="text"  class="form-control" id="exampleInputPassword1" placeholder="Password">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="exampleInputEmail1">Cedula</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                <input name="dri_cc" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
               </div>
             </div>
           </div>
@@ -35,19 +35,19 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="exampleInputEmail1">Correo</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            <input name="dri_mail" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label for="exampleInputPassword1">Dirección</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input name="dri_address" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label for="exampleInputEmail1">Celular</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            <input name="dri_movil" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
           </div>
         </div>
       </div>
@@ -62,19 +62,13 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="exampleInputEmail1">Telefono Fijo</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          <input name="dri_phone" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label for="exampleInputPassword1">Estado</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Contraseña</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          <input name="states_id" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
       </div>
     </div>
@@ -94,19 +88,19 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Numero de Licencia</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <input name="lic_no" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleInputPassword1">Categoria</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <input name="linccat_id" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Vigencia</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <input name="lic_validity" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                   </div>
                 </div>
               </div>
@@ -119,8 +113,8 @@
               <div class="">
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Categoria</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <label for="exampleInputEmail1">Typo</label>
+                    <input name="linctype_id" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                   </div>
                 </div>
 
@@ -132,6 +126,31 @@
 
 </div>
 
+<br>
+<br>
+<div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Datos de Acceso</h3>
+        </div>
+
+        <div class="row">
+        <div class="col-md-12">
+            <div class="">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Contraseña</label>
+                  <input name="dri_psw" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Repetir Contraseña</label>
+                  <input name="" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+              </div>
+            </div>
+        </div>
+        </div>
 </div>
 <!-- /.End panel Licence -->
   <div class="box-footer">

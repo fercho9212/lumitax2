@@ -48,7 +48,7 @@ desired effect
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
 
-    @include('panel.layouts.partials.aside_right')
+  {{--@include('panel.layouts.partials.aside_right')--}}
 
     @include('panel.layouts.partials.footer')
 
