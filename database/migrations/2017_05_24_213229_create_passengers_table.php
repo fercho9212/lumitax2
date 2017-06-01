@@ -21,12 +21,14 @@ class CreatePassengersTable extends Migration
           $table->string('pas_mail',  45);
     			$table->string('pas_movil', 12);
     			$table->string('pas_username', 30)->default('');
-    			$table->text('pas_psw');
+    			$table->string('password');
     			$table->text('pas_location', 65535)->nullable();
           $table->float('pas_qual',   10, 0)->default(5);
           $table->integer('payments_id')->default(0);
     			$table->integer('states_id');
+          $table->rememberToken();
           $table->timestamps();
+          //$table->string('api_token')->unique();
         });
     }
 

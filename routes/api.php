@@ -14,7 +14,28 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
-*/
-Route::get('/prueba', function (Request $request) {
-    return 'teste->s';
+
+Route::resource('/v1/prueba', 'Dashboard\PassengersController')->middleware('auth:api');
+Route::get('/hola', function (Request $request) {
+    return 'hola';
 })->middleware('auth:api');
+*/
+Route::get('/user', function (Request $request) {
+    return 'dasd';
+})->middleware('api');
+
+
+
+Route::group(['prefix'=>'v1/passengers'],function(){
+    Route::get('/','Api\LoginApiController@showLoginForm');
+    Route::post('/','Api\LoginApiController@login');
+
+    Route::post('/api','Api\ApiPassengersController@store');
+    Route::get('/api',function(){
+      return 'dasdas';
+    });
+});
+
+Route::get('/test', function (Request $request) {
+    return 'dasd';
+})->middleware('auth:android');

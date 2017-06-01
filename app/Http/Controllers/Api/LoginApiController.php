@@ -1,22 +1,43 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
-use Auth;
+namespace App\Http\Controllers\Api;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Control\Passenger;
+use Illuminate\Support\Facades\Auth;
 
-class PassengersController extends Controller
+class LoginApiController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+  /*  public function login(Request $request){
+      if (Auth::attempt('pas_mail'=>$request->mail,'pas_psw'=>$request->password)) {
+        # code...
+      }
+    }*/
+
+    protected $guard='android';
+
+    public function login(Request $request){
+      if (Auth::guard('android')->attempt(['pas_mail'=>$request->mail,'password'=>$request->password])) {
+        return 'Entra';
+      }else {
+        return 'No entra';
+      }
+    }
+
+
+
+    public function showLoginForm(){
+      return 'holaaa esete es el fom';
+    }
     public function index()
     {
         //
-        dd('Index');
     }
 
     /**
@@ -26,7 +47,7 @@ class PassengersController extends Controller
      */
     public function create()
     {
-          dd('Create');
+        //
     }
 
     /**
@@ -37,15 +58,7 @@ class PassengersController extends Controller
      */
     public function store(Request $request)
     {
-          $passenger= new Passenger;
-          $passenger->pas_name=$request->pas_name;
-          $passenger->pas_last=$request->pas_last;
-          $passenger->pas_mail=$request->pas_mail;
-          $passenger->pas_movil=$request->pas_movil;
-          $passenger->pas_psw=\Hash::make($request->pas_psw);
-          $passenger->states_id=$request->states_id;
-          $passenger->save();
-          echo "Inserta:>".$request->pas_mail;
+        //
     }
 
     /**

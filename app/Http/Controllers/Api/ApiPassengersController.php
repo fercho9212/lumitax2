@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
-use Auth;
+namespace App\Http\Controllers\Api;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Control\Passenger;
 
-class PassengersController extends Controller
+
+class ApiPassengersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,7 @@ class PassengersController extends Controller
      */
     public function index()
     {
-        //
-        dd('Index');
+        echo "string";
     }
 
     /**
@@ -26,7 +26,7 @@ class PassengersController extends Controller
      */
     public function create()
     {
-          dd('Create');
+        //
     }
 
     /**
@@ -37,15 +37,15 @@ class PassengersController extends Controller
      */
     public function store(Request $request)
     {
-          $passenger= new Passenger;
-          $passenger->pas_name=$request->pas_name;
-          $passenger->pas_last=$request->pas_last;
-          $passenger->pas_mail=$request->pas_mail;
-          $passenger->pas_movil=$request->pas_movil;
-          $passenger->pas_psw=\Hash::make($request->pas_psw);
-          $passenger->states_id=$request->states_id;
-          $passenger->save();
-          echo "Inserta:>".$request->pas_mail;
+      $passenger= new Passenger;
+      $passenger->pas_name=$request->name;
+      $passenger->pas_last=$request->last;
+      $passenger->pas_mail=$request->mail;
+      $passenger->pas_movil=$request->movil;
+      $passenger->password=\Hash::make($request->password);
+      $passenger->states_id='1';
+      $passenger->save();
+      return "registra";
     }
 
     /**
