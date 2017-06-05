@@ -15,4 +15,8 @@ class Passenger extends Authenticatable
   protected $hidden = [
       'password', 'remember_token',
   ];
+
+  public function state(){
+    return $this->belongsTo('App\Models\State');
+  }
 }

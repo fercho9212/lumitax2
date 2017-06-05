@@ -37,6 +37,8 @@ class ApiPassengersController extends Controller
      */
     public function store(Request $request)
     {
+
+
       $passenger= new Passenger;
       $passenger->pas_name=$request->name;
       $passenger->pas_last=$request->last;

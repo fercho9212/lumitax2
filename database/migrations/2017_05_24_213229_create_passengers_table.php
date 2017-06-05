@@ -18,7 +18,7 @@ class CreatePassengersTable extends Migration
     			$table->string('pas_name',  30);
     			$table->string('pas_last',  35);
           $table->string('pas_cc',    12)->default('');
-          $table->string('pas_mail',  45);
+          $table->string('pas_mail',  45)->unique()->required();
     			$table->string('pas_movil', 12);
     			$table->string('pas_username', 30)->default('');
     			$table->string('password');
@@ -29,6 +29,10 @@ class CreatePassengersTable extends Migration
           $table->rememberToken();
           $table->timestamps();
           //$table->string('api_token')->unique();
+          /**
+           * Foreing key
+           */
+          // $table->foreign('states_id')->references('id')->on('states')
         });
     }
 
