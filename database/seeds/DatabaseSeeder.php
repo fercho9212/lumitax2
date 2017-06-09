@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
         'email'     =>  'ferney9212@gmail.com',
         'password'  =>   bcrypt('FERfer123.'),
       ]);
+      \DB::table('states')->insert([
+        'state'      =>  'Activo',
+      ]);
+
       \DB::table('passengers')->insert([
         'pas_name'       =>  'treesign',
         'pas_last'       =>  'ferney9212@gmail.com',

@@ -16,9 +16,6 @@ class ApiPassenger
      */
     public function handle($request, Closure $next)
     {
-      if (!Auth::user()) {
-        return redirect('/notconfirmed');
-    }
-  return redirect('/notconfirmed')
+    
     }
 }

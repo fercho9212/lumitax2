@@ -27,15 +27,10 @@ Route::get('/user', function (Request $request) {
 
 
 Route::group(['prefix'=>'v1/passengers'],function(){
+   // Funciones del Login
     Route::get('/','Api\LoginApiController@showLoginForm');
     Route::post('/','Api\LoginApiController@login');
 
-    Route::post('/api','Api\ApiPassengersController@store');
-    Route::get('/api',function(){
-      return 'dasdas';
-    });
+    //Funciones para registrar
+    Route::get('/register','Api\LoginApiController@register');
 });
-
-Route::get('/test', function (Request $request) {
-    return 'dasd';
-})->middleware('auth:android');

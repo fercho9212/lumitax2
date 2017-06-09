@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Control\Passenger;
+
+use App\Http\Requests\RequestApiPassenger;
 
 class LoginApiController extends Controller
 {
@@ -21,7 +24,9 @@ class LoginApiController extends Controller
     }*/
 
     protected $guard='android';
-
+    public function authenticated(){
+      return 'jejeje';
+    }
     public function login(Request $request){
       if (Auth::guard('android')->attempt(['pas_mail'=>$request->mail,'password'=>$request->password])) {
         return 'Entra';
@@ -56,9 +61,10 @@ class LoginApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function register(RequestApiPassenger $request)
     {
-        //
+
+      echo "string";
     }
 
     /**

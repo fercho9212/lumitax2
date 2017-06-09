@@ -18,22 +18,22 @@ class CreatePassengersTable extends Migration
     			$table->string('pas_name',  30);
     			$table->string('pas_last',  35);
           $table->string('pas_cc',    12)->default('');
-          $table->string('pas_mail',  45)->unique()->required();
+          $table->string('pas_mail',  45)->nullable();
     			$table->string('pas_movil', 12);
     			$table->string('pas_username', 30)->default('');
     			$table->string('password');
     			$table->text('pas_location', 65535)->nullable();
           $table->float('pas_qual',   10, 0)->default(5);
           $table->integer('payments_id')->default(0);
-    			$table->integer('states_id');
+    			$table->integer('states_id')->unsigned();
           $table->rememberToken();
           $table->timestamps();
           //$table->string('api_token')->unique();
-          /**
-           * Foreing key
-           */
-          // $table->foreign('states_id')->references('id')->on('states')
         });
+
+        Schema::table('passengers', function($table) {
+          $table->foreign('states_id')->references('id')->on('states');
+      });
     }
 
     /**
