@@ -180,7 +180,8 @@ return [
 
         //Ferney
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
-
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
     ],
 
     /*
@@ -231,6 +232,10 @@ return [
 
         //Ferney
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'JWTAuth' =>  Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
     ],
 

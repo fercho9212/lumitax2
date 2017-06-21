@@ -17,19 +17,20 @@ class CreateDriversTable extends Migration
             $table->increments('id');
             $table->string('dri_name',30);
             $table->string('dri_last',30);
-            $table->bigInteger('dri_cc')->unique('dri_cc');
-            $table->string('dir_mail',40);
+            $table->bigInteger('dri_cc');
             $table->string('dri_address');
             $table->string('dri_movil');
             $table->string('dri_phone');
-            $table->string('dri_photo',200);
+            $table->string('dri_photo');
             $table->string('dri_location',70)->default('');
             $table->integer('messages_id')->default(5);
-            $table->text('dri_psw');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->float('dri_qual',10,0)->default(5);
             $table->integer('states_id')->nullable()->index('fk_dri_states');
-            $table->timestamp('dri_date_reg')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('dateup')->default(DB::raw('CURRENT_TIMESTAMP'));
+            //$table->timestamp('dri_date_reg')->default(DB::raw('CURRENT_TIMESTAMP'));
+            //$table->timestamp('dateup')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

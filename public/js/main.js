@@ -16,7 +16,8 @@ $(document).on("submit",".form_entrada",function(e){
   var frm=$(this);
   var id_frm=$(this).attr("id");
   if (id_frm=="add_driver"){
-    var url="create_driver"
+    var url="/drivers"
+    console.log('->');
   }
   $.ajax({
 

@@ -14,8 +14,20 @@ class CreatePassengersTable extends Migration
     public function up()
     {
         Schema::create('passengers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+          $table->increments('id');
+          $table->string('pas_name',  30);
+          $table->string('pas_last',  35);
+          $table->string('pas_cc',    12)->default('');
+          $table->string('email')->unique();
+          $table->string('password');
+          $table->string('pas_movil', 12);
+          $table->string('pas_username', 30)->default('');
+          $table->text('pas_location', 65535)->nullable();
+          $table->float('pas_qual',   10, 0)->default(5);
+          $table->integer('payments_id')->default(0);
+          $table->integer('states_id')->unsigned();
+          $table->rememberToken();
+          $table->timestamps();
         });
     }
 
