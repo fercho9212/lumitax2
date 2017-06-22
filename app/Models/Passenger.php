@@ -8,7 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Passenger extends Authenticatable
 {
-      use Notifiable;
+    use Notifiable;
+      protected $table="passengers";
       protected $fillable = [
         'pas_name','pas_last','pas_cc','email', 'password','pas_movil','pas_username','pas_location','pas_qual','payments_id','states_id',
     ];

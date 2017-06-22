@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Driver extends Authenticatable
 {
-
+    protected $table="drivers";
     protected $fillable = [
        'dri_name','dri_last','dri_cc','dri_address',
        'dri_movil','dri_phone','dri_photo','dri_location',
@@ -23,4 +23,8 @@ class Driver extends Authenticatable
     protected $hidden = [
        'password', 'remember_token',
     ];
+
+    public function state(){
+      return $this->belongsTo('App\Models\State');
+    }
 }

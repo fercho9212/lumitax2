@@ -32,7 +32,7 @@ class PassengeriIfAuthenticated
          } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
            return response()->json(['token_absent'], $e->getStatusCode());
          }
-         return $next($request);
+         return response()->json(compact('passenger'));
     }
 
 }

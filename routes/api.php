@@ -30,7 +30,7 @@ Route::group(['prefix'=>'v1/passengers'],function(){
 
 Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/','Api\ApiAuthdriver@authenticate');
-    Route::post('/test','Api\ApiAuthdriver@test')->middleware('passenger');
+    Route::post('/test','Api\ApiAuthdriver@test')->middleware('driver');
     Route::get('/',function(){
       echo "string";
     });

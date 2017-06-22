@@ -29,4 +29,7 @@ class ApiAuthdriver extends Controller
     }
     return response()->json(['Token User'=>compact('token'),'msg'=>'Accesso']);
   }
+  public function test(){
+    return response()->json(compact('driver'));
+  }
 }

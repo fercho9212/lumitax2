@@ -25,7 +25,7 @@ class CreatePassengersTable extends Migration
           $table->text('pas_location', 65535)->nullable();
           $table->float('pas_qual',   10, 0)->default(5);
           $table->integer('payments_id')->default(0);
-          $table->integer('states_id')->unsigned();
+          $table->integer('state_id')->unsigned();
           $table->rememberToken();
           $table->timestamps();
         });

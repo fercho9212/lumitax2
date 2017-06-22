@@ -55,5 +55,6 @@ class Kernel extends HttpKernel
         'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh' => Tymon\JWTAuth\Middleware\RefreshToken::class,
         'passenger'=>\App\Http\Middleware\PassengeriIfAuthenticated::class,
+        'driver'=>\App\Http\Middleware\DriveriIfAuthenticated::class,
     ];
 }
