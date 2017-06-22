@@ -180,8 +180,13 @@ return [
 
         //Ferney
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
+<<<<<<< HEAD
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+=======
+        Collective\Html\HtmlServiceProvider::class,
+
+>>>>>>> 63a498a15c6f07a5bea8cc3cda77dae5c1433fdc
     ],
 
     /*
@@ -232,10 +237,17 @@ return [
 
         //Ferney
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+<<<<<<< HEAD
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'JWTAuth' =>  Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+=======
+          // ...
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+      // ...
+>>>>>>> 63a498a15c6f07a5bea8cc3cda77dae5c1433fdc
 
     ],
 

@@ -45,6 +45,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'android' => [
+            'driver' => 'session',
+            'provider' => 'passengers',
+        ],
     ],
 
     /*
@@ -68,6 +72,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'passengers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Control\Passenger::class,
         ],
 
         // 'users' => [

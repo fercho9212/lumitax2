@@ -1,5 +1,6 @@
 <?php
 
+<<<<<<< HEAD
 /*
  * Taken from
  * https://github.com/laravel/framework/blob/5.2/src/Illuminate/Auth/Console/stubs/make/controllers/HomeController.stub
@@ -36,3 +37,13 @@ class HomeController extends Controller
         return view('home');
     }
 }
+=======
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class HomeController extends Controller
+{
+    //
+}
+>>>>>>> 63a498a15c6f07a5bea8cc3cda77dae5c1433fdc

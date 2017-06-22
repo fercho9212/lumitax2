@@ -10,8 +10,13 @@
         "caouecs/laravel-lang": "~3.0",
         "fzaninotto/faker": "^1.6",
         "laravel/framework": "5.3.*",
+<<<<<<< HEAD
         "laravelcollective/html": "^5.3.0",
         "tymon/jwt-auth": "^0.5.12"
+=======
+        "laravel/passport": "~1.0",
+        "laravelcollective/html": "^5.3.0"
+>>>>>>> 63a498a15c6f07a5bea8cc3cda77dae5c1433fdc
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

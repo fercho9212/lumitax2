@@ -7,7 +7,11 @@
           <div class="">
             <div class="col-md-4">
               <div class="form-group">
+<<<<<<< HEAD
                 <label for="exampleInputEmail1">Naombre</label>
+=======
+                <label for="exampleInputEmail1">Nombre</label>
+>>>>>>> 63a498a15c6f07a5bea8cc3cda77dae5c1433fdc
                 <input name="dri_name" type="text"  class="form-control" id="exampleInputEmail1" placeholder="Enter email">
               </div>
             </div>
@@ -35,7 +39,11 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="exampleInputEmail1">Correo</label>
+<<<<<<< HEAD
             <input name="email" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+=======
+            <input name="dri_mail" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+>>>>>>> 63a498a15c6f07a5bea8cc3cda77dae5c1433fdc
           </div>
         </div>
         <div class="col-md-4">
@@ -139,13 +147,21 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Contraseña</label>
+<<<<<<< HEAD
                   <input name="password" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+=======
+                  <input name="dri_psw" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+>>>>>>> 63a498a15c6f07a5bea8cc3cda77dae5c1433fdc
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Repetir Contraseña</label>
+<<<<<<< HEAD
                   <input name="password" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+=======
+                  <input name="" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+>>>>>>> 63a498a15c6f07a5bea8cc3cda77dae5c1433fdc
                 </div>
               </div>
             </div>
