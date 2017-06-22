@@ -26,9 +26,13 @@ class DatabaseSeeder extends Seeder
         'pas_username'   =>  'treesign',
         'password'       =>   bcrypt('123'),
         'payments_id'    =>  '1',
-        'states_id'      =>  '1',
+        'state_id'      =>  '1',
         //'api_token' => str_random(50),
       ]);
+      \DB::table('states')->insert([
+        'state'       =>  'Activo',
+      ]);
+
       \DB::table('drivers')->insert([
         'dri_name'       =>  'treesign',
         'dri_last'       =>  'driver@gmail.com',
@@ -40,7 +44,7 @@ class DatabaseSeeder extends Seeder
         'dri_photo'   =>  'treesign',
         'password'       =>   bcrypt('123.'),
         'dri_location'    =>  '1',
-        'states_id'      =>  '1',
+        'state_id'      =>  '1',
         //'api_token' => str_random(50),
       ]);
     }

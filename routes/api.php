@@ -18,18 +18,24 @@ Route::get('/user', function (Request $request) {
 })->middleware('jwt.auth');
 
 Route::post('authenticate','Api\UserController@authenticate');
-
+/**
+ * Route Passenger
+ */
 Route::group(['prefix'=>'v1/passengers'],function(){
-    Route::post('/','Api\ApiAuthpassenger@authenticate');
+    Route::post('/auth','Api\ApiAuthpassenger@authenticate');
     Route::post('/register','Api\ApiAuthpassenger@register');
+    Route::post('/profile','Api\ApiPassengersController@profile')->middleware('passenger');
     Route::post('/test','Api\ApiAuthpassenger@test')->middleware('passenger');
-    Route::get('/',function(){
+    Route::get('/auth',function(){
       echo "string";
     });
 });
-
+/**
+ * Route Drivers
+ */
 Route::group(['prefix'=>'v1/drivers'],function(){
-    Route::post('/','Api\ApiAuthdriver@authenticate');
+    Route::post('/auth','Api\ApiAuthdriver@authenticate');
+    Route::post('/profile','Api\ApiDriversController@profile')->middleware('driver');
     Route::post('/test','Api\ApiAuthdriver@test')->middleware('driver');
     Route::get('/',function(){
       echo "string";

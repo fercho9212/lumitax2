@@ -30,6 +30,6 @@ class DriveriIfAuthenticated
        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
          return response()->json(['token_absent'], $e->getStatusCode());
        }
-       return response()->json(compact('driver'));
+       return $next($request);
     }
 }

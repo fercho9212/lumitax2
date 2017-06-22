@@ -21,7 +21,7 @@ class Driver extends Authenticatable
     * @var array
     */
     protected $hidden = [
-       'password', 'remember_token',
+       'dri_cc', 'remember_token',
     ];
 
     public function state(){

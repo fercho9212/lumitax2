@@ -15,7 +15,7 @@ class AddForeignKeysToDriversTable extends Migration
     {
       Schema::table('drivers', function(Blueprint $table)
       {
-        $table->foreign('states_id', 'fk_dri_states')->references('id')->on('states')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+        $table->foreign('state_id', 'fk_dri_state')->references('id')->on('states')->onUpdate('RESTRICT')->onDelete('RESTRICT');
       });
     }
 
@@ -28,7 +28,7 @@ class AddForeignKeysToDriversTable extends Migration
     {
       Schema::table('drivers', function(Blueprint $table)
         {
-          $table->dropForeign('fk_dri_states');
+          $table->dropForeign('fk_dri_state');
         });
     }
 }
