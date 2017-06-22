@@ -1,5 +1,5 @@
 function load_frm(opt){
-  if (opt==1) {var url="frm_create_driver"; console.log('Entra')}
+  if (opt==1) {var url="/drivers/create"; console.log('Entra')}
 
   //$("#main_content").html()
 

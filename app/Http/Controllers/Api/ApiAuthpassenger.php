@@ -31,7 +31,6 @@ class ApiAuthpassenger extends Controller
      $validator = Validator::make($request->all(), [
          'pas_name' => 'required',
          'pas_last' => 'required',
-
          'email' => 'required|email|unique:passengers',
          'password' => 'required',
          'pas_movil' => 'required',

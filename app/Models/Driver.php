@@ -12,7 +12,7 @@ class Driver extends Authenticatable
     protected $fillable = [
        'dri_name','dri_last','dri_cc','dri_address',
        'dri_movil','dri_phone','dri_photo','dri_location',
-       'messages_id','email', 'password','states_id','dri_qual',
+       'messages_id','email', 'password','state_id','dri_qual',
     ];
     public $timestamps = true;
     /**
@@ -27,4 +27,8 @@ class Driver extends Authenticatable
     public function state(){
       return $this->belongsTo('App\Models\State');
     }
+    public function licence(){
+      return $this->hasOne('App\Models\Licence');
+    }
+
 }

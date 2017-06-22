@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
 use App\Models\Driver;
+use App\Models\state;
 class DriversController extends Controller
 {
     /**
@@ -29,7 +30,8 @@ class DriversController extends Controller
      */
     public function create()
     {
-        //
+        $states=state::all();
+        return view('panel.modules.driver.forms.frm_create',["states"=>$states]);
     }
 
     /**
@@ -47,14 +49,14 @@ class DriversController extends Controller
           'dri_address' => 'required',
           'dri_movil' => 'required',
           'dri_phone' => 'required',
+          'state_id' => 'required',
           'email' => 'required|email',
           'password' => 'required',
       ]);
       if ($validator->fails()) {
           return response()->json(['error'=>$validator->errors()], 401);
       }
-       $input = $request->all();
-      $input['states_id']=1;
+      $input = $request->all();
       $input['password']=bcrypt($input['password']);
       $input['dri_photo']='dsd';
       $driver=Driver::create($input);

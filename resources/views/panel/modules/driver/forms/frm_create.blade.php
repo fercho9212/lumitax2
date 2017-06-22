@@ -67,9 +67,14 @@
       </div>
       <div class="col-md-4">
         <div class="form-group">
-          <label for="exampleInputPassword1">Estado</label>
-          <input name="states_id" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
-        </div>
+        {!! Form::Label('item', 'Item:') !!}
+        <select name="state_id" class="custom-select form-control" name="item_id">
+          <option selected>Seleccione...</option>
+          @foreach($states as $state)
+            <option  value="{{$state->id}}">{{$state->state}}</option>
+          @endforeach
+        </select>
+      </div>
       </div>
     </div>
 </div>
