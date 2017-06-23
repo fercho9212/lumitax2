@@ -14,8 +14,8 @@ class CreateTypeslicencesTable extends Migration
     public function up()
     {
         Schema::create('typeslicences', function (Blueprint $table) {
-          $table->integer('id');
-          $table->string('type', 20);
+          $table->integer('id', true);
+          $table->string('type');
         });
     }
 

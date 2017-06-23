@@ -29,8 +29,6 @@ class CreateLicencesTable extends Migration
      */
     public function down()
     {
-      $table->dropForeign('fk_lic_cat');
-			$table->dropForeign('fk_lic_dri');
-			$table->dropForeign('fk_lic_typ');
+    Schema::dropIfExists('licences');
     }
 }
