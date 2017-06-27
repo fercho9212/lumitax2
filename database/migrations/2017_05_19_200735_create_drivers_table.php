@@ -18,9 +18,9 @@ class CreateDriversTable extends Migration
             $table->string('dri_name',30);
             $table->string('dri_last',30);
             $table->bigInteger('dri_cc');
-            $table->string('dri_address');
-            $table->string('dri_movil');
-            $table->string('dri_phone');
+            $table->string('dri_address',50);
+            $table->string('dri_movil',15);
+            $table->string('dri_phone',15);
             $table->string('dri_photo');
             $table->string('dri_location',70)->default('');
             $table->integer('messages_id')->default(5);

@@ -83,24 +83,23 @@ class DriversController extends Controller
           $input['dri_photo']='dsd';
           $driver=Driver::create($input);
           //$driver=Driver::find($driver);
+
           $licence=new Licence();
           $licence->id=$driver->id;
           $licence->lic_no=$request->lic_no;
-          $licence->lic_validity='9999-12-31 23:59:59';
+          $licence->lic_validity=$request->lic_validity;
           $licence->category_id=$request->category_id;
           $licence->type_id=$request->type_id;
           $licence->save();
-          $insert=$driver->licence()->save($licence);
-          if ($insert) {
-            Alert::success('Éxito', 'Registro Insertado con éxito')->persistent('Cerrar');
-            return redirect('/drivers')->with('success', 'Registro Insertado Con exito');
-          }
+          $driver->licence()->save($licence);
+          DB::commit();
+          Alert::success('Éxito', 'Registro Insertado con éxito')->persistent('Cerrar');
+          return redirect('/drivers')->with('success', 'Registro Insertado Con exito');
         } catch (\Exception $e) {
                   DB::rollback();
                   echo 'ERROR (' . $e->getCode() . '): ' . $e->getMessage();
 
         }
-        DB::commit();
 
 
       }
@@ -128,8 +127,15 @@ class DriversController extends Controller
     {
 
           $driver=Driver::find($id);
+          $states=State::all();
+          $categories=category::all();
+          $types=type::all();
+
           return view('panel.modules.driver.forms.edit',
-                      ["driver"=>$driver]);
+                      ["driver"=>$driver,
+                       "states"=>$states,
+                       "types"=>$types,
+                       "categories"=>$categories]);
 
 
     }

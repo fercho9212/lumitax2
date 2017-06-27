@@ -17,5 +17,7 @@ elixir(function(mix) {
     mix.less('bootstrap/bootstrap.less');
 
     //mix.copy('node_modules/sweetalert/dist','public/complement/sweetalert');
-    mix.copy('node_modules/bootstrap-validator/dist','public/complement/bootstrap-validator');
+    //mix.copy('node_modules/bootstrap-validator/dist','public/complement/bootstrap-validator');
+    mix.copy('bower_components/eonasdan-bootstrap-datetimepicker/build/css','public/complement/datetimepicker');
+    mix.copy('bower_components/moment/min/moment.min.js','public/complement/moment');
 });

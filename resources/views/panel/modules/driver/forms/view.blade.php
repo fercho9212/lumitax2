@@ -14,6 +14,7 @@
                 <th class="text-center">Estado</th>
                 <th class="text-center">Typo</th>
                 <th class="text-center">Category</th>
+                <th class="text-center">Vigencia</th>
                 <th class="text-center">Acción</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <td>{{$driver->state->state}}</td>
                 <td>{{$driver->licence->typeslicence->type}}</td>
                 <td>{{$driver->licence->categorylicence->category}}</td>
+                <td>{{$driver->licence->lic_validity}}</td>
                 <td><button class="edit-modal btn btn-info" data-id="{{$driver->id}}"
                         data-name="{{$driver->name}}">
                         <span class="glyphicon glyphicon-edit"></span>

@@ -15,22 +15,31 @@
           <div class="">
             <div class="col-md-4">
               <div class="form-group">
-                <label for="exampleInputEmail1">nombre</label>
-                <input name="dri_name" type="text"  class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                <label for="exampleInputEmail1">NOMBRE</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input name="dri_name" type="text" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                </div>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="exampleInputPassword1">Apellido</label>
-                <input name="dri_last" type="text"  class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input name="dri_last" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                </div>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="exampleInputEmail1">Cedula</label>
-                <input name="dri_cc" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+                  <input name="dri_cc" type="number"  maxlength="10" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                </div>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
@@ -47,10 +56,9 @@
           <div class="form-group">
             <label for="exampleInputEmail1">Correo</label>
             <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-
-          </div>
+              <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            </div>
           <div class="help-block with-errors"></div>
           </div>
           <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -59,13 +67,19 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="exampleInputPassword1">Dirección</label>
-            <input name="dri_address" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <div class="input-group">
+              <input name="dri_address" type="text" maxlength="50" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="form-group">
             <label for="exampleInputEmail1">Celular</label>
-            <input name="dri_movil" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            <div class="input-group">
+              <input name="dri_movil" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+            </div>
           </div>
         </div>
       </div>
@@ -80,7 +94,10 @@
       <div class="col-md-4">
         <div class="form-group">
           <label for="exampleInputEmail1">Telefono Fijo</label>
-          <input name="dri_phone" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+          <div class="input-group">
+            <input name="dri_phone" type="text" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+          </div>
         </div>
       </div>
       <div class="col-md-4">
@@ -111,7 +128,10 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Numero de Licencia</label>
-                    <input name="lic_no" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <div class="input-group">
+                      <input name="lic_no" type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -128,7 +148,12 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Vigencia</label>
-                    <input name="lic_validity" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    <div class='input-group date' >
+                     <input name="lic_validity" type='text' class="form-control" id='date_vigencia'/>
+                     <span class="input-group-addon">
+                         <i class="glyphicon glyphicon-calendar"></i>
+                     </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -171,13 +196,20 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Contraseña</label>
-                  <input name="password" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <div class="input-group">
+                    <input name="password" type="password" data-minlength="6" class="form-control"id="inputPassword" placeholder="Password" required>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  </div>
+                   <div class="help-block">Minimum of 6 characters</div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="exampleInputPassword1">Repetir Contraseña</label>
-                  <input name="password" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <div class="input-group">
+                    <input name="password" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -190,5 +222,13 @@
   </div>
 </form>
 <script>
-  $('#add_driver').validator()
+
+  $(function () {
+                $('#add_driver').validator();
+                $('#date_vigencia').datetimepicker({
+                  defaultDate: "2017-06-27",
+                  format: 'YYYY-MM-DD'
+                });
+
+            });
 </script>
