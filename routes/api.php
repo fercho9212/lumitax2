@@ -17,7 +17,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('jwt.auth');
 
-Route::post('authenticate','Api\UserController@authenticate');
+//Route::post('authenticate','Api\UserController@authenticate');
 /**
  * Route Passenger
  */

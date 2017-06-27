@@ -1,12 +1,22 @@
 function load_frm(opt){
   if (opt==1) {var url="/drivers/create"; console.log('Entra')}
+  if (opt==2) {var url="/drivers/"; console.log('Entra a verd')}
 
   //$("#main_content").html()
 
     $("#contenido_principal").html($("#cargador_empresa").html());
-      $.get(url,function(resul){
-          $("#contenido_principal").html(resul);
-      })
+    $.ajax({
+          async: true,
+          type: "GET",
+          url : url,
+          datatype:'json',
+          success : function(resul){
+                  $("#contenido_principal").html(resul);
+        },
+          error:function(data){
+            console.log('d'+data.responseJSON.dri_name);
+          }
+          });
 }
 $(document).on("submit",".form_entrada",function(e){
 
@@ -20,15 +30,18 @@ $(document).on("submit",".form_entrada",function(e){
     console.log('->');
   }
   $.ajax({
-
+        async: true,
         type: "POST",
         url : url,
         datatype:'json',
         data : frm.serialize(),
         success : function(resul){
-
-        alert(resul);
-      }
+                $("#contenido_principal").html(resul);
+      },
+        error:function(data){
+            var errors=data.responseJSON
+            console.log('d'+errors);
+        }
         });
 
 });

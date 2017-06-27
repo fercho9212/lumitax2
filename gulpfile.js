@@ -15,4 +15,7 @@ elixir(function(mix) {
     mix.less('app.less');
     mix.less('admin-lte/AdminLTE.less');
     mix.less('bootstrap/bootstrap.less');
+
+    //mix.copy('node_modules/sweetalert/dist','public/complement/sweetalert');
+    mix.copy('node_modules/bootstrap-validator/dist','public/complement/bootstrap-validator');
 });

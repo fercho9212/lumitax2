@@ -1,3 +1,6 @@
+@section('style')
+	<link rel="stylesheet" href="{{ asset('/complement/sweetalert/sweetalert.css') }}" href="/css/master.css">
+@endsection
 @extends('panel.layouts.main')
 
 @section('panel.htmlheader_title')
@@ -20,4 +23,11 @@
 			</div>
 		</div>
 	<!--</div>-->
+@endsection
+@section('scripts_table')
+@include('panel.layouts.partials.script_for_table')
+@endsection
+@section('script')
+<script type="text/javascript" src="{{ asset('/complement/sweetalert/sweetalert.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/complement/bootstrap-validator/validator.min.js') }}"></script>
 @endsection

@@ -14,7 +14,7 @@ class StatesTableSeeder extends Seeder
       $faker=Faker::create();
       for ($i=0; $i < 3; $i++) {
         \DB::table('states')->insert([
-           'state'      =>  $faker->name,
+           'state'      =>  $faker->firstName,
          ]);
       }
     }

@@ -58,5 +58,6 @@ desired effect
     @include('panel.layouts.partials.scripts')
 @show
 
+@yield('scripts_table')
 </body>
 </html>

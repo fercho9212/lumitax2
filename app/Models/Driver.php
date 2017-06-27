@@ -28,7 +28,7 @@ class Driver extends Authenticatable
       return $this->belongsTo('App\Models\State');
     }
     public function licence(){
-      return $this->hasOne('App\Models\Licence');
+      return $this->hasOne('App\Models\Licence','id');
     }
 
 }
