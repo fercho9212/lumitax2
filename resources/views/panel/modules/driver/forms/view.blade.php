@@ -2,7 +2,10 @@
 @if(session('success'))
     @include('sweet::alert')
 @endif
+<style>
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
 
+</style>
 <div class="table-responsive text-center">
     <table class="table table-borderless" id="table">
         <thead>
@@ -77,6 +80,7 @@ $(document).on('click', '.edit-modal', function() {
   var id=$(this).data('id');
   var url='/drivers/'+id+'/edit'
   $.get(url,function(resul){
+      console.log('Entraa editar ->');
       $("#contenido_principal").html(resul);
   })
 });

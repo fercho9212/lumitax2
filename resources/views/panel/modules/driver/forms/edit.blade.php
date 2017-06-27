@@ -6,9 +6,10 @@
           {{$error}}
        </div>
   @endforeach
-<form role="form" method="POST" id="add_driver" action="create_driver" class="form_entrada" data-toggle="validator">
+<form role="form" method="POST" id="edit_driver"  action="edit_driver" class="edit_form" data-toggle="validator">
   <!-- start roe-->
-  <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+  <input type="hidden" name="_token" id="token" value="<?php echo csrf_token(); ?>">
+  <input type="hidden" id='id' name="id" value="{{$driver->id}}">
     <div class="row">
 
       <div class="col-md-12">
@@ -199,7 +200,7 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Contraseña</label>
                   <div class="input-group">
-                    <input name="password" type="password" data-minlength="6" class="form-control"id="inputPassword" placeholder="Password" required>
+                    <input name="password" type="password" autocomplete="off" data-minlength="6" class="form-control"id="inputPassword" placeholder="Password" >
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   </div>
                    <div class="help-block">Minimum of 6 characters</div>
@@ -209,7 +210,7 @@
                 <div class="form-group">
                   <label for="exampleInputPassword1">Repetir Contraseña</label>
                   <div class="input-group">
-                    <input name="password" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+                    <input name="password" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" >
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   </div>
                 </div>
@@ -224,12 +225,34 @@
   </div>
 </form>
 <script>
-
+$('#add_driver').validator();
+$('#date_vigencia').datetimepicker({
+  defaultDate: "2017-06-27",
+  format: 'YYYY-MM-DD'
+});
   $(function () {
-                $('#add_driver').validator();
-                $('#date_vigencia').datetimepicker({
-                  defaultDate: "2017-06-27",
-                  format: 'YYYY-MM-DD'
+
+                $(document).on("submit",".edit_form",function(e){
+                  e.preventDefault();
+                  var frm=$(this);
+                  var id=$('#id').val();
+                  var url='drivers/'+id;
+                  var data=frm.serialize();
+
+                  $.ajax({
+  
+                        type: "PUT",
+                        url : url,
+                        datatype:'json',
+                        data : data,
+                        success : function(resul){
+                                $("#contenido_principal").html(resul);
+                      },
+                        error:function(data){
+                            var errors=data.responseJSON
+                            console.log('d'+errors);
+                        }
+                        });
                 });
 
             });

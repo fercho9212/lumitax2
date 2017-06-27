@@ -30,7 +30,7 @@ $(document).on("submit",".form_entrada",function(e){
     console.log('->');
   }
   $.ajax({
-        async: true,
+
         type: "POST",
         url : url,
         datatype:'json',

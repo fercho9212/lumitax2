@@ -126,7 +126,7 @@ class DriversController extends Controller
     public function edit($id)
     {
 
-          $driver=Driver::find($id);
+          $driver=Driver::findOrFail($id);
           $states=State::all();
           $categories=category::all();
           $types=type::all();
@@ -149,7 +149,41 @@ class DriversController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+      DB::beginTransaction();
+      try {
+        $driver=                  Driver::findOrFail($id);
+        $licence=                 Licence::findOrFail($driver->id);
+        $licence->lic_no=         $request->lic_no;
+        $licence->category_id=    $request->category_id;
+        $licence->type_id=        $request->type_id;
+        $driver->dri_name =       $request->dri_name;
+        $driver->dri_last =       $request->dri_last;
+        $driver->dri_cc =         $request->dri_cc;
+        $driver->dri_address =    $request->dri_address;
+        $driver->dri_movil =      $request->dri_movil;
+        $driver->dri_phone =      $request->dri_phone ;
+        $driver->state_id =       $request->state_id;
+        $driver->email =          $request->email;
+        if ($request->password!='') {
+          $driver->password =bcrypt($request->password);
+          $driver->save();
+          $licence->save();
+          DB::commit();
+        }else {
+          $driver->save();
+          $licence->save();
+          DB::commit();
+        }
+      } catch (\Exception $e) {
+                DB::rollback();
+                echo 'ERROR (' . $e->getCode() . '): ' . $e->getMessage();
+
+      }
+
+
+
+
     }
 
     /**
