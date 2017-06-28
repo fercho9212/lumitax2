@@ -14,11 +14,21 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel  panel-primary">
-					<div class="panel-heading">Homesss</div>
+					<div class="panel-heading">Homaaaaaasesss</div>
 					<div class="panel-body">
 						<div id="contenido_principal">
 
 						</div>
+						<!-- load-->
+										<div style="display: none" id="cargador_empresa" align="center">
+											<br><br><br><br>
+													 	<center><img src="img/cargando.gif" align="middle" alt="cargador"> &nbsp;</center>
+														<center><label style="color:#ABB6BA">Realizando tarea solicitada ...</label></center>
+														<br><br>
+													 <hr style="color:#003" width="50%">
+													 <br>
+									 </div>
+						<!-- end load-->
 					</div>
 				</div>
 			</div>

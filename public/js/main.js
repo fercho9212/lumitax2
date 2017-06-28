@@ -4,12 +4,14 @@ function load_frm(opt){
 
   //$("#main_content").html()
 
-    $("#contenido_principal").html($("#cargador_empresa").html());
     $.ajax({
           async: true,
           type: "GET",
           url : url,
           datatype:'json',
+          beforeSend:function(){
+            $("#contenido_principal").html($("#cargador_empresa").html());
+          },
           success : function(resul){
                   $("#contenido_principal").html(resul);
         },

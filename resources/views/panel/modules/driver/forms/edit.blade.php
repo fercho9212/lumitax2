@@ -6,7 +6,7 @@
           {{$error}}
        </div>
   @endforeach
-<form role="form" method="POST" id="edit_driver"  action="edit_driver" class="edit_form" data-toggle="validator">
+<form role="form" method="POST"  action="driveredit" class="edit_form" data-toggle="validator">
   <!-- start roe-->
   <input type="hidden" name="_token" id="token" value="<?php echo csrf_token(); ?>">
   <input type="hidden" id='id' name="id" value="{{$driver->id}}">
@@ -240,7 +240,7 @@ $('#date_vigencia').datetimepicker({
                   var data=frm.serialize();
 
                   $.ajax({
-  
+
                         type: "PUT",
                         url : url,
                         datatype:'json',

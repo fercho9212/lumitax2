@@ -33,7 +33,7 @@ input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
                 <td>{{$driver->licence->typeslicence->type}}</td>
                 <td>{{$driver->licence->categorylicence->category}}</td>
                 <td>{{$driver->licence->lic_validity}}</td>
-                <td><button class="edit-modal btn btn-info" data-id="{{$driver->id}}"
+                <td><button class="update btn btn-info" data-id="{{$driver->id}}"
                         data-name="{{$driver->name}}">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -76,12 +76,29 @@ function(){
         });
     });
 });
-$(document).on('click', '.edit-modal', function() {
+$(document).on('click', '.update', function() {
   var id=$(this).data('id');
   var url='/drivers/'+id+'/edit'
-  $.get(url,function(resul){
-      console.log('Entraa editar ->');
-      $("#contenido_principal").html(resul);
-  })
-});
+  $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                '_token': $('input[name=_token]').val(),
+            },
+            beforeSend:function(){
+              $("#contenido_principal").html($("#cargador_empresa").html());
+            },
+            complete:function(){
+
+            },
+            success: function(data) {
+                    location.reload($("#contenido_principal"));
+                    $("#contenido_principal").html(data);
+
+            }
+        });
+    });
+
+  //$("#contenido_principal").html($("#cargador_empresa").html());
+
 </script>

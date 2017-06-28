@@ -165,12 +165,12 @@ class DriversController extends Controller
         $driver->dri_phone =      $request->dri_phone ;
         $driver->state_id =       $request->state_id;
         $driver->email =          $request->email;
-        if ($request->password!='') {
-          $driver->password =bcrypt($request->password);
+        if ($request->password=='') {
           $driver->save();
           $licence->save();
           DB::commit();
         }else {
+          $driver->password =bcrypt($request->password);
           $driver->save();
           $licence->save();
           DB::commit();
