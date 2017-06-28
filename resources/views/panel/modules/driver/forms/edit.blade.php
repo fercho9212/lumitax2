@@ -245,6 +245,10 @@ $('#date_vigencia').datetimepicker({
                         url : url,
                         datatype:'json',
                         data : data,
+                        beforeSend:function(){
+                          $("#contenido_principal").html($("#cargador_empresa").html());
+                        },
+
                         success : function(resul){
                                 $("#contenido_principal").html(resul);
                       },
