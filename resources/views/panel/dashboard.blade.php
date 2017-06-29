@@ -14,7 +14,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel  panel-primary">
-					<div class="panel-heading">Homaaaaaasesss</div>
+					<div class="panel-heading"><center>LUMITAX</center></div>
 					<div class="panel-body">
 						<div id="contenido_principal">
 

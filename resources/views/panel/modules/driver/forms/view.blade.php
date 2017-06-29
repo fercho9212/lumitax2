@@ -33,14 +33,16 @@ input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
                 <td>{{$driver->licence->typeslicence->type}}</td>
                 <td>{{$driver->licence->categorylicence->category}}</td>
                 <td>{{$driver->licence->lic_validity}}</td>
-                <td><button class="update btn btn-info" data-id="{{$driver->id}}"
-                        data-name="{{$driver->name}}">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </button>
-                    <button class="delete-modal btn btn-danger" data-id="{{$driver->id}}"
-                        data-name="{{$driver->dri_name}}">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </button></td>
+                <td>
+                      <button onclick="edit({{$driver->id}})" class="update btn btn-info" data-id="{{$driver->id}}"
+                          data-name="{{$driver->name}}">
+                          <span class="glyphicon glyphicon-edit"></span>
+                      </button>
+                      <button class="delete-modal btn btn-danger" data-id="{{$driver->id}}"
+                          data-name="{{$driver->dri_name}}">
+                          <span class="glyphicon glyphicon-trash"></span>
+                      </button>
+                  </td>
                 </tr>
                 @endif
         @endforeach
@@ -48,37 +50,39 @@ input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px white inset; }
     </table>
 </div>
 <script>
-$(document).ready(function(){
+
+$(function(){
   $('#table').DataTable();
+
+  $(document).on('click', '.delete-modal', function() {
+        var id=$(this).data('id');
+        swal({
+              title: "Estas seguro?",
+              text: "Desea Eliminar el Conductor!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Si, Eliminar!",
+              closeOnConfirm: false
+      },
+      function(){
+        $.ajax({
+                  type: 'DELETE',
+                  url: '/drivers/'+id,
+                  data: {
+                      '_token': $('input[name=_token]').val(),
+                  },
+                  success: function(data) {
+                      swal("Deleted!", "Registro Eliminado.", "success");
+                      $('#table').find('.driver'+id).remove();
+                  }
+              });
+          });
+  });
 });
-$(document).on('click', '.delete-modal', function() {
-  var id=$(this).data('id');
-  swal({
-  title: "Estas seguro?",
-  text: "Desea Eliminar el Conductor!",
-  type: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#DD6B55",
-  confirmButtonText: "Si, Eliminar!",
-  closeOnConfirm: false
-},
-function(){
-  $.ajax({
-            type: 'DELETE',
-            url: '/drivers/'+id,
-            data: {
-                '_token': $('input[name=_token]').val(),
-            },
-            success: function(data) {
-                swal("Deleted!", "Your imaginary file has been deleted.", "success");
-                $('#table').find('.driver'+id).remove();
-            }
-        });
-    });
-});
-$(document).on('click', '.update', function() {
-  var id=$(this).data('id');
-  var url='/drivers/'+id+'/edit'
+function edit(id){
+  var idd=id;
+  var url='/drivers/'+idd+'/edit'
   $.ajax({
             type: 'GET',
             url: url,
@@ -92,13 +96,8 @@ $(document).on('click', '.update', function() {
 
             },
             success: function(data) {
-                    location.reload($("#contenido_principal"));
-                    $("#contenido_principal").html(data);
-
+              $("#contenido_principal").html(data);
             }
         });
-    });
-
-  //$("#contenido_principal").html($("#cargador_empresa").html());
-
+}
 </script>

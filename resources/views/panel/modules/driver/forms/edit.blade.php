@@ -6,7 +6,7 @@
           {{$error}}
        </div>
   @endforeach
-<form role="form" method="POST"  action="driveredit" class="edit_form" data-toggle="validator">
+<form role="form" method="POST"  id="update_driver" action="driveredit" class="update_form" data-toggle="validator">
   <!-- start roe-->
   <input type="hidden" name="_token" id="token" value="<?php echo csrf_token(); ?>">
   <input type="hidden" id='id' name="id" value="{{$driver->id}}">
@@ -225,39 +225,54 @@
   </div>
 </form>
 <script>
-$('#add_driver').validator();
+$('#update_driver').validator();
+
 $('#date_vigencia').datetimepicker({
   defaultDate: "2017-06-27",
   format: 'YYYY-MM-DD'
 });
-  $(function () {
 
-                $(document).on("submit",".edit_form",function(e){
+
+                $('#update_driver').submit(function(e){
                   e.preventDefault();
                   var frm=$(this);
                   var id=$('#id').val();
-                  var url='drivers/'+id;
-                  var data=frm.serialize();
+                  var data=$("#update_driver").serialize();
+                  console.log(data);
 
                   $.ajax({
-
-                        type: "PUT",
-                        url : url,
+                        type: 'PUT',
+                        url: '/drivers/'+id,
                         datatype:'json',
                         data : data,
-                        beforeSend:function(){
-                          $("#contenido_principal").html($("#cargador_empresa").html());
-                        },
+                        success : function(data){
+                            if (data.error) {
+                              alert('Error al validar los datos del servidor');
+                            }else {
+                              load_edit(id);
+                            }
 
-                        success : function(resul){
-                                $("#contenido_principal").html(resul);
                       },
                         error:function(data){
-                            var errors=data.responseJSON
-                            console.log('d'+errors);
+                            alert('Error Inesperado por favor intente nuevamente');
                         }
                         });
                 });
+                function load_edit(id){
 
-            });
+                  var urle='/drivers/'+id+'/edit';
+                  $.get(urle,function(resul){
+
+                    swal({
+                          title: "Conductor actualizado con éxito!",
+                          timer: 3000,
+                          imageUrl: "img/up.jpg",
+                          showConfirmButton: false,
+                        });
+                    $("#contenido_principal").load('/drivers/'+id+'/edit');
+                  })
+                }
+
+
+
 </script>

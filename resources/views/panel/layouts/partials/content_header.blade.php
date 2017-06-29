@@ -1,4 +1,4 @@
-<!-- Content Header (Page header) -->
+{{--Content Header (Page header)
 <section class="content-header">
     <h1>
       <center>  @yield('contentheader_title', 'Panel de ración Administ Lumitax')</center>
@@ -9,3 +9,4 @@
         <li class="active">{{ trans('adminlte_lang::message.here') }}</li>
     </ol>
 </section>
+--}}

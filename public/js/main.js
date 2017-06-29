@@ -16,7 +16,7 @@ function load_frm(opt){
                   $("#contenido_principal").html(resul);
         },
           error:function(data){
-            console.log('d'+data.responseJSON.dri_name);
+            console.log('Error main');
           }
           });
 }

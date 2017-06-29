@@ -149,37 +149,60 @@ class DriversController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-      DB::beginTransaction();
-      try {
-        $driver=                  Driver::findOrFail($id);
-        $licence=                 Licence::findOrFail($driver->id);
-        $licence->lic_no=         $request->lic_no;
-        $licence->category_id=    $request->category_id;
-        $licence->type_id=        $request->type_id;
-        $driver->dri_name =       $request->dri_name;
-        $driver->dri_last =       $request->dri_last;
-        $driver->dri_cc =         $request->dri_cc;
-        $driver->dri_address =    $request->dri_address;
-        $driver->dri_movil =      $request->dri_movil;
-        $driver->dri_phone =      $request->dri_phone ;
-        $driver->state_id =       $request->state_id;
-        $driver->email =          $request->email;
-        if ($request->password=='') {
-          $driver->save();
-          $licence->save();
-          DB::commit();
-        }else {
-          $driver->password =bcrypt($request->password);
-          $driver->save();
-          $licence->save();
-          DB::commit();
+      if ($request->ajax()) {
+        $validator = Validator::make($request->all(), [
+            'lic_no'=>'required',
+            'category_id'=>'required',
+            'type_id'=>'required',
+            'dri_name' => 'required',
+            'dri_last' => 'required',
+            'dri_cc' => 'required',
+            'dri_address' => 'required',
+            'dri_movil' => 'required',
+            'dri_phone' => 'required',
+            'state_id' => 'required',
+            'email' => 'required|email',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->getMessageBag()->toArray()]);
         }
-      } catch (\Exception $e) {
-                DB::rollback();
-                echo 'ERROR (' . $e->getCode() . '): ' . $e->getMessage();
-
+        DB::beginTransaction();
+        try {
+              $driver=                  Driver::findOrFail($id);
+              $licence=                 Licence::findOrFail($driver->id);
+              $licence->lic_no=         $request->lic_no;
+              $licence->category_id=    $request->category_id;
+              $licence->type_id=        $request->type_id;
+              $driver->dri_name =       $request->dri_name;
+              $driver->dri_last =       $request->dri_last;
+              $driver->dri_cc =         $request->dri_cc;
+              $driver->dri_address =    $request->dri_address;
+              $driver->dri_movil =      $request->dri_movil;
+              $driver->dri_phone =      $request->dri_phone ;
+              $driver->state_id =       $request->state_id;
+              $driver->email =          $request->email;
+              if ($request->password=='') {
+                  $driver->save();
+                  $licence->save();
+                  DB::commit();
+              }else {
+                $validator = Validator::make($request->all(), [
+                    'password' => 'required',
+                ]);
+                if ($validator->fails()) {
+                    return response()->json(['error'=>$validator->getMessageBag()->toArray()]);
+                }
+                  $driver->password=$request->password;
+                  $driver->save();
+                  $licence->save();
+                  DB::commit();
+              }
+        } catch (\Exception $e) {
+                  DB::rollback();
+                  echo 'ERhhRsOR (' . $e->getCode() . '): ' . $e->getMessage();
+        }
       }
+
 
 
 
