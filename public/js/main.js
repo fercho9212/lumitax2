@@ -1,6 +1,11 @@
 function load_frm(opt){
+
+  //Functions of driver
   if (opt==1) {var url="/drivers/create"; console.log('Entra')}
   if (opt==2) {var url="/drivers/"; console.log('Entra a verd')}
+  //Functions of passenger
+  if (opt==10) {var url="/passengers/"; console.log('Entra a passenger')}
+  if (opt==11) {var url="/drivers/create"; console.log('Entra a verd')}
 
   //$("#main_content").html()
 
@@ -31,6 +36,10 @@ $(document).on("submit",".form_entrada",function(e){
     var url="/drivers"
     console.log('->');
   }
+/*  if (id_frm=="create_passenger"){
+    var url="/driverssss"
+    console.log('passenger');
+  }*/
   $.ajax({
 
         type: "POST",

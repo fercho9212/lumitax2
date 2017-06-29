@@ -200,7 +200,8 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Contraseña</label>
                   <div class="input-group">
-                    <input name="password" type="password" autocomplete="off" data-minlength="6" class="form-control"id="inputPassword" placeholder="Password" >
+                    <input name="password" readonly
+     onfocus="this.removeAttribute('readonly');" type="password" autocomplete="off" data-minlength="6" class="form-control"id="inputPassword" placeholder="Password" >
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   </div>
                    <div class="help-block">Minimum of 6 characters</div>

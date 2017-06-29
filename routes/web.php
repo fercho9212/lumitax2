@@ -22,5 +22,6 @@ Route::get('/dashboard', 'PanelController@index');
 Route::get('/frm_create_driver', 'Dashboard\FormsController@frm_create_driver');
 Route::group(['namespace' => 'web'], function () {
     Route::resource('drivers', 'DriversController');
-  
+    Route::resource('passengers', 'PassengersController');
+
 });

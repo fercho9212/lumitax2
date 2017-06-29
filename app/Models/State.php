@@ -11,4 +11,7 @@ class State extends Model
       public function drivers(){
         return $this->hasMany('App\Models\Driver');
       }
+      public function passengers(){
+        return $this->hasMany('App\Models\Passenger');
+      }
 }

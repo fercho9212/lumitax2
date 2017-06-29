@@ -6,7 +6,7 @@
           {{$error}}
        </div>
   @endforeach
-<form role="form" method="POST" id="add_driver" action="create_driver" class="form_entrada" data-toggle="validator">
+<form role="form" method="POST" id="create_passenger" action="create_driver" class="form_entrada" data-toggle="validator">
   <!-- start roe-->
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
     <div class="row">
