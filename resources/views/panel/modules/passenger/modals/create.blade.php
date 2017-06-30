@@ -18,7 +18,7 @@
                     <label for="exampleInputEmail1">Nombre</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input name="pas_name" type="text" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter name" required>
+                      <input tabindex="1" name="pas_name" type="text" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter name" required>
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -28,7 +28,7 @@
                     <label for="exampleInputPassword1">Apellido</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input name="pas_last" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Enter last" required>
+                      <input tabindex="2" name="pas_last" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Enter last" required>
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -40,7 +40,7 @@
                     <label for="exampleInputEmail1">Correo</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input name="email" type="text" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                      <input tabindex="3" name="email" type="text" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -50,7 +50,7 @@
                     <label for="exampleInputPassword1">Telefono Movil</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input name="pas_movil" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Telefono movíl" required>
+                      <input tabindex="4" name="pas_movil" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Telefono movíl" required>
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -66,7 +66,7 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Contraseña</label>
                     <div class="input-group">
-                      <input name="password" type="password" data-minlength="6" class="form-control"id="inputPassword" placeholder="Password" required readonly
+                      <input tabindex="5" name="password" type="password" data-minlength="6" class="form-control"id="inputPassword" placeholder="Password" required readonly
                             onfocus="this.removeAttribute('readonly');">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     </div>
@@ -77,7 +77,7 @@
                   <div class="form-group">
                     <label for="exampleInputPassword1">Repetir Contraseña</label>
                     <div class="input-group">
-                      <input name="password" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+                      <input tabindex="6" name="password" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
                       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     </div>
                   </div>
@@ -99,7 +99,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button  onclick="send()" class="btn btn-primary">Submit</button>
               </div>
             </form>
           </div>
@@ -109,29 +109,37 @@
   </div>
 </div>
 <script type="text/javascript">
+$('#myModal').on("show.bs.modal", function (e) {
+
+   });
+
+
 
   $(document).ready(function(){
     $('#create_passenger').validator();
       $('#table').DataTable();
-    $(document).on("submit",".create_passenger",function(e){
-        e.preventDefault();
-        var url='/passengers';
-        var frm=$(this);
-        var data=frm.serialize();
-        $.ajax({
+      function send(){
 
-              type: "POST",
-              url : url,
-              datatype:'json',
-              data : frm.serialize(),
-              success : function(resul){
-                      $("#contenido_principal").html(resul);
-            },
-              error:function(data){
-                    console.log('Error '+data);
+
+          alert('Presionaa');
+          var url='/passengers';
+          var frm=$(this);
+          var data=frm.serialize();
+          $.ajax({
+
+                type: "POST",
+                url : url,
+                datatype:'json',
+                data : frm.serialize(),
+                success : function(resul){
+                        $("#contenido_principal").html(resul);
+                        $("#create_passenger").trigger("reset");
+              },
+                error:function(data){
+                      console.log('Error '+data);
+                }
+                });
               }
-              });
-    });
 
   });
 </script>

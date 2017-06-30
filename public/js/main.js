@@ -32,7 +32,7 @@ $(document).on("submit",".form_entrada",function(e){
   console.log("Entra");
   var frm=$(this);
   var id_frm=$(this).attr("id");
-  if (id_frm=="add_driver"){
+  if (id_frm=="create_passenger"){
     var url="/drivers"
     console.log('->');
   }

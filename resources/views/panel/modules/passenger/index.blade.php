@@ -1,10 +1,9 @@
 @if(session('success'))
     @include('sweet::alert')
 @endif
-
 @foreach($errors->all() as $error)
-       <div>
-          {{$error}}
+       <div class="alert alert-danger" role="alert">
+        <center><strong>Warning!</strong>  {{$error}}</center>
        </div>
   @endforeach
 <br><br>

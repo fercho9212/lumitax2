@@ -18,7 +18,7 @@ class CreatePassengersTable extends Migration
           $table->string('pas_name',  30);
           $table->string('pas_last',  35);
           $table->string('pas_cc',    12)->default('');
-          $table->string('email')->unique();
+          $table->string('email');
           $table->string('password');
           $table->string('pas_movil', 12);
           $table->string('pas_username', 30)->default('');
