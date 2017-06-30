@@ -1,5 +1,5 @@
 @if(session('success'))
-    @include('sweet::alert')
+  @include('sweet::alert')
 @endif
 @foreach($errors->all() as $error)
        <div class="alert alert-danger" role="alert">
@@ -7,16 +7,20 @@
        </div>
   @endforeach
 <br><br>
+
+
 <center>
-           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Agregar Usuario del Servicio
+           <button type="button" class="btn btn-primary" id="addpassenger" >
+             Agregar Usuario del Servicio
           </button>
 </center>
 <br>
 
 {{--Modal--}}
-@include('panel.modules.passenger.modals.create');
+@include('panel.modules.passenger.modals.create')
+@include('panel.modules.passenger.modals.edit')
 {{--End Modal--}}
+
 <div class="table-responsive text-center">
     <table class="table table-borderless" id="table">
         <thead>
@@ -41,8 +45,14 @@
                 <td>{{$passenger->state->state}}</td>
                 <td>{{$passenger->created_at}}</td>
                 <td>
-                      <button onclick="edit({{$passenger->id}})" class="update btn btn-info" data-id="{{$passenger->id}}"
-                          data-name="{{$passenger->name}}">
+                      <button  class="update btn btn-info" data-id="{{$passenger->id}}"
+                                        data-name="{{$passenger->pas_name}}"
+                                        data-last="{{$passenger->pas_last}}"
+                                        data-email="{{$passenger->email}}"
+                                        data-movil="{{$passenger->pas_movil}}"
+                                        data-state="{{$passenger->state->state}}"
+                                        data-date="{{$passenger->created_at}}"
+                          data-toggle="modal" data-target="#edit_passenger" >
                           <span class="glyphicon glyphicon-edit"></span>
                       </button>
                       <button class="delete-modal btn btn-danger" data-id="{{$passenger->id}}"
@@ -57,7 +67,24 @@
     </table>
 </div>
 <script>
+
+
   $('#table').DataTable();
+  $('#addpassenger').on('click' ,function(){
+
+    $('#frmpassenger').modal('show');
+
+
+  });
+  $('#frmpassenger').on("shown.bs.modal", function () {
+      $("body").removeClass("modal-open");
+      $("body").css({"padding-right":"0px"});
+  });
+/*$('#frmpassenger').on('hidden.bs.modal', function (e) {
+    console.log('saleeeeeeeeeeeee');
+    alert('dasdas');
+    //$("#frmpassenger").removeClass("modal-open");
+});*/
   $(document).on('click', '.delete-modal', function() {
         var id=$(this).data('id');
         swal({
@@ -83,4 +110,34 @@
               });
           });
   });
+
+
+
+
+
+
+
+
+  function edit_passenger(id){
+    var idd=id;
+    var url='/passengers/'+idd+'/edit'
+
+
+
+
+    $.ajax({
+              type: 'GET',
+              url: url,
+              beforeSend:function(){
+                $("#contenido_principal").html($("#cargador_empresa").html());
+              },
+              complete:function(){
+
+              },
+              success: function(data) {
+
+                $("#contenido_principal").html(data);
+              }
+          })
+  }
 </script>

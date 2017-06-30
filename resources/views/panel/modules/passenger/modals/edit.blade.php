@@ -1,6 +1,6 @@
 
 
-<div class="modal fade" id="frmpassenger" tabindex="-1" role="dialog" >
+<div class="modal fade" id="edit_passenger" tabindex="-1" role="dialog" >
   <div class="modal-dialog modal-lg" role="document">
 
         <!-- Modal content-->
@@ -8,7 +8,7 @@
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
+            <h4 class="modal-title">Editar</h4>
           </div>
           <div class="modal-body">
 
@@ -20,7 +20,7 @@
                     <label for="exampleInputEmail1">Nombre</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input tabindex="1" name="pas_name" type="text" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter name" required>
+                      <input id="name" tabindex="1" name="pas_name" type="text" maxlength="30" class="form-control"  placeholder="Enter name" required>
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -30,7 +30,7 @@
                     <label for="exampleInputPassword1">Apellido</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input tabindex="2" name="pas_last" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Enter last" required>
+                      <input id='last' tabindex="2" name="pas_last" type="text" maxlength="30" class="form-control"  placeholder="Enter last" required>
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -113,6 +113,22 @@
 <script type="text/javascript">
 
   $(document).ready(function(){
+    $('#edit_passenger').on("shown.bs.modal", function (event) {
+        var button  = $(event.relatedTarget);
+        var name    = button.data('name');
+        var last    = button.data('last');
+        var movil   = button.data('movil');
+        var email   = button.data('email');
+        var state   = button.data('state');
+        console.log(name+last);
+        var modal = $(this)
+        modal.find('.modal-title').html('<center>Renovar : '+name+'<center>');
+      //  modal.find('.modal-body #id').val(id);
+        modal.find('.modal-body #name').val(name);//id de documento
+        modal.find('.modal-body #last').val(last);
+
+
+    });
 
     $('#create_passenger').validator();
       $('#create_passenger').on('submit',function(e){

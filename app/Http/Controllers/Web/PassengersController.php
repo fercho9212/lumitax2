@@ -15,6 +15,11 @@ class PassengersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     public function index()
     {
         $passenger=Passenger::all();
@@ -84,7 +89,8 @@ class PassengersController extends Controller
      */
     public function edit($id)
     {
-        //
+      $passenger=Passenger::findOrFail($id);
+      return response()->json($passenger);
     }
 
     /**
