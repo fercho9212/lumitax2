@@ -55,13 +55,12 @@ class PassengersController extends Controller
 
 
       if ($validator->fails()) {
-          return redirect('/passengers')->withErrors($validator)->withInput();
+          return response()->json(['error'=>$validator->errors()->all()]);
       }else {
             try {
               $input = $request->all();
               $passenger=Passenger::create($input);
-              Alert::success('Éxito', 'Registro Insertado con éxito')->persistent('Cerrar');
-              return redirect('/passengers')->with('success', 'Registro Insertado Con exito');
+              return response()->json(['msg'=>'success']);
               } catch (Exception $e) {
                 echo 'ERROR (' . $e->getCode() . '): ' . $e->getMessage();
               }
@@ -102,7 +101,41 @@ class PassengersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $validator = Validator::make($request->all(), [
+          'pas_name'=>'required',
+          'pas_last'=>'required',
+          'email'=>'required|email',
+          'state_id' => 'required',
+      ]);
+      if ($validator->fails()) {
+          return response()->json(['error'=>$validator->errors()->all()]);
+      }else {
+        $passenger=Passenger::findOrFail($id);
+        //$passenger->save();
+        if ($request->password!=NULL and $request->password2!=NULL) {
+              if ($request->password==$request->password2) {
+                  $passenger->password=$request->password;
+                  $passenger->pas_name  =$request->pas_name;
+                  $passenger->pas_last  =$request->pas_last;
+                  $passenger->pas_movil =$request->pas_movil;
+                  $passenger->email     =$request->email;
+                  $passenger->save();
+                  return response()->json(['rpt'=>'success']);
+              }else {
+                  return response()->json(['error'=>['Las contraseñas con coinciden']]);
+              }
+        }else {
+                $passenger->pas_name  =$request->pas_name;
+                $passenger->pas_last  =$request->pas_last;
+                $passenger->pas_movil =$request->pas_movil;
+                $passenger->email     =$request->email;
+                $passenger->save();
+                return response()->json(['rpt'=>'success']);
+        }
+      }
+
+
+
     }
 
     /**

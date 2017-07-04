@@ -1,5 +1,3 @@
-
-
 <div class="modal fade" id="edit_passenger" tabindex="-1" role="dialog" >
   <div class="modal-dialog modal-lg" role="document">
 
@@ -12,25 +10,26 @@
           </div>
           <div class="modal-body">
 
-            <form role="form" method="POST" id="create_passenger" action="create_driver" class="create_passenger" data-toggle="validator">
+            <form role="form" method="POST" id="edit_passenger" action="create_driver" class="create_passenger" data-toggle="validator">
                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                <input type="hidden" id='id' name="id" value="">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input id="name" tabindex="1" name="pas_name" type="text" maxlength="30" class="form-control"  placeholder="Enter name" required>
+                      <input id="name"  value="No data" tabindex="1" name="pas_name" type="text" maxlength="30" class="form-control"  placeholder="Enter name" >
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Apellido</label>
+                    <label for="example">Apellido</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input id='last' tabindex="2" name="pas_last" type="text" maxlength="30" class="form-control"  placeholder="Enter last" required>
+                      <input id='last' value="No data" tabindex="2" name="pas_last" type="text" maxlength="30" class="form-control"  placeholder="Enter last" required>
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -42,17 +41,17 @@
                     <label for="exampleInputEmail1">Correo</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input tabindex="3" name="email" type="text" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                      <input  name="email" type="text" tabindex="3" maxlength="30" class="form-control" id="email" placeholder="Enter email" >
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Telefono Movil</label>
+                    <label for="example">Telefono Movil</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input tabindex="4" name="pas_movil" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Telefono movíl" required>
+                      <input name="pas_movil" type="text" tabindex="4"  maxlength="30" class="form-control" id="movil" placeholder="Telefono movíl" >
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -66,25 +65,26 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Contraseña</label>
-                    <div class="input-group">
-                      <input tabindex="5" name="password" type="password" data-minlength="6" class="form-control"id="inputPassword" placeholder="Password" required readonly
-                            onfocus="this.removeAttribute('readonly');">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    </div>
-                     <div class="help-block">Minimum of 6 characters</div>
-                  </div>
+                    <label for="input" >Nueva contraseña</label>
+                      <div class="input-group ">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input class="form-control" id="password" type="password" name="password" data-minLength="5" data-error="some error" required/>
+                      </div>
+                      <div class="help-block with-errors"></div>
+                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Repetir Contraseña</label>
-                    <div class="input-group">
-                      <input tabindex="6" name="password" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    </div>
-                  </div>
+                    <label for="input" >Password</label>
+                       <div class="input-group ">
+                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                         <input class="form-control " id="password2" type="password" name="password2" data-match="#password" data-minLength="5" data-match-error="some error 2"  required/>
+                       </div>
+                     <div class="help-block with-errors"></div>
+                   </div>
                 </div>
               </div>
+                </div>
                 <div class="row">
                   <div class="form-group">
                     <div class="col-md-6 col-md-offset-3">
@@ -101,7 +101,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button  type="submit"   class="btn btn-primary">Submit</button>
+                <button  type="submit"  id="send" class="btn btn-primary">Submit</button>
               </div>
             </form>
           </div>
@@ -114,50 +114,66 @@
 
   $(document).ready(function(){
     $('#edit_passenger').on("shown.bs.modal", function (event) {
+        $("body").removeClass("modal-open");
+        $("body").css({"padding-right":"0px"});
+
         var button  = $(event.relatedTarget);
+        var id    = button.data('id');
         var name    = button.data('name');
         var last    = button.data('last');
         var movil   = button.data('movil');
         var email   = button.data('email');
         var state   = button.data('state');
         console.log(name+last);
-        var modal = $(this)
+        var modal = $(this);
         modal.find('.modal-title').html('<center>Renovar : '+name+'<center>');
-      //  modal.find('.modal-body #id').val(id);
+        modal.find('.modal-body #id').val(id);
         modal.find('.modal-body #name').val(name);//id de documento
         modal.find('.modal-body #last').val(last);
-
-
+        modal.find('.modal-body #movil').val(movil);
+        modal.find('.modal-body #email').val(email);
+        modal.find('.modal-body #state').val(state);
+        modal.find('.modal-body #password').val();
     });
 
-    $('#create_passenger').validator();
-      $('#create_passenger').on('submit',function(e){
-          e.preventDefault();
-          var url='/passengers';
-          var frm=$(this);
-          var data=frm.serialize();
-          $.ajax({
-                type: "POST",
-                url : url,
-                datatype:'json',
-                data : frm.serialize(),
-                beforeSend:function(){
-                        $("#contenido_principal").html($("#cargador_empresa").html());
-                },
-                success : function(resul){
-                        $("#body").removeClass("modal-open");
-                        $("#contenido_principal").html(resul);
-                        $("#create_passenger").trigger("reset");
+    $('form').validator();
+      $('#send').click(function(e){
+        var frm=$(this);
+        var id=$('#id').val();
+        var url='/passengers/'+id;
+        var data=$("form").serialize();
+        console.log(data);
+        $.ajax({
+              type: 'PUT',
+              url: url,
+              datatype:'json',
+              data : data,
+              success : function(data){
+                if (data.rpt=='success') {
+                  loadData('/passengers',data);
+                  swal("Registro actualizado!", "You clicked the button!", "success")
+                }else {
+                  swal({
+                        title: "Se encontraron los siguientes errores",
+                        text:   $.each( data.error, function( key, value ) {
+                                    "<p style='color: red'>"+value+"</p>"
+                                      }),
+                        confirmButtonText: "intentar nuevamente!",
+                        confirmButtonClass: "btn-danger",
+                        type: "warning",
+                        showConfirmButton: true
+                      },function(){
+                                  loadData(url,data);
+                      });
 
-                        //$('#frmpassenger').modal('hide');
-              },
-                error:function(data){
-                      console.log('Error '+data);
-                    }
-              });
+                  $.each( data.error, function( key, value ) {
+                         console.log(value);
+                        });
+                }
 
+            },
+        });
       });
-
 
   });
 </script>

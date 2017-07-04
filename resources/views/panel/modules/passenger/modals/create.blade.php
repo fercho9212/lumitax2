@@ -1,6 +1,6 @@
 
 
-<div class="modal fade" id="frmpassenger" tabindex="-1" role="dialog" >
+<div class="modal fade" id="frmpassenger"  role="dialog" >
   <div class="modal-dialog modal-lg" role="document">
 
         <!-- Modal content-->
@@ -114,7 +114,7 @@
 
   $(document).ready(function(){
 
-    $('#create_passenger').validator();
+      $('#create_passenger').validator();
       $('#create_passenger').on('submit',function(e){
           e.preventDefault();
           var url='/passengers';
@@ -128,20 +128,43 @@
                 beforeSend:function(){
                         $("#contenido_principal").html($("#cargador_empresa").html());
                 },
-                success : function(resul){
-                        $("#body").removeClass("modal-open");
-                        $("#contenido_principal").html(resul);
-                        $("#create_passenger").trigger("reset");
+                success : function(data){
+                        if (data.msg=='success') {
+                                  //$('#frmpassenger').modal('hide');
+                                  loadData(url,data);
+                                  swal("Registro Insertado!", "You clicked the button!", "success")
+                        }else {
+                          console.log('eRROR Validator');
+                          swal({
+                                title: "Se encontraron los siguientes errores",
+                                text:   $.each( data.error, function( key, value ) {
+                                            "<p style='color: red'>"+value+"</p>"
+                                              }),
+                                confirmButtonText: "intentar nuevamente!",
+                                confirmButtonClass: "btn-danger",
+                                type: "warning",
+                                showConfirmButton: true
+                              },function(){
+                                          loadData(url,data);
+                              });
 
+                          $.each( data.error, function( key, value ) {
+				                         console.log(value);
+			                          });
+                          //console.log(data.error);
+                        }
                         //$('#frmpassenger').modal('hide');
-              },
+              },//end success
                 error:function(data){
                       console.log('Error '+data);
                     }
-              });
+              });//End Ajax
 
       });
 
 
   });
+
+
+
 </script>

@@ -56,3 +56,8 @@ $(document).on("submit",".form_entrada",function(e){
         });
 
 });
+function loadData(url,data){
+  $.get(url,function(data){
+    $("#contenido_principal").html(data);
+  })
+}
