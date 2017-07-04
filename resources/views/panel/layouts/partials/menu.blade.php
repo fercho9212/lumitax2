@@ -44,6 +44,7 @@
                     <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
                 </ul>
             </li>
+            <li><a href="/vehicles/create"><i class='fa fa-link'></i> <span>Prueba3</span></a></li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
