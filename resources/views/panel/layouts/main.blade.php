@@ -59,5 +59,6 @@ desired effect
 @show
 
 @yield('scripts_table')
+@yield('code_script')
 </body>
 </html>

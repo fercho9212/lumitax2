@@ -25,3 +25,13 @@
     font-size: 18px;
     line-height: 1.428571429;
 }
+
+
+/**  Switch html**/
+swti
+.btn span.glyphicon {
+	opacity: 0!important;
+}
+.btn.active span.glyphicon {
+	opacity: 1!important;
+}

@@ -43,5 +43,4 @@
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-validator/validator.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/moment/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.js') }}"></script>
-
 @endsection

@@ -35,7 +35,7 @@ class VehiclesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      echo "aCÁ SE CREAAAAAAAA";
     }
 
     /**

@@ -226,7 +226,7 @@
   </div>
 </form>
 <script>
-$('#update_driver').validator();
+//$('#update_driver').validator();
 
 $('#date_vigencia').datetimepicker({
   defaultDate: "2017-06-27",

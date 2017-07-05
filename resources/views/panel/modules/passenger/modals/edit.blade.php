@@ -112,7 +112,8 @@
 </div>
 <script type="text/javascript">
 
-  $(document).ready(function(){
+
+
     $('#edit_passenger').on("shown.bs.modal", function (event) {
         $("body").removeClass("modal-open");
         $("body").css({"padding-right":"0px"});
@@ -136,7 +137,7 @@
         modal.find('.modal-body #password').val();
     });
 
-    $('form').validator();
+  //  $('form').validator();
       $('#send').click(function(e){
         var frm=$(this);
         var id=$('#id').val();

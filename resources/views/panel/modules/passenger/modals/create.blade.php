@@ -114,7 +114,7 @@
 
   $(document).ready(function(){
 
-      $('#create_passenger').validator();
+      //$('#create_passenger').validator();
       $('#create_passenger').on('submit',function(e){
           e.preventDefault();
           var url='/passengers';

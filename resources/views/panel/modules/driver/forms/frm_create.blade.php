@@ -224,7 +224,7 @@
 <script>
 
   $(function () {
-                $('form').validator();
+                //$('form').validator();
                 $('#date_vigencia').datetimepicker({
                   defaultDate: "2017-06-27",
                   format: 'YYYY-MM-DD'
