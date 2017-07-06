@@ -14,7 +14,7 @@ class AddForeignKeysToComplements extends Migration
     public function up()
     {
         Schema::table('vehiclecomplements', function (Blueprint $table) {
-          $table->foreign('id')->references('id')->on('vehicles')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+          $table->foreign('id')->references('id')->on('vehicles')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -28,7 +28,7 @@ class AddForeignKeysToComplements extends Migration
 
         Schema::table('drivers', function(Blueprint $table)
           {
-            //$table->dropForeign('fk_vc_vechicles');
+            $table->dropForeign('fk_vc_vechicles');
           });
 
     }

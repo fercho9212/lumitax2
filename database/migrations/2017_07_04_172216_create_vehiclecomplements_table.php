@@ -14,14 +14,16 @@ class CreateVehiclecomplementsTable extends Migration
     public function up()
     {
         Schema::create('vehiclecomplements', function (Blueprint $table) {
-            
+
             $table->integer('id',true);
+            $table->string('vc_brakes',2);
             $table->string('vc_Airbags',2);
             $table->boolean('vc_head');
             $table->string('vc_doors',2);
             $table->string('vc_cabin',30);
             $table->string('vc_passagers',2);
             $table->string('vc_space',30);
+            $table->string('vc_sillateria',30);
             $table->string('vc_cellar',30);
             $table->string('vc_typebodyworks',30);
             $table->string('vc_cylinder',30);

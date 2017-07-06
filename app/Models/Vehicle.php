@@ -15,5 +15,8 @@ class Vehicle extends Model
        'veh_vin','veh_color','veh_line','state_id',
        'typevehicles_id','typelines_id','brands_id','leveles_id',
     ];
+    public function vehiclecomplement(){
+      return $this->hasOne('App\Models\Vehiclecomplement','id');
+    }
 
 }

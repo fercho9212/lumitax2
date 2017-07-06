@@ -24,10 +24,11 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Modelo</label>
                     <div class="input-group">
-                          <select name="veh_model"  class="selectpicker show-menu-arrow">
-                              <option value="1">Mustard</option>
-                              <option value="1">Ketchup</option>
-                              <option value="1">Relish</option>
+                          <select name="veh_model"  class="selectpicker show-menu-arrow" data-live-search="true">
+                              @for ($i=2008; $i <2020 ; $i++)
+                                <option value="{{$i}}">{{$i}}</option>
+                              @endfor
+
                          </select>
                     </div>
                     <div class="help-block with-errors"></div>
@@ -124,9 +125,9 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                <label for="exampleInputEmail1">Linea</label>
+                <label for="exampleInputEmail1">Clase</label>
                 <div class="input-group">
-                  <input name="veh_line" type="text" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <input name="class_id" type="text" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
                 </div>
               </div>
@@ -174,15 +175,19 @@ $('form').validator();
 
 
       $('#lujo').click(function(){
-          $('#servicelujo').show(2000);
+            $('#servicelujo').show(2000);
             $("#frenos").attr('required',true);
+          //  $('#servicelujo').find('input').attr("name");
+
           //$('#servicelujo').toggle("slow");
       });
 
       $('#special').click(function(){
+          $('#servicelujo').find('input').val('');
           $('#frenos').prop('required', false);
           $('#servicelujo').hide(2000);
 
+          //$('#servicelujo input').removeAttr('name');
       });
 
       $('#create_vehicle').submit(function(e){
@@ -197,9 +202,10 @@ $('form').validator();
                     url : url,
                     datatype:'json',
                     success: function(data){
-                      $.each(data.dat,function(i,value){
-                        console.log(i+value);
-                      });
+                      //$.each(data.dat,function(i,value){
+                        //console.log(i+value);
+                      //});
+                      console.log(':D'+data.rpt);
                     }
             });
       });
