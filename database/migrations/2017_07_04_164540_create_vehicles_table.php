@@ -25,7 +25,7 @@ class CreateVehiclesTable extends Migration
           //$table->text('veh_observa');
           $table->integer('state_id')->default(1)->index('fk_vehicles_states');
           $table->integer('typevehicles_id')->default(1)->index('fk_vehicles_types');//Motocicleta ,camioneta,taxi
-          $table->integer('typelines_id')->default(1)->index('fk_vehicles_lines');
+          //$table->integer('typelines_id')->default(1)->index('fk_vehicles_lines');
           $table->integer('brands_id')->default(1)->index('fk_vehicles_brands');//Marca, yhamaha,chevrolet
           $table->integer('leveles_id')->default(1)->index('fk_vehicles_levels');
 
@@ -42,7 +42,7 @@ class CreateVehiclesTable extends Migration
      */
     public function down()
     {
-        
+
             Schema::dropIfExists('vehicles');
 
     }

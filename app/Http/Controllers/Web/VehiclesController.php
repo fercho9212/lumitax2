@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Vehicle;
 
 class VehiclesController extends Controller
 {
@@ -35,7 +36,23 @@ class VehiclesController extends Controller
      */
     public function store(Request $request)
     {
-      echo "aCÁ SE CREAAAAAAAA";
+      //dd($request->all());
+      //echo $request->all();
+      if ($request->veh_service=='1') {
+          $vehicle= New Vehicle();
+          $vehicle->placa     =$request->veh_placa;
+          $vehicle->veh_model =$request->veh_model;
+          $vehicle->veh_motor =$request->veh_motor;
+          //$vehicle->serie     =$request->veh_serie;
+          $vehicle->veh_serie =$request->veh_serie;
+          $vehicle->veh_vin   =$request->veh_vin;
+          $vehicle->veh_color =$request->veh_color;
+          $vehicle->brands_id =$request->brands_id;
+          $vehicle->veh_line  =$request->veh_line;
+          $vehicle->save();
+      }
+        return response()->json(['dat'=>$request->all()]);
+
     }
 
     /**
