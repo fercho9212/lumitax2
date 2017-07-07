@@ -9,6 +9,7 @@ use App\Models\Vehiclecomplement;
 use App\Models\Classvehicle AS Clase;
 use App\Models\Typevehicle AS Type;
 use App\Models\Brandvehicle AS Brand;
+use App\Models\Typebodywork AS Bodywork;
 
 
 class VehiclesController extends Controller
@@ -33,9 +34,12 @@ class VehiclesController extends Controller
         $type   =  Type::all();
         $brand  =  Brand::all();
         $class  =  Clase::all();
+        $bodywork= Bodywork::all();
         return view('panel.modules.vehicle.forms.create',['types'=>$type,
                                                           'brands'=>$brand,
-                                                          'class'=>$class]);
+                                                          'class'=>$class,
+                                                          'bodyworks'=>$bodywork,
+                                                        ]);
     }
 
     /**
@@ -75,7 +79,7 @@ class VehiclesController extends Controller
               $complemt->vc_passagers=$request->vc_passagers;
               $complemt->vc_sillateria=$request->vc_sillateria;
               $complemt->vc_cellar=$request->vc_cellar;
-              $complemt->vc_typebodyworks=$request->vc_typebodyworks;
+              $complemt->typebodywork_id=$request->typebodywork_id;
               $complemt->vc_cylinder=$request->vc_cylinder;
               $complemt->vc_power=$request->vc_power;
               $vehicle->vehiclecomplement()->save($complemt);

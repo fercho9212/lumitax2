@@ -25,9 +25,9 @@ class CreateVehiclecomplementsTable extends Migration
             $table->string('vc_space',30);
             $table->string('vc_sillateria',30);
             $table->string('vc_cellar',30);
-            $table->string('vc_typebodyworks',30);
             $table->string('vc_cylinder',30);
             $table->string('vc_power',30);
+            $table->integer('typebodywork_id')->unsigned();
         });
     }
 

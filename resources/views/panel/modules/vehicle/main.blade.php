@@ -20,7 +20,7 @@
 					<div class="panel-body">
 						<div id="contenido_principal">
 
-
+							
 
               <div class="panel with-nav-tabs panel-default">
                   <div class="panel-heading">
@@ -71,5 +71,7 @@
 <script type="text/javascript" src="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.js') }}"></script>
 {{--Select--}}
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-select/bootstrap-select.min.js') }}"></script>
+{{--Checkbox--}}
+<script type="text/javascript" src="{{ asset('/complement/bootstrap-checkbox/bootstrap-checkbox.min.js') }}"></script>
 
 @endsection
