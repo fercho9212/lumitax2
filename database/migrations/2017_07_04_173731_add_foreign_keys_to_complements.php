@@ -28,7 +28,7 @@ class AddForeignKeysToComplements extends Migration
 
         Schema::table('drivers', function(Blueprint $table)
           {
-            $table->dropForeign('fk_vc_vechicles');
+            //$table->dropForeign('fk_vc_vechicles');
           });
 
     }

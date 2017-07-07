@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Vehicle;
 use App\Models\Vehiclecomplement;
+use App\Models\Classvehicle AS Clase;
+use App\Models\Typevehicle AS Type;
+use App\Models\Brandvehicle AS Brand;
+
 
 class VehiclesController extends Controller
 {
@@ -26,7 +30,12 @@ class VehiclesController extends Controller
      */
     public function create()
     {
-        return view('panel.modules.vehicle.forms.create');
+        $type   =  Type::all();
+        $brand  =  Brand::all();
+        $class  =  Clase::all();
+        return view('panel.modules.vehicle.forms.create',['types'=>$type,
+                                                          'brands'=>$brand,
+                                                          'class'=>$class]);
     }
 
     /**
@@ -40,15 +49,16 @@ class VehiclesController extends Controller
       //dd($request->all());
       //echo $request->all();
       $vehicle= New Vehicle();
-      $vehicle->placa     =$request->veh_placa;
-      $vehicle->veh_model =$request->veh_model;
-      $vehicle->veh_motor =$request->veh_motor;
+      $vehicle->placa           =$request->veh_placa;
+      $vehicle->veh_model       =$request->veh_model;
+      $vehicle->veh_motor       =$request->veh_motor;
       //$vehicle->serie     =$request->veh_serie;
-      $vehicle->veh_serie =$request->veh_serie;
-      $vehicle->veh_vin   =$request->veh_vin;
-      $vehicle->veh_color =$request->veh_color;
-      $vehicle->brands_id =$request->brands_id;
-      $vehicle->class_id  =$request->class_id ;
+      $vehicle->veh_serie       =$request->veh_serie;
+      $vehicle->veh_vin         =$request->veh_vin;
+      $vehicle->veh_color       =$request->veh_color;
+      $vehicle->brand_id        =$request->brand_id;
+      $vehicle->class_id        =$request->class_id;
+      $vehicle->typevehicle_id  =$request->typevehicle_id;
       if ($request->veh_service=='1') {
               $vehicle->save();
               $rpt='Vehiculo de taxi registrado';

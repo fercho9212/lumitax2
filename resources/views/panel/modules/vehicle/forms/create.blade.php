@@ -78,15 +78,18 @@
 
           <div class="col-md-4">
             <div class="form-group">
-              <label for="exampleInputPassword1">Tipo Vehículo</label>
 
+              <label for="exampleInputPassword1">Tipo Vehículo</label>
               <div class="input-group" id="typevehicles_id">
 
-                <select name="veh_color"  class="selectpicker show-menu-arrow">
-                    <option value="1">Mustard</option>
-                    <option value="1">Ketchup</option>
-                    <option value="1">Relish</option>
+
+               <select name="typevehicle_id" class="selectpicker show-menu-arrow" data-live-search="true">
+
+                 @foreach($types as $type)
+                   <option  value="{{$type->id}}">{{$type->type}}</option>
+                 @endforeach
                </select>
+
 
               </div>
 
@@ -94,16 +97,20 @@
           </div>
 
 
+
           <div class="col-md-4">
+
             <div class="form-group">
+
               <label for="exampleInputEmail1">Marca</label>
               <div class="input-group">
-                 <select name="brands_id"  class="selectpicker show-menu-arrow">
-                     <option value="1">Mustard</option>
-                     <option value="1">Ketchup</option>
-                     <option value="1">Relish</option>
-                 </select>
+                <select name="brand_id"  class="selectpicker show-menu-arrow" data-live-search="true">
+                @foreach ($brands as $brand)
+                  <option value="{{$brand->id}}">{{$brand->brand}}</option>
+                @endforeach
+                </select>
               </div>
+
             </div>
           </div>
 
@@ -127,8 +134,11 @@
               <div class="form-group">
                 <label for="exampleInputEmail1">Clase</label>
                 <div class="input-group">
-                  <input name="class_id" type="text" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                  <select name="class_id"  class="selectpicker show-menu-arrow" data-live-search="true">
+                  @foreach ($class as $clas)
+                    <option value="{{$clas->id}}">{{$clas->class}}</option>
+                  @endforeach
+                  </select>
                 </div>
               </div>
             </div>

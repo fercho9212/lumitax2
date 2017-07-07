@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Typevehicle extends Model
+class Classvehicle extends Model
 {
-  protected $table="typevehicles";
+  protected $table="classvehicles";
   protected $fillable = [
-     'type',
+     'class',
   ];
   public $timestamps = false;
 }
