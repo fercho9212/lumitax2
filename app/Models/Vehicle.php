@@ -18,5 +18,13 @@ class Vehicle extends Model
     public function vehiclecomplement(){
       return $this->hasOne('App\Models\Vehiclecomplement','id');
     }
-
+    public function typevehicle(){
+      return $this->belongsTo('App\Models\Typevehicle');
+    }
+    public function classvehicle(){
+      return $this->belongsTo('App\Models\Classvehicle','class_id');
+    }
+    public function brandvehicle(){
+      return $this->belongsTo('App\Models\Brandvehicle','brand_id');
+    }
 }

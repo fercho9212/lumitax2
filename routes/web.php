@@ -20,7 +20,15 @@ Auth::routes();
 Route::get('/dashboard', 'PanelController@index');
 Route::get('/frm_create_driver', 'Dashboard\FormsController@frm_create_driver');
 Route::group(['namespace' => 'web'], function () {
+  
     Route::resource('drivers', 'DriversController');
     Route::resource('passengers', 'PassengersController');
-    Route::resource('vehicles', 'VehiclesController');
+    Route::get('vehicles', 'VehiclesController@index');
+
+    //--Vehículos
+    Route::get('vehicles/create', 'VehiclesController@create');
+    Route::post('vehicles', 'VehiclesController@store');
+    Route::get('vehicles/luxury', 'VehiclesController@indexluxury');
+    //--Vehículos
+
 });

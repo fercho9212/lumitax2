@@ -17,10 +17,10 @@ class CreateVehiclesTable extends Migration
           $table->integer('id', true);
           $table->string('placa', 7);
           $table->integer('veh_model');
-          $table->string('veh_motor', 30);
-          $table->integer('veh_serie');
-          $table->string('veh_vin', 12);
-          $table->string('veh_color', 60);
+          $table->string('veh_motor', 15);
+          $table->string('veh_serie',15);
+          $table->string('veh_vin', 15);
+          $table->string('veh_color', 40);
 
           //$table->text('veh_observa');
           $table->integer('class_id')->unsigned();

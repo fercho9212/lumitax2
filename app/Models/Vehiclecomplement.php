@@ -18,4 +18,8 @@ class Vehiclecomplement extends Model
   public function vehicle(){
     return $this->belognsTo('App\Models\Vehicle','id');
   }
+  public function typebodywork(){
+    return $this->belongsTo('App\Models\Typebodywork','typebodywork_id');
+  }
+
 }

@@ -146,3 +146,23 @@
     background-color: #222d32 !important;
 }
 */
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+    background-color: #000b15 !important;
+}
+.skin-blue .main-header .navbar {
+    background-color: #000b15  !important;
+}
+.skin-blue .main-header .logo {
+    background-color: #cdd4ee !important;
+    color: #060606 !important;
+    border-bottom: 0 solid transparent !important;
+}
+.content {
+    min-height: 250px;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: #e7e7e7 !important;
+}

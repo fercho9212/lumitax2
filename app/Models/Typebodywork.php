@@ -11,4 +11,8 @@ class Typebodywork extends Model
      'bodywork',
   ];
   public $timestamps = false;
+
+  public function vehiclecomplements(){
+    return $this->hasMany('App\Models\Vehiclecomplement');
+  }
 }

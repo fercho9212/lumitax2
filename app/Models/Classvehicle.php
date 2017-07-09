@@ -11,4 +11,7 @@ class Classvehicle extends Model
      'class',
   ];
   public $timestamps = false;
+  public function vehicles(){
+    return $this->hasMany('App\Models\Vehicle');
+  }
 }

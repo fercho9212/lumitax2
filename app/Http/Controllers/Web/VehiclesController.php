@@ -21,7 +21,14 @@ class VehiclesController extends Controller
      */
     public function index()
     {
+        $vehicle=Vehicle::all();
+        return view('panel.modules.vehicle.taxindex',['vehicles'=>$vehicle]);
+    }
 
+    public function indexLuxury()
+    {
+        $vehicle=Vehicle::where('leveles_id','=','2')->get();
+        return view('panel.modules.vehicle.luxuryindex',['vehicles'=>$vehicle]);
     }
 
     /**
@@ -63,9 +70,10 @@ class VehiclesController extends Controller
       $vehicle->brand_id        =$request->brand_id;
       $vehicle->class_id        =$request->class_id;
       $vehicle->typevehicle_id  =$request->typevehicle_id;
+      $vehicle->leveles_id= $request->veh_service;
       if ($request->veh_service=='1') {
               $vehicle->save();
-              $rpt='Vehiculo de taxi registrado';
+              $rpt='taxi';
       }elseif ($request->veh_service=='2') {
               $vehicle->save();
               $complemt=New Vehiclecomplement();
@@ -75,7 +83,8 @@ class VehiclesController extends Controller
               $complemt->vc_head=$request->vc_head;
               $complemt->vc_doors=$request->vc_doors;
               $complemt->vc_cabin=$request->vc_cabin;
-              $complemt->vc_space=$request->vc_space;
+              $space=$request->vc_ancho.' * '.$request->vc_alto;
+              $complemt->vc_space=$space;
               $complemt->vc_passagers=$request->vc_passagers;
               $complemt->vc_sillateria=$request->vc_sillateria;
               $complemt->vc_cellar=$request->vc_cellar;
@@ -83,7 +92,7 @@ class VehiclesController extends Controller
               $complemt->vc_cylinder=$request->vc_cylinder;
               $complemt->vc_power=$request->vc_power;
               $vehicle->vehiclecomplement()->save($complemt);
-              $rpt='Vehiculo de lujo registrado';
+              $rpt='luxury';
       }
         return response()->json(['rpt'=>$rpt]);
 

@@ -16,7 +16,7 @@ class CreateVehiclecomplementsTable extends Migration
         Schema::create('vehiclecomplements', function (Blueprint $table) {
 
             $table->integer('id',true);
-            $table->string('vc_brakes',2);
+            $table->string('vc_brakes',30);
             $table->string('vc_Airbags',2);
             $table->boolean('vc_head');
             $table->string('vc_doors',2);
