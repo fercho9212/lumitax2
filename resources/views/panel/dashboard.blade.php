@@ -1,6 +1,8 @@
 @section('style')
 	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-sweetalert/sweetalert.css') }}" href="/css/master.css">
 	<link rel="stylesheet" href="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.min.css') }}" href="/css/master.css">
+	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-select/bootstrap-select.min.css') }}">
+
 @endsection
 @extends('panel.layouts.main')
 
@@ -43,4 +45,6 @@
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-validator/validator.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/moment/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/complement/bootstrap-select/bootstrap-select.min.js') }}"></script>
+
 @endsection

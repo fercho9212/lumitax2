@@ -16,6 +16,7 @@ class AddForeignKeysToDriverVehicleTable extends Migration
         Schema::table('driver_vehicle', function (Blueprint $table) {
           $table->foreign('vehicle_id','fk_dv_vehicle')->references('id')->on('vehicles')->onUpdate('RESTRICT')->onDelete('RESTRICT');
           $table->foreign('driver_id','fk_dv_driver')->references('id')->on('drivers')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+          $table->unique(['vehicle_id','driver_id']);
         });
     }
 

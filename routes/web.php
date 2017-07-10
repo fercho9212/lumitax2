@@ -37,5 +37,5 @@ Route::group(['namespace' => 'web'], function () {
 
     //Asignación
     Route::get('asig', 'AsigVehDriController@create');
-
+    Route::post('asig/create', 'AsigVehDriController@ToAsign');
 });
