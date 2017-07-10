@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/dashboard', 'PanelController@index');
 Route::get('/frm_create_driver', 'Dashboard\FormsController@frm_create_driver');
 Route::group(['namespace' => 'web'], function () {
-  
+
     Route::resource('drivers', 'DriversController');
     Route::resource('passengers', 'PassengersController');
     Route::get('vehicles', 'VehiclesController@index');
@@ -30,5 +30,12 @@ Route::group(['namespace' => 'web'], function () {
     Route::post('vehicles', 'VehiclesController@store');
     Route::get('vehicles/luxury', 'VehiclesController@indexluxury');
     //--Vehículos
+    //
+    //documents
+    Route::get('documents/{id}', 'DocumentsController@create');
+
+
+    //Asignación
+    Route::get('asig', 'AsigVehDriController@create');
 
 });

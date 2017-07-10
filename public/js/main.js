@@ -7,6 +7,8 @@ function load_frm(opt){
   if (opt==10) {var url="/passengers/"; console.log('Entra a passenger')}
   if (opt==11) {var url="/drivers/create"; console.log('Entra a verd')}
 
+    if (opt==20) {var url="/asig/"; console.log('Entra a asignación')}
+
   //$("#main_content").html()
 
     $.ajax({

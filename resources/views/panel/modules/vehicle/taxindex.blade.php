@@ -14,7 +14,9 @@
                 <th class="text-center">Tipo</th>
                 <th class="text-center">Clase</th>
                 <th class="text-center">Marca</th>
+                <th class="text-center">Documentos</th>
                 <th class="text-center">Acción</th>
+
             </tr>
         </thead>
         @foreach($vehicles as $vehicle)
@@ -30,9 +32,20 @@
                 <td>{{$vehicle->typevehicle->type}}</td>
                 <td>{{$vehicle->classvehicle->class}}</td>
                 <td>{{$vehicle->brandvehicle->brand}}</td>
-
                 <td>
-                      <button  class="update btn btn-info btn-circle-medium" data-id="{{$vehicle->id}}"
+                  @if ($vehicle->document=='0')
+                    <button onclick="add_document({{$vehicle->id}})" class="delete-modal  btn btn-danger" data-id="{{$vehicle->id}}"
+                        data-id="{{$vehicle->id}}">
+                        <span >X</span>
+                    </button>
+                  @else
+
+                  @endif
+
+                  </td>
+
+                  <td>
+                  {{--   <button  class="update btn btn-info btn-circle-medium" data-id="{{$vehicle->id}}"
                                         data-name="{{$vehicle->placa}}"
                                         data-last="{{$vehicle->veh_model}}"
                                         data-email="{{$vehicle->veh_motor}}"
@@ -45,7 +58,8 @@
                       <button class="delete-modal btn-circle-medium btn btn-danger" data-id="{{$vehicle->id}}"
                           data-name="{{$vehicle->placa}}">
                           <span class="glyphicon glyphicon-trash"></span>
-                      </button>
+                      </button>--}}
+                    ACCIONES
                   </td>
                 </tr>
 
@@ -58,5 +72,15 @@
 @section('code_script')
   <script type="text/javascript">
     $('#table').DataTable();
+    function add_document(id){
+      url='/documents/'+id;
+      $.ajax({
+        type:'GET',
+        url:url,
+        success:function(data){
+          loadData(url,data);
+        },
+    });
+    }
   </script>
 @endsection

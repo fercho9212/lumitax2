@@ -29,7 +29,7 @@ class CreateVehiclesTable extends Migration
           //$table->integer('typelines_id')->default(1)->index('fk_vehicles_lines');
           $table->integer('brand_id')->unsigned();//Marca, yhamaha,chevrolet
           $table->integer('leveles_id')->default(1)->index('fk_vehicles_levels');
-
+          $table->boolean('document')->default(0);
           //$table->integer('classvehicles_id')->default(1)->index('fk_veh_class');
           $table->timestamps();
 

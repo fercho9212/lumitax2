@@ -30,5 +30,8 @@ class Driver extends Authenticatable
     public function licence(){
       return $this->hasOne('App\Models\Licence','id');
     }
+    public function vehicles(){
+      return $thiss->belongsToMany('App\Models\Vehicles');
+    }
 
 }

@@ -10,7 +10,7 @@ use App\Models\Classvehicle AS Clase;
 use App\Models\Typevehicle AS Type;
 use App\Models\Brandvehicle AS Brand;
 use App\Models\Typebodywork AS Bodywork;
-
+use DB;
 
 class VehiclesController extends Controller
 {
@@ -21,6 +21,7 @@ class VehiclesController extends Controller
      */
     public function index()
     {
+        //$vehicle=Vehicle::all();
         $vehicle=Vehicle::all();
         return view('panel.modules.vehicle.taxindex',['vehicles'=>$vehicle]);
     }
