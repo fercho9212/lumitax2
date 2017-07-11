@@ -36,8 +36,8 @@
   </div><!--Cierra col-md-12-->
 </form>
 </div>
-<div class="table_asign">
-  <table class="table">
+<div class="table_asign table table-borderless">
+  <table class="table" id="asig_drvh">
       <thead>
         <tr>
           <th>Cedula</th>
@@ -51,7 +51,8 @@
         <tr>
             <td>{{$driveh->dri_cc}}</td>
             <td>{{$driveh->dri_name}}</td>
-            <td>j{{$driveh->placa}}  </td>
+            <td>{{$driveh->placa}}  </td>
+            <th><button data-id='{{$driveh->id}}' type="button" class="btn btn-danger delete_driveh" name="button" >Eliminar</button></th>
         </tr>
           @endforeach
       </tbody>
@@ -61,6 +62,7 @@
 
 <script>
   $('.selectpicker').selectpicker();
+  $('#asig_drvh').DataTable();
   $('#asig_veh_dri').submit(function(e){
       e.preventDefault();
       var frm=$(this);
@@ -76,5 +78,31 @@
 
       });
 
+  });
+  $(document).on('click', '.delete_driveh', function() {
+    var id=$(this).data('id');
+
+    swal({
+          title: "Estas seguro?",
+          text: "Desea Eliminar el La Asignación!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Si, Eliminar!",
+          closeOnConfirm: false
+  },
+  function(){
+    $.ajax({
+              type: 'DELETE',
+              url: '/drivers/'+id,
+              data: {
+                  '_token': $('input[name=_token]').val(),
+              },
+              success: function(data) {
+                  swal("Deleted!", "Registro Eliminado.", "success");
+                  $('#table').find('.driver'+id).remove();
+              }
+          });
+      });
   });
 </script>

@@ -28,6 +28,6 @@ class Vehicle extends Model
       return $this->belongsTo('App\Models\Brandvehicle','brand_id');
     }
     public function drivers(){
-      return $this->belongsToMany('App\Models\Driver');
+      return $this->belongsToMany('App\Models\Driver')->withTimestamps();
     }
 }

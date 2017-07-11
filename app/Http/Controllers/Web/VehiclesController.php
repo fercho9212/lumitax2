@@ -22,7 +22,7 @@ class VehiclesController extends Controller
     public function index()
     {
         //$vehicle=Vehicle::all();
-        $vehicle=Vehicle::all();
+        $vehicle=Vehicle::where('leveles_id','=','1')->get();
         return view('panel.modules.vehicle.taxindex',['vehicles'=>$vehicle]);
     }
 
