@@ -7,16 +7,16 @@
           <div class="row">
             <div class="col-md-4 col-md-offset-4">
               <div class="form-group">
-                <label for="exampleInputEmail1">PLACA</label>
+                <center><label for="exampleInputEmail1">PLACA</label></center><br>
                 <div class="input-group">
-                  <input name="veh_placa" type="text" pattern="[A-Z|a-z]{3}[0-9]{3}" data-error="formato requerido{WWW666}" minlength="6"  maxlength="6" class="form-control" id="exampleInputEmail1" placeholder="Placa" required>
+                  <input name="placa" type="text" pattern="[A-Z|a-z]{3}[0-9]{3}" data-error="formato requerido{WWW666}" minlength="6"  maxlength="6" class="form-control" id="exampleInputEmail1" placeholder="Placa" required>
                   <span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
                 </div>
                 <div class="help-block with-errors"></div>
               </div>
             </div>
           </div>
-
+          <br>
             <div class="row">
             <div class="col-md-4">
               <div class="form-group">
@@ -146,8 +146,8 @@
           <label for="exampleInputEmail1">Nivel de servicio</label>
           <div class="form-group">
 
-            <label id="special" class="radio-inline btn-circle btn-lg"><input value='1'  type="radio" name="veh_service" required>Especial</label>
-            <label id="lujo"    class="radio-inline btn-circle btn-lg" ><input value='2' type="radio" name="veh_service" required>Lujo</label>
+            <label id="special" class="radio-inline btn-circle btn-lg"><input value='1'  type="radio" name="leveles_id" required>Especial</label>
+            <label id="lujo"    class="radio-inline btn-circle btn-lg" ><input value='2' type="radio" name="leveles_id" required>Lujo</label>
         </div>
         </div>
 

@@ -27,7 +27,8 @@ Route::group(['namespace' => 'web'], function () {
 
     //--Vehículos
     Route::get('vehicles/create', 'VehiclesController@create');
-    Route::post('vehicles', 'VehiclesController@store');
+    Route::post('vehicles/tax', 'VehiclesController@store');
+    Route::post('vehicles/luxury', 'VehiclesController@StoreLuxury');
     Route::get('vehicles/luxury', 'VehiclesController@indexluxury');
     //--Vehículos
     //
@@ -38,4 +39,5 @@ Route::group(['namespace' => 'web'], function () {
     //Asignación
     Route::get('asig', 'AsigVehDriController@create');
     Route::post('asig/create', 'AsigVehDriController@ToAsign');
+    Route::delete('asig/delete/{id}/{placa}', 'AsigVehDriController@destroy');
 });

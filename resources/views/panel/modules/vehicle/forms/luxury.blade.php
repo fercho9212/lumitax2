@@ -1,6 +1,6 @@
 <div class="box box-primary">
          <div class="box-header with-border">
-          <h3 class="box-title">SERVICIO DE LUJO</h3>
+          <center><h2 class="box-title">SERVICIO DE LUJO</h2></center>
           </div>
 
 <!-- /.Start Panel Licence -->

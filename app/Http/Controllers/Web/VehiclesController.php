@@ -10,6 +10,9 @@ use App\Models\Classvehicle AS Clase;
 use App\Models\Typevehicle AS Type;
 use App\Models\Brandvehicle AS Brand;
 use App\Models\Typebodywork AS Bodywork;
+use App\Http\Requests\Web\VehicleRequest;
+
+
 use DB;
 
 class VehiclesController extends Controller
@@ -56,10 +59,28 @@ class VehiclesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store (VehicleRequest $request)
     {
       //dd($request->all());
       //echo $request->all();
+      $vehicle= New Vehicle();
+      $vehicle->placa           =$request->placa;
+      $vehicle->veh_model       =$request->veh_model;
+      $vehicle->veh_motor       =$request->veh_motor;
+      //$vehicle->serie     =$request->veh_serie;
+      $vehicle->veh_serie       =$request->veh_serie;
+      $vehicle->veh_vin         =$request->veh_vin;
+      $vehicle->veh_color       =$request->veh_color;
+      $vehicle->brand_id        =$request->brand_id;
+      $vehicle->class_id        =$request->class_id;
+      $vehicle->typevehicle_id  =$request->typevehicle_id;
+      $vehicle->leveles_id= $request->leveles_id;
+      $vehicle->save();
+      $rpt='taxi';
+      return response()->json(['rpt'=>$rpt]);
+
+    }
+    public function StoreLuxury(Request $request){
       $vehicle= New Vehicle();
       $vehicle->placa           =$request->veh_placa;
       $vehicle->veh_model       =$request->veh_model;
@@ -72,31 +93,25 @@ class VehiclesController extends Controller
       $vehicle->class_id        =$request->class_id;
       $vehicle->typevehicle_id  =$request->typevehicle_id;
       $vehicle->leveles_id= $request->veh_service;
-      if ($request->veh_service=='1') {
-              $vehicle->save();
-              $rpt='taxi';
-      }elseif ($request->veh_service=='2') {
-              $vehicle->save();
-              $complemt=New Vehiclecomplement();
-              $complemt->id=$vehicle->id;
-              $complemt->vc_brakes=$request->vc_brakes;
-              $complemt->vc_Airbags=$request->vc_airbags;
-              $complemt->vc_head=$request->vc_head;
-              $complemt->vc_doors=$request->vc_doors;
-              $complemt->vc_cabin=$request->vc_cabin;
-              $space=$request->vc_ancho.' * '.$request->vc_alto;
-              $complemt->vc_space=$space;
-              $complemt->vc_passagers=$request->vc_passagers;
-              $complemt->vc_sillateria=$request->vc_sillateria;
-              $complemt->vc_cellar=$request->vc_cellar;
-              $complemt->typebodywork_id=$request->typebodywork_id;
-              $complemt->vc_cylinder=$request->vc_cylinder;
-              $complemt->vc_power=$request->vc_power;
-              $vehicle->vehiclecomplement()->save($complemt);
-              $rpt='luxury';
-      }
-        return response()->json(['rpt'=>$rpt]);
-
+      $vehicle->save();
+      $complemt=New Vehiclecomplement();
+      $complemt->id=$vehicle->id;
+      $complemt->vc_brakes=$request->vc_brakes;
+      $complemt->vc_Airbags=$request->vc_airbags;
+      $complemt->vc_head=$request->vc_head;
+      $complemt->vc_doors=$request->vc_doors;
+      $complemt->vc_cabin=$request->vc_cabin;
+      $space=$request->vc_ancho.' * '.$request->vc_alto;
+      $complemt->vc_space=$space;
+      $complemt->vc_passagers=$request->vc_passagers;
+      $complemt->vc_sillateria=$request->vc_sillateria;
+      $complemt->vc_cellar=$request->vc_cellar;
+      $complemt->typebodywork_id=$request->typebodywork_id;
+      $complemt->vc_cylinder=$request->vc_cylinder;
+      $complemt->vc_power=$request->vc_power;
+      $vehicle->vehiclecomplement()->save($complemt);
+      $rpt='luxury';
+      return response()->json(['rpt'=>$rpt]);
     }
 
     /**

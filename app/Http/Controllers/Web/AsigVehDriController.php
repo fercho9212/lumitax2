@@ -15,7 +15,7 @@ class AsigVehDriController extends Controller
       $drivers=DB::table('drivers')->select('id','dri_cc as cc','dri_name as name')->get();
       $vehicles=DB::table('vehicles')->select('id','placa','veh_model as model')->get();
       $sql='';
-      $sql.=' SELECT d.id, d.dri_cc,d.dri_name,GROUP_CONCAT(DISTINCT(v.placa)) AS placa ';
+      $sql.=' SELECT d.id, d.dri_cc,d.dri_name, GROUP_CONCAT(DISTINCT(v.placa)) AS placa ';
       $sql.=' FROM drivers d INNER JOIN driver_vehicle dv ON d.id=dv.driver_id ';
       $sql.= ' INNER JOIN vehicles v ON v.id=dv.vehicle_id  GROUP BY d.id ';
       $driveh=DB::select($sql);
@@ -33,9 +33,18 @@ class AsigVehDriController extends Controller
       //echo 'vehicle +>'.$request->vehicle.'DRIVER ->'.$request->driver;
 
     }
-    public function list(){
-      
-//
+
+    public function destroy($id,$placa)
+    {
+
+       $array = explode(",", $placa);
+       $last=array_pop($array);
+       //DB::select( DB::raw("SELECT * FROM some_table WHERE some_col = '$someVariable'") )
+       $idv=DB::select("SELECT id FROM vehicles WHERE placa='$last'");
+       $driver = Driver::find($id);
+       $driver->vehicles()->detach($idv[0]->id);
+       echo 'ok';
+
     }
 
 }

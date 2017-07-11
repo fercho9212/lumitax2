@@ -52,7 +52,7 @@
             <td>{{$driveh->dri_cc}}</td>
             <td>{{$driveh->dri_name}}</td>
             <td>{{$driveh->placa}}  </td>
-            <th><button data-id='{{$driveh->id}}' type="button" class="btn btn-danger delete_driveh" name="button" >Eliminar</button></th>
+            <th><button data-id='{{$driveh->id}}' data-placa='{{$driveh->placa}}' type="button" class="btn btn-danger delete_driveh" name="button" >Eliminar</button></th>
         </tr>
           @endforeach
       </tbody>
@@ -81,7 +81,7 @@
   });
   $(document).on('click', '.delete_driveh', function() {
     var id=$(this).data('id');
-
+    var placa=$(this).data('placa');
     swal({
           title: "Estas seguro?",
           text: "Desea Eliminar el La Asignación!",
@@ -94,13 +94,18 @@
   function(){
     $.ajax({
               type: 'DELETE',
-              url: '/drivers/'+id,
+              url: '/asig/delete/'+id+'/'+placa,
               data: {
                   '_token': $('input[name=_token]').val(),
               },
               success: function(data) {
-                  swal("Deleted!", "Registro Eliminado.", "success");
-                  $('#table').find('.driver'+id).remove();
+                    if (data=='ok') {
+                      swal("Deleted!", "Registro Eliminado.", "success");
+                      loadData('/asig',data);
+                    }
+                    console.log(data);
+                  //swal("Deleted!", "Registro Eliminado.", "success");
+                  //$('#table').find('.driver'+id).remove();
               }
           });
       });

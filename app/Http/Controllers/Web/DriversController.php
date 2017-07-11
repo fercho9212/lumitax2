@@ -30,9 +30,7 @@ class DriversController extends Controller
     {
         $driver=driver::all();
         $licence=licence::all();
-
-        return view('panel.modules.driver.forms.view',
-                    ['drivers'=>$driver,'licences'=>$licence]);
+        return view('panel.modules.driver.forms.view',['drivers'=>$driver,'licences'=>$licence]);
     }
 
     /**
