@@ -18,13 +18,30 @@
 @include('panel.modules.passenger.modals.create')
 @include('panel.modules.passenger.modals.edit')
 {{--End Modal--}}
+<div class="modal" id="confirm-delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Delete Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you, want to delete?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="danger btn btn-sm btn-primary" id="delete">Delete</button>
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="table-responsive text-center">
     <table class="table table-borderless" id="table">
         <thead>
             <tr>
                 <th class="text-center">Nombre</th>
-                <th class="text-center">Apellido</th>
+                <th class="text-center">Apellaido</th>
                 <th class="text-center">Email</th>
                 <th class="text-center">Tel:Movíl</th>
                 <th class="text-center">Estado</th>
@@ -53,8 +70,7 @@
                           data-toggle="modal" data-target="#edit_passenger" >
                           <span class="glyphicon glyphicon-edit"></span>
                       </button>
-                      <button class="delete-modal btn-circle-medium btn btn-danger" data-id="{{$passenger->id}}"
-                          data-name="{{$passenger->dri_name}}">
+                      <button id="delete" class="btn-circle-medium btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-id="{{$passenger->id}}">
                           <span class="glyphicon glyphicon-trash"></span>
                       </button>
                   </td>
@@ -79,18 +95,22 @@
         $("#frmpassenger").removeClass("modal-open");
   });
   //Eliminar modal
-  $(document).on('click', '.delete-modal', function() {
+  $('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.danger').attr('data-id', $(e.relatedTarget).data('id'));
+});
+
+$('#delete').click(function() {
+    // handle deletion here
+  	var id = $(this).data('id');
+    alert(id);
+
+});
+
+/**
+  $(document).on('click', '#delete', function() {
         var id=$(this).data('id');
-        swal({
-              title: "Estas seguro?",
-              text: "Desea Eliminar el Conductor!",
-              type: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#DD6B55",
-              confirmButtonText: "Si, Eliminar!",
-              closeOnConfirm: false
-      },
-      function(){
+
+
         $.ajax({
                   type: 'DELETE',
                   url: '/passengers/'+id,
@@ -99,12 +119,14 @@
                   },
                   success: function(data) {
                           swal("Deleted!", "Registro Eliminado.", "success");
-                          $('#table').find('.driver'+id).remove();
+                          loadData('/passengers/',data);
+                        //  $('#table').find('.driver'+id).remove();
                   }
               });
-          });
+
   });
 //Editar
+**/
   function edit_passenger(id){
     var idd=id;
     var url='/passengers/'+idd+'/edit'

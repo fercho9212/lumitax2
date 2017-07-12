@@ -1,6 +1,3 @@
-@extends('panel.modules.vehicle.main')
-@section('contenido_principal')
-
 <div class="table-responsive text-center">
     <table class="table table-borderless" id="table">
         <thead>
@@ -68,8 +65,7 @@
     </table>
 </div>
 
-@endsection
-@section('code_script')
+
   <script type="text/javascript">
     $('#table').DataTable();
     function add_document(id){
@@ -83,4 +79,3 @@
     });
     }
   </script>
-@endsection

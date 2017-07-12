@@ -102,31 +102,23 @@ $("form").keypress(function(e) {
                       //$.each(data.dat,function(i,value){
                         //console.log(i+value);
                       //});
+
                       $('#message-error').hide();
                       if (data.rpt=='taxi') {
-
-                        swal({
-                              title: "Taxi registrado",
-                              type: "success",
-                              imageUrl: "/img/panel/taxi.png",
-                            });
-
+                            var title ="Taxi registrado";
+                            var type ="success";
+                            var imageUrl ="/img/panel/taxi.png";
+                            SweetAlertWithImg(title,type,imageUrl);
+                            loadData('/vehicles/');
                       }else if (data.rpt=='luxury') {
-                        swal({
-                              title: "Taxi de Lujo registrado",
-                              type: "success",
-                            });
+                            var titl =":)    Taxi LUJO registrado";
+                            var typ ="success";
+                            SweetAlertWithImg(titl,typ);
+                            loadData('/vehicles/luxury');
                       }
-                      console.log(':D'+data.rpt);
+                      //console.log(':D'+data.rpt);
                     },error:function(data){
-                      var errors=data.responseJSON;
-                      var errorsHtml='<ul>'
-                      $.each( errors , function( key, value ) {
-                        errorsHtml += '<li>'+ value+'</li>';
-       });
-
-                      errorsHtml+='</ul>'
-                      $('#message-error').show().html(errorsHtml);
+                      msgError(data);
                     }
             });
       });

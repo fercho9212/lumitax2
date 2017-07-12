@@ -11,6 +11,7 @@ use App\Models\Typevehicle AS Type;
 use App\Models\Brandvehicle AS Brand;
 use App\Models\Typebodywork AS Bodywork;
 use App\Http\Requests\Web\VehicleRequest;
+use App\Http\Requests\Web\VehicleComplementRequest;
 
 
 use DB;
@@ -80,9 +81,9 @@ class VehiclesController extends Controller
       return response()->json(['rpt'=>$rpt]);
 
     }
-    public function StoreLuxury(Request $request){
+    public function StoreLuxury(VehicleComplementRequest $request){
       $vehicle= New Vehicle();
-      $vehicle->placa           =$request->veh_placa;
+      $vehicle->placa           =$request->placa;
       $vehicle->veh_model       =$request->veh_model;
       $vehicle->veh_motor       =$request->veh_motor;
       //$vehicle->serie     =$request->veh_serie;
@@ -92,7 +93,7 @@ class VehiclesController extends Controller
       $vehicle->brand_id        =$request->brand_id;
       $vehicle->class_id        =$request->class_id;
       $vehicle->typevehicle_id  =$request->typevehicle_id;
-      $vehicle->leveles_id= $request->veh_service;
+      $vehicle->leveles_id      =$request->leveles_id;
       $vehicle->save();
       $complemt=New Vehiclecomplement();
       $complemt->id=$vehicle->id;

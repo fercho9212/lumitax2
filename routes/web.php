@@ -23,9 +23,10 @@ Route::group(['namespace' => 'web'], function () {
 
     Route::resource('drivers', 'DriversController');
     Route::resource('passengers', 'PassengersController');
-    Route::get('vehicles', 'VehiclesController@index');
+
 
     //--Vehículos
+    Route::get('vehicles', 'VehiclesController@index');
     Route::get('vehicles/create', 'VehiclesController@create');
     Route::post('vehicles/tax', 'VehiclesController@store');
     Route::post('vehicles/luxury', 'VehiclesController@StoreLuxury');
