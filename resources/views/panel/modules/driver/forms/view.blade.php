@@ -51,8 +51,10 @@
 $(function(){
   $('#table').DataTable();
 
+
   $(document).on('click', '.delete-modal', function() {
-        Var previousWindowKeyDown = window.onkeydown;
+
+    var previousWindowKeyDown = window.onkeydown;
         var id=$(this).data('id');
         swal({
               title: "Estas seguro?",
@@ -63,9 +65,8 @@ $(function(){
               confirmButtonText: "Si, Eliminar!",
               closeOnConfirm: false
       },
-      function(isConfirm){
-        if (isConfirm) {
-           swal.disableButtons();
+      function(){
+        window.onkeydown = previousWindowKeyDown;
            $.ajax({
                      type: 'DELETE',
                      url: '/drivers/'+id,
@@ -77,9 +78,6 @@ $(function(){
                          $('#table').find('.driver'+id).remove();
                      }
                  });
-        }else {
-          alert('dddd');
-        }
 
           });
   });
@@ -104,4 +102,5 @@ function edit(id){
             }
         });
 }
+  });
 </script>

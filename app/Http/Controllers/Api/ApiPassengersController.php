@@ -9,6 +9,6 @@ class ApiPassengersController extends Controller
 {
   public function profile(){
     $passenger = JWTAuth::parseToken()->authenticate();
-    return response()->json(compact('passenger'));
+    return response()->json($passenger->pas_name);
   }
 }
