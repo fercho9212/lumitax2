@@ -18,18 +18,21 @@
 @include('panel.modules.passenger.modals.create')
 @include('panel.modules.passenger.modals.edit')
 {{--End Modal--}}
-<div class="modal" id="confirm-delete">
+<div class="modal" id="dataDelete">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">Delete Confirmation</h4>
             </div>
+
+            <input type="hidden" id="delete" name="idid_pais">
+
             <div class="modal-body">
                 <p>Are you sure you, want to delete?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="danger btn btn-sm btn-primary" id="delete">Delete</button>
+                <button type="button" class="danger btn btn-sm btn-primary" id="del">Delete</button>
                 <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -70,7 +73,7 @@
                           data-toggle="modal" data-target="#edit_passenger" >
                           <span class="glyphicon glyphicon-edit"></span>
                       </button>
-                      <button id="delete" class="btn-circle-medium btn btn-danger" data-toggle="modal" data-target="#confirm-delete" data-id="{{$passenger->id}}">
+                      <button   class="btn-circle-medium btn btn-danger" data-toggle="modal"  data-target="#dataDelete" data-id="{{$passenger->id}}">
                           <span class="glyphicon glyphicon-trash"></span>
                       </button>
                   </td>
@@ -95,17 +98,24 @@
         $("#frmpassenger").removeClass("modal-open");
   });
   //Eliminar modal
+
+
   $('#confirm-delete').on('show.bs.modal', function(e) {
     $(this).find('.danger').attr('data-id', $(e.relatedTarget).data('id'));
 });
 
-$('#delete').click(function() {
-    // handle deletion here
-  	var id = $(this).data('id');
-    alert(id);
+$('#dataDelete').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Botón que activó el modal
+  var id = button.data('id') // Extraer la información de atributos de datos
+  var modal = $(this)
+  modal.find('#del').attr('data-id', id);
+})
 
+$('#del').on('click', function(e){
+  e.preventDefault();
+  var id = $('#del').data('id');
+  alert(id);
 });
-
 /**
   $(document).on('click', '#delete', function() {
         var id=$(this).data('id');

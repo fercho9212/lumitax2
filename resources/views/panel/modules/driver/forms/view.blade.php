@@ -35,7 +35,7 @@
                           data-name="{{$driver->name}}">
                           <span class="glyphicon glyphicon-edit"></span>
                       </button>
-                      <button class="delete-modal btn btn-danger" data-id="{{$driver->id}}"
+                      <button class="delete-modal btn btn-danger" href="javascript:void(0);" data-id="{{$driver->id}}"
                           data-name="{{$driver->dri_name}}">
                           <span class="glyphicon glyphicon-trash"></span>
                       </button>
@@ -52,6 +52,7 @@ $(function(){
   $('#table').DataTable();
 
   $(document).on('click', '.delete-modal', function() {
+        Var previousWindowKeyDown = window.onkeydown;
         var id=$(this).data('id');
         swal({
               title: "Estas seguro?",
@@ -62,21 +63,27 @@ $(function(){
               confirmButtonText: "Si, Eliminar!",
               closeOnConfirm: false
       },
-      function(){
-        $.ajax({
-                  type: 'DELETE',
-                  url: '/drivers/'+id,
-                  data: {
-                      '_token': $('input[name=_token]').val(),
-                  },
-                  success: function(data) {
-                      swal("Deleted!", "Registro Eliminado.", "success");
-                      $('#table').find('.driver'+id).remove();
-                  }
-              });
+      function(isConfirm){
+        if (isConfirm) {
+           swal.disableButtons();
+           $.ajax({
+                     type: 'DELETE',
+                     url: '/drivers/'+id,
+                     data: {
+                         '_token': $('input[name=_token]').val(),
+                     },
+                     success: function(data) {
+                         swal("Deleted!", "Registro Eliminado.", "success");
+                         $('#table').find('.driver'+id).remove();
+                     }
+                 });
+        }else {
+          alert('dddd');
+        }
+
           });
   });
-});
+
 function edit(id){
   var idd=id;
   var url='/drivers/'+idd+'/edit'
