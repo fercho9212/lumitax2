@@ -26,9 +26,15 @@ Route::group(['namespace' => 'web'], function () {
 
 
     //--Vehículos
+    //Rutas de vehículos tipo taxi
     Route::get('vehicles', 'VehiclesController@index');
     Route::get('vehicles/create', 'VehiclesController@create');
     Route::post('vehicles/tax', 'VehiclesController@store');
+    Route::get('vehicles/{id}/edit','vehiclesController@edit');
+    Route::delete('vehicles/{id}', 'VehiclesController@destroy');
+
+    //Rutas de vehículos tipo Lujo
+    Route::delete('vehicles/luxury/{id}', 'VehiclesController@destroyLuxury');
     Route::post('vehicles/luxury', 'VehiclesController@StoreLuxury');
     Route::get('vehicles/luxury', 'VehiclesController@indexluxury');
     //--Vehículos

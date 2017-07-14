@@ -134,7 +134,8 @@ class VehiclesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $vehicle=Vehicle::findOrFail($id);
+        return view('panel.modules.vehicle.forms.edit',['vehicle'=>$vehicle]);
     }
 
     /**
@@ -154,9 +155,23 @@ class VehiclesController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * Función que elimina un taxi
      */
     public function destroy($id)
     {
-        //
+      $vehicle=Vehicle::find($id);
+      if ($vehicle->delete()) {
+         return response()->json();
+      }
+    }
+    public function destroyLuxury($id){
+      $vehicle=Vehicle::find($id);
+      $vehicle->vehiclecomplement()->delete();
+      //$vehicle->delete();
+      if ($vehicle->delete()) {
+        return response()->json();
+      }else {
+        echo ":(";
+      }
     }
 }

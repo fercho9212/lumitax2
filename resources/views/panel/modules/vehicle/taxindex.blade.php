@@ -31,17 +31,27 @@
                 <td>{{$vehicle->brandvehicle->brand}}</td>
                 <td>
                   @if ($vehicle->document=='0')
-                    <button onclick="add_document({{$vehicle->id}})" class="delete-modal  btn btn-danger" data-id="{{$vehicle->id}}"
+                    <button onclick="add_document({{$vehicle->id}})" class="delete-modal  btn btn-primary" data-id="{{$vehicle->id}}"
                         data-id="{{$vehicle->id}}">
                         <span >X</span>
                     </button>
                   @else
 
                   @endif
-
-                  </td>
+                </td>
 
                   <td>
+                    <button onclick="edit({{$vehicle->id}})" class="update btn btn-info" data-id="{{$vehicle->id}}"
+                        data-name="{{$vehicle->placa}}">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+
+                    <button class="delete-modal btn btn-danger" href="javascript:void(0);" data-id="{{$vehicle->id}}"
+                        data-name="{{$vehicle->dri_name}}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+
+
                   {{--   <button  class="update btn btn-info btn-circle-medium" data-id="{{$vehicle->id}}"
                                         data-name="{{$vehicle->placa}}"
                                         data-last="{{$vehicle->veh_model}}"
@@ -56,7 +66,7 @@
                           data-name="{{$vehicle->placa}}">
                           <span class="glyphicon glyphicon-trash"></span>
                       </button>--}}
-                    ACCIONES
+
                   </td>
                 </tr>
 
@@ -78,4 +88,32 @@
         },
     });
     }
+    $(document).on('click', '.delete-modal', function() {
+
+
+          var id=$(this).data('id');
+
+          swal({
+                title: "Estas seguro?",
+                text: "Desea Eliminar el Conductor!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si, Eliminar!",
+                closeOnConfirm: false
+        },
+        function(){
+              var urlDelete= '/vehicles/'+id;
+              var token=$('input[name=_token]').val();
+              var urlView='/vehicles/';
+              ajaxDelete(urlDelete,token,urlView);
+            });
+    });
+
+    function edit(id){
+      var url='/vehicles/'+id+'/edit'
+      var token=$('input[name=_token]').val();
+      ajaxEdit(id,url,token);
+    }
+
   </script>

@@ -66,6 +66,7 @@ function loadData(url,data){
   })
 }
 //Funcion que recoge y procesa los errores de validación
+// @data respuesta de los errores
 function msgError(data){
   var errors=data.responseJSON;
   var msg='';
@@ -85,7 +86,50 @@ function msgError(data){
         });
       console.log(msg);
 }
+/*
+* @urlDelte Url donde direccionado a la funcion eliminar
+* @token token de seguridad
+* @urlSuccess url donde se enviara despues de realizar la eliminación
+*/
+function ajaxDelete(urlDelte,token,urlSuccess){
+  $.ajax({
+            type: 'DELETE',
+            url: urlDelte,
+            data: {
+                '_token': token,
+            },
+            success: function(data) {
+                swal("Deleted!", "Registro Eliminado.", "success");
+                //console.log(data);
+                loadData(urlSuccess,data);
+            }
+        });
+}
+/*FUNCIÓN QUE EDITA Y ENTREGA UN FORMULARIO
+* @id id del elemento a editar
+* @url a direcionar el metodo editar
+* @token token de seguridad
+*/
+function ajaxEdit(id,url,token){
 
+  $.ajax({
+            type: 'GET',
+            url: url,
+            data: {
+                '_token': token,
+            },
+            beforeSend:function(){
+              $("#contenido_principal").html($("#cargador_empresa").html());
+            },
+            complete:function(){
+
+            },
+            success: function(data) {
+              // console.log(data);
+              $("#contenido_principal").html(data);
+            }
+        });
+}
 function SweetAlertWithImg(title,type,img)
 {
   swal({

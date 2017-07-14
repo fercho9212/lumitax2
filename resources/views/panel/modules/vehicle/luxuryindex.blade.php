@@ -4,6 +4,8 @@
     <table class="table table-borderless" id="table">
         <thead>
             <tr>
+
+                <th class="text-center">Acción</th>
                 <th class="text-center">Placa</th>
                 <th class="text-center">Modelo</th>
                 <th class="text-center">Motor</th>
@@ -26,13 +28,29 @@
                 <th class="text-center">Potencia</th>
                 <th class="text-center">Carrocería</th>
 
-                <th class="text-center">Acción</th>
             </tr>
         </thead>
         @foreach($vehicles as $vehicle)
 
 
                 <tr class="driver{{$vehicle->id}}">
+                  <td>
+                        <button  class="update btn btn-info " data-id="{{$vehicle->id}}"
+                                          data-name="{{$vehicle->placa}}"
+                                          data-last="{{$vehicle->veh_model}}"
+                                          data-email="{{$vehicle->veh_motor}}"
+                                          data-movil="{{$vehicle->veh_serie}}"
+                                          data-state="{{$vehicle->veh_vin}}"
+                                          data-date="{{$vehicle->veh_vin}}"
+                            data-toggle="modal" data-target="#edit_passenger" >
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button class="delete-modal  btn btn-danger" data-id="{{$vehicle->id}}"
+                            data-name="{{$vehicle->placa}}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+
                 <td>{{$vehicle->placa}}</td>
                 <td>{{$vehicle->veh_model}}</td>
                 <td>{{$vehicle->veh_motor}}</td>
@@ -56,22 +74,7 @@
                 <td>{{$vehicle->vehiclecomplement->typebodywork->bodywork}}</td>
 
 
-                <td>
-                      <button  class="update btn btn-info btn-circle-medium" data-id="{{$vehicle->id}}"
-                                        data-name="{{$vehicle->placa}}"
-                                        data-last="{{$vehicle->veh_model}}"
-                                        data-email="{{$vehicle->veh_motor}}"
-                                        data-movil="{{$vehicle->veh_serie}}"
-                                        data-state="{{$vehicle->veh_vin}}"
-                                        data-date="{{$vehicle->veh_vin}}"
-                          data-toggle="modal" data-target="#edit_passenger" >
-                          <span class="glyphicon glyphicon-edit"></span>
-                      </button>
-                      <button class="delete-modal btn-circle-medium btn btn-danger" data-id="{{$vehicle->id}}"
-                          data-name="{{$vehicle->placa}}">
-                          <span class="glyphicon glyphicon-trash"></span>
-                      </button>
-                  </td>
+
                 </tr>
 
 
@@ -82,4 +85,27 @@
 
   <script type="text/javascript">
     $('#table').DataTable();
+    $(document).on('click', '.delete-modal', function() {
+
+
+          var id=$(this).data('id');
+
+          swal({
+                title: "Estas seguro?",
+                text: "Desea Eliminar el Vehículo de lujo!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si, Eliminar!",
+                closeOnConfirm: false
+        },
+        function(){
+
+              var urlDelete=  '/vehicles/luxury/'+id;
+              var token=      $('input[name=_token]').val();
+              var urlView=    '/vehicles/luxury/';
+              ajaxDelete(urlDelete,token,urlView);
+
+            });
+    });
   </script>
