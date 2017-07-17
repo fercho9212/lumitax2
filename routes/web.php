@@ -37,6 +37,7 @@ Route::group(['namespace' => 'web'], function () {
     Route::delete('vehicles/luxury/{id}', 'VehiclesController@destroyLuxury');
     Route::post('vehicles/luxury', 'VehiclesController@StoreLuxury');
     Route::get('vehicles/luxury', 'VehiclesController@indexluxury');
+    Route::get('vehicles/{id}/show', 'VehiclesController@show');
     //--Vehículos
     //
     //documents

@@ -7,6 +7,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 @section('htmlheader')
     @include('panel.layouts.partials.head')
+    <style>
+    .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+        background-color: #3E2723 !important;
+    }
+    </style>
 @show
 
 <body class="skin-blue sidebar-mini">
@@ -15,6 +20,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     @include('panel.layouts.partials.header')
 
     @include('panel.layouts.partials.menu')
+    @section('menu')
+
+
+    <p>This is appended to the master sidebar.</p>
+@stop
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

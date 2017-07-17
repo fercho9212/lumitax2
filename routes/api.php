@@ -38,8 +38,18 @@ Route::group(['prefix'=>'v1/passengers'],function(){
 Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/auth','Api\ApiAuthdriver@authenticate');
     Route::post('/profile','Api\ApiDriversController@profile')->middleware('driver');
-    Route::post('/test','Api\ApiAuthdriver@test')->middleware('driver');
+    //Route::post('/test','Api\ApiAuthdriver@test')->middleware('driver');
+
+
+
+
+    //Funcion que asigna un vehiculo al conductor resive un token
+    Route::post('/assignvehicle','Api\ApiAsigVehController@show')->middleware('driver');
+
+    Route::post('/selectvehicle','Api\ApiAsigVehController@ToAsign')->middleware('driver');
+
     Route::get('/',function(){
       echo "string";
     });
+
 });

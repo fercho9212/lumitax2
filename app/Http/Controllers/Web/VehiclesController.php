@@ -123,7 +123,7 @@ class VehiclesController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('panel.modules.ActionVehicle.main');
     }
 
     /**

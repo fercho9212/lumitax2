@@ -12,8 +12,6 @@
                 <th class="text-center">Clase</th>
                 <th class="text-center">Marca</th>
                 <th class="text-center">Documentos</th>
-                <th class="text-center">Acción</th>
-
             </tr>
         </thead>
         @foreach($vehicles as $vehicle)
@@ -29,7 +27,7 @@
                 <td>{{$vehicle->typevehicle->type}}</td>
                 <td>{{$vehicle->classvehicle->class}}</td>
                 <td>{{$vehicle->brandvehicle->brand}}</td>
-                <td>
+              {{-- <td>
                   @if ($vehicle->document=='0')
                     <button onclick="add_document({{$vehicle->id}})" class="delete-modal  btn btn-primary" data-id="{{$vehicle->id}}"
                         data-id="{{$vehicle->id}}">
@@ -39,12 +37,13 @@
 
                   @endif
                 </td>
-
+                      --}}
                   <td>
-                    <button onclick="edit({{$vehicle->id}})" class="update btn btn-info" data-id="{{$vehicle->id}}"
-                        data-name="{{$vehicle->placa}}">
+                    <a href="vehicles/{{$vehicle->id}}/show">
+                    <button   class="update btn btn-warning">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
+                    </a>
 
                     <button class="delete-modal btn btn-danger" href="javascript:void(0);" data-id="{{$vehicle->id}}"
                         data-name="{{$vehicle->dri_name}}">
@@ -115,5 +114,19 @@
       var token=$('input[name=_token]').val();
       ajaxEdit(id,url,token);
     }
+    function action(id){
+      var url=""+id+"/show";
+      $.ajax({
+        type:'GET',
+        url:url,
+        success:function(data){
+          console.log(data);
+        }
+      });
+
+      }
+
+
+
 
   </script>

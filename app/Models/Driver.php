@@ -31,7 +31,7 @@ class Driver extends Authenticatable
       return $this->hasOne('App\Models\Licence','id');
     }
     public function vehicles(){
-      return $this->belongsToMany('App\Models\Vehicle');
+      return $this->belongsToMany('App\Models\Vehicle')->withTimestamps();
     }
 
 }
