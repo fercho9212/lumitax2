@@ -53,3 +53,7 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     });
 
 });
+Route::group(['prefix'=>'v1/push'],function(){
+    Route::post('/passenger','Api\PushGoogle\PushNotificationController@InsertTokendPassengers')->middleware('passenger');
+    Route::post('/driver','Api\PushGoogle\PushNotificationController@InsertTokendDrivers')->middleware('driver');
+});

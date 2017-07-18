@@ -26,7 +26,7 @@ class DriveriIfAuthenticated
        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
           return response()->json(['token_expired'], $e->getStatusCode());
        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-         return response()->json(['token_invalid'], $e->getStatusCode());
+         return response()->json(['token_invalid_driver'], $e->getStatusCode());
        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
          return response()->json(['token_absent'], $e->getStatusCode());
        }

@@ -16,18 +16,23 @@ class ApiAuthdriver extends Controller
   }
   public function authenticate(Request $request){
     $credentials=$request->only('dri_cc','password');
-    try {
-      \Config::set('auth.providers.users.model', \App\Models\Driver::class);
-      \Config::set('jwt.user', \App\Models\Driver::class);
-      \Config::set('auth.model', \App\Models\Driver::class);
-      if (!$token =JWTAuth::attempt($credentials)) {
-         return response()->json(['error'=>'Invalid_Crendals','rpt'=>'error'],200);
-      }
+    if ($credentials) {
+      try {
+        \Config::set('auth.providers.users.model', \App\Models\Driver::class);
+        \Config::set('jwt.user', \App\Models\Driver::class);
+        \Config::set('auth.model', \App\Models\Driver::class);
+        if (!$driver =JWTAuth::attempt($credentials)) {
+           return response()->json(['error'=>'Invalid_Crendals','rpt'=>'error'],200);
+        }
 
-    } catch (JWTException $e) {
-      return response()->json(['error' => 'could_not_create_token'], 200);
+      } catch (JWTException $e) {
+        return response()->json(['error' => 'could_not_create_token'], 200);
+      }
+      return response()->json(['driver'=>compact('driver'),'rpt'=>'success']);
+    }else {
+      return response()->json(['rpt'=>'Errordasdd']);
     }
-    return response()->json(['token'=>compact('token'),'rpt'=>'success']);
+
   }
   public function test(){
     return response()->json(compact('driver'));

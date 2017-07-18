@@ -59,6 +59,7 @@ class PassengersController extends Controller
       }else {
             try {
               $input = $request->all();
+              $input['password']=bcrypt($input['password']);
               $passenger=Passenger::create($input);
               return response()->json(['msg'=>'success']);
               } catch (Exception $e) {

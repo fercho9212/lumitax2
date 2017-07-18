@@ -239,6 +239,7 @@ return [
         'JWTAuth' =>  Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
 
     ],
 
