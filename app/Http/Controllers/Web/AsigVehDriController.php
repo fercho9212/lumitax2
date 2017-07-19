@@ -11,6 +11,11 @@ use DB;
 class AsigVehDriController extends Controller
 {
 
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+  
     public function create(){
       $drivers=DB::table('drivers')->select('id','dri_cc as cc','dri_name as name')->get();
       $vehicles=DB::table('vehicles')->select('id','placa','veh_model as model')->get();

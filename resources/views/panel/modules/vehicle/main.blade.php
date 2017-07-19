@@ -9,7 +9,9 @@
 @section('panel.htmlheader_title')
 	Home
 @endsection
-
+@section('menu')
+	@include('panel.modules.menu')
+@endsection
 
 @section('main-content')
 	<!--<div class="container spark-screen">-->

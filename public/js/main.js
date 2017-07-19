@@ -138,3 +138,25 @@ function SweetAlertWithImg(title,type,img)
         imageUrl: img,
       });
 }
+
+
+
+function ActionDocument(id){
+
+    if (id==1) {var url="/drivers/create"; console.log('Entra');}
+    $.ajax({
+          async: true,
+          type: "GET",
+          url : url,
+          datatype:'json',
+          beforeSend:function(){
+            $("#contenido_principal").html($("#cargador_empresa").html());
+          },
+          success : function(resul){
+                  $("#contenido_principal").html(resul);
+        },
+          error:function(data){
+            console.log('Error main');
+          }
+          });
+}

@@ -23,6 +23,11 @@ class VehiclesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
     public function index()
     {
         //$vehicle=Vehicle::all();
@@ -123,7 +128,9 @@ class VehiclesController extends Controller
      */
     public function show($id)
     {
-        return view('panel.modules.ActionVehicle.main');
+        $vehicle=Vehicle::findOrFail($id);
+        return view('panel.modules.vehicle.ActionVehicle.index',['vehicle'=>$vehicle]);
+
     }
 
     /**

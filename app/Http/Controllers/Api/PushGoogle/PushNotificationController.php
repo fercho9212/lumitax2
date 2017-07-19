@@ -12,10 +12,6 @@ use Config;
 class PushNotificationController extends Controller
 {
      public function InsertTokendPassengers(){
-       Config::set('auth.providers.users.model', \App\Models\Passsaaasenger::class);
-       Config::set('jwt.user', \App\Models\Passenger::class);
-      Config::set('auth.model', \App\Models\Pasenger::class);
-
        $passengers = JWTAuth::parseToken()->authenticate();
        $token=Input::get('token');
        $passenger=Passenger::find($passengers->id);

@@ -8,8 +8,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 @section('htmlheader')
     @include('panel.layouts.partials.head')
 @show
+@section('theme-body')
+  <link href="{{ asset('/css/skins/skin-blue.css') }}" rel="stylesheet" type="text/css" />
+  <body class="skin-blue sidebar-mini">
+@show
 
-<body class="skin-blue sidebar-mini">
 <div class="wrapper">
 
     @include('panel.layouts.partials.header')

@@ -39,7 +39,7 @@
                 </td>
                       --}}
                   <td>
-                    <a href="vehicles/{{$vehicle->id}}/show">
+                    <a href="/vehicles/{{$vehicle->id}}/show">
                     <button   class="update btn btn-warning">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>

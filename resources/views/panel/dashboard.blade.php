@@ -3,7 +3,7 @@
 	<link rel="stylesheet" href="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.min.css') }}" >
 	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-select/bootstrap-select.min.css') }}">
 
-@endsection
+ @endsection
 @extends('panel.layouts.main')
 
 @section('panel.htmlheader_title')

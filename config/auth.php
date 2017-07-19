@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'webauth',
         ],
 
         'api' => [
@@ -67,12 +67,14 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Passenger::class,
+            'model' => App\User::class,
         ],
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Driver::class,
-        ],
+        //Provicional autenticacion en web
+        'webauth'=>[
+          'driver' => 'eloquent',
+          'model' => App\User::class,
+        ]
+
 
         // 'users' => [
         //     'driver' => 'database',
