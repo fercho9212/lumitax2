@@ -28,6 +28,7 @@ class CreateDriversTable extends Migration
             $table->string('password');
             $table->float('dri_qual',10,0)->default(5);
             $table->integer('state_id')->index('fk_dri_state');
+            $table->integer('apistate_id')->unsigned()->default(1);;
             //$table->timestamp('dri_date_reg')->default(DB::raw('CURRENT_TIMESTAMP'));
             //$table->timestamp('dateup')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();

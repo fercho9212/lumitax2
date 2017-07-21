@@ -79,6 +79,7 @@ class DriversController extends Controller
           $input = $request->all();
           $input['password']=bcrypt($input['password']);
           $input['dri_photo']='dsd';
+          $input['apistate_id']=1;
           $driver=Driver::create($input);
           //$driver=Driver::find($driver);
 

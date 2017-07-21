@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsTokenDrivers extends Migration
+class CreateApistatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddColumnsTokenDrivers extends Migration
      */
     public function up()
     {
-        Schema::table('drivers', function (Blueprint $table) {
-            $table->string('token_api',200)->after('state_id')->default('');
+        Schema::create('apistates', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('api_state');
         });
     }
 
@@ -25,8 +26,6 @@ class AddColumnsTokenDrivers extends Migration
      */
     public function down()
     {
-        Schema::table('drivers', function (Blueprint $table) {
-            $table->dropColumn('token_api');
-        });
+        Schema::dropIfExists('apistates');
     }
 }

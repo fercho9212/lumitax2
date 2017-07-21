@@ -14,7 +14,7 @@ class AddColumnsTokenPassangers extends Migration
     public function up()
     {
         Schema::table('passengers', function (Blueprint $table) {
-            $table->string('token_api',100)->after('state_id')->default('');
+            $table->string('token_api',200)->after('state_id')->default('');
         });
     }
 

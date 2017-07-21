@@ -48,6 +48,17 @@ Route::group(['prefix'=>'v1/drivers'],function(){
 
     Route::post('/selectvehicle','Api\ApiAsigVehController@ToAsign')->middleware('driver');
 
+    //function que actualiza la localización del conductor
+    Route::PUT('/update/location','Api\ApiDriversController@UpdateLocation')->middleware('driver');
+
+
+    //Función que trae el estado del conductor
+    Route::post('get/state','Api\ApiDriversController@getState')->middleware('driver');
+
+    //Funcion que resibe la accion todada del conductor
+
+    Route::post('set/state','Api\ApiDriversController@setState')->middleware('driver');
+
     Route::get('/',function(){
       echo "string";
     });
@@ -56,4 +67,9 @@ Route::group(['prefix'=>'v1/drivers'],function(){
 Route::group(['prefix'=>'v1/push'],function(){
     Route::post('/passenger','Api\PushGoogle\PushNotificationController@InsertTokendPassengers')->middleware('passenger');
     Route::post('/driver','Api\PushGoogle\PushNotificationController@InsertTokendDrivers')->middleware('driver');
+    Route::post('send/{}/{}','Api\PushGoogleSendNotificationController@Send');
+});
+
+Route::group(['prefix'=>'v1/search'],function(){
+  Route::post('/','Api\Search\SearchDriversController@search');
 });

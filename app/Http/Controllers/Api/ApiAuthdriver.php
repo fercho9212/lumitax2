@@ -21,14 +21,14 @@ class ApiAuthdriver extends Controller
         \Config::set('auth.providers.users.model', \App\Models\Driver::class);
         \Config::set('jwt.user', \App\Models\Driver::class);
         \Config::set('auth.model', \App\Models\Driver::class);
-        if (!$driver =JWTAuth::attempt($credentials)) {
+        if (!$token =JWTAuth::attempt($credentials)) {
            return response()->json(['error'=>'Invalid_Crendals','rpt'=>'error'],200);
         }
 
       } catch (JWTException $e) {
         return response()->json(['error' => 'could_not_create_token'], 200);
       }
-      return response()->json(['driver'=>compact('driver'),'rpt'=>'success']);
+      return response()->json(['token'=>compact('token'),'rpt'=>'success']);
     }else {
       return response()->json(['rpt'=>'Errordasdd']);
     }

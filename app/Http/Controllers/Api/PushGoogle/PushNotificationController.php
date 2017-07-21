@@ -11,6 +11,10 @@ use App\Models\Driver;
 use Config;
 class PushNotificationController extends Controller
 {
+    /**
+     * Inserta el token a la db de passengers
+     * @token: token recibido
+     */
      public function InsertTokendPassengers(){
        $passengers = JWTAuth::parseToken()->authenticate();
        $token=Input::get('token');
@@ -23,7 +27,10 @@ class PushNotificationController extends Controller
        }
 
      }
-
+     /**
+      * Inserta el token a la db de drivers
+      * @token: token recibido of driver
+      */
      public function InsertTokendDrivers(){
        $driver = JWTAuth::parseToken()->authenticate();
        $token=Input::get('token');
@@ -35,5 +42,9 @@ class PushNotificationController extends Controller
          return response()->json(['rpt'=>'error']);
        }
        }
+       /**
+        * Envia el token
+        * @token: token recibido of driver
+        */
 
 }
