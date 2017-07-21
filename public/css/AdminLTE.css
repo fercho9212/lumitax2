@@ -10,6 +10,15 @@
  * Core: General Layout Style
  * -------------------------
  */
+/*
+Ferney Jerez
+ */
+ .col-black{
+     color:#000000;
+     font-weight:bold;
+ }
+
+ 
 html,
 body {
   min-height: 100%;

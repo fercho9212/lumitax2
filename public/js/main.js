@@ -141,9 +141,10 @@ function SweetAlertWithImg(title,type,img)
 
 
 
-function ActionDocument(id){
+function ActionDocument(opt,id=NULL){
 
-    if (id==1) {var url="/drivers/create"; console.log('Entra');}
+    if (opt==1) {var url="/drivers/create"; console.log('Entra');}
+    if (opt==2) {var url="/documents/"+id+"/create"; console.log('Entra');}
     $.ajax({
           async: true,
           type: "GET",

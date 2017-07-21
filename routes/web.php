@@ -41,7 +41,7 @@ Route::group(['namespace' => 'web'], function () {
     //--Vehículos
     //
     //documents
-    Route::get('documents/{id}', 'DocumentsController@create');
+    Route::get('documents/{id}/create', 'DocumentsController@create');
 
 
     //Asignación

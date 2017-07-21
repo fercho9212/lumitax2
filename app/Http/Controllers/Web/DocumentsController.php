@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Vehicle;
+use App\Models\Insurance;
 
 class DocumentsController extends Controller
 {
@@ -11,8 +13,13 @@ class DocumentsController extends Controller
   {
       $this->middleware('auth');
   }
-  
+
     public function create($id){
-      return view('panel.modules.document.index',['id'=>$id]);
+      $vehicle=Vehicle::findOrFail($id);
+      $insurance=Insurance::all();
+      return view('panel.modules.vehicle.ActionVehicle.document.create',['id'=>$id,
+                                                                         'vehicle'=>$vehicle,
+                                                                         'insurance'=>$insurance,
+                                                                       ]);
     }
 }

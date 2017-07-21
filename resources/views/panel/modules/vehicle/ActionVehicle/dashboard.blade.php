@@ -5,6 +5,9 @@
     .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
         background-color: #3E2723 !important;
     }
+    .skin-red .wrapper, .skin-red .main-sidebar, .skin-red .left-side {
+        background-color: #000000 !important;
+}
     </style>
 @show
 @section('theme-body')
@@ -29,9 +32,9 @@
 	            <img src="{{asset('/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
 	        </div>
 	        <div class="pull-left info">
-	            <p>{{ Auth::user()->name }}</p>
-	            <!-- Status -->
-	            <a href="#"><i class="fa fa-circle text-success"></i>Panel</a>
+	            <p>{{$vehicle->placa}}</p>
+	            <!-- Status
+	            <a href="#"><i class="fa fa-circle text-success"></i>Panel</a>-->
 	        </div>
 	    </div>
 	@endif
@@ -49,7 +52,7 @@
 	            <li ><a href="javascript:void(0);" onclick="load_frm(2);">Ver</a></li>
 	        </ul>
 	    </li>
-	    <li><a href="javascript:void(0);" onclick="load_frm(10);"><i class='fa fa-link'></i> <span>Usuarios</span></a></li>
+	    <li><a href="javascript:void(0);" onclick="ActionDocument(2,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Documentos</span></a></li>
 	    <li><a href="javascript:void(0);" onclick="load_frm(20);"><i class='fa fa-link'></i> <span>Asignación</span></a></li>
 	    <li class="treeview">
 	        <a href="#"><i class='fa fa-link'></i> <span>Vehículos</span> <i class="fa fa-angle-left pull-right"></i></a>
