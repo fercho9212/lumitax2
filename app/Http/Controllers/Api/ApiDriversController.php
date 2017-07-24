@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Input;
 class ApiDriversController extends Controller
 {
     public function __construct(){
-      $driver = JWTAuth::parseToken()->authenticate();
+    //  $driver = JWTAuth::parseToken()->authenticate();
     }
 
     public function profile(){
@@ -44,5 +44,14 @@ class ApiDriversController extends Controller
       $driver->save();
       return response()->json(['rpt'=>'success']);
    }
+   /**
+    * Función que recibe el id del conductor y extrae el token de firebase
+    * @id id del Conductores
+    */
+    public function getTokenDriver($id){
+      $tokenApi=Driver::findOrFail($id);
+      return  $tokenApi->token_api;
+    }
+
 
 }

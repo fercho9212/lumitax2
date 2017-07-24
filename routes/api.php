@@ -71,5 +71,5 @@ Route::group(['prefix'=>'v1/push'],function(){
 });
 
 Route::group(['prefix'=>'v1/search'],function(){
-  Route::post('/','Api\Search\SearchDriversController@search');
+  Route::post('/','Api\Search\SearchDriversController@search')->middleware('passenger');
 });

@@ -43,8 +43,12 @@ class PushNotificationController extends Controller
        }
        }
        /**
-        * Envia el token
-        * @token: token recibido of driver
+        * Función que recibe el id del conductor y extrae el token de firebase
+        * @id id del Conductores
         */
+        public function getTokenDriver($id){
+          return  "holaaaa".$id;
+        }
+
 
 }
