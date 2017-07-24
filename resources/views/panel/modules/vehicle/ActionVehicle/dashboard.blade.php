@@ -1,24 +1,24 @@
 @extends('panel.dashboard')
-@section('htmlheader')
-    @include('panel.layouts.partials.head')
-    <style>
-    .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
-        background-color: #3E2723 !important;
-    }
-    .skin-red .wrapper, .skin-red .main-sidebar, .skin-red .left-side {
-        background-color: #000000 !important;
+@section('style')
+  <link rel="stylesheet" href="{{ asset('/complement/repairsweet/sweet-alert.css') }}" href="/css/master.css">
+
+  <link rel="stylesheet" href="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.min.css') }}" >
+  <link rel="stylesheet" href="{{ asset('/complement/bootstrap-select/bootstrap-select.min.css') }}">
+  <style>
+  .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+      background-color: #3E2723 !important;
+  }
+  .skin-red .wrapper, .skin-red .main-sidebar, .skin-red .left-side {
+      background-color: #000000 !important;
 }
-    </style>
-@show
+  </style>
+
+@endsection
 @section('theme-body')
   <link href="{{ asset('/css/skins/skin-red.css') }}" rel="stylesheet" type="text/css" />
   <body class="skin-red sidebar-mini">
 @endsection
-@section('style')
-	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-sweetalert/sweetalert.css') }}" href="/css/master.css">
-	<link rel="stylesheet" href="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.min.css') }}" href="/css/master.css">
-	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-select/bootstrap-select.min.css') }}">
-@endsection
+
 
 
 @section('panel.htmlheader_title')
@@ -100,7 +100,7 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" src="{{ asset('/complement/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/complement/repairsweet/sweet-alert.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-validator/validator.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/moment/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.js') }}"></script>

@@ -42,7 +42,8 @@ Route::group(['namespace' => 'web'], function () {
     //
     //documents
     Route::get('documents/{id}/create', 'DocumentsController@create');
-
+    Route::post('/documents/store', 'DocumentsController@store');
+    Route::delete('/documents/{id}/delete', 'DocumentsController@destroy');
 
     //Asignación
     Route::get('asig', 'AsigVehDriController@create');
