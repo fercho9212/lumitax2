@@ -42,13 +42,6 @@ class PushNotificationController extends Controller
          return response()->json(['rpt'=>'error']);
        }
        }
-       /**
-        * Función que recibe el id del conductor y extrae el token de firebase
-        * @id id del Conductores
-        */
-        public function getTokenDriver($id){
-          return  "holaaaa".$id;
-        }
 
 
 }
