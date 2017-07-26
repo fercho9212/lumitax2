@@ -70,6 +70,26 @@ Route::group(['prefix'=>'v1/push'],function(){
     Route::post('send/{}/{}','Api\PushGoogle\SendNotificationController@Send');
 });
 
+///FUNCIONES DE MENSAJERIA
+Route::group(['prefix'=>'v1/push/drivers'],function(){
+    Route::post('/','Api\PushGoogle\PushNotificationController@InsertTokendDrivers')->middleware('driver');
+});
+
+Route::group(['prefix'=>'v1/push/passengers'],function(){
+    Route::post('/','Api\PushGoogle\PushNotificationController@InsertTokendPassengers')->middleware('passenger');
+});
+
+//Funciones de respuesta de msg
+Route::group(['prefix'=>'v1/request/drivers'],function (){
+    Route::post('/','Api/Request/RequestDriverController@RequestConfirmated')->middleware('driver');
+});
+
+
+
+
+//Fin Funciones MENSAJERIA
+
+//FUNCIONES DE BUSQUEDAD
 Route::group(['prefix'=>'v1/search'],function(){
-  Route::post('/','Api\Search\SearchDriversController@search')->middleware('passenger');
+  Route::post('/','Api\Search\SearchDriversController@searchDriver')->middleware('passenger');//Funciion principal de busquedad
 });
