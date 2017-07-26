@@ -1,30 +1,31 @@
-<form class="" action="/documents/store" method="post">
+<input type="text" name="vehicle_id" id="insurance_id" >
+jjeje
+<div id="test">
+
+</div>
+<form class="" action="index.html" method="post">
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-  <input type="hidden" name="vehicle_id" value="{{$id}}">
+  <input type="hidden" name="vehicle_id" id="idvehicle" value="{{$id}}">
+
   <div class="row">
     <div class="col-md-4">
       <div class="form-group">
-
         <label for="exampleInputEmail1">Seguro</label><br>
-        <select name="insurance_id" class="selectpicker" data-live-search="true">
+        <select name="insurance_id" id="insu" class="selectpicker" data-live-search="true">
           @foreach ($insurance as $value)
-            <option value="{{$value->id}}">{{$value->ins_name}}</option>
+            <option value="{{$value->id}}" >{{$value->ins_name}}asass</option>
           @endforeach
         </select>
-
       </div>
-
     </div>
     <div class="col-md-4">
       <div class="form-group">
-
         <label for="exampleInputPassword1">Compañia</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input name="doc_company" type="text" maxlength="30" class="form-control " id="exampleInputPassword1" placeholder="Password" required>
+          <input name="doc_company" type="text" maxlength="30" class="form-control " id="company" placeholder="Password" required>
         </div>
         <div class="help-block with-errors"></div>
-
       </div>
     </div>
     <div class="col-md-4">
@@ -32,7 +33,7 @@
         <label for="exampleInputPassword1">No Poliza</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input name="doc_policy" type="text" maxlength="30" class="form-control " id="exampleInputPassword1" placeholder="Password" required>
+          <input name="doc_policy" type="text" maxlength="30" class="form-control " id="policy" placeholder="No Poliza" required>
         </div>
         <div class="help-block with-errors"></div>
       </div>
@@ -42,7 +43,7 @@
     <div class="col-md-12">
       <div class="form-group">
         <label for="comment">Cobertura</label>
-        <textarea name="description" class="form-control" rows="2" id="comment"></textarea>
+        <textarea name="description" class="form-control" rows="2" id="description"></textarea>
       </div>
     </div>
   </div>
@@ -55,7 +56,7 @@
       <div class="form-group">
         <label for="exampleInputPassword1">Fecha Desde</label>
         <div class='input-group date' >
-         <input name="doc_datei" type='text' class="form-control" id='date_i'/>
+         <input name="doc_datei" type='text' class="form-control" id='date_start'/>
          <span class="input-group-addon">
              <i class="glyphicon glyphicon-calendar"></i>
          </span>
@@ -67,7 +68,7 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Fecha hasta</label>
         <div class='input-group date' >
-         <input name="doc_datef" type='text' class="form-control" id='date_f'/>
+         <input name="doc_datef" type='text' class="form-control" id='date_fin'/>
          <span class="input-group-addon">
              <i class="glyphicon glyphicon-calendar"></i>
          </span>
@@ -76,14 +77,25 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
     <div class="modal-footer">
-      <input type="submit" value="Submit" href="/documents/store">
+      <button  data-idv="{{$id}}" type="submit"   class="btn btn-primary">Submit</button>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
-  </form>
+</form>
+<script>
+
+      var insu = $('#insurance_id').val();
+      console.log('->'+insu)
+      $(document).ready(function() {
+        var text=$('#text').html();
+        console.log('dsad'+text)
+         $("#insu option[value='"+3+"']").attr('selected', 'selected');
+      });
+      $("#text").change(function() {
+alert($(this).val()+"dasd");
+});
+$("#text").on("input propertychange",function(){
+alert($(this).val()+"dasd");
+   // Do your thing here.
+});
+</script>

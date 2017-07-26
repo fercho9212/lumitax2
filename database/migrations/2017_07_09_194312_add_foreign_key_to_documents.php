@@ -16,6 +16,7 @@ class AddForeignKeyToDocuments extends Migration
         Schema::table('documents', function (Blueprint $table) {
           $table->foreign('vehicle_id','fk_doc_vehicle')->references('id')->on('vehicles')->onUpdate('RESTRICT')->onDelete('RESTRICT');
           $table->foreign('insurance_id','fk_doc_insurance')->references('id')->on('insurance')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+          $table->unique(['vehicle_id', 'insurance_id']);
         });
     }
 

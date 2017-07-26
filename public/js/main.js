@@ -67,7 +67,7 @@ function loadData(url,data){
 }
 //Funcion que recoge y procesa los errores de validación
 // @data respuesta de los errores
-function msgError(data){
+function msgError(data,urlView=NULL){
   var errors=data.responseJSON;
   var msg='';
   $.each(errors, function( key, value ) {
@@ -83,6 +83,9 @@ function msgError(data){
           showConfirmButton: true
         },function(){
                   console.log('Confirmated error');
+                  if (urlView!='') {
+                    loadData(urlView,data);
+                  }
         });
       console.log(msg);
 }
@@ -140,7 +143,7 @@ function SweetAlertWithImg(title,type,img)
 }
 
 
-
+/*Funciones del documento*/
 function ActionDocument(opt,id=NULL){
 
     if (opt==1) {var url="/drivers/create"; console.log('Entra');}
@@ -157,7 +160,39 @@ function ActionDocument(opt,id=NULL){
                   $("#contenido_principal").html(resul);
         },
           error:function(data){
-            console.log('Error main');
+            console.log(data);
           }
           });
 }
+
+
+
+
+
+
+/*Function que crea y muestra errores en los modals */
+
+function create_in_modal(url,data,urlView){
+
+  $.ajax({
+        type: "POST",
+        url : url,
+        datatype:'json',
+        data : data,
+        beforeSend:function(){
+                $("#contenido_principal").html($("#cargador_empresa").html());
+        },
+        success : function(data){
+                if (data.msg=='success') {
+                          loadData(urlView,data);
+                          swal("Registro Insertado!", "You clicked the button!", "success")
+                }else if (data=='1062') {//Captura una excepción de duplicidad de Error
+                  swal("Error!", "Dato ya se encuentra registrado!", "warning")
+                  loadData(urlView,data);
+                }
+      },//end success
+        error:function(data){
+              msgError(data,urlView);
+            }
+      });//End Ajax
+}// End function create_in_modal

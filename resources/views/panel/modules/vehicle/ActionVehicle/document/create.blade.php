@@ -14,7 +14,23 @@
             <h4 class="modal-title">Modal Header</h4>
           </div>
           <div class="modal-body">
-              @include('panel.modules.vehicle.ActionVehicle.document.form')
+              @include('panel.modules.vehicle.ActionVehicle.document.form_create')
+          </div>
+        </div>
+
+ </div>
+</div>
+
+<div id="edit_document" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+              @include('panel.modules.vehicle.ActionVehicle.document.form_edit')
           </div>
         </div>
 
@@ -45,12 +61,15 @@
 
 
                 <td>
-                      <button  class="update btn btn-info btn-circle-medium" data-id="{{$document->id}}"
-                                        data-name="{{$document->insurance->ins_name}}"
-                                        data-movil="{{$document->doc_datei}}"
-                                        data-state="{{$document->doc_datef}}"
-                                        data-date="{{$document->doc_company}}"
-                          data-toggle="modal" data-target="#edit_passenger" >
+                      <button  class="update btn btn-info " data-id="{{$document->id}}"
+                                        data-idvehicle="{{$document->vehicle_id}}"
+                                        data-idinsurance="{{$document->insurance_id}}"
+                                        data-description="{{$document->description}}"
+                                        data-datei="{{$document->doc_datei}}"
+                                        data-datef="{{$document->doc_datef}}"
+                                        data-company="{{$document->doc_company}}"
+                                        data-policy="{{$document->doc_policy}}"
+                          data-toggle="modal" data-target="#edit_document" >
                           <span class="glyphicon glyphicon-edit"></span>
                       </button>
                       <button class="delete-modal btn btn-danger" href="javascript:void(0);" data-idv="{{$id}}" data-id="{{$document->id}}"
@@ -107,6 +126,46 @@
                           ajaxDelete(urlDelete,token,urlView);
 
                         });
+                });
+
+                $('#create_document').on('submit',function(e){
+                    e.preventDefault();
+                    var url='/documents/store';
+                    var idvehicle=$("#idvehicle").val();
+                    var data=$(this).serialize();
+                    var urlView='/documents/'+idvehicle+'/create'
+                    create_in_modal(url,data,urlView);
+                });
+
+
+                $('#edit_document').on("shown.bs.modal", function (event) {
+
+                  var button  = $(event.relatedTarget);
+                  var id    = button.data('id');
+                  var id_vehicle    = button.data('idvehicle');
+                  var id_insurance  = button.data('idinsurance');
+                  var description   = button.data('description');
+                  var date_start    = button.data('datei');
+                  var date_end      = button.data('datef');
+                  var company       = button.data('company');
+                  var policy       = button.data('policy');
+                  var modal = $(this);
+                  $(".modal-body #insu").prop("selectedIndex", 3);
+                  modal.find('.modal-title').html('<center>Renovar : '+name+'<center>');
+                  modal.find('.modal-body #id').val(id);
+                  modal.find('.modal-body #idvehicle').val(id_vehicle);//id de documento
+                  modal.find('.modal-body #insurance_id').val(id_insurance);
+                  modal.find('.modal-body #description').val(description);
+                  modal.find('.modal-body #date_start').val(date_start);
+                  modal.find('.modal-body #date_fin').val(date_end);
+                  modal.find('.modal-body #company').val(company);
+                  modal.find('.modal-body #policy').val(policy);
+                  modal.find('.modal-body #test').html(id_insurance);
+                  modal.find('.modal-body  ').prop("selectedIndex", id_insurance-1);
+                  modal.find($("#insu option[value='"+3+"']").attr('selected', 'selected'));
+                  console.log('cambiaaa'+id_insurance)
+                  //Crear una function recibiendo el id
+
                 });
 
 
