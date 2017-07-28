@@ -10,11 +10,11 @@ table{
 }
 </style>
 
-
+<br><br>
     <table  id="miTablaPersonalizada" style="width:100%;border:1px solid #000000" class="table table-condensed">
       <tbody>
         <thead>
-          
+
         </thead>
         <tr>
           <td  class="col-black">Placa:</td>

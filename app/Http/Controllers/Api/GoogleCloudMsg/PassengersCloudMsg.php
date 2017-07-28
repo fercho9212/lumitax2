@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 
 
 class PassengersCloudMsg extends Controller{
+  
   private $ApiKeyDriver='AIzaSyCd60DInZfczl9MDhcKQiCptcVDL0Vy_jw';
   private $url    ='https://fcm.googleapis.com/fcm/send';
   /*

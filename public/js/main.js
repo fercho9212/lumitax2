@@ -148,6 +148,7 @@ function ActionDocument(opt,id=NULL){
 
     if (opt==1) {var url="/drivers/create"; console.log('Entra');}
     if (opt==2) {var url="/documents/"+id+"/create"; console.log('Entra');}
+    if (opt==3) {var url="/photos/"+id+"/vehicle/create"}
     $.ajax({
           async: true,
           type: "GET",
@@ -163,6 +164,8 @@ function ActionDocument(opt,id=NULL){
             console.log(data);
           }
           });
+
+
 }
 
 
@@ -189,6 +192,8 @@ function create_in_modal(url,data,urlView){
                 }else if (data=='1062') {//Captura una excepción de duplicidad de Error
                   swal("Error!", "Dato ya se encuentra registrado!", "warning")
                   loadData(urlView,data);
+                }else{
+                  alert('Error');
                 }
       },//end success
         error:function(data){

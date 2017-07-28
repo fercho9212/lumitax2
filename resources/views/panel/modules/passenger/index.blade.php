@@ -68,7 +68,7 @@
                                         data-last="{{$passenger->pas_last}}"
                                         data-email="{{$passenger->email}}"
                                         data-movil="{{$passenger->pas_movil}}"
-                                        data-state="{{$passenger->state->state}}"
+                                        data-state="{{$passenger->state->id}}"
                                         data-date="{{$passenger->created_at}}"
                           data-toggle="modal" data-target="#edit_passenger" >
                           <span class="glyphicon glyphicon-edit"></span>

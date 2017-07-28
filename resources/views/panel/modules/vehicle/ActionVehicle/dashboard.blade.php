@@ -46,22 +46,14 @@
 
 
 	    <li class="treeview">
-	        <a href="#"><i class='fa fa-link'></i> <span>Editar</span> <i class="fa fa-angle-left pull-right"></i></a>
+	        <a href="#"><i class='fa fa-link'></i> <span>Prueba</span> <i class="fa fa-angle-left pull-right"></i></a>
 	        <ul class="treeview-menu">
 	            <li class="active"><a href="javascript:void(0);" onclick="load_frm(1);">Crear</a></li>
 	            <li ><a href="javascript:void(0);" onclick="load_frm(2);">Ver</a></li>
 	        </ul>
 	    </li>
-	    <li><a href="javascript:void(0);" onclick="ActionDocument(2,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Documentos</span></a></li>
-	    <li><a href="javascript:void(0);" onclick="load_frm(20);"><i class='fa fa-link'></i> <span>Asignación</span></a></li>
-	    <li class="treeview">
-	        <a href="#"><i class='fa fa-link'></i> <span>Vehículos</span> <i class="fa fa-angle-left pull-right"></i></a>
-	        <ul class="treeview-menu">
-	            <li><a href="/vehicles/create">Pruebaa</a></li>
-	            <li><a href="javascript:void(0);"  onclick="ActionDocument(1)">Vehículo Taxi</a></li>
-	            <li><a href="javascript:void(0);"  onclick="load_frm(31);">Vehículo Lujo</a></li>
-	        </ul>
-	    </li>
+	    <li><a href="javascript:void(0);" onclick="ActionDocument(2,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Agregar Docuemntos</span></a></li>
+      <li><a href="javascript:void(0);" onclick="photovehicle(2,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Agregar Fotos</span></a></li>
 
 	</ul><!-- /.sidebar-menu -->
 @endsection

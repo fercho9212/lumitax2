@@ -1,24 +1,11 @@
-<input type="text" name="vehicle_id" id="insurance_id" >
-jjeje
-<div id="test">
 
-</div>
 <form class="" action="index.html" method="post">
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
   <input type="hidden" name="vehicle_id" id="idvehicle" value="{{$id}}">
 
   <div class="row">
-    <div class="col-md-4">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Seguro</label><br>
-        <select name="insurance_id" id="insu" class="selectpicker" data-live-search="true">
-          @foreach ($insurance as $value)
-            <option value="{{$value->id}}" >{{$value->ins_name}}asass</option>
-          @endforeach
-        </select>
-      </div>
-    </div>
-    <div class="col-md-4">
+
+    <div class="col-md-6">
       <div class="form-group">
         <label for="exampleInputPassword1">Compañia</label>
         <div class="input-group">
@@ -28,7 +15,7 @@ jjeje
         <div class="help-block with-errors"></div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="form-group">
         <label for="exampleInputPassword1">No Poliza</label>
         <div class="input-group">
@@ -56,7 +43,7 @@ jjeje
       <div class="form-group">
         <label for="exampleInputPassword1">Fecha Desde</label>
         <div class='input-group date' >
-         <input name="doc_datei" type='text' class="form-control" id='date_start'/>
+         <input name="doc_datei" type='text' class="form-control" id='date_ei'/>
          <span class="input-group-addon">
              <i class="glyphicon glyphicon-calendar"></i>
          </span>
@@ -68,7 +55,7 @@ jjeje
       <div class="form-group">
         <label for="exampleInputEmail1">Fecha hasta</label>
         <div class='input-group date' >
-         <input name="doc_datef" type='text' class="form-control" id='date_fin'/>
+         <input name="doc_datef" type='text' class="form-control" id='date_ef'/>
          <span class="input-group-addon">
              <i class="glyphicon glyphicon-calendar"></i>
          </span>
@@ -83,12 +70,12 @@ jjeje
     </div>
 </form>
 <script>
-
+/*
       var insu = $('#insurance_id').val();
       console.log('->'+insu)
       $(document).ready(function() {
         var text=$('#text').html();
-        console.log('dsad'+text)
+
          $("#insu option[value='"+3+"']").attr('selected', 'selected');
       });
       $("#text").change(function() {
@@ -97,5 +84,5 @@ alert($(this).val()+"dasd");
 $("#text").on("input propertychange",function(){
 alert($(this).val()+"dasd");
    // Do your thing here.
-});
+});*/
 </script>

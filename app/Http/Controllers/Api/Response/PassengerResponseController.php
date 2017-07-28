@@ -14,11 +14,12 @@ use Illuminate\Support\Facades\Input;
 class PassengerResponseController extends Controller
 {
 
+  //Funcion que permite responser el servicio una vez se mantenga la comunicación
   public function ResponseService(){
     $push =new Push;
     $data=Input::get('body');
     $to=Input::get('token');
-    //Envia al Pasajero
+    //Envia respiesta al conductor
     $DriversCloud=new DriversCloud;
     $push->setData($data);
     $rpt=$DriversCloud->send($to,$push->getPush());

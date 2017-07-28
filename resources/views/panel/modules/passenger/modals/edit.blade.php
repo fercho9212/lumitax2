@@ -87,12 +87,12 @@
                 </div>
                 <div class="row">
                   <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-6 col-md-offset-3" id="state">
                       {!! Form::Label('item', 'Estado:') !!}
                       <select name="state_id" class="custom-select form-control">
 
                         @foreach($states as $state)
-                          <option  value="{{$state->id}}">{{$state->state}}</option>
+                          <option   value="{{$state->id}}">{{$state->state}}</option>
                         @endforeach
                       </select>
                     </div>
@@ -112,8 +112,6 @@
 </div>
 <script type="text/javascript">
 
-
-
     $('#edit_passenger').on("shown.bs.modal", function (event) {
         $("body").removeClass("modal-open");
         $("body").css({"padding-right":"0px"});
@@ -125,7 +123,7 @@
         var movil   = button.data('movil');
         var email   = button.data('email');
         var state   = button.data('state');
-        console.log(name+last);
+        console.log('dsds'+state);
         var modal = $(this);
         modal.find('.modal-title').html('<center>Renovar : '+name+'<center>');
         modal.find('.modal-body #id').val(id);
@@ -133,17 +131,15 @@
         modal.find('.modal-body #last').val(last);
         modal.find('.modal-body #movil').val(movil);
         modal.find('.modal-body #email').val(email);
-        modal.find('.modal-body #state').val(state);
+        modal.find('.modal-body #state select').val(state);
         modal.find('.modal-body #password').val();
     });
 
-  //  $('form').validator();
       $('#send').click(function(e){
         var frm=$(this);
         var id=$('#id').val();
         var url='/passengers/'+id;
         var data=$("form").serialize();
-        console.log(data);
         $.ajax({
               type: 'PUT',
               url: url,

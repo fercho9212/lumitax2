@@ -22,18 +22,17 @@
 </div>
 
 <div id="edit_document" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog ">
             <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
+            <h4 class="modal-title">Modal Headedasssr</h4>
           </div>
           <div class="modal-body">
               @include('panel.modules.vehicle.ActionVehicle.document.form_edit')
           </div>
         </div>
-
  </div>
 </div>
 
@@ -64,6 +63,7 @@
                       <button  class="update btn btn-info " data-id="{{$document->id}}"
                                         data-idvehicle="{{$document->vehicle_id}}"
                                         data-idinsurance="{{$document->insurance_id}}"
+                                        data-name_insurance="{{$document->insurance->ins_name}}"
                                         data-description="{{$document->description}}"
                                         data-datei="{{$document->doc_datei}}"
                                         data-datef="{{$document->doc_datef}}"
@@ -99,6 +99,16 @@
                   format: 'YYYY-MM-DD'
                 });
 
+                $('#date_ei').datetimepicker({
+
+                  format: 'YYYY-MM-DD'
+                });
+                $('#date_ef').datetimepicker({
+
+                  format: 'YYYY-MM-DD'
+                });
+
+
                 $('.selectpicker').selectpicker();
 
                 //Inicializa la tabla
@@ -127,7 +137,7 @@
 
                         });
                 });
-
+//Función que crea
                 $('#create_document').on('submit',function(e){
                     e.preventDefault();
                     var url='/documents/store';
@@ -144,17 +154,21 @@
                   var id    = button.data('id');
                   var id_vehicle    = button.data('idvehicle');
                   var id_insurance  = button.data('idinsurance');
+                  var name_insurance = button.data('name_insurance');
                   var description   = button.data('description');
                   var date_start    = button.data('datei');
                   var date_end      = button.data('datef');
                   var company       = button.data('company');
-                  var policy       = button.data('policy');
+                  var policy        = button.data('policy');
+
                   var modal = $(this);
+
                   $(".modal-body #insu").prop("selectedIndex", 3);
-                  modal.find('.modal-title').html('<center>Renovar : '+name+'<center>');
+                  modal.find('.modal-title').html('<h4><center><strong>Seguro : '+name_insurance+'</strong><center><h4>');
                   modal.find('.modal-body #id').val(id);
                   modal.find('.modal-body #idvehicle').val(id_vehicle);//id de documento
                   modal.find('.modal-body #insurance_id').val(id_insurance);
+                  modal.find('.modal-body #name_insurance').val(name_insurance);
                   modal.find('.modal-body #description').val(description);
                   modal.find('.modal-body #date_start').val(date_start);
                   modal.find('.modal-body #date_fin').val(date_end);

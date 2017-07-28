@@ -120,6 +120,7 @@ class PassengersController extends Controller
                   $passenger->pas_last  =$request->pas_last;
                   $passenger->pas_movil =$request->pas_movil;
                   $passenger->email     =$request->email;
+                  $passenger->state_id  =$request->state_id;
                   $passenger->save();
                   return response()->json(['rpt'=>'success']);
               }else {
@@ -130,6 +131,7 @@ class PassengersController extends Controller
                 $passenger->pas_last  =$request->pas_last;
                 $passenger->pas_movil =$request->pas_movil;
                 $passenger->email     =$request->email;
+                $passenger->state_id  =$request->state_id;
                 $passenger->save();
                 return response()->json(['rpt'=>'success']);
         }
