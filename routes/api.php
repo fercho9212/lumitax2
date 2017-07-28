@@ -64,32 +64,23 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     });
 
 });
+
+///REQUEST
 Route::group(['prefix'=>'v1/push'],function(){
-    Route::post('/passenger','Api\PushGoogle\PushNotificationController@InsertTokendPassengers')->middleware('passenger');
-    Route::post('/driver','Api\PushGoogle\PushNotificationController@InsertTokendDrivers')->middleware('driver');
-    Route::post('send/{}/{}','Api\PushGoogle\SendNotificationController@Send');
+    Route::post('/driver','Api\ApiDriversController@InsertTokendDrivers')->middleware('driver');
+    Route::post('/passenger','Api\ApiPassengersController@InsertTokendPassengers')->middleware('passenger');
 });
-
-///FUNCIONES DE MENSAJERIA
-Route::group(['prefix'=>'v1/push/drivers'],function(){
-    Route::post('/','Api\PushGoogle\PushNotificationController@InsertTokendDrivers')->middleware('driver');
-});
-
-Route::group(['prefix'=>'v1/push/passengers'],function(){
-    Route::post('/','Api\PushGoogle\PushNotificationController@InsertTokendPassengers')->middleware('passenger');
-});
-
-//Funciones de respuesta de msg
-Route::group(['prefix'=>'v1/request/drivers'],function (){
-    Route::post('/','Api/Request/RequestDriverController@RequestConfirmated')->middleware('driver');
-});
-
-
 
 
 //Fin Funciones MENSAJERIA
 
-//FUNCIONES DE BUSQUEDAD
+//FUNCIONES DE ENVIO DE SERVICIO
 Route::group(['prefix'=>'v1/search'],function(){
-  Route::post('/','Api\Search\SearchDriversController@searchDriver')->middleware('passenger');//Funciion principal de busquedad
+  Route::post('/','Api\Search\SearchDriversController@SendService')->middleware('passenger');//Funciion principal de busquedad
+});
+
+//RESPONSE DE MESNAJES
+Route::group(['prefix'=>'v1/response/push'],function(){
+  Route::post('drivers','Api\Response\DriverResponseController@ConfirmateService')->middleware('driver');
+  Route::post('passengers','Api\Response\PassengerResponseController@ResponseService')->middleware('passenger');;
 });

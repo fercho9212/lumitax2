@@ -53,5 +53,21 @@ class ApiDriversController extends Controller
       return  $tokenApi->token_api;
     }
 
+    /**
+     * Inserta el token a la db de drivers
+     * @token: token recibido of driver
+     */
+    public function InsertTokendDrivers(){
+      $driver = JWTAuth::parseToken()->authenticate();
+      $token=Input::get('token');
+      $driver=Driver::find($driver->id);
+      $driver->token_api=$token;
+      if ($driver->save()) {
+         return response()->json(['rpt'=>'success']);
+      }else {
+        return response()->json(['rpt'=>'error']);
+      }
+      }
+
 
 }

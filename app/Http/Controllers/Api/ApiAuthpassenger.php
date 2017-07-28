@@ -52,5 +52,4 @@ class ApiAuthpassenger extends Controller
    public function test(){
      echo 'Ahí vamos';
    }
-
 }
