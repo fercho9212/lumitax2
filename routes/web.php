@@ -38,8 +38,12 @@ Route::group(['namespace' => 'web'], function () {
     Route::post('vehicles/luxury', 'VehiclesController@StoreLuxury');
     Route::get('vehicles/luxury', 'VehiclesController@indexluxury');
     Route::get('vehicles/{id}/show', 'VehiclesController@show');
+
+
     //--Vehículos
-    //
+    //Rutas de imaenes
+    Route::get('vehimages/{id}/create','VehImagesController@create');
+    Route::post('vehimages/store','VehImagesController@store');
     //documents
     Route::get('documents/{id}/create', 'DocumentsController@create');
     Route::post('/documents/store', 'DocumentsController@store');

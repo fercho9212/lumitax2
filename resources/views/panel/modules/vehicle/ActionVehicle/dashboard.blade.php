@@ -1,9 +1,11 @@
 @extends('panel.dashboard')
 @section('style')
   <link rel="stylesheet" href="{{ asset('/complement/repairsweet/sweet-alert.css') }}" href="/css/master.css">
-
   <link rel="stylesheet" href="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.min.css') }}" >
   <link rel="stylesheet" href="{{ asset('/complement/bootstrap-select/bootstrap-select.min.css') }}">
+
+  <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
   <style>
   .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
       background-color: #3E2723 !important;
@@ -53,7 +55,7 @@
 	        </ul>
 	    </li>
 	    <li><a href="javascript:void(0);" onclick="ActionDocument(2,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Agregar Docuemntos</span></a></li>
-      <li><a href="javascript:void(0);" onclick="photovehicle(2,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Agregar Fotos</span></a></li>
+      <li><a href="javascript:void(0);" onclick="ActionDocument(3,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Agregar Fotos</span></a></li>
 
 	</ul><!-- /.sidebar-menu -->
 @endsection
@@ -100,5 +102,9 @@
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-select/bootstrap-select.min.js') }}"></script>
 {{--Checkbox--}}
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-checkbox/bootstrap-checkbox.min.js') }}"></script>
+{{--DropZone--}}
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+
+
 
 @endsection
