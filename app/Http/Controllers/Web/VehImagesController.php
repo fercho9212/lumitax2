@@ -16,6 +16,26 @@ class VehImagesController extends Controller{
   }
   public function store(Request $request){
 
+      $file=$request->file('file');
+      $idvehicle=$request->id;
+      $filename=uniqid().$file->getClientOriginalName();
+
+
+      $dir='vehicle/';
+      $file->move($dir,$filename);
+      $vehicle=Vehicle::find($idvehicle);
+      $photos=new Imagevehicle;
+      $photos->img_name=$file->getClientOriginalName();
+      $photos->path=$filename;
+      $photos->vehicle_id=$idvehicle;
+      $photos->vehicle()->associate($vehicle);
+      $photos->save();
+
+      return $photos;
+
+
+
+      /*
       $idvehicle=$request->id;
 
 
@@ -32,7 +52,7 @@ class VehImagesController extends Controller{
       $photos->vehicle()->associate($vehicle);
       $photos->save();
       echo "string";
-
+*/
   }
 
 

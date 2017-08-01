@@ -6,6 +6,10 @@
 
   <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 
+  <link rel="stylesheet" href="{{ asset('/complement/lightbox2/lightbox.min.css') }}">
+
+
+
   <style>
   .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
       background-color: #3E2723 !important;
@@ -104,7 +108,6 @@
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-checkbox/bootstrap-checkbox.min.js') }}"></script>
 {{--DropZone--}}
 <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
-
-
-
+{{--lightbox2--}}
+<script type="text/javascript" src="{{ asset('/complement/lightbox2/lightbox.min.js') }}"></script>
 @endsection
