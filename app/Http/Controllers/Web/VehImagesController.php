@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Vehicle;
+use App\Models\Imagevehicle;
 use App\Models\Vehiclecomplement;
 use Illuminate\Support\Facades\Input;
 
@@ -14,11 +15,24 @@ class VehImagesController extends Controller{
     return view('panel.modules.vehicle.ActionVehicle.photos.index',['vehicle'=>$vehicle]);
   }
   public function store(Request $request){
+
       $idvehicle=$request->id;
+
+
+
       $file=Input::file('file');
       $secureName=\Hash::make($file->getClientOriginalName());
-      $dir=public_path().'/uploads/';
+      $dir=public_path().'/vehicle/';
       $subir=$file->move($dir,$secureName.'.'.$file->guessExtension());
+      $vehicle=Vehicle::find($idvehicle);
+      $photos=new Imagevehicle;
+      $photos->img_name=$file->getClientOriginalName();
+      $photos->path="path";
+      $photos->vehicle_id=$idvehicle;
+      $photos->vehicle()->associate($vehicle);
+      $photos->save();
+      echo "string";
+
   }
 
 

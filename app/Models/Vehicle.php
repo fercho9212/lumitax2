@@ -31,6 +31,6 @@ class Vehicle extends Model
       return $this->belongsToMany('App\Models\Driver')->withTimestamps();
     }
     public function imagevehciles(){
-      return $this->hasMany('App\Models\Imagevehicle');
+      return $this->hasMany('App\Models\Imagevehicle','id');
     }
 }

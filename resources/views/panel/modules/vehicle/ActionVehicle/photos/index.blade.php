@@ -1,5 +1,5 @@
 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-
+{{$vehicle->id}}
 <form id="id_dropzone"
       class="dropzone"
 
@@ -16,11 +16,16 @@ $(document).ready(function(){
              headers: {
                       'X-CSRF-Token': $('input[name="_token"]').val()
               },
-               maxFiles: 2000,
+               maxFiles: 2,
                url: "/vehimages/store",
                success: function (file, response) {
                    console.log(response);
-               }
+               },
+               init: function() {
+                    this.on("maxfilesexceeded", function(file){
+                        alert("No more files please!");
+                    });
+  }
            });
 
 

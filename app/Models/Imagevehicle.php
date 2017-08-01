@@ -10,9 +10,9 @@ class Imagevehicle extends Model
   public $timestamps = true;
   protected $primaryKey = 'id';
   protected $fillable = [
-     'img_name','path','vehicle_i',
+     'img_name','path','vehicle_id',
   ];
   public function vehicle(){
-    return $this->belongsTo('App\Models\Vehicle','vehicle_id')
+    return $this->belongsTo('App\Models\Vehicle');
   }
 }
