@@ -11,8 +11,9 @@ function load_frm(opt){
   //function of module vehicle
   if (opt==30){var url="/vehicles/"; console.log('Entra a vista taxi ')}
   if (opt==31){var url="/vehicles/luxury"; console.log('Entra a vista Lujo ')}
-  //$("#main_content").html()
-
+  //$("#main_content").html()s
+  // Functions of module secure
+  if (opt==40){var url="/insurance/create/"; console.log('Entra a vista Seguro')}
     $.ajax({
           async: true,
           type: "GET",

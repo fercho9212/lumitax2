@@ -18,6 +18,7 @@
         padding-right: 10px;
       }
   </style>
+@include('panel.modules.vehicle.ActionVehicle.view.data_vehicle')
 <div class="row">
   <div class="col-md-12">
       <div id="gallery-images">
@@ -28,7 +29,7 @@
                 <img src="{{url('/vehicle/'.$vehicle->placa.'/'.$image->path)}}" alt="">
               </a>
               <br>
-              <button type="button" onclick="deletePhoto({{$image->id}},{{$vehicle->id}})" class="btn btn-primary"name="button">{{$image->img_name}}</button>
+              <center><button type="button" onclick="deletePhoto({{$image->id}},{{$vehicle->id}})" class="btn btn btn-danger"name="button"><span class="glyphicon glyphicon glyphicon-trash"></span></button></center>
               <br>
             </li>
           @endforeach
@@ -40,7 +41,6 @@
 
 
 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-{{$vehicle->id}}
 <form id="id_dropzone"
       class="dropzone"
       enctype="multipart/form-data"
@@ -78,10 +78,31 @@ var handleDropZoneFileUpload={
     console.log(response);
   },
   handleSuccess:function(response){
+    if (response=='Error') {
+      swal(
+            'Oops...',
+            'Número máximo permitido 6',
+            'error'
+          );
+    }else {
+      var imageList=$('#gallery-images ul');
+      var imageSrc='/vehicle/'+response.vehicle.placa+'/'+response.path;
+      var html='';
+      html+='<li>';
+      html+='   <a href="'+imageSrc+'" target="_blank" +data-lightbox="roadtrip">'
+      html+='     <img src="'+imageSrc+'"/>';
+      html+='   </a>';
+      html+='<br>';
+      html+='<center>';
+      html+='   <button type="button" class="btn btn btn-danger" name="button"  onclick="deletePhoto('+response.id+','+response.vehicle.id+')">'
+      html+='   <span class="glyphicon glyphicon glyphicon-trash"></span></button>';
+      html+='</center>';
+      html+='<br></li>';
+      $(imageList).append(html);
+    }
     console.log("Holaa"+response);
-    var imageList=$('#gallery-images ul');
-    var imageSrc='/vehicle/'+response.vehicle.placa+'/'+response.path;
-    $(imageList).append('<li><a href="'+imageSrc+'" target="_blank" data-lightbox="roadtrip"><img src="'+imageSrc+'"></a><br><button type="button" class="btn btn-primary"name="button"  onclick="deletePhoto('+response.id+','+response.vehicle.id+')">'+response.img_name+'</button><br></li>')
+
+
   }
 };
 

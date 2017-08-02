@@ -21,18 +21,22 @@ class VehImagesController extends Controller{
       $filename=uniqid().$file->getClientOriginalName();
 
       $vehicle=Vehicle::find($idvehicle);
-      $dir='vehicle/'.$vehicle->placa;
-      $file->move($dir,$filename);
+      $total=$vehicle->imagevehciles()->count();
+      if ($total<6) {
 
-      $photos=new Imagevehicle;
-      $photos->img_name=$file->getClientOriginalName();
-      $photos->path=$filename;
-      $photos->vehicle_id=$idvehicle;
-      $photos->vehicle()->associate($vehicle);
-      $photos->save();
+          $dir='vehicle/'.$vehicle->placa;
+          $file->move($dir,$filename);
 
-      return $photos;
+          $photos=new Imagevehicle;
+          $photos->img_name=$file->getClientOriginalName();
+          $photos->path=$filename;
+          $photos->vehicle_id=$idvehicle;
+          $photos->vehicle()->associate($vehicle);
+          $photos->save();
 
+          return $photos;
+  }
+  return 'Error';
 
 
       /*

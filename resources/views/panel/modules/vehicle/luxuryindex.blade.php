@@ -35,16 +35,12 @@
 
                 <tr class="driver{{$vehicle->id}}">
                   <td>
-                        <button  class="update btn btn-info " data-id="{{$vehicle->id}}"
-                                          data-name="{{$vehicle->placa}}"
-                                          data-last="{{$vehicle->veh_model}}"
-                                          data-email="{{$vehicle->veh_motor}}"
-                                          data-movil="{{$vehicle->veh_serie}}"
-                                          data-state="{{$vehicle->veh_vin}}"
-                                          data-date="{{$vehicle->veh_vin}}"
-                            data-toggle="modal" data-target="#edit_passenger" >
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </button>
+                    <a href="/vehicles/{{$vehicle->id}}/show">
+                    <button   class="update btn btn-warning">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+                    </a>
+                    
                         <button class="delete-modal  btn btn-danger" data-id="{{$vehicle->id}}"
                             data-name="{{$vehicle->placa}}">
                             <span class="glyphicon glyphicon-trash"></span>

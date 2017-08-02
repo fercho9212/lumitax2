@@ -54,4 +54,7 @@ Route::group(['namespace' => 'web'], function () {
     Route::get('asig', 'AsigVehDriController@create');
     Route::post('asig/create', 'AsigVehDriController@ToAsign');
     Route::delete('asig/delete/{id}/{placa}', 'AsigVehDriController@destroy');
+
+    //Seguro
+    Route::resource('insurance','InsuranceController');
 });

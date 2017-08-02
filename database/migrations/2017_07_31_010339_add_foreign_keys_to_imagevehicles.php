@@ -14,7 +14,7 @@ class AddForeignKeysToImagevehicles extends Migration
     public function up()
     {
         Schema::table('imagevehicles', function (Blueprint $table) {
-          $table->foreign('vehicle_id','fk_img_vehicle')->references('id')->on('vehicles')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+          $table->foreign('vehicle_id','fk_img_vehicle')->references('id')->on('vehicles')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 

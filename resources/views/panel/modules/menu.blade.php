@@ -46,4 +46,7 @@
         </ul>
     </li>
 
+    <li><a href="javascript:void(0);" onclick="load_frm(40);"><i class='fa fa-link'></i> <span>Seguros</span></a></li>
+
+
 </ul><!-- /.sidebar-menu -->
