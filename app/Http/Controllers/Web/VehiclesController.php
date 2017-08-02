@@ -167,12 +167,21 @@ class VehiclesController extends Controller
     public function destroy($id)
     {
       $vehicle=Vehicle::find($id);
-      if ($vehicle->delete()) {
-         return response()->json();
+      $images=$vehicle->imagevehciles;
+      if (empty($images)) {
+        if ($vehicle->delete()) {
+           return response()->json();
+        }
+      }else {
+        foreach ($vehicle->imagevehciles as $image) {
+          unlink(public_path('/vehicle/'.$vehicle->placa.'/'.$image->path));
+        }
+          $vehicle->imagevehciles()->delete();
+          $vehicle->delete();
       }
     }
     public function destroyLuxury($id){
-      $vehicle=Vehicle::find($id);
+      $vehicle=Vehicle::findOrFail($id);
       $vehicle->vehiclecomplement()->delete();
       //$vehicle->delete();
       if ($vehicle->delete()) {

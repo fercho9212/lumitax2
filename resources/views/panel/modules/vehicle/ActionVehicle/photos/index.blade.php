@@ -25,13 +25,12 @@
           @foreach ($vehicle->imagevehciles as $image)
             <li>
               <a href="/vehicle/{{$image->path}}" target="_blank" data-lightbox="roadtrip">
-                <img src="/vehicle/{{$image->path}}" alt="">
+                <img src="{{url('/vehicle/'.$vehicle->placa.'/'.$image->path)}}" alt="">
               </a>
               <br>
-              <button type="button" class="btn btn-primary"name="button">{{$image->img_name}}</button>
+              <button type="button" onclick="deletePhoto({{$image->id}},{{$vehicle->id}})" class="btn btn-primary"name="button">{{$image->img_name}}</button>
               <br>
             </li>
-
           @endforeach
         </ul>
       </div>
@@ -81,12 +80,18 @@ var handleDropZoneFileUpload={
   handleSuccess:function(response){
     console.log("Holaa"+response);
     var imageList=$('#gallery-images ul');
-    var imageSrc='/vehicle/'+response.path;
-    $(imageList).append('<li><a href="'+imageSrc+'" target="_blank" data-lightbox="roadtrip"><img src="'+imageSrc+'"></a><br><button type="button" class="btn btn-primary"name="button">'+response.img_name+'</button><br></li>')
+    var imageSrc='/vehicle/'+response.vehicle.placa+'/'+response.path;
+    $(imageList).append('<li><a href="'+imageSrc+'" target="_blank" data-lightbox="roadtrip"><img src="'+imageSrc+'"></a><br><button type="button" class="btn btn-primary"name="button"  onclick="deletePhoto('+response.id+','+response.vehicle.id+')">'+response.img_name+'</button><br></li>')
   }
 };
 
 
-});
 
+});
+function deletePhoto(id,idvehicle){
+  var urlDelte='/vehimages/'+id+'/delete/';
+  var toke=$('input[name="_token"]').val();
+  var urlSuccess='/vehimages/'+idvehicle+'/create'
+  ajaxDelete(urlDelte,toke,urlSuccess);
+}
 </script>

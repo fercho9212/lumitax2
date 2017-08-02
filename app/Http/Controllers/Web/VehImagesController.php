@@ -20,10 +20,10 @@ class VehImagesController extends Controller{
       $idvehicle=$request->id;
       $filename=uniqid().$file->getClientOriginalName();
 
-
-      $dir='vehicle/';
-      $file->move($dir,$filename);
       $vehicle=Vehicle::find($idvehicle);
+      $dir='vehicle/'.$vehicle->placa;
+      $file->move($dir,$filename);
+
       $photos=new Imagevehicle;
       $photos->img_name=$file->getClientOriginalName();
       $photos->path=$filename;
@@ -54,7 +54,13 @@ class VehImagesController extends Controller{
       echo "string";
 */
   }
-
+  public function destroy($id){
+    $file=Imagevehicle::findOrFail($id);
+    unlink(public_path('/vehicle/'.$file->vehicle->placa.'/'.$file->path));
+    if ($file->delete()) {
+       return 'holaaa';
+    }
+  }
 
 }
 

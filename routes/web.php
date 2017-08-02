@@ -44,6 +44,7 @@ Route::group(['namespace' => 'web'], function () {
     //Rutas de imaenes
     Route::get('vehimages/{id}/create','VehImagesController@create');
     Route::post('vehimages/store','VehImagesController@store');
+    Route::delete('vehimages/{id}/delete','VehImagesController@destroy');
     //documents
     Route::get('documents/{id}/create', 'DocumentsController@create');
     Route::post('/documents/store', 'DocumentsController@store');
