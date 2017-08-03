@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Insurance;
+use App\Http\Requests\Web\InsuranceRequest;
 
 class InsuranceController extends Controller
 {
@@ -36,7 +37,7 @@ class InsuranceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InsuranceRequest $request)
     {
         $insurance=new Insurance;
         $insurance->create($request->all());
@@ -72,7 +73,7 @@ class InsuranceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(InsuranceRequest $request, $id)
     {
         try {
           $insurance=Insurance::findOrFail($id);
@@ -95,6 +96,15 @@ class InsuranceController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        try {
+          $insurance=Insurance::findOrFail($id);
+          if ($insurance->delete()) {
+            return response()->json(['rpt'=>'success']);
+          }
+        } catch (\Illuminate\Database\QueryException $e) {
+          return $e->errorInfo[1]; //Envia el error de duplicidad
+        }
+
     }
 }

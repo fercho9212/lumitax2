@@ -55,7 +55,9 @@ class DriversController extends Controller
      */
     public function store(Request $request)
     {
-      $validator = Validator::make($request->all(), [
+      $file=$request->file('file');
+      $name=$file->getClientOriginalName();
+    $validator = Validator::make($request->all(), [
           'lic_no'=>'required',
           'category_id'=>'required',
           'type_id'=>'required',
@@ -76,9 +78,12 @@ class DriversController extends Controller
       }else {
         DB::beginTransaction();
         try {
+
+
           $input = $request->all();
           $input['password']=bcrypt($input['password']);
-          $input['dri_photo']='dsd';
+
+          $input['dri_photo']=$name;
           $input['apistate_id']=1;
           $driver=Driver::create($input);
           //$driver=Driver::find($driver);

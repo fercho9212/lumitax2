@@ -111,8 +111,20 @@ var handleDropZoneFileUpload={
 });
 function deletePhoto(id,idvehicle){
   var urlDelte='/vehimages/'+id+'/delete/';
-  var toke=$('input[name="_token"]').val();
-  var urlSuccess='/vehimages/'+idvehicle+'/create'
-  ajaxDelete(urlDelte,toke,urlSuccess);
+  var token=$('input[name="_token"]').val();
+  var urlSuccess='/vehimages/'+idvehicle+'/create';
+  swal({
+        title: "Estas seguro?",
+        text: "Desea Eliminar el Seguro!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Si, Eliminar!",
+        closeOnConfirm: false
+},
+function(){
+  ajaxDelete(urlDelte,token,urlSuccess);
+});
+
 }
 </script>

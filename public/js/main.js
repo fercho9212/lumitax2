@@ -39,6 +39,7 @@ $(document).on("submit",".form_entrada",function(e){
   var id_frm=$(this).attr("id");
   if (id_frm=="create_passenger"){
     var url="/drivers"
+    myDropzone.processQueue();
     console.log('->');
   }
 /*  if (id_frm=="create_passenger"){
@@ -68,7 +69,7 @@ function loadData(url,data){
 }
 //Funcion que recoge y procesa los errores de validación
 // @data respuesta de los errores
-function msgError(data,urlView=NULL){
+function msgError(data,urlView=''){
   var errors=data.responseJSON;
   var msg='';
   $.each(errors, function( key, value ) {
@@ -103,9 +104,20 @@ function ajaxDelete(urlDelte,token,urlSuccess){
                 '_token': token,
             },
             success: function(data) {
-                swal("Deleted!", "Registro Eliminado.", "success");
-                //console.log(data);
-                loadData(urlSuccess,data);
+              // swal("Deleted!", "Registro Eliminado.", "success");
+
+                if (data.rpt=='success') {
+                  loadData(urlSuccess,data);
+                  swal("Registro Eliminado!", "You clicked the button!", "success")
+                }else if (data==1451) {//Numero de error en las realaciones de vhiculación
+                  swal("Error!", "El seguro se encuentra en uso  ", "warning")
+                  loadData(urlSuccess,data);
+                }
+
+              // loadData(urlSuccess,data);
+            },
+            error: function(data){
+              console.log('Errorttttta->'+data)
             }
         });
 }

@@ -1,10 +1,12 @@
+
+@extends('panel.layouts.main')
+
 @section('style')
 	<link rel="stylesheet" href="{{ asset('/complement/repairsweet/sweet-alert.css') }}" >
 	<link rel="stylesheet" href="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.min.css') }}" >
 	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-select/bootstrap-select.min.css') }}">
-
+  <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
  @endsection
-@extends('panel.layouts.main')
 
 @section('panel.htmlheader_title')
 	Home
@@ -43,10 +45,12 @@
 @include('panel.layouts.partials.script_for_table')
 @endsection
 @section('script')
+
 <script type="text/javascript" src="{{ asset('/complement/repairsweet/sweet-alert.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-validator/validator.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/moment/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('/complement/bootstrap-select/bootstrap-select.min.js') }}"></script>
-
+		{{--DropZone--}}
+		<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 @endsection

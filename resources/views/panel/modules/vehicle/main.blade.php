@@ -1,5 +1,5 @@
 @section('style')
-	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-sweetalert/sweetalert.css') }}" href="/css/master.css">
+	<link rel="stylesheet" href="{{ asset('/complement/repairsweet/sweet-alert.css') }}" >
 	<link rel="stylesheet" href="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.min.css') }}" href="/css/master.css">
 	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-select/bootstrap-select.min.css') }}">
 
@@ -51,7 +51,7 @@
 @endsection
 
 @section('script')
-<script type="text/javascript" src="{{ asset('/complement/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/complement/repairsweet/sweet-alert.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-validator/validator.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/moment/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.js') }}"></script>

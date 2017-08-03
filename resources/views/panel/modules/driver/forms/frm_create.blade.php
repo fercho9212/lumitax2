@@ -6,9 +6,21 @@
           {{$error}}
        </div>
   @endforeach
+
+  <p>
+    This is the most minimal example of Dropzone. The upload in this example
+    doesn't work, because there is no actual server to handle the file upload.
+  </p>
+
+  <!-- Change /upload-target to your upload address -->
+
+
 <form role="form" method="POST" id="create_passenger" action="create_driver" class="form_entrada" data-toggle="validator">
   <!-- start roe-->
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+  <div id="id_dropzone" class="dropzone">
+
+  </div>
     <div class="row">
 
       <div class="col-md-12">
@@ -114,6 +126,7 @@
     </div>
 </div>
 </div>
+
 <!-- /.box-roe -->
 <!-- /.Start Panel Licence -->
 <br>
@@ -230,5 +243,45 @@
                   format: 'YYYY-MM-DD'
                 });
 
+
+                
+                $("#id_dropzone").dropzone({
+                  headers: {
+                           'X-CSRF-Token': $('input[name="_token"]').val()
+                   },
+                    autoProcessQueue: false,
+                    maxFiles: 1,
+                    acceptedFiles:'image/*',
+                    url: "/drivers",
+                    success: function (file, response) {
+                        if (file.status=='success') {
+                          handleDropZoneFileUpload.handleSuccess(response);
+                        }else {
+                          handleDropZoneFileUpload.handleError(response);
+                        }
+                    },
+                    init: function() {
+                         this.on("maxfilesexceeded", function(file){
+                             alert("No more files please!");
+                         });
+       }
+                });
+                var handleDropZoneFileUpload={
+                  handleError:function(response){
+                    console.log("testsss"+response);
+                  },
+                  handleSuccess:function(response){
+                      console.log("->"+response);
+                    if (response=='Error') {
+                      swal(
+                            'Oops...',
+                            'Número máximo permitido 6',
+                            'error'
+                          );
+                    }
+                  }
+                }
+
             });
+
 </script>

@@ -62,7 +62,7 @@ class VehImagesController extends Controller{
     $file=Imagevehicle::findOrFail($id);
     unlink(public_path('/vehicle/'.$file->vehicle->placa.'/'.$file->path));
     if ($file->delete()) {
-       return 'holaaa';
+       return response()->json(['rpt'=>'success']);
     }
   }
 
