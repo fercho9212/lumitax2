@@ -9,10 +9,12 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Modal Header</h4>
         </div>
-          <form id="edit_insurance" action="#" method="post">
+          <form id="edit_insurance"  method="post">
         <div class="modal-body">
 
-            <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+          <input type="hidden" name="id" id="id">
+
            <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
@@ -45,11 +47,9 @@
                   </div>
                 </div>
               </div>
-
-
         </div>
         <div class="modal-footer">
-          <center><input type="submit" name="" class="btn btn-primary" value="Guardar"><center>
+          <button  type="submit"  id="sendI" class="btn btn-primary">Submit</button>
         </div>
         </form>
       </div>
@@ -128,7 +128,7 @@
                                                               data-description="{{$insurce->ins_description}}"
                                                               data-toggle="modal" data-target="#edit_insurance">
                                                               Editar</button>
-                          <button type="button" name="button">Eliminar</button>
+                          <button type="button" name="button" onclick="delete_insu({{$insurce->id}})">Eliminar</button>
                       </td>
                   </tr>
                 @endforeach
@@ -159,6 +159,8 @@ $(function(){
         });
       });
       $('#edit_insurance').on("shown.bs.modal", function (event) {
+        $("body").removeClass("modal-open");
+        $("body").css({"padding-right":"0px"});
             var button  = $(event.relatedTarget);
             var id=button.data('id');
             var code=button.data('code');
@@ -171,9 +173,52 @@ $(function(){
             modal.find('.modal-body #name').val(name);
             modal.find('.modal-body #description').val(description);
       });
-      $('#edit_insurance').on('submit',function(e){
+      $('#sendI').click(function(e){
           e.preventDefault();
-          
+          var data=$("form#edit_insurance").serialize();
+          var id=$('#id').val();
+          var url='/insurance/'+id;
+
+          $.ajax({
+                type:'PUT',
+                data:data,
+                url:url,
+                datatype:'json',
+                success:function(data){
+                  if (data.rpt=='success') {
+                    loadData('/insurance',data);
+                    swal("Registro actualizado!", "You clicked the button!", "success")
+                  }else {
+                    swal({
+                          title: "Se encontraron los siguientes errores",
+                          text:   $.each( data.error, function( key, value ) {
+                                      "<p style='color: red'>"+value+"</p>"
+                                        }),
+                          confirmButtonText: "intentar nuevamente!",
+                          confirmButtonClass: "btn-danger",
+                          type: "warning",
+                          showConfirmButton: true
+                        },function(){
+                                    loadData(url,data);
+                        });
+
+                    $.each( data.error, function( key, value ) {
+                           console.log(value);
+                          });
+                  }
+
+
+                  }
+
+          });
+
       });
+
+      function delete_insu(id){
+        var urlDelte='/insurance'
+        var toke='';
+        var urlSuccess='/insurance/create';
+        ajaxDelete(urlDelte,token,urlSuccess);
+      }
       });
 </script>

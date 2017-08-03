@@ -117,7 +117,7 @@ function ajaxDelete(urlDelte,token,urlSuccess){
 function ajaxEdit(id,url,token){
 
   $.ajax({
-            type: 'GET',
+            type: 'GET',//Cambio de get a PUT
             url: url,
             data: {
                 '_token': token,

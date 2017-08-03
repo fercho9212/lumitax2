@@ -15,7 +15,8 @@ class InsuranceController extends Controller
      */
     public function index()
     {
-        echo "string";
+      $insurances=Insurance::all();
+      return view('panel.modules.insurance.index',['insurances'=>$insurances]);
     }
 
     /**
@@ -25,8 +26,8 @@ class InsuranceController extends Controller
      */
     public function create()
     {
-       $insurances=Insurance::all();
-       return view('panel.modules.insurance.index',['insurances'=>$insurances]);
+      $insurances=Insurance::all();
+      return view('panel.modules.insurance.index',['insurances'=>$insurances]);
     }
 
     /**
@@ -73,7 +74,17 @@ class InsuranceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+          $insurance=Insurance::findOrFail($id);
+          $insurance->ins_name=$request->ins_name;
+          $insurance->ins_code=$request->ins_code;
+          $insurance->ins_description=$request->ins_description;
+          $insurance->save();
+          return response()->json(['rpt'=>'success']);
+        } catch (Exception $e) {
+          return response()->json(['rpt'=>'error']);
+        }
+
     }
 
     /**
