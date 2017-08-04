@@ -56,8 +56,7 @@ class DriversController extends Controller
     public function store(Request $request)
     {
       $file=$request->file('file');
-      return $file->getClientOriginalName();
-  /*    $name=$file->getClientOriginalName();
+      $filename=uniqid().$file->getClientOriginalName();
     $validator = Validator::make($request->all(), [
           'lic_no'=>'required',
           'category_id'=>'required',
@@ -84,7 +83,7 @@ class DriversController extends Controller
           $input = $request->all();
           $input['password']=bcrypt($input['password']);
 
-          $input['dri_photo']=$name;
+          $input['dri_photo']=$filename;
           $input['apistate_id']=1;
           $driver=Driver::create($input);
           //$driver=Driver::find($driver);
@@ -98,8 +97,9 @@ class DriversController extends Controller
           $licence->save();
           $driver->licence()->save($licence);
           DB::commit();
-          Alert::success('Éxito', 'Registro Insertado con éxito')->persistent('Cerrar');
-          return redirect('/drivers')->with('success', 'Registro Insertado Con exito');
+        //  Alert::success('Éxito', 'Registro Insertado con éxito')->persistent('Cerrar');
+        //  return redirect('/drivers')->with('success', 'Registro Insertado Con exito');
+         return response()->json(['rpt'=>'success']);
         } catch (\Exception $e) {
                   DB::rollback();
                   echo 'ERROR (' . $e->getCode() . '): ' . $e->getMessage();
@@ -108,7 +108,7 @@ class DriversController extends Controller
 
 
       }
-*/
+
     }
 
     /**
