@@ -15,5 +15,6 @@
 
 <!-- Ferney_Jerez -->
 
-<script src="{{ asset('/js/main.js') }}" type="text/javascript"></script>
+
 @yield('script')
+<script src="{{ asset('/js/main.js') }}" type="text/javascript"></script>

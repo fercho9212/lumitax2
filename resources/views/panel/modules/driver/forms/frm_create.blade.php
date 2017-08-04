@@ -15,11 +15,13 @@
   <!-- Change /upload-target to your upload address -->
 
 
-<form role="form" method="POST" id="create_passenger" action="create_driver" class="form_entrada" data-toggle="validator">
+<form role="form" method="POST" id="create_passenger" action="create_driver" class="form_i" data-toggle="validator" enctype="multipart/form-data">
   <!-- start roe-->
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
   <div id="id_dropzone" class="dropzone">
-
+    <div class="fallback">
+      <input name="file" type="file" multiple />dd
+    </div>
   </div>
     <div class="row">
 
@@ -244,8 +246,8 @@
                 });
 
 
-                
-                $("#id_dropzone").dropzone({
+
+                var myDropzone = new Dropzone("div#id_dropzone",{
                   headers: {
                            'X-CSRF-Token': $('input[name="_token"]').val()
                    },
@@ -265,7 +267,7 @@
                              alert("No more files please!");
                          });
        }
-                });
+     });
                 var handleDropZoneFileUpload={
                   handleError:function(response){
                     console.log("testsss"+response);
@@ -281,6 +283,40 @@
                     }
                   }
                 }
+
+
+                $(document).on("submit",".form_i",function(e){
+
+                  e.preventDefault();
+
+                  console.log("Entra");
+                  var frm=$(this);
+                  var id_frm=$(this).attr("id");
+
+                    var url="/drivers"
+                    myDropzone.processQueue();
+                    console.log('->');
+
+                /*  if (id_frm=="create_passenger"){
+                    var url="/driverssss"
+                    console.log('passenger');
+                  }*/
+                  $.ajax({
+
+                        type: "POST",
+                        url : url,
+                        datatype:'json',
+                        data : frm.serialize(),
+                        success : function(resul){
+                                $("#contenido_principal").html(resul);
+                      },
+                        error:function(data){
+                            var errors=data.responseJSON
+                            console.log('d'+errors);
+                        }
+                        });
+
+                });
 
             });
 

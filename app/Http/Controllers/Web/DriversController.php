@@ -56,7 +56,8 @@ class DriversController extends Controller
     public function store(Request $request)
     {
       $file=$request->file('file');
-      $name=$file->getClientOriginalName();
+      return $file->getClientOriginalName();
+  /*    $name=$file->getClientOriginalName();
     $validator = Validator::make($request->all(), [
           'lic_no'=>'required',
           'category_id'=>'required',
@@ -107,7 +108,7 @@ class DriversController extends Controller
 
 
       }
-
+*/
     }
 
     /**

@@ -1,3 +1,5 @@
+
+
 function load_frm(opt){
 
   //Functions of driver
@@ -30,7 +32,7 @@ function load_frm(opt){
           }
           });
 }
-$(document).on("submit",".form_entrada",function(e){
+$(document).on("submit",".form_enfffftrada",function(e){
 
   e.preventDefault();
 
