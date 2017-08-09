@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.min.css') }}" >
 	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-select/bootstrap-select.min.css') }}">
   <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+	<link rel="stylesheet" href="{{ asset('/complement/datatables-checkboxes/datatables-checkboxes.css') }}">
  @endsection
 
 @section('panel.htmlheader_title')
@@ -53,4 +54,9 @@
 		<script type="text/javascript" src="{{ asset('/complement/bootstrap-select/bootstrap-select.min.js') }}"></script>
 		{{--DropZone--}}
 		<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+
+		<link rel="stylesheet" href="{{ asset('/complement/datatables-checkboxes/datatables-checkboxes.min.js') }}">
+
+
+
 @endsection

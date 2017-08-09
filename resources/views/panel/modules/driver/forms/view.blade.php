@@ -1,4 +1,3 @@
-
 @if(session('success'))
     @include('sweet::alert')
 @endif
@@ -47,13 +46,9 @@
     </table>
 </div>
 <script>
-
 $(function(){
   $('#table').DataTable();
-
-
   $(document).on('click', '.delete-modal', function() {
-
     var previousWindowKeyDown = window.onkeydown;
         var id=$(this).data('id');
         swal({
@@ -78,29 +73,29 @@ $(function(){
                          $('#table').find('.driver'+id).remove();
                      }
                  });
-
           });
   });
 
-function edit(id){
-  var idd=id;
-  var url='/drivers/'+idd+'/edit'
-  $.ajax({
-            type: 'GET',
-            url: url,
-            data: {
-                '_token': $('input[name=_token]').val(),
-            },
-            beforeSend:function(){
-              $("#contenido_principal").html($("#cargador_empresa").html());
-            },
-            complete:function(){
-
-            },
-            success: function(data) {
-              $("#contenido_principal").html(data);
-            }
-        });
-}
   });
+
+  function edit(id){
+    var idd=id;
+    var url='/drivers/'+idd+'/edit'
+    $.ajax({
+              type: 'GET',
+              url: url,
+              data: {
+                  '_token': $('input[name=_token]').val(),
+              },
+              beforeSend:function(){
+                $("#contenido_principal").html($("#cargador_empresa").html());
+              },
+              complete:function(){
+              },
+              success: function(data) {
+                $("#contenido_principal").html(data);
+              }
+          });
+  }
+  
 </script>

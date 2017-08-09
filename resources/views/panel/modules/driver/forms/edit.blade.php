@@ -6,114 +6,182 @@
           {{$error}}
        </div>
   @endforeach
-<form role="form" method="POST"  id="update_driver" action="driveredit" class="update_form" data-toggle="validator">
+<style>
+#myDropzone{
+  width: 200px;
+  height: 220px;
+  padding:2px;
+  border-style:dashed;
+  border-color:#2c003a;
+  border-width:2px;
+  background-color:#fdfbfb;
+  color:#462a51;
+}
+.dropzone .dz-preview .dz-image {
+  width: 170px;
+  height: 150px;
+    }
+</style>
+
+
+  <!-- Change /upload-target to your upload address -->
+
+
+  <form role="form" method="POST"  id="update_driver" action="driveredit" class="update_form" data-toggle="validator">
+
   <!-- start roe-->
   <input type="hidden" name="_token" id="token" value="<?php echo csrf_token(); ?>">
-  <input type="hidden" id='id' name="id" value="{{$driver->id}}">
+  <input type="hidden" name="id" id="id" value="{{$driver->id}}">
+  <input type="hidden" name="dri_photo" id="id" value="{{$driver->dri_photo}}">
     <div class="row">
 
       <div class="col-md-12">
-          <div class="">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputEmail1">NOMBRE</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input name="dri_name" value="{{$driver->dri_name}}" type="text" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
-                </div>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputPassword1">Apellido</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                  <input name="dri_last" value="{{$driver->dri_last}}" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
-                </div>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Cedula</label>
-                <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
-                  <input name="dri_cc" value="{{$driver->dri_cc}}" type="number"  maxlength="10" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
-                </div>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-  <!-- /.box-roe -->
 
-<!-- start row-->
-<div class="row">
-  <div class="col-md-12">
-      <div class="">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Correo</label>
-            <div class="input-group">
-              <input name="email" value="{{$driver->email}}" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-            </div>
-          <div class="help-block with-errors"></div>
-          </div>
-          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="col-md-9">
 
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="exampleInputPassword1">Dirección</label>
-            <div class="input-group">
-              <input name="dri_address" value="{{$driver->dri_address}}" type="text" maxlength="50" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+              <div class="row">
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Nombre</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="dri_name" value="{{$driver->dri_name}}" type="text" maxlength="30" class="form-control" id="dri_name" placeholder="Enter name" required>
+                          </div>
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Apellido</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="dri_last" value="{{$driver->dri_last}}" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Enter last" required>
+                          </div>
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+
+
+              </div>
+
+              <div class="row">
+
+
+                  <div class="col-md-6">
+
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Cédula</label>
+                        <div class="input-group">
+                          <input name="dri_cc" value="{{$driver->dri_cc}}" type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter identification" required>
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        </div>
+                      <div class="help-block with-errors"></div>
+                      </div>
+                      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Correo</label>
+                        <div class="input-group">
+                          <input name="email" value="{{$driver->email}}" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        </div>
+                      <div class="help-block with-errors"></div>
+                      </div>
+                      <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+
+                    </div>
+
+
+              </div>
+
+              <div class="row">
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Dirección</label>
+                  <div class="input-group">
+                    <input name="dri_address" value="{{$driver->dri_address}}" type="text" maxlength="50" class="form-control" id="exampleInputPassword1" placeholder="Enter address" required>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+              </div>
+
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Número: Celular</label>
+                  <div class="input-group">
+                    <input name="dri_movil" value="{{$driver->dri_movil}}" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter Cell phone" required>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+              </div>
+
             </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Celular</label>
-            <div class="input-group">
-              <input name="dri_movil" value="{{$driver->dri_movil}}" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+
+            <div class="row">
+
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Telefono Fijo</label>
+                  <div class="input-group">
+                    <input name="dri_phone" value="{{$driver->dri_phone}}" type="text" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter phone" required>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+                  </div>
+                  <div class="help-block with-errors"></div>
+                </div>
+                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+              </div>
+              <div class="col-md-6">
+
+                  <div class="form-group">
+                  {!! Form::Label('item', 'Estado:') !!}
+                  <select name="state_id"    class="custom-select form-control selectpicker" data-live-search="true" required>
+                    <option value="">Seleccione...</option>
+                    @foreach($states as $state)
+                        <option value="{{$state->id}}" @if($state->id==$driver->state_id) selected='selected' @endif >{{$state->state}}</option>
+                    @endforeach
+                  </select>
+                  <div class="help-block with-errors"></div>
+                </div>
+
+              </div>
             </div>
-          </div>
-        </div>
+
+            </div>
+
+
+            <div class="col-md-3">
+            <!--  <img src="{{url('/photos/drivers/'.$driver->dri_cc.'/'.$driver->dri_photo)}}" alt="">--!>
+
+              <br><br>
+              <center>
+              <label for="exampleInputEmail1">Foto</label>
+              <div class="dropzone" id="myDropzone">
+              </div>
+            </center>
+            </div>
+
       </div>
-  </div>
+
 </div>
 <!-- /.box-roe -->
 
 <!-- start row-->
-<div class="row">
-<div class="col-md-12">
-    <div class="">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Telefono Fijo</label>
-          <div class="input-group">
-            <input name="dri_phone" value="{{$driver->dri_phone}}" type="text" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-        {!! Form::Label('item', 'Item:') !!}
-        <select name="state_id" class="custom-select form-control">
-          @foreach($states as $state)
-              <option value="{{$state->id}}" @if($state->id==$driver->state_id) selected='selected' @endif >{{$state->state}}</option>
-          @endforeach
-        </select>
-      </div>
-      </div>
-    </div>
-</div>
-</div>
+
+
 <!-- /.box-roe -->
 <!-- /.Start Panel Licence -->
 <br>
@@ -129,20 +197,23 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Numero de Licencia</label>
                     <div class="input-group">
-                      <input name="lic_no" value="{{$driver->licence->lic_no}}" type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <input name="lic_no" value="{{$driver->licence->lic_no}}" type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter License" required>
                       <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
                     </div>
+                    <div class="help-block with-errors"></div>
                   </div>
+
                 </div>
                 <div class="col-md-4">
                  <div class="form-group">
                   {!! Form::Label('item', 'Categoria:') !!}
-                  <select name="category_id" class="custom-select form-control">
-                    <option selected>Seleccione</option>
+                  <select name="category_id" class="custom-select form-control selectpicker" data-live-search="true" required>
+                    <option value="">Seleccione...</option>
                     @foreach($categories as $category)
-                        <option value="{{$category->id}}" @if($category->id==$driver->licence->category_id) selected='selected' @endif >{{$category->category}}</option>
+                      <option value="{{$category->id}}" @if($category->id==$driver->licence->category_id) selected='selected' @endif >{{$category->category}}</option>
                     @endforeach
                   </select>
+                  <div class="help-block with-errors"></div>
                  </div>
                 </div>
                 <div class="col-md-4">
@@ -159,7 +230,6 @@
               </div>
           </div>
         </div>
-
         <!-- start row-->
         <div class="row">
           <div class="col-md-12">
@@ -167,15 +237,13 @@
                 <div class="col-md-4">
                   <div class="form-group">
                    {!! Form::Label('item', 'Typo:') !!}
-                   <select name="type_id" class="custom-select form-control" >
-                       {{--
+                   <select name="type_id" class="custom-select form-control selectpicker"  required>
+                     <option value="" selected="selected">Seleccio..</option>
                      @foreach($types as $type)
-                       <option  value="{{$type->id}}">{{$type->type}}</option>
-                     @endforeach--}}
-                     @foreach($types as $type)
-                         <option value="{{$type->id}}" @if($type->id==$driver->licence->type_id) selected='selected' @endif >{{$type->type}}</option>
+                       <option value="{{$type->id}}" @if($type->id==$driver->licence->type_id) selected='selected' @endif >{{$type->type}}</option>
                      @endforeach
                    </select>
+                   <div class="help-block with-errors"></div>
                   </div>
                 </div>
               </div>
@@ -200,8 +268,8 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Contraseña</label>
                   <div class="input-group">
-                    <input name="password" readonly
-     onfocus="this.removeAttribute('readonly');" type="password" autocomplete="off" data-minlength="6" class="form-control"id="inputPassword" placeholder="Password" >
+                    <input name="password" type="password" data-minlength="6" class="form-control" id="inputPassword" readonly
+     onfocus="this.removeAttribute('readonly');" placeholder="Password" >
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   </div>
                    <div class="help-block">Minimum of 6 characters</div>
@@ -211,7 +279,7 @@
                 <div class="form-group">
                   <label for="exampleInputPassword1">Repetir Contraseña</label>
                   <div class="input-group">
-                    <input name="password" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" >
+                    <input name="confiPass" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm password" >
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   </div>
                 </div>
@@ -222,58 +290,7 @@
 </div>
 <!-- /.End panel Licence -->
   <div class="box-footer">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" id="submit-all" class="btn btn-primary">Guardar</button>
   </div>
 </form>
-<script>
-//$('#update_driver').validator();
-
-$('#date_vigencia').datetimepicker({
-  defaultDate: "2017-06-27",
-  format: 'YYYY-MM-DD'
-});
-
-
-                $('#update_driver').submit(function(e){
-                  e.preventDefault();
-                  var frm=$(this);
-                  var id=$('#id').val();
-                  var data=$("#update_driver").serialize();
-                  console.log(data);
-
-                  $.ajax({
-                        type: 'PUT',
-                        url: '/drivers/'+id,
-                        datatype:'json',
-                        data : data,
-                        success : function(data){
-                            if (data.error) {
-                              alert('Error al validar los datos del servidor');
-                            }else {
-                              load_edit(id);
-                            }
-
-                      },
-                        error:function(data){
-                            alert('Error Inesperado por favor intente nuevamente');
-                        }
-                        });
-                });
-                function load_edit(id){
-
-                  var urle='/drivers/'+id+'/edit';
-                  $.get(urle,function(resul){
-
-                    swal({
-                          title: "Conductor actualizado con éxito!",
-                          timer: 3000,
-                          imageUrl: "img/up.jpg",
-                          showConfirmButton: false,
-                        });
-                    $("#contenido_principal").load('/drivers/'+id+'/edit');
-                  })
-                }
-
-
-
-</script>
+<script src="{{ asset('/js/modules/driver_edit.js') }}" type="text/javascript"></script>

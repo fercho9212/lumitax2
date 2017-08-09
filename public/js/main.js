@@ -5,6 +5,8 @@ function load_frm(opt){
   //Functions of driver
   if (opt==1) {var url="/drivers/create"; console.log('Entra')}
   if (opt==2) {var url="/drivers/"; console.log('Entra a verd')}
+  if (opt==3) {var url="/drivers/msg"; console.log('Entra a verd')}
+
   //Functions of passenger
   if (opt==10){var url="/passengers/"; console.log('Entra a passenger')}
   if (opt==11){var url="/drivers/create"; console.log('Entra a verd')}
