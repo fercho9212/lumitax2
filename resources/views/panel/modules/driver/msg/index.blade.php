@@ -10,12 +10,41 @@
           <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+          <form role="form" method="POST" id="send_msg" action="#" class="send_msg" data-toggle="validator">
+          <input id="token_api"  type="hidden"   name="token_api" type="text" maxlength="30" class="form-control"  placeholder="Enter name" >
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Conductor</label>
+                <div class="input-group">
+                  <input id="pas_name"  disabled value="" tabindex="1" name="pas_name" type="text" maxlength="30" class="form-control"  placeholder="Enter name" >
+                </div>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Mensage</label>
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input id="pas_msg"  value="No data" tabindex="1" name="pas_msg" type="text" maxlength="30" class="form-control"  placeholder="Enter name" >
+                </div>
+                <div class="help-block with-errors"></div>
+              </div>
+            </div>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button  type="submit"  id="btn_msg" class="btn btn-primary">Submit</button>
         </div>
-      </div>
+      </form>
+    </div>
 
     </div>
   </div>
@@ -39,7 +68,7 @@
         </thead>
         @foreach($drivers as $driver)
                 <tr class="driver{{$driver->id}}">
-                  <th><input name="select_all" data-na="{{$driver->dri_cc}}" value="{{$driver->dri_name}}" type="checkbox"></th>
+                <th><input name="select_all" data-token="{{$driver->token_api}}" value="{{$driver->dri_name}}" type="checkbox"></th>
                 <td>{{$driver->dri_cc}}</td>
                 <td>{{$driver->dri_name}}</td>
                 <td>{{$driver->dri_last}}</td>
@@ -86,20 +115,35 @@ $(document).ready(function() {
 
   // Handle form submission event
   $('#frm-example').on('submit', function(e){
-    e.preventDefault();
-
-
-
-      var val = [];
-      var dat=[];
-        $(':checkbox:checked').each(function(i){
-          val[i] = $(this).val();
-          dat[i]=$(this).data('na');
-        });
-        console.log(val);
-        console.log(dat);
+        e.preventDefault();
+        $('input:checkbox:checked').each(function(){
+          $("#text").text($("#text").text() + $(this).val()+ " ,");
+      });
         $("#myModal").modal();
 } );
+
+$('#myModal').on("shown.bs.modal", function (event) {
+  var val = [];
+  var dat=[];
+  $(':checkbox:checked').each(function(i){
+    val[i] = $(this).val();
+    dat[i]=$(this).data('na');
+  });
+  var modal = $(this);
+  modal.find('.modal-title').html('<center>Renovar : '+name+'<center>');
+  modal.find('.modal-body #pas_name').val(val);
+  modal.find('.modal-body #token_api').val(val);
+
+  console.log("ddddd"+val);
+  console.log("ddddd"+dat);
+
+});
+
+$("#btn_msg").click(function(e){
+  e.preventDefault();
+  var data=$('#send_msg').serialize();
+  alert('jejej'+data);
+});
 
 } );
 </script>
