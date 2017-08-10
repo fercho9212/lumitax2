@@ -210,6 +210,10 @@ class DriversController extends Controller
       return view('panel.modules.driver.msg.index',['drivers'=>$drivers]);
 
     }
+    public function getToMsg(Request $request){
+      $tokens=explode(',',$request->token_api);
+      print_r($tokens);
+    }
 
 
 

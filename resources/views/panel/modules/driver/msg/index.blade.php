@@ -10,9 +10,10 @@
           <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
+
           <form role="form" method="POST" id="send_msg" action="#" class="send_msg" data-toggle="validator">
           <input id="token_api"  type="hidden"   name="token_api" type="text" maxlength="30" class="form-control"  placeholder="Enter name" >
-
+          <input type="hidden" name="_token" id="token" value="<?php echo csrf_token(); ?>">
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
@@ -142,7 +143,19 @@ $('#myModal').on("shown.bs.modal", function (event) {
 $("#btn_msg").click(function(e){
   e.preventDefault();
   var data=$('#send_msg').serialize();
-  alert('jejej'+data);
+  var url='/drivers/msg';
+
+  $.ajax({
+        url:url,
+        type:'POST',
+        data:data,
+        success:function(data){
+          console.log(data);
+        },
+        error:function(data){
+          console.log(data);
+        }
+  });
 });
 
 } );

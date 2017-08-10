@@ -21,6 +21,7 @@ Route::get('/dashboard', 'PanelController@index');
 Route::get('/frm_create_driver', 'Dashboard\FormsController@frm_create_driver');
 Route::group(['namespace' => 'web'], function () {
     Route::get('drivers/msg/', 'DriversController@sendMsg');
+    Route::post('drivers/msg/', 'DriversController@getToMsg');
     Route::resource('drivers', 'DriversController');
     Route::post('drivers/{id}/update/photo', 'DriversController@updatePhoto');
 
