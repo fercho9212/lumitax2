@@ -79,7 +79,6 @@
                 <td>{{$driver->email}}</td>
                 <td>{{$driver->state->state}}</td>
                 </tr>
-
     @endforeach
     </table>
 
@@ -106,48 +105,17 @@ $(document).ready(function() {
           order: [[1, 'asc']]
        });
 
-  // Handle form submission event
-  $('#frm-example').on('submit', function(e){
-        e.preventDefault();
-        $('input:checkbox:checked').each(function(){
-          $("#text").text($("#text").text() + $(this).val()+ " ,");
-      });
-        $("#myModal").modal();
-} );
 
-$('#myModal').on("shown.bs.modal", function (event) {
-  var val = [];
-  var dat=[];
-  $(':checkbox:checked').each(function(i){
-    val[i] = $(this).val();
-    dat[i]=$(this).data('na');
-  });
-  var modal = $(this);
-  modal.find('.modal-title').html('<center>Renovar : '+name+'<center>');
-  modal.find('.modal-body #pas_name').val(val);
-  modal.find('.modal-body #token_api').val(val);
-
-  console.log("ddddd"+val);
-  console.log("ddddd"+dat);
-
-});
 $("#formMsg").on('submit',function(e){
   e.preventDefault();
     var form=this;
-    var rowsel=table.column(0).checkboxes.selected();
-    $.each(rowsel,function(index,rowId){
-      console.log("dd"+rowId);
-      $(form).append($('<input>').attr('type','hidden').attr('name','id[]').val(rowId))
-    });
-    var check=[];
+
+
     $('input:checkbox:checked').each(function(i){
-      check[i]=$(this).val();
-      $(form).append($('<input>').attr('type','hidden').attr('name','id[]').val(i))
+        console.log($('input[type="checkbox"]').serialize());
   });
 
-    $("#view-rows").text(rowsel.join(","));
-    $("#view-form").text($(form).serialize());
-    $('input[name="id\[\]"]',form).remove();
+
     console.log('entraraaaaa');
 });
 /*

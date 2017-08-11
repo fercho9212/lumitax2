@@ -60,6 +60,7 @@
 	    </li>
 	    <li><a href="javascript:void(0);" onclick="ActionDocument(2,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Agregar Docuemntos</span></a></li>
       <li><a href="javascript:void(0);" onclick="ActionDocument(3,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Agregar Fotos</span></a></li>
+      <li><a href="javascript:void(0);" onclick="ActionDocument(4,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Editar</span></a></li>
 
 	</ul><!-- /.sidebar-menu -->
 @endsection

@@ -142,7 +142,7 @@ class VehiclesController extends Controller
     public function edit($id)
     {
         $vehicle=Vehicle::findOrFail($id);
-        return view('panel.modules.vehicle.forms.edit',['vehicle'=>$vehicle]);
+        return view('panel.modules.vehicle.ActionVehicle.forms.edit',['vehicle'=>$vehicle]);
     }
 
     /**

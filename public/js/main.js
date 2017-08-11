@@ -166,6 +166,8 @@ function ActionDocument(opt,id=NULL){
     if (opt==1) {var url="/drivers/create"; console.log('Entra');}
     if (opt==2) {var url="/documents/"+id+"/create"; console.log('Entra');}
     if (opt==3) {var url="/vehimages/"+id+"/create"; }
+    if (opt==4) {var url="/vehicles/"+id+"/edit/"; console.log('Entra');}
+
     $.ajax({
           async: true,
           type: "GET",
