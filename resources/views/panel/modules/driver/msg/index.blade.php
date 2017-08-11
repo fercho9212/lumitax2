@@ -38,11 +38,11 @@
               </div>
             </div>
           </div>
-
+<button  type="submit"  id="btn_msg" class="btn btn-primary">Submit</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button  type="submit"  id="btn_msg" class="btn btn-primary">Submit</button>
+
         </div>
       </form>
     </div>
@@ -54,8 +54,10 @@
 
 
 
-<form id="frm-example" action="/path/to/your/script.php" method="POST">
-<table id="example" class="display" cellspacing="0" width="100%">
+<form id="formMsg"  method="POST">
+  <p>Select rows data</p>
+<pre id="view-rows"></pre>
+<table id="tableDriver" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th></th>
@@ -68,8 +70,8 @@
             </tr>
         </thead>
         @foreach($drivers as $driver)
-                <tr class="driver{{$driver->id}}">
-                <th><input name="select_all" data-token="{{$driver->token_api}}" value="{{$driver->dri_name}}" type="checkbox"></th>
+                <tr>
+                <th></th>
                 <td>{{$driver->dri_cc}}</td>
                 <td>{{$driver->dri_name}}</td>
                 <td>{{$driver->dri_last}}</td>
@@ -81,17 +83,7 @@
     @endforeach
     </table>
 
-    <hr>
-
-    <p>Press <b>Submit</b> and check console for URL-encoded form data that would be submitted.</p>
-
-    <p><button>Submit</button></p>
-
-    <p><b>Selected rows data:</b></p>
-    <pre id="example-console-rows"></pre>
-
-    <p><b>Form data as submitted to the server:</b></p>
-    <pre id="example-console-form"></pre>
+<button  type="submit"  id="btn_msg" class="btn btn-primary">Submit</button>
 
 
 </form>
@@ -99,19 +91,19 @@
 
 <script>
 $(document).ready(function() {
-  var table = $('#example').DataTable({
-    'columnDefs': [
+  var table = $('#tableDriver').DataTable({
+    columnDefs: [
              {
-                'targets': 0,
-                'checkboxes': {
-                   'selectRow': true
+                targets: 0,
+                checkboxes: {
+                   selectRow: true
                 }
              }
           ],
-          'select': {
+          select: {
              'style': 'multi'
           },
-          'order': [[1, 'asc']]
+          order: [[1, 'asc']]
        });
 
   // Handle form submission event
@@ -139,7 +131,26 @@ $('#myModal').on("shown.bs.modal", function (event) {
   console.log("ddddd"+dat);
 
 });
+$("#formMsg").on('submit',function(e){
+  e.preventDefault();
+    var form=this;
+    var rowsel=table.column(0).checkboxes.selected();
+    $.each(rowsel,function(index,rowId){
+      console.log("dd"+rowId);
+      $(form).append($('<input>').attr('type','hidden').attr('name','id[]').val(rowId))
+    });
+    var check=[];
+    $('input:checkbox:checked').each(function(i){
+      check[i]=$(this).val();
+      $(form).append($('<input>').attr('type','hidden').attr('name','id[]').val(i))
+  });
 
+    $("#view-rows").text(rowsel.join(","));
+    $("#view-form").text($(form).serialize());
+    $('input[name="id\[\]"]',form).remove();
+    console.log('entraraaaaa');
+});
+/*
 $("#btn_msg").click(function(e){
   e.preventDefault();
   var data=$('#send_msg').serialize();
@@ -157,6 +168,6 @@ $("#btn_msg").click(function(e){
         }
   });
 });
-
+*/
 } );
 </script>

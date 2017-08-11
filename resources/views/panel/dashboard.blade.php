@@ -6,7 +6,8 @@
 	<link rel="stylesheet" href="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.min.css') }}" >
 	<link rel="stylesheet" href="{{ asset('/complement/bootstrap-select/bootstrap-select.min.css') }}">
   <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
-	<link rel="stylesheet" href="{{ asset('/complement/datatables-checkboxes/datatables-checkboxes.css') }}">
+	<link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/css/dataTables.checkboxes.css" rel="stylesheet" />
+
  @endsection
 
 @section('panel.htmlheader_title')
@@ -55,7 +56,6 @@
 		{{--DropZone--}}
 		<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 
-		<link rel="stylesheet" href="{{ asset('/complement/datatables-checkboxes/datatables-checkboxes.min.js') }}">
 
 
 
