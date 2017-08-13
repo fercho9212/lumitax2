@@ -40,7 +40,7 @@
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     </a>
-                    
+
                         <button class="delete-modal  btn btn-danger" data-id="{{$vehicle->id}}"
                             data-name="{{$vehicle->placa}}">
                             <span class="glyphicon glyphicon-trash"></span>
@@ -100,7 +100,7 @@
               var urlDelete=  '/vehicles/luxury/'+id;
               var token=      $('input[name=_token]').val();
               var urlView=    '/vehicles/luxury/';
-              ajaxDelete(urlDelete,token,urlView);
+              deleteNormal(urlDelete,token,urlView);
 
             });
     });

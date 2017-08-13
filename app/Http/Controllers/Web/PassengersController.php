@@ -27,6 +27,11 @@ class PassengersController extends Controller
         return view('panel.modules.passenger.index',['passengers'=>$passenger],['states'=>$state]);
     }
 
+    public function viewData(){
+      $passenger=Passenger::all();
+      return response()->json(['data'=>$passenger]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

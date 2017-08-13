@@ -40,7 +40,7 @@
     <li class="treeview">
         <a href="#"><i class='fa fa-link'></i> <span>Vehículos</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-            <li><a href="/vehicles/create">Crear</a></li>
+            <li><a href="javascript:void(0);"  onclick="load_frm(32);">Crear</a></li>
             <li><a href="javascript:void(0);"  onclick="load_frm(30);">Vehículo Taxi</a></li>
             <li><a href="javascript:void(0);"  onclick="load_frm(31);">Vehículo Lujo</a></li>
         </ul>

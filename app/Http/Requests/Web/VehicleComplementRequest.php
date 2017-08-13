@@ -22,7 +22,7 @@ class VehicleComplementRequest extends FormRequest
     public function rules()
     {
         return [
-          'placa'           => 'required|max:6|unique:vehicles',
+          'placa'           => 'required|max:6|unique:vehicles,placa,'.$this->id,
           'veh_model'       => 'required|max:4',
           'veh_motor'       => 'required|max:15',
          //$vehicle->serie     =$request->veh_serie;

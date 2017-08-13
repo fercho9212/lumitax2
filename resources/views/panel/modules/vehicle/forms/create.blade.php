@@ -1,5 +1,3 @@
-@extends('panel.modules.vehicle.main')
-@section('contenido_principal')
 
 
     <div id='message-error' class="alert alert-danger" role='alert' style="display:none">
@@ -50,15 +48,13 @@
 </div>
 </div>
 </div>
+{{--Select--}}
 
-
-@endsection
-
-
-@section('code_script')
 <script type="text/javascript">
 $(document).ready(function(){
       $(':checkbox').checkboxpicker();
+      $('.selectpicker').selectpicker();
+      $('#create_vehicle').validator();
 
     // Función que desahbilita la tecla Enter
 $("form").keypress(function(e) {
@@ -70,7 +66,7 @@ $("form").keypress(function(e) {
     // Selecciona Lujo
       $('#lujo').click(function(){
             $('#servicelujo').show(2000);
-            $("#servicelujo input").attr('required',true);
+            $("#servicelujo input").attr('required');
             //  $('#servicelujo').find('input').attr("name");
             //$('#servicelujo').toggle("slow");
       });
@@ -124,4 +120,3 @@ $("form").keypress(function(e) {
       });
     });
 </script>
-@endsection

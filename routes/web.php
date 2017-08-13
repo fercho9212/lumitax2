@@ -28,6 +28,7 @@ Route::group(['namespace' => 'web'], function () {
 
 
     Route::resource('passengers', 'PassengersController');
+    Route::get('passengers/view', 'PassengersController@viewData');
 
 
     //--Vehículos
@@ -36,14 +37,16 @@ Route::group(['namespace' => 'web'], function () {
     Route::get('vehicles/create', 'VehiclesController@create');
     Route::post('vehicles/tax', 'VehiclesController@store');
     Route::get('vehicles/{id}/edit','vehiclesController@edit');
+    Route::put('vehicles/{id}','vehiclesController@update');
+
     Route::delete('vehicles/{id}', 'VehiclesController@destroy');
 
-    //Rutas de vehículos tipo Lujo
+    //Rutas de vehículos tipo
     Route::delete('vehicles/luxury/{id}', 'VehiclesController@destroyLuxury');
     Route::post('vehicles/luxury', 'VehiclesController@StoreLuxury');
     Route::get('vehicles/luxury', 'VehiclesController@indexluxury');
     Route::get('vehicles/{id}/show', 'VehiclesController@show');
-
+    Route::put('vehiclesluxury/{id}','vehiclesController@updateLuxury');
 
     //--Vehículos
     //Rutas de imaenes

@@ -69,55 +69,69 @@ class VehiclesController extends Controller
     {
       //dd($request->all());
       //echo $request->all();
-      $vehicle= New Vehicle();
-      $vehicle->placa           =$request->placa;
-      $vehicle->veh_model       =$request->veh_model;
-      $vehicle->veh_motor       =$request->veh_motor;
-      //$vehicle->serie     =$request->veh_serie;
-      $vehicle->veh_serie       =$request->veh_serie;
-      $vehicle->veh_vin         =$request->veh_vin;
-      $vehicle->veh_color       =$request->veh_color;
-      $vehicle->brand_id        =$request->brand_id;
-      $vehicle->class_id        =$request->class_id;
-      $vehicle->typevehicle_id  =$request->typevehicle_id;
-      $vehicle->leveles_id= $request->leveles_id;
-      $vehicle->save();
-      $rpt='taxi';
-      return response()->json(['rpt'=>$rpt]);
+      try {
+        $vehicle= New Vehicle();
+        $vehicle->placa           =$request->placa;
+        $vehicle->veh_model       =$request->veh_model;
+        $vehicle->veh_motor       =$request->veh_motor;
+        //$vehicle->serie     =$request->veh_serie;
+        $vehicle->veh_serie       =$request->veh_serie;
+        $vehicle->veh_vin         =$request->veh_vin;
+        $vehicle->veh_color       =$request->veh_color;
+        $vehicle->brand_id        =$request->brand_id;
+        $vehicle->class_id        =$request->class_id;
+        $vehicle->typevehicle_id  =$request->typevehicle_id;
+        $vehicle->leveles_id= $request->leveles_id;
+        $vehicle->save();
+        $rpt='taxi';
+        return response()->json(['rpt'=>$rpt]);
+      } catch (\Exception $e) {
+        return response()->json(['rpt'=>'exception']);
+      }
+      return response()->json(['rpt'=>'error']);
+
+
 
     }
     public function StoreLuxury(VehicleComplementRequest $request){
-      $vehicle= New Vehicle();
-      $vehicle->placa           =$request->placa;
-      $vehicle->veh_model       =$request->veh_model;
-      $vehicle->veh_motor       =$request->veh_motor;
-      //$vehicle->serie     =$request->veh_serie;
-      $vehicle->veh_serie       =$request->veh_serie;
-      $vehicle->veh_vin         =$request->veh_vin;
-      $vehicle->veh_color       =$request->veh_color;
-      $vehicle->brand_id        =$request->brand_id;
-      $vehicle->class_id        =$request->class_id;
-      $vehicle->typevehicle_id  =$request->typevehicle_id;
-      $vehicle->leveles_id      =$request->leveles_id;
-      $vehicle->save();
-      $complemt=New Vehiclecomplement();
-      $complemt->id=$vehicle->id;
-      $complemt->vc_brakes=$request->vc_brakes;
-      $complemt->vc_Airbags=$request->vc_airbags;
-      $complemt->vc_head=$request->vc_head;
-      $complemt->vc_doors=$request->vc_doors;
-      $complemt->vc_cabin=$request->vc_cabin;
-      $space=$request->vc_ancho.' * '.$request->vc_alto;
-      $complemt->vc_space=$space;
-      $complemt->vc_passagers=$request->vc_passagers;
-      $complemt->vc_sillateria=$request->vc_sillateria;
-      $complemt->vc_cellar=$request->vc_cellar;
-      $complemt->typebodywork_id=$request->typebodywork_id;
-      $complemt->vc_cylinder=$request->vc_cylinder;
-      $complemt->vc_power=$request->vc_power;
-      $vehicle->vehiclecomplement()->save($complemt);
-      $rpt='luxury';
-      return response()->json(['rpt'=>$rpt]);
+      try {
+        $vehicle= New Vehicle();
+        $vehicle->placa           =$request->placa;
+        $vehicle->veh_model       =$request->veh_model;
+        $vehicle->veh_motor       =$request->veh_motor;
+        //$vehicle->serie     =$request->veh_serie;
+        $vehicle->veh_serie       =$request->veh_serie;
+        $vehicle->veh_vin         =$request->veh_vin;
+        $vehicle->veh_color       =$request->veh_color;
+        $vehicle->brand_id        =$request->brand_id;
+        $vehicle->class_id        =$request->class_id;
+        $vehicle->typevehicle_id  =$request->typevehicle_id;
+        $vehicle->leveles_id      =$request->leveles_id;
+        $vehicle->save();
+        $complemt=New Vehiclecomplement();
+        $complemt->id=$vehicle->id;
+        $complemt->vc_brakes=$request->vc_brakes;
+        $complemt->vc_Airbags=$request->vc_airbags;
+        $complemt->vc_head=$request->vc_head;
+        $complemt->vc_doors=$request->vc_doors;
+        $complemt->vc_cabin=$request->vc_cabin;
+        $space=$request->vc_ancho.' * '.$request->vc_alto;
+        $complemt->vc_space=$space;
+        $complemt->vc_passagers=$request->vc_passagers;
+        $complemt->vc_sillateria=$request->vc_sillateria;
+        $complemt->vc_cellar=$request->vc_cellar;
+        $complemt->typebodywork_id=$request->typebodywork_id;
+        $complemt->vc_cylinder=$request->vc_cylinder;
+        $complemt->vc_power=$request->vc_power;
+        $vehicle->vehiclecomplement()->save($complemt);
+        $rpt='luxury';
+        return response()->json(['rpt'=>$rpt]);
+      } catch (\Exception $e) {
+        return response()->json(['rpt'=>'exception']);
+      }
+        return response()->json(['rpt'=>'error']);
+
+
     }
 
     /**
@@ -142,7 +156,16 @@ class VehiclesController extends Controller
     public function edit($id)
     {
         $vehicle=Vehicle::findOrFail($id);
-        return view('panel.modules.vehicle.ActionVehicle.forms.edit',['vehicle'=>$vehicle]);
+        $type   =  Type::all();
+        $brand  =  Brand::all();
+        $class  =  Clase::all();
+        $bodywork= Bodywork::all();
+
+        return view('panel.modules.vehicle.ActionVehicle.forms.edit',['vehicle'=>$vehicle,
+                                                                      'types'=>$type,
+                                                                      'brands'=>$brand,
+                                                                      'class'=>$class,
+                                                                      'bodyworks'=>$bodywork]);
     }
 
     /**
@@ -152,9 +175,64 @@ class VehiclesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(VehicleRequest $request, $id)
     {
-        //
+        $vehicle=Vehicle::findOrFail($id);
+        try {
+          $vehicle->placa=$request->placa;
+          $vehicle->veh_model=$request->veh_model;
+          $vehicle->veh_motor=$request->veh_motor;
+          $vehicle->veh_serie=$request->veh_serie;
+          $vehicle->veh_vin=$request->veh_vin;
+          $vehicle->veh_color       =$request->veh_color;
+          $vehicle->class_id        =$request->class_id;
+          $vehicle->brand_id        =$request->brand_id;
+          $vehicle->typevehicle_id  =$request->typevehicle_id;
+          $vehicle->leveles_id      =$request->leveles_id;
+          $vehicle->save();
+          return response()->json(['rpt'=>'success']);
+        } catch (\Exception $e) {
+          return response()->json(['error'=>'error',400]);
+        }
+
+    }
+    public function updateLuxury(VehicleComplementRequest $request, $id)
+    {
+      try {
+        $vehicle=Vehicle::findOrFail($id);
+        $complemt=Vehiclecomplement::findOrFail($vehicle->id);
+        $vehicle->placa           =$request->placa;
+        $vehicle->veh_model       =$request->veh_model;
+        $vehicle->veh_motor       =$request->veh_motor;
+        //$vehicle->serie     =$request->veh_serie;
+        $vehicle->veh_serie       =$request->veh_serie;
+        $vehicle->veh_vin         =$request->veh_vin;
+        $vehicle->veh_color       =$request->veh_color;
+        $vehicle->brand_id        =$request->brand_id;
+        $vehicle->class_id        =$request->class_id;
+        $vehicle->typevehicle_id  =$request->typevehicle_id;
+        $vehicle->leveles_id      =$request->leveles_id;
+        $vehicle->save();
+        $complemt->id=$vehicle->id;
+        $complemt->vc_brakes=$request->vc_brakes;
+        $complemt->vc_Airbags=$request->vc_airbags;
+        $complemt->vc_head=$request->vc_head;
+        $complemt->vc_doors=$request->vc_doors;
+        $complemt->vc_cabin=$request->vc_cabin;
+        $space=$request->vc_ancho.' * '.$request->vc_alto;
+        $complemt->vc_space=$space;
+        $complemt->vc_passagers=$request->vc_passagers;
+        $complemt->vc_sillateria=$request->vc_sillateria;
+        $complemt->vc_cellar=$request->vc_cellar;
+        $complemt->typebodywork_id=$request->typebodywork_id;
+        $complemt->vc_cylinder=$request->vc_cylinder;
+        $complemt->vc_power=$request->vc_power;
+        $vehicle->vehiclecomplement()->save($complemt);
+        return response()->json(['rpt'=>'success']);
+      } catch (\Exception $e) {
+        return response()->json(['rpt'=>'error'],400);
+      }
+
     }
 
     /**
@@ -176,8 +254,15 @@ class VehiclesController extends Controller
         foreach ($vehicle->imagevehciles as $image) {
           unlink(public_path('/vehicle/'.$vehicle->placa.'/'.$image->path));
         }
-          $vehicle->imagevehciles()->delete();
-          $vehicle->delete();
+        try {
+            $vehicle->imagevehciles()->delete();
+            $vehicle->delete();
+            return response()->json(['rpt'=>'success']);
+        } catch (\Exception $e) {
+            return response()->json(['rtp'=>'exception']);
+        }
+        return response()->json(['rpt'=>'error']);
+
       }
     }
     public function destroyLuxury($id){
@@ -191,9 +276,16 @@ class VehiclesController extends Controller
           foreach ($vehicle->imagevehciles as $image) {
             unlink(public_path('/vehicle/'.$vehicle->placa.'/'.$image->path));
           }
-          $vehicle->delete();
-          $vehicle->imagevehciles()->delete();
-          $vehicle->vehiclecomplement()->delete();
+          try {
+            $vehicle->delete();
+            $vehicle->imagevehciles()->delete();
+            $vehicle->vehiclecomplement()->delete();
+            return response()->json(['rpt'=>'success']);
+          } catch (\Exception $e) {
+            return response()->json(['rpt'=>'exception']);
+          }
+          return response()->json(['rpt'=>'error']);
+
         }
       }
     }

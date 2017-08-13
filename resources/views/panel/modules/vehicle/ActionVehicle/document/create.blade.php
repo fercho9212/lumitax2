@@ -140,16 +140,22 @@
 //Función que crea
                 $('#create_document').on('submit',function(e){
                     e.preventDefault();
+
                     var url='/documents/store';
                     var idvehicle=$("#idvehicle").val();
                     var data=$(this).serialize();
                     var urlView='/documents/'+idvehicle+'/create'
                     create_in_modal(url,data,urlView);
                 });
+                $('#createDocument').on("shown.bs.modal", function (event) {
+                  $("body").removeClass("modal-open");
+                  $("body").css({"padding-right":"0px"});
+                });
 
 
                 $('#edit_document').on("shown.bs.modal", function (event) {
-
+                  $("body").removeClass("modal-open");
+                  $("body").css({"padding-right":"0px"});
                   var button  = $(event.relatedTarget);
                   var id    = button.data('id');
                   var id_vehicle    = button.data('idvehicle');

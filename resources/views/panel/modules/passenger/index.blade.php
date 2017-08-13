@@ -86,7 +86,19 @@
 <script>
 
   //Inicializa la tabla
-  $('#table').DataTable();
+  $('#table').DataTable({
+    'ajax':'{!! url('passengers/view') !!}',
+    columns: [
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'updated_at', name: 'updated_at' }
+        ]
+
+  });
+  var otable=$('#table').DataTable();
+  otable.ajax.reload();
   //Inicializa el modal registar
   $('#frmpassenger').on("shown.bs.modal", function () {
         $("body").removeClass("modal-open");

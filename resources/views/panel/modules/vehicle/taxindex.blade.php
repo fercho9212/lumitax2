@@ -105,7 +105,7 @@
               var urlDelete= '/vehicles/'+id;
               var token=$('input[name=_token]').val();
               var urlView='/vehicles/';
-              ajaxDelete(urlDelete,token,urlView);
+              deleteNormal(urlDelete,token,urlView);
             });
     });
 

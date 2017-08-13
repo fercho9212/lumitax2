@@ -15,6 +15,7 @@ function load_frm(opt){
   //function of module vehicle
   if (opt==30){var url="/vehicles/"; console.log('Entra a vista taxi ')}
   if (opt==31){var url="/vehicles/luxury"; console.log('Entra a vista Lujo ')}
+  if (opt==32){var url="/vehicles/create"; console.log('Entra a Crear ')}
   //$("#main_content").html()s
   // Functions of module secure
   if (opt==40){var url="/insurance/create/"; console.log('Entra a vista Seguro')}
@@ -125,6 +126,33 @@ function ajaxDelete(urlDelte,token,urlSuccess){
             }
         });
 }
+
+function deleteNormal(urlDelte,token,urlSuccess){
+  $.ajax({
+            type: 'DELETE',
+            url: urlDelte,
+            data: {
+                '_token': token,
+            },
+            success: function(data) {
+              // swal("Deleted!", "Registro Eliminado.", "success");
+
+                if (data.rpt=='success') {
+                  loadData(urlSuccess,data);
+                  swal("Registro Eliminado!", "You clicked the button!", "success")
+                }else if (data.rpt=='error') {//Numero de error en las realaciones de vhiculación
+                  swal("Error!", "Por favor Comunicarse con el administrador ", "warning")
+                  loadData(urlSuccess,data);
+                }
+
+              // loadData(urlSuccess,data);
+            },
+            error: function(data){
+              console.log('Errorttttta->'+data)
+            }
+        });
+}
+
 /*FUNCIÓN QUE EDITA Y ENTREGA UN FORMULARIO
 * @id id del elemento a editar
 * @url a direcionar el metodo editar

@@ -50,17 +50,10 @@
 	    <li class="header"><center>ADMINISTRACIÓN</center></li>
 	    <!-- Optionally, you can add icons to the links -->
 
-
-	    <li class="treeview">
-	        <a href="#"><i class='fa fa-link'></i> <span>Prueba</span> <i class="fa fa-angle-left pull-right"></i></a>
-	        <ul class="treeview-menu">
-	            <li class="active"><a href="javascript:void(0);" onclick="load_frm(1);">Crear</a></li>
-	            <li ><a href="javascript:void(0);" onclick="load_frm(2);">Ver</a></li>
-	        </ul>
-	    </li>
+      <li><a href="/vehicles/{{$vehicle->id}}/show" ><i class='fa fa-link'></i> <span>Ver</span></a></li>
+      <li><a href="javascript:void(0);" onclick="ActionDocument(4,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Editar</span></a></li>
 	    <li><a href="javascript:void(0);" onclick="ActionDocument(2,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Agregar Docuemntos</span></a></li>
       <li><a href="javascript:void(0);" onclick="ActionDocument(3,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Agregar Fotos</span></a></li>
-      <li><a href="javascript:void(0);" onclick="ActionDocument(4,{{$vehicle->id}});"><i class='fa fa-link'></i> <span>Editar</span></a></li>
 
 	</ul><!-- /.sidebar-menu -->
 @endsection

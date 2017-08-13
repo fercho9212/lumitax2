@@ -56,6 +56,8 @@
 		{{--DropZone--}}
 		<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 
+		{{--Checkbox--}}
+		<script type="text/javascript" src="{{ asset('/complement/bootstrap-checkbox/bootstrap-checkbox.min.js') }}"></script>
 
 
 

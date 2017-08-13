@@ -39,7 +39,9 @@ class DocumentsController extends Controller
   public function destroy($id){
     $vehicle=Document::find($id);
     if ($vehicle->delete()) {
-       return response()->json();
+       return response()->json(['rpt'=>'success']);
+    }else {
+      return response()->json(['rpt'=>'Error']);
     }
   }
 }
