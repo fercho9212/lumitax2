@@ -248,3 +248,48 @@ function create_in_modal(url,data,urlView){
             }
       });//End Ajax
 }// End function create_in_modal
+
+
+//Function  of tiemp real
+
+
+
+
+/**
+function data() {
+console.log('Entraa');
+  $.ajax({
+           async: true,
+           type: "GET",
+           url : '/passengers/view',
+           datatype:'json',
+           beforeSend:function(){
+
+           },
+           success : function(resul){
+             setTimeout(data(), 2000);
+             oTable.fnClearTable();
+ $.each(resul.data, function(key,value) {
+    oTable.fnAddData([
+                          value.pas_name,
+                          value.pas_last,
+                          value.pas_cc,
+                          value.pas_movil,
+                          value.pas_location,
+                          value.state_id,
+                          value.pas_qual,
+                          "<button class='btn-edit' onclick='hola("+value.pas_cc+")' >Edit</button>" ,
+                    ]);
+ });
+         },
+           error:function(data){
+             console.log('Error main');
+           }});
+           }
+
+
+
+function hola(u){
+  alert('dasdasdasdasd');
+}
+*/

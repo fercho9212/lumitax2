@@ -61,7 +61,7 @@ class SearchDriversController extends Controller
       $locU   =explode(",",Input::get('location'));
       $no     =explode(",",Input::get('rpt_no'));
       $idSerach=$this->searchDriver($locU,$no);
-      if ($idSerach!=null) {
+     if ($idSerach!=null) {
         $to=$driver->getTokenDriver($idSerach);
         $push->setData($body);
         $rpt=$DriverCloud->send($to,$push->getPush());

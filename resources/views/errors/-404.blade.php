@@ -1,0 +1,31 @@
+{{--cHANGE FOR FERNEY
+
+@extends('layouts.app')
+
+@section('htmlheader_title')
+    {{ trans('adminlte_lang::message.pagenotfound') }}
+@endsection
+
+@section('contentheader_title')
+    {{ trans('adminlte_lang::message.404error') }}
+@endsection
+
+@section('$contentheader_description')
+@endsection
+
+@section('main-content')
+--}}
+<div class="error-page">
+    <h2 class="headline text-yellow"> 404</h2>
+    <div class="error-content">
+        <h3><i class="fa fa-warning text-yellow"></i> Oops! </h3>
+
+        <form class='search-form'>
+            <div class='input-group'>
+
+                </div>
+            </div><!-- /.input-group -->
+        </form>
+    </div><!-- /.error-content -->
+</div><!-- /.error-page -->
+{{--@endsection--}}

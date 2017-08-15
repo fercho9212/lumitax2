@@ -2,6 +2,7 @@
     @include('sweet::alert')
 @endif
 
+
 <div class="table-responsive text-center">
     <table class="table table-borderless" id="table">
         <thead>
@@ -47,7 +48,12 @@
 </div>
 <script>
 $(function(){
-  $('#table').DataTable();
+  $('#table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+             'pdf', 'print','excel',
+        ]
+    });
   $(document).on('click', '.delete-modal', function() {
     var previousWindowKeyDown = window.onkeydown;
         var id=$(this).data('id');
@@ -97,5 +103,5 @@ $(function(){
               }
           });
   }
-  
+
 </script>

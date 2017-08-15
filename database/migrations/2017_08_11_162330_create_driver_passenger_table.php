@@ -18,7 +18,7 @@ class CreateDriverPassengerTable extends Migration
           $table->integer('driver_id')->unsigned();
           $table->integer('passenger_id')->unsigned();
 
-          $table->timestamp('date_start');
+          $table->timestamp('date_start')->nullable();
           $table->string('address_start',100);
 
           $table->integer('stateservice_id')->unsigned();

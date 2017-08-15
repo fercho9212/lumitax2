@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Input;
 
 
 class PassengersCloudMsg extends Controller{
-  
-  private $ApiKeyDriver='AIzaSyCd60DInZfczl9MDhcKQiCptcVDL0Vy_jw';
+
+  private $ApiKeyDriver='AIzaSyB8vnmy208cDZmskLqPpxeTKFgEXBcEJ9o';
   private $url    ='https://fcm.googleapis.com/fcm/send';
   /*
   *@to token firebase driver

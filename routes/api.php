@@ -39,6 +39,7 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/auth','Api\ApiAuthdriver@authenticate');
     Route::post('/profile','Api\ApiDriversController@profile')->middleware('driver');
     Route::post('/history','Api\ApiHistoryController@saveHistory')->middleware('driver');
+    Route::post('/view/history','Api\ApiHistoryController@viewHistoryDriver')->middleware('driver');
     //Route::post('/test','Api\ApiAuthdriver@test')->middleware('driver');
 
 

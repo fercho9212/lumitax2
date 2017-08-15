@@ -17,7 +17,7 @@
 {{--Modal--}}
 @include('panel.modules.passenger.modals.create')
 @include('panel.modules.passenger.modals.edit')
-{{--End Modal--}}
+{{--End Modal
 <div class="modal" id="dataDelete">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -38,67 +38,84 @@
         </div>
     </div>
 </div>
-
+--}}
 <div class="table-responsive text-center">
-    <table class="table table-borderless" id="table">
-        <thead>
-            <tr>
-                <th class="text-center">Nombre</th>
-                <th class="text-center">Apellaido</th>
-                <th class="text-center">Email</th>
-                <th class="text-center">Tel:Movíl</th>
-                <th class="text-center">Estado</th>
-                <th class="text-center">Acción</th>
-                <th class="text-center">Registrado el</th>
-            </tr>
-        </thead>
-        @foreach($passengers as $passenger)
+  <div class="table-responsive text-center">
+      <table class="table table-borderless" id="table">
+          <thead>
+              <tr>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Apellaido</th>
+                  <th class="text-center">Email</th>
+                  <th class="text-center">Tel:Movíl</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center">Acción</th>
+                  <th class="text-center">Registrado el</th>
+              </tr>
+          </thead>
+          @foreach($passengers as $passenger)
 
 
-                <tr class="driver{{$passenger->id}}">
-                <td>{{$passenger->pas_name}}</td>
-                <td>{{$passenger->pas_last}}</td>
-                <td>{{$passenger->email}}</td>
-                <td>{{$passenger->pas_movil}}</td>
-                <td>{{$passenger->state->state}}</td>
-                <td>{{$passenger->created_at}}</td>
-                <td>
-                      <button  class="update btn btn-info btn-circle-medium" data-id="{{$passenger->id}}"
-                                        data-name="{{$passenger->pas_name}}"
-                                        data-last="{{$passenger->pas_last}}"
-                                        data-email="{{$passenger->email}}"
-                                        data-movil="{{$passenger->pas_movil}}"
-                                        data-state="{{$passenger->state->id}}"
-                                        data-date="{{$passenger->created_at}}"
-                          data-toggle="modal" data-target="#edit_passenger" >
-                          <span class="glyphicon glyphicon-edit"></span>
-                      </button>
-                      <button   class="btn-circle-medium btn btn-danger" data-toggle="modal"  data-target="#dataDelete" data-id="{{$passenger->id}}">
-                          <span class="glyphicon glyphicon-trash"></span>
-                      </button>
-                  </td>
-                </tr>
+                  <tr class="driver{{$passenger->id}}">
+                  <td>{{$passenger->pas_name}}</td>
+                  <td>{{$passenger->pas_last}}</td>
+                  <td>{{$passenger->email}}</td>
+                  <td>{{$passenger->pas_movil}}</td>
+                  <td>{{$passenger->state->state}}</td>
+                  <td>{{$passenger->created_at}}</td>
+                  <td>
+                        <button  class="update btn btn-info btn-circle-medium" data-id="{{$passenger->id}}"
+                                          data-name="{{$passenger->pas_name}}"
+                                          data-last="{{$passenger->pas_last}}"
+                                          data-email="{{$passenger->email}}"
+                                          data-movil="{{$passenger->pas_movil}}"
+                                          data-state="{{$passenger->state->id}}"
+                                          data-date="{{$passenger->created_at}}"
+                            data-toggle="modal" data-target="#edit_passenger" >
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button   class="btn-circle-medium btn btn-danger" data-toggle="modal"  data-target="#dataDelete" onclick="delete_passenger({{$passenger->id}})">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                  </tr>
+      @endforeach
+      </table>
+    </div>
 
-
-    @endforeach
-    </table>
-</div>
 <script>
-
+  $('#table').dataTable();
+ function delete_passenger(id){
+   var urlDelte='/passengers/'+id;
+   var token=$('input[name=_token]').val();
+   var urlSuccess='/passengers';
+   swal({
+         title: "Estas seguro?",
+         text: "Desea Eliminar el Seguro!",
+         type: "warning",
+         showCancelButton: true,
+         confirmButtonColor: "#DD6B55",
+         confirmButtonText: "Si, Eliminar!",
+         closeOnConfirm: false
+ },
+ function(){
+   deleteNormal(urlDelte,token,urlSuccess);
+ });
+ }
   //Inicializa la tabla
-  $('#table').DataTable({
-    'ajax':'{!! url('passengers/view') !!}',
-    columns: [
-            { data: 'id', name: 'id' },
-            { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' },
-            { data: 'created_at', name: 'created_at' },
-            { data: 'updated_at', name: 'updated_at' }
-        ]
 
-  });
-  var otable=$('#table').DataTable();
-  otable.ajax.reload();
+//Function in tiemp real
+/*
+$(document).ready(function(){
+
+setTimeout(data(),2000);
+});
+*/
+
+
+
+  /*var otable=$('#table').DataTable();
+  otable.ajax.reload();*/
   //Inicializa el modal registar
   $('#frmpassenger').on("shown.bs.modal", function () {
         $("body").removeClass("modal-open");
@@ -106,7 +123,6 @@
   });
   //Funcíon al salir del modal
   $('#frmpassenger').on('hidden.bs.modal', function (e) {
-        console.log('saleeeeeeeeeeeee');
         $("#frmpassenger").removeClass("modal-open");
   });
   //Eliminar modal

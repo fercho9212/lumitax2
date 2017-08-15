@@ -8,6 +8,7 @@ use App\Models\Passenger;
 use App\Models\State;
 use Validator;
 use Alert;
+use DB;
 class PassengersController extends Controller
 {
     /**
@@ -27,9 +28,10 @@ class PassengersController extends Controller
         return view('panel.modules.passenger.index',['passengers'=>$passenger],['states'=>$state]);
     }
 
-    public function viewData(){
-      $passenger=Passenger::all();
-      return response()->json(['data'=>$passenger]);
+    public function viewdata(){
+        $passenger=DB::SELECT('select p.id,p.pas_name,p.pas_last,p.pas_cc,p.pas_location,p.state_id,s.id,p.email,p.pas_movil,pas_qual,s.state from passengers p,states s where p.state_id=s.id');
+        return response()->json(['data'=>$passenger]);
+
     }
 
     /**
@@ -154,9 +156,15 @@ class PassengersController extends Controller
      */
     public function destroy($id)
     {
-      $passenger= Passenger::find($id);
-      if ($passenger->delete()) {
-         return response()->json();
+      try {
+        $passenger= Passenger::find($id);
+        if ($passenger->delete()) {
+           return response()->json(['rpt'=>'success']);
+        }
+      } catch (\Exception $e) {
+          return response()->json(['rpt'=>'error']);
       }
+
+
     }
 }

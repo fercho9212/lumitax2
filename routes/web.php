@@ -26,9 +26,9 @@ Route::group(['namespace' => 'web'], function () {
     Route::post('drivers/{id}/update/photo', 'DriversController@updatePhoto');
 
 
-
+    Route::get('passengers/view', 'PassengersController@viewdata');
     Route::resource('passengers', 'PassengersController');
-    Route::get('passengers/view', 'PassengersController@viewData');
+
 
 
     //--Vehículos
