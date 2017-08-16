@@ -12,10 +12,16 @@ class CategoryLicencesTableSeeder extends Seeder
     public function run()
     {
       $faker=Faker::create();
-      for ($i=0; $i < 3; $i++) {
+
         \DB::table('categorylicences')->insert([
-           'category'      =>  $faker->jobTitle,
+           'category'      =>  'C1',
          ]);
-      }
+         \DB::table('categorylicences')->insert([
+            'category'      =>  'C2',
+          ]);
+          \DB::table('categorylicences')->insert([
+             'category'      =>  'C3',
+           ]);
+
     }
 }

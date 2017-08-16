@@ -16,6 +16,7 @@ class ApiHistoryController extends Controller
             $history=new History();
             $history->driver_id=           $request->driver_id;
             $history->passenger_id=        $request->passenger_id;
+            $history->vehicle_id=          $request->vehicle_id;
             $history->date_start=          $request->date_start;
             $history->address_start=       $request->address_start;
             $history->stateservice_id=     $request->stateservice_id;
@@ -42,5 +43,18 @@ class ApiHistoryController extends Controller
         } catch (\Exception $e) {
           return response()->json(['rpt'=>'error']);
         }
+    }
+    public function viewHistoryPassenger(Request $request){
+      try {
+        $history=new History();
+        $array=$history->getHistoryPassenger($request->passenger);
+        return response()->json(['rpt'=>$array]);
+      } catch (Exception $e) {
+        return response()->json(['rpt'=>'error']);
+      }
+
+
+
+
     }
 }

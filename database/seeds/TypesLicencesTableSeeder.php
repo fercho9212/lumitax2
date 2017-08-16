@@ -12,10 +12,14 @@ class TypesLicencesTableSeeder extends Seeder
     public function run()
     {
         $faker=Faker::create();
-        for ($i=0; $i < 5; $i++) {
+
           \DB::table('typeslicences')->insert([
-             'type'      =>  $faker->company,
+             'type'      =>  'Particular',
            ]);
-        }
+
+           \DB::table('typeslicences')->insert([
+              'type'      =>  'Público',
+            ]);
+
     }
 }

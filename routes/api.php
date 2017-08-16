@@ -27,6 +27,7 @@ Route::group(['prefix'=>'v1/passengers'],function(){
     Route::post('/auth','Api\ApiAuthpassenger@authenticate');
     Route::post('/register','Api\ApiAuthpassenger@register');
     Route::post('/profile','Api\ApiPassengersController@profile')->middleware('passenger');
+    Route::post('/view/history','Api\ApiHistoryController@viewHistoryPassenger')->middleware('passenger');
     Route::post('/test','Api\ApiAuthpassenger@test')->middleware('passenger');
     Route::get('/',function(){
       echo "string";

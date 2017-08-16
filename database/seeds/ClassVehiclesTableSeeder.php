@@ -12,10 +12,18 @@ class ClassVehiclesTableSeeder extends Seeder
     public function run()
     {
         $faker=Faker::create();
-        for ($i=0; $i < 5; $i++) {
+
           \DB::table('classvehicles')->insert([
-             'class'      =>  $faker->company,
+             'class'      =>  'SEDAN',
            ]);
-        }
+           \DB::table('classvehicles')->insert([
+              'class'      =>  'VAN',
+            ]);
+            \DB::table('classvehicles')->insert([
+               'class'      =>  'RUSTICO',
+             ]);
+             \DB::table('classvehicles')->insert([
+                'class'      =>  ' COMPACTO',
+              ]);
     }
 }

@@ -17,17 +17,18 @@ class CreateDriverPassengerTable extends Migration
           $table->increments('id');
           $table->integer('driver_id')->unsigned();
           $table->integer('passenger_id')->unsigned();
+          $table->integer('vehicle_id')->default(0);
 
           $table->timestamp('date_start')->nullable();
-          $table->string('address_start',100);
+          $table->string('address_start',100)->default('NONE');
 
           $table->integer('stateservice_id')->unsigned();
 
           $table->integer('payment_id')->unsigned();
-          $table->integer('price');
+          $table->integer('price')->default(0);
 
           $table->timestamp('date_end')->nullable();
-          $table->string('address_end',100);
+          $table->string('address_end',100)->default('NONE');
 
 
           $table->string('description')->default('this is a test');//0->No Select 1->Vehiculo Seleccionado

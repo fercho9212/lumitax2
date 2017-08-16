@@ -12,10 +12,19 @@ class TypeVehiclesTableSeeder extends Seeder
     public function run()
     {
         $faker=Faker::create();
-        for ($i=0; $i < 5; $i++) {
+
           \DB::table('typevehicles')->insert([
-             'type'      =>  $faker->company,
+             'type'      =>  'Camioneta',
            ]);
-        }
+           \DB::table('typevehicles')->insert([
+              'type'      =>  'Automovíl',
+            ]);
+          \DB::table('typevehicles')->insert([
+               'type'      =>  'Furgón',
+             ]);
+           \DB::table('typevehicles')->insert([
+                  'type'   => 'Vehículo mixto adaptable',
+          ]);
+
     }
 }

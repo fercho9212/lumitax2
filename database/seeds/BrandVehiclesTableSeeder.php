@@ -12,10 +12,19 @@ class BrandVehiclesTableSeeder extends Seeder
     public function run()
     {
         $faker=Faker::create();
-        for ($i=0; $i < 5; $i++) {
+
           \DB::table('brandvehicles')->insert([
-             'brand'      =>  $faker->company,
+             'brand'      =>  'CREVROLET',
            ]);
-        }
+           \DB::table('brandvehicles')->insert([
+              'brand'      =>  'BRAND',
+            ]);
+            \DB::table('brandvehicles')->insert([
+               'brand'      =>  'HYUNDAI',
+             ]);
+            \DB::table('brandvehicles')->insert([
+                'brand'      =>  'RENAULT',
+            ]);	
+
     }
 }

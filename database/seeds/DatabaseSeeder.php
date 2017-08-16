@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
       $this->call(TypebodyworksTableSeeder::class);
       $this->call(InsuranceTableSeeder::class);
       $this->call(ApiStatesTableSeeder::class);
+
+      $this->call(PaymentsTableSeeder::class);
+      $this->call(StateservicesTableSeeder::class);
     }
 }

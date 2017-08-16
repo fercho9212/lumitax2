@@ -12,10 +12,16 @@ class StatesTableSeeder extends Seeder
     public function run()
     {
       $faker=Faker::create();
-      for ($i=0; $i < 3; $i++) {
-        \DB::table('states')->insert([
-           'state'      =>  $faker->firstName,
+
+      \DB::table('states')->insert([
+           'state'      =>  'Activo',
          ]);
-      }
+       \DB::table('states')->insert([
+            'state'      =>  'Inactivo',
+          ]);
+        \DB::table('states')->insert([
+                'state'      =>  'Suspendido',
+        ]);
+
     }
 }
