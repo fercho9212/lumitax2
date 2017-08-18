@@ -142,17 +142,52 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <label for="exampleInputEmail1">Nivel de servicio</label>
-          <div class="form-group">
-
-            <label id="special" class="radio-inline btn-circle btn-lg"><input value='1'  type="radio" name="leveles_id" required>Especial</label>
-            <label id="lujo"    class="radio-inline btn-circle btn-lg" ><input value='2' type="radio" name="leveles_id" required>Lujo</label>
-        </div>
-        </div>
 
       </div>
   </div>{{--End row--}}
+
+  <!-- start row-->
+  <div class="row">
+    <div class="col-md-12">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Espacio de Baúl</label>
+              <div class="input-group">
+                <select name="baul_id"  class="selectpicker show-menu-arrow" data-live-search="true">
+                @foreach ($baules as $baul)
+                  <option data-icon="glyphicon glyphicon-compressed" value="{{$baul->id}}">{{$baul->size}}</option>
+                @endforeach
+                </select>
+              </div>
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Espacio Interno</label>
+              <div class="input-group">
+                <select name="spacevehicle_id"  class="selectpicker show-menu-arrow" data-live-search="true">
+                @foreach ($spaces as $space)
+                  <option data-icon="glyphicon glyphicon-compressed" value="{{$space->id}}">{{$space->size}}</option>
+                @endforeach
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label for="exampleInputEmail1">Nivel de servicio</label>
+            <div class="form-group">
+              <label id="special" class="radio-inline btn-circle btn-lg"><input value='1'  type="radio" name="leveles_id" required>Taxi</label>
+              <label id="premium" class="radio-inline btn-circle btn-lg"><input value='3'  type="radio" name="leveles_id" required>Premium</label>
+              <label id="lujo"    class="radio-inline btn-circle btn-lg" ><input value='2' type="radio" name="leveles_id" required>Lujo</label>
+          </div>
+          </div>
+
+        </div>
+    </div>{{--End row--}}
+  <!-- /.box-roe -->
+
+
 <!-- /.box-roe -->
 <!-- /.Start Panel Licence -->
 <!-- FIN SERVICE ESPECIAL-->

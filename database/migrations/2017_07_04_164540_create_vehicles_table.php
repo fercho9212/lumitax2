@@ -28,6 +28,10 @@ class CreateVehiclesTable extends Migration
           $table->integer('typevehicle_id')->unsigned();//Motocicleta ,camioneta,taxi
           //$table->integer('typelines_id')->default(1)->index('fk_vehicles_lines');
           $table->integer('brand_id')->unsigned();//Marca, yhamaha,chevrolet
+
+          $table->integer('baul_id')->unsigned();//Tamaño
+          $table->integer('space_id')->unsigned();//Tamaño
+
           $table->integer('leveles_id')->default(1)->index('fk_vehicles_levels');
           $table->boolean('document')->default(0);
           //$table->integer('classvehicles_id')->default(1)->index('fk_veh_class');

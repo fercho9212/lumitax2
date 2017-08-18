@@ -1,10 +1,15 @@
 @if(session('success'))
     @include('sweet::alert')
 @endif
+{{--
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" type="text/css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" type="text/css"/>
 
-<div class="table-responsive text-center">
-    <table class="table table-borderless" id="table">
+--}}
+
+<div class="">
+    <table class="display nowrap"  id="table">
         <thead>
             <tr>
                 <th class="text-center">Cedula</th>
@@ -51,7 +56,7 @@ $(function(){
   $('#table').DataTable({
         dom: 'Bfrtip',
         buttons: [
-             'pdf', 'print','excel',
+             'pdf', 'print',
         ]
     });
   $(document).on('click', '.delete-modal', function() {

@@ -69,7 +69,7 @@
                 <td>{{$vehicle->classvehicle->class}}</td>
                 <td>{{$vehicle->brandvehicle->brand}}</td>
                 <td>{{$vehicle->vehiclecomplement->vc_brakes}}</td>
-                <td>{{$vehicle->vehiclecomplement->vc_Airbags}}</td>
+                <td>{{$vehicle->vehiclecomplement->vc_airbags}}</td>
                 <td> @if( $vehicle->vehiclecomplement->vc_head=='1' ) SI @else NO @endif</td>
                 <td>{{$vehicle->vehiclecomplement->vc_doors}}</td>
                 <td>{{$vehicle->vehiclecomplement->vc_cabin}}</td>

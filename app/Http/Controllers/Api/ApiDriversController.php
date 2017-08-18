@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use App\Models\Driver;
 use Illuminate\Support\Facades\Input;
+use DB;
 
 class ApiDriversController extends Controller
 {
@@ -68,6 +69,15 @@ class ApiDriversController extends Controller
         return response()->json(['rpt'=>'error']);
       }
       }
+
+    public function Qualification(){
+      $cant=DB::SELECT('select  COUNT(*) as sum FROM driver_passenger d WHERE d.driver_id=1');
+      $cantidad=$cant[0]->sum;
+      $acum=DB::SELECT('select dri_qual as qualification from drivers WHERE id=1');
+      $total=$acum[0]->qualification;
+      $newvalue=2;
+      echo (($total*$cantidad)+$newvalue)/($cantidad+1);
+    }
 
 
 }

@@ -13,7 +13,7 @@ use App\Models\Categorylicence AS Category;
 use App\Models\Typeslicence AS Type;
 use Flash;
 use DB;
-use Alert;
+use App\Models\History;
 use App\Http\Requests\Web\DriverRequest;
 class DriversController extends Controller
 {
@@ -91,12 +91,7 @@ class DriversController extends Controller
         } catch (\Exception $e) {
                   DB::rollback();
                   echo 'ERROR (' . $e->getCode() . '): ' . $e->getMessage();
-
         }
-
-
-
-
     }
 
     /**

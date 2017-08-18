@@ -41,13 +41,14 @@
         <a href="#"><i class='fa fa-link'></i> <span>Vehículos</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
             <li><a href="javascript:void(0);"  onclick="load_frm(32);">Crear</a></li>
-            <li><a href="javascript:void(0);"  onclick="load_frm(30);">Vehículo Taxi</a></li>
-            <li><a href="javascript:void(0);"  onclick="load_frm(31);">Vehículo Lujo</a></li>
+            <li><a href="javascript:void(0);"  onclick="load_frm(30);">Vehículos Taxi</a></li>
+            <li><a href="javascript:void(0);"  onclick="load_frm(31);">Vehículos Lujo</a></li>
+            <li><a href="javascript:void(0);"  onclick="load_frm(33);">Vehículos Premium</a></li>
         </ul>
     </li>
 
     <li><a href="javascript:void(0);" onclick="load_frm(40);"><i class='fa fa-link'></i> <span>Seguros</span></a></li>
-    <li><a href="javascript:void(0);" onclick="load_frm(3);"><i class='fa fa-link'></i> <span>#</span></a></li>
+    <li><a href="javascript:void(0);" onclick="load_frm(50);"><i class='fa fa-link'></i> <span>#</span></a></li>
 
 
 </ul><!-- /.sidebar-menu -->

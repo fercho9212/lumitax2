@@ -50,7 +50,7 @@
   </div>
 
 </div>
-@if ($vehicle->leveles_id=='2')
+@if ($vehicle->leveles_id=='2' or $vehicle->leveles_id=='3')
     <div class="col-md-10  col-md-offset-1">
       <div class="row">
             <br>

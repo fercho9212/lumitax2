@@ -66,6 +66,9 @@ Route::group(['prefix'=>'v1/drivers'],function(){
       echo "string";
     });
 
+    //Calificación
+    Route::post('qualification','Api\ApiDriversController@Qualification')->middleware('driver');
+
 });
 
 ///REQUEST

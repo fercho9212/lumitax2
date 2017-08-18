@@ -1,6 +1,6 @@
 <div class="box box-primary">
          <div class="box-header with-border">
-          <center><h2 class="box-title">SERVICIO DE LUJO</h2></center>
+          <center><h2 id="txtservice" class="box-title">SERVICIO DE LUJO</h2></center>
           </div>
 
 <!-- /.Start Panel Licence -->

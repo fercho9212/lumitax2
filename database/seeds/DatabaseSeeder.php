@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
 
       $this->call(PaymentsTableSeeder::class);
       $this->call(StateservicesTableSeeder::class);
+      $this->call(SizesTableSeeder::class);
     }
 }

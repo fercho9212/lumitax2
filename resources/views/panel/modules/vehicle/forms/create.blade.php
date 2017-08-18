@@ -65,6 +65,7 @@ $("form").keypress(function(e) {
 
     // Selecciona Lujo
       $('#lujo').click(function(){
+            $('h2#txtservice').html('SERVICIO DE LUJO');
             $('#servicelujo').show(2000);
             $("#servicelujo input").attr('required');
             //  $('#servicelujo').find('input').attr("name");
@@ -78,6 +79,15 @@ $("form").keypress(function(e) {
           $('#servicelujo input').removeAttr('required');
           //$('#servicelujo input').removeAttr('name');
       });
+      //Al seleccionar el vehiculo Premiun
+      $('#premium').click(function(){
+        //  $('#servicelujo').find('input').val('');
+          //$('#frenos').prop('required', false);
+          $('h2#txtservice').html('SERVICIO PREMIUM');
+          $('#servicelujo').show(2000);
+          $("#servicelujo input").attr('required');
+          //$('#servicelujo input').removeAttr('name');
+      });
       //Al seleccionar el vehiculo
 
       $('#create_vehicle').submit(function(e){
@@ -88,6 +98,8 @@ $("form").keypress(function(e) {
             var url='/vehicles/tax';
         }else if (tag=='2') {
             var url='/vehicles/luxury';
+        }else if (tag=='3') {
+            var url='/vehicles/luxury'; // igual para el servicio premium
         }
             $.ajax({
                     type: "POST",
@@ -95,6 +107,7 @@ $("form").keypress(function(e) {
                     url : url,
                     datatype:'json',
                     success: function(data){
+                      console.log(':D'+data.rpt);
                       //$.each(data.dat,function(i,value){
                         //console.log(i+value);
                       //});
@@ -107,9 +120,16 @@ $("form").keypress(function(e) {
                             SweetAlertWithImg(title,type,imageUrl);
                             loadData('/vehicles/');
                       }else if (data.rpt=='luxury') {
-                            var titl =":)    Taxi LUJO registrado";
+                            var titl ="Vehículo de Lujo registrado";
                             var typ ="success";
+                            var imageUrl ="/img/panel/luxury.png";
                             SweetAlertWithImg(titl,typ);
+                            loadData('/vehicles/luxury');
+                      }else if (data.rpt=='premium') {
+                            var titl ="Vehículo premium registrado";
+                            var typ ="success";
+                            var imageUrl ="/img/panel/premium.png";
+                            SweetAlertWithImg(titl,typ,imageUrl);
                             loadData('/vehicles/luxury');
                       }
                       //console.log(':D'+data.rpt);

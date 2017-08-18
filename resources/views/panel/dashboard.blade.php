@@ -8,6 +8,17 @@
   <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 	<link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.9/css/dataTables.checkboxes.css" rel="stylesheet" />
 
+	{{--Buttons for pdf --}}
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" type="text/css"/>
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.0/css/buttons.dataTables.min.css" type="text/css"/>
+
+	{{--Tabel responsive --}}
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" type="text/css"/>
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" type="text/css"/>
+
+
+
+
  @endsection
 
 @section('panel.htmlheader_title')
@@ -52,13 +63,12 @@
 <script type="text/javascript" src="{{ asset('/complement/bootstrap-validator/validator.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/moment/moment.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/complement/datetimepicker/bootstrap-datetimepicker.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/complement/bootstrap-select/bootstrap-select.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/complement/bootstrap-select/bootstrap-select.min.js') }}"></script>
 		{{--DropZone--}}
-		<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
 
 		{{--Checkbox--}}
-		<script type="text/javascript" src="{{ asset('/complement/bootstrap-checkbox/bootstrap-checkbox.min.js') }}"></script>
-
-
+<script type="text/javascript" src="{{ asset('/complement/bootstrap-checkbox/bootstrap-checkbox.min.js') }}"></script>
+		{{--Table responsive--}}
 
 @endsection

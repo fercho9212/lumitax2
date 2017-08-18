@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th class="text-center">Placa</th>
+                <th class="text-center">Servicio</th>
                 <th class="text-center">Modelo</th>
                 <th class="text-center">Motor</th>
                 <th class="text-center">Serie</th>
@@ -19,6 +20,16 @@
 
                 <tr class="driver{{$vehicle->id}}">
                 <td>{{$vehicle->placa}}</td>
+                <td><?php
+                  if ($vehicle->leveles_id=='1') {
+                    echo 'Taxi';
+                  }elseif ($vehicle->leveles_id=='2') {
+                    echo 'Lujo';
+                  }elseif ($vehicle->leveles_id=='3') {
+                    echo "Premium";
+                  }
+                ?></td>
+
                 <td>{{$vehicle->veh_model}}</td>
                 <td>{{$vehicle->veh_motor}}</td>
                 <td>{{$vehicle->veh_serie}}</td>

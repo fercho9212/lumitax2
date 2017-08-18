@@ -10,13 +10,25 @@ use App\Http\Controllers\Api\GoogleCloudMsg\PushController as Push;
 use App\Http\Controllers\Api\GoogleCloudMsg\DriversCloudMsg as DriverCloud;
 
 use App\Models\Passenger;
+use App\Models\Driver;
 use DB;
 use Illuminate\Support\Facades\Input;
 class SearchDriversController extends Controller
 {
     //Funcion de busqueda driver
-    public function searchDriver($locU,$no){
-        $driver=DB::select('SELECT id,dri_location FROM drivers WHERE apistate_id=1');
+    public function searchDriver($locU,$no,$baul,$space,$type){
+
+        $sql="";
+        $sql.=" SELECT ";
+        $sql.="	d.id, d.dri_location ";
+        $sql.=" FROM drivers d ";
+        $sql.=" INNER JOIN driver_vehicle dv ON d.id = dv.driver_id ";
+        $sql.=" INNER JOIN vehicles v ON dv.vehicle_id = v.id ";
+        $sql.=" WHERE ";
+        $sql.=" (v.baul_id = ? AND v.space_id = ?)";
+        $sql.=" AND v.leveles_id = ?";
+        $driver=DB::SELECT($sql,array($baul,$space,$type));
+
         foreach ($driver as $dri) {
                 $a=true;
                 foreach ($no as $key) {
@@ -60,7 +72,10 @@ class SearchDriversController extends Controller
       $body   =Input::get('body');//Guardar
       $locU   =explode(",",Input::get('location'));
       $no     =explode(",",Input::get('rpt_no'));
-      $idSerach=$this->searchDriver($locU,$no);
+      $space=  Input::get('space');
+      $baul =  Input::get('baul');
+      $type =  Input::get('type');
+      $idSerach=$this->searchDriver($locU,$no,$baul,$space,$type);
      if ($idSerach!=null) {
         $to=$driver->getTokenDriver($idSerach);
         $push->setData($body);

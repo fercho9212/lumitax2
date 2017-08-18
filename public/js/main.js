@@ -16,9 +16,14 @@ function load_frm(opt){
   if (opt==30){var url="/vehicles/"; console.log('Entra a vista taxi ')}
   if (opt==31){var url="/vehicles/luxury"; console.log('Entra a vista Lujo ')}
   if (opt==32){var url="/vehicles/create"; console.log('Entra a Crear ')}
+  if (opt==33){var url="/vehicles/premium"; console.log('Entra a vista premium')}
   //$("#main_content").html()s
   // Functions of module secure
   if (opt==40){var url="/insurance/create/"; console.log('Entra a vista Seguro')}
+
+  // Functions of module history
+  if (opt==50){var url="/history/"; console.log('Entra a history')}
+
     $.ajax({
           async: true,
           type: "GET",

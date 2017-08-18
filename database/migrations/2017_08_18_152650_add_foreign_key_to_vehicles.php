@@ -16,7 +16,8 @@ class AddForeignKeyToVehicles extends Migration
         Schema::table('vehicles', function (Blueprint $table) {
             $table->foreign('typevehicle_id','fk_vehicles_types')->references('id')->on('typevehicles')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('class_id','fk_vehicles_class')->references('id')->on('classvehicles')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('brand_id','fk_vehicles_brand')->references('id')->on('brandvehicles')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('baul_id','fk_vehicles_baul')->references('id')->on('sizes')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('space_id','fk_vehicles_space')->references('id')->on('sizes')->onUpdate('RESTRICT')->onDelete('RESTRICT');
            });
     }
 

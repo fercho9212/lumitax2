@@ -10,6 +10,8 @@ use App\Models\Classvehicle AS Clase;
 use App\Models\Typevehicle AS Type;
 use App\Models\Brandvehicle AS Brand;
 use App\Models\Typebodywork AS Bodywork;
+use App\Models\Baul AS Baul;
+use App\Models\Spacevehicle AS Space;
 use App\Http\Requests\Web\VehicleRequest;
 use App\Http\Requests\Web\VehicleComplementRequest;
 
@@ -27,18 +29,20 @@ class VehiclesController extends Controller
      {
          $this->middleware('auth');
      }
-
     public function index()
     {
         //$vehicle=Vehicle::all();
         $vehicle=Vehicle::where('leveles_id','=','1')->get();
         return view('panel.modules.vehicle.taxindex',['vehicles'=>$vehicle]);
     }
-
     public function indexLuxury()
     {
         $vehicle=Vehicle::where('leveles_id','=','2')->get();
         return view('panel.modules.vehicle.luxuryindex',['vehicles'=>$vehicle]);
+    }
+    public function indexPremium(){
+      $vehicle=Vehicle::where('leveles_id','=','3')->get();
+      return view('panel.modules.vehicle.premiumindex',['vehicles'=>$vehicle]);
     }
 
     /**
@@ -52,10 +56,14 @@ class VehiclesController extends Controller
         $brand  =  Brand::all();
         $class  =  Clase::all();
         $bodywork= Bodywork::all();
+        $space=    Space::all();
+        $baul=     Baul::all();
         return view('panel.modules.vehicle.forms.create',['types'=>$type,
                                                           'brands'=>$brand,
                                                           'class'=>$class,
                                                           'bodyworks'=>$bodywork,
+                                                          'spaces'=>$space,
+                                                          'baules'=>$baul,
                                                         ]);
     }
 
@@ -81,6 +89,9 @@ class VehiclesController extends Controller
         $vehicle->brand_id        =$request->brand_id;
         $vehicle->class_id        =$request->class_id;
         $vehicle->typevehicle_id  =$request->typevehicle_id;
+        $vehicle->baul_id         =$request->baul_id;
+        $vehicle->space_id        =$request->spacevehicle_id;
+
         $vehicle->leveles_id= $request->leveles_id;
         $vehicle->save();
         $rpt='taxi';
@@ -107,6 +118,9 @@ class VehiclesController extends Controller
         $vehicle->class_id        =$request->class_id;
         $vehicle->typevehicle_id  =$request->typevehicle_id;
         $vehicle->leveles_id      =$request->leveles_id;
+        $vehicle->baul_id         =$request->baul_id;
+        $vehicle->space_id        =$request->spacevehicle_id;
+
         $vehicle->save();
         $complemt=New Vehiclecomplement();
         $complemt->id=$vehicle->id;
@@ -124,7 +138,15 @@ class VehiclesController extends Controller
         $complemt->vc_cylinder=$request->vc_cylinder;
         $complemt->vc_power=$request->vc_power;
         $vehicle->vehiclecomplement()->save($complemt);
-        $rpt='luxury';
+
+        if ($vehicle->leveles_id=='2') {
+          $rpt='luxury';
+        }elseif ($vehicle->leveles_id=='3') {
+          $rpt='premium';
+        }else {
+          $rpt='error';
+        }
+
         return response()->json(['rpt'=>$rpt]);
       } catch (\Exception $e) {
         return response()->json(['rpt'=>'exception']);

@@ -8,8 +8,10 @@
       <?php
         if ($vehicle->leveles_id=='1'){
           $r="Servicio de taxi";
-        } else {
-          $r= "Servicio de Lujo";
+        } elseif ($vehicle->leveles_id=='2') {
+          $r="Servicio de Lujo";
+        }elseif ($vehicle->leveles_id=='3') {
+          $r="Servicio Premium";
         }
        ?>
 
@@ -186,7 +188,7 @@
       </div>
   </div>
 </div>
-<?php if ($vehicle->leveles_id=='2') {?>
+<?php if ($vehicle->leveles_id=='2' or $vehicle->leveles_id=='3') {?>
   <br><br>
   <div class="row">
       <div class="col-md-12">
@@ -316,7 +318,7 @@
 
                                              <select name="typebodywork_id" class="selectpicker show-menu-arrow" data-live-search="true">
                                                @foreach ($bodyworks as $bodywork)
-                                                 <option data-icon="glyphicon glyphicon-certificate" value="{{$brand->id}}"
+                                                 <option data-icon="glyphicon glyphicon-certificate" value="{{$bodywork->id}}"
                                                  <?php
                                                    if ($vehicle->vehiclecomplement->typebodywork_id==$bodywork->id){
                                                      echo 'selected="selected"';
@@ -390,6 +392,10 @@ $("#update_vehicle").on('submit',function(e){
     url='/vehiclesluxury/'+id;
     var image ="/img/panel/luxury.jpg";
     var text="Taxi de lujo Actualizado";
+  }else if (level=='3') {
+    url='/vehiclesluxury/'+id;
+    var image ="/img/panel/premium.png";
+    var text="Vehículo Premium Actualizado";
   }
   console.log(id);
   console.log(level);

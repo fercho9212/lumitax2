@@ -41,12 +41,20 @@ Route::group(['namespace' => 'web'], function () {
 
     Route::delete('vehicles/{id}', 'VehiclesController@destroy');
 
-    //Rutas de vehículos tipo
+    //Rutas de vehículos tipo luxury
     Route::delete('vehicles/luxury/{id}', 'VehiclesController@destroyLuxury');
     Route::post('vehicles/luxury', 'VehiclesController@StoreLuxury');
     Route::get('vehicles/luxury', 'VehiclesController@indexluxury');
     Route::get('vehicles/{id}/show', 'VehiclesController@show');
     Route::put('vehiclesluxury/{id}','vehiclesController@updateLuxury');
+
+    //Rutas de vehículos tipo premiun
+    Route::get('vehicles/premium', 'VehiclesController@indexPremium');
+
+
+    //Route::post('vehicles/premium', 'VehiclesController@StorePremium');
+
+
 
     //--Vehículos
     //Rutas de imaenes
@@ -65,4 +73,8 @@ Route::group(['namespace' => 'web'], function () {
 
     //Seguro
     Route::resource('insurance','InsuranceController');
+
+    //Historial
+    Route::get('history', 'HistoryController@viewHistory');
+    Route::get('gethistory', 'HistoryController@getDataHistory');
 });
