@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use JWTAuth;
 use App\Models\Driver;
+use App\Models\Passenger;
 use Illuminate\Support\Facades\Input;
 use DB;
 
@@ -59,33 +60,23 @@ class ApiDriversController extends Controller
      * @token: token recibido of driver
      */
     public function InsertTokendDrivers(){
-      $driver = JWTAuth::parseToken()->authenticate();
-      $token=Input::get('token');
-      $driver=Driver::find($driver->id);
-      $driver->token_api=$token;
-      if ($driver->save()) {
-         return response()->json(['rpt'=>'success']);
-      }else {
-        return response()->json(['rpt'=>'error']);
-      }
+        $driver = JWTAuth::parseToken()->authenticate();
+        $token=Input::get('token');
+        $driver=Driver::find($driver->id);
+        $driver->token_api=$token;
+        if ($driver->save()) {
+           return response()->json(['rpt'=>'success']);
+        }else {
+          return response()->json(['rpt'=>'error']);
+        }
       }
 
     public function Qualification(){
-      try {
-        $iddriver=Input::get('id_driver');
-        $value=Input::get('qualification');
-        $cant=DB::SELECT('select  COUNT(*) as sum FROM driver_passenger d WHERE d.driver_id=?',array($iddriver));
-        $cantidad=$cant[0]->sum;
-        $acum=DB::SELECT('select dri_qual as qualification from drivers WHERE id=?',array($iddriver));
-        $acumulado=$acum[0]->qualification;
-        $qualification=(($acumulado*$cantidad)+$value)/($cantidad+1);
-        DB::SELECT('update drivers set dri_qual=?  WHERE id=?',array($qualification,$iddriver));
-        echo 'Exito';
-      } catch (\Exception $e) {
-         echo 'Error';
-      }
-
-
+      $passenger=new Passenger;
+      $id_passenger=Input::get('idpass');
+      $value=Input::get('quali');
+      $qualification=$passenger->qual($id_passenger,$value);
+      return response()->json(['rpt'=>$qualification]);
     }
 
 

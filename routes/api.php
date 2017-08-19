@@ -29,6 +29,9 @@ Route::group(['prefix'=>'v1/passengers'],function(){
     Route::post('/profile','Api\ApiPassengersController@profile')->middleware('passenger');
     Route::post('/view/history','Api\ApiHistoryController@viewHistoryPassenger')->middleware('passenger');
     Route::post('/test','Api\ApiAuthpassenger@test')->middleware('passenger');
+    //Calificación
+    Route::post('/qualification','Api\ApiPassengersController@Qualification')->middleware('passenger');
+
     Route::get('/',function(){
       echo "string";
     });
@@ -43,6 +46,8 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/view/history','Api\ApiHistoryController@viewHistoryDriver')->middleware('driver');
     //Route::post('/test','Api\ApiAuthdriver@test')->middleware('driver');
 
+    //funcion documentos
+    Route::post('/documents','Api\ApiDocumentsController@documents')->middleware('driver');
 
 
 
@@ -50,6 +55,10 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/assignvehicle','Api\ApiAsigVehController@show')->middleware('driver');
 
     Route::post('/selectvehicle','Api\ApiAsigVehController@ToAsign')->middleware('driver');
+
+    //Destruye asignación
+    Route::post('/destroyveh','Api\ApiAsigVehController@destroyAsign')->middleware('driver');
+
 
     //function que actualiza la localización del conductor
     Route::PUT('/update/location','Api\ApiDriversController@UpdateLocation')->middleware('driver');
@@ -67,7 +76,7 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     });
 
     //Calificación
-    Route::post('qualification','Api\ApiDriversController@Qualification')->middleware('driver');
+    Route::post('/qualification','Api\ApiDriversController@Qualification')->middleware('driver');
 
 });
 

@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use JWTAuth;
 use Illuminate\Support\Facades\Input;
 use App\Models\Passenger;
-
+use App\Models\Driver;
+use DB;
 class ApiPassengersController extends Controller
 {
   public function profile(){
@@ -26,4 +27,16 @@ class ApiPassengersController extends Controller
     }
 
   }
+
+  public function Qualification(){
+
+    $driver=new Driver;
+    $iddriver=Input::get('iddriver');
+    $value=Input::get('quali');
+    $qualification=$driver->qual($iddriver,$value);
+    return response()->json(['rpt'=>$qualification]);
+
+    }
+
+
 }

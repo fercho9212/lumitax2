@@ -32,15 +32,24 @@ class ApiAsigVehController extends Controller
             $vehicle->drivers()->updateExistingPivot($driver,['opt'=>'1'],false);//Acualiza
             return response()->json(['rpt'=>'success']);
           }else {
-            return response()->json(['rpt'=>'Existe']);
+            return response()->json(['rpt'=>'selected']);
           }
         } catch (\Exception $e) {
-          return response()->json(['rpt'=>'Error']);
+          return response()->json(['rpt'=>'error']);
         }
-
-
-
         }
+     public function destroyAsign(Request $request){
+       try {
+         $driver=$request->driver_id;
+         $vehicle=$request->vehicle_id;
+         $query=DB::SELECT('update driver_vehicle set opt=0  WHERE driver_id=? and vehicle_id=?',array($driver,$vehicle));
+         return response()->json(['rpt'=>'success']);
+       } catch (\Exception $e) {
+         return response()->json(['rpt'=>'Error']);
+       }
+
+
+     }
 
   }
 

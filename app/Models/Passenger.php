@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class Passenger extends Authenticatable
 {
@@ -19,6 +20,20 @@ class Passenger extends Authenticatable
 
       public function state(){
         return $this->belongsTo('App\Models\State');
+      }
+      public function qual($id_passenger,$value){
+          try {
+            $cant=DB::SELECT('select  COUNT(*) as sum FROM driver_passenger d WHERE d.passenger_id=?',array($id_passenger));
+            $cantidad=$cant[0]->sum;
+            $acum=DB::SELECT('select pas_qual as qualification from passengers WHERE id=?',array($id_passenger));
+            $acumulado=$acum[0]->qualification;
+            $qualification=(($acumulado*$cantidad)+$value)/($cantidad+1);
+            DB::SELECT('update passengers set pas_qual=?  WHERE id=?',array($qualification,$id_passenger));
+            $rpt='success';
+          } catch (Exception $e) {
+            $rpt='error';
+          }
+        return $rpt;
       }
 
 }

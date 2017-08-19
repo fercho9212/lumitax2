@@ -25,7 +25,7 @@ class ApiAuthdriver extends Controller
            return response()->json(['error'=>'Invalid_Crendals','rpt'=>'error'],200);
         }
 
-      } catch (JWTException $e) {
+      } catch (\JWTException $e) {
         return response()->json(['error' => 'could_not_create_token'], 200);
       }
       return response()->json(['token'=>compact('token'),'rpt'=>'success']);
