@@ -71,12 +71,21 @@ class ApiDriversController extends Controller
       }
 
     public function Qualification(){
-      $cant=DB::SELECT('select  COUNT(*) as sum FROM driver_passenger d WHERE d.driver_id=1');
-      $cantidad=$cant[0]->sum;
-      $acum=DB::SELECT('select dri_qual as qualification from drivers WHERE id=1');
-      $total=$acum[0]->qualification;
-      $newvalue=2;
-      echo (($total*$cantidad)+$newvalue)/($cantidad+1);
+      try {
+        $iddriver=Input::get('id_driver');
+        $value=Input::get('qualification');
+        $cant=DB::SELECT('select  COUNT(*) as sum FROM driver_passenger d WHERE d.driver_id=?',array($iddriver));
+        $cantidad=$cant[0]->sum;
+        $acum=DB::SELECT('select dri_qual as qualification from drivers WHERE id=?',array($iddriver));
+        $acumulado=$acum[0]->qualification;
+        $qualification=(($acumulado*$cantidad)+$value)/($cantidad+1);
+        DB::SELECT('update drivers set dri_qual=?  WHERE id=?',array($qualification,$iddriver));
+        echo 'Exito';
+      } catch (\Exception $e) {
+         echo 'Error';
+      }
+
+
     }
 
 

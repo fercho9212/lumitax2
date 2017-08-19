@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Vehicle;
 use App\Models\Driver;
 use JWTAuth;
+use DB;
 
 class ApiAsigVehController extends Controller
 {
@@ -20,22 +21,33 @@ class ApiAsigVehController extends Controller
 
     }
     public function ToAsign(Request $request){
-      try {
-        $driver = JWTAuth::parseToken()->authenticate();
-        $driver=$driver->id;// id del vehiculo seleccionado
-        $vehicle_id=$request->vehicle_id;//id del vehiculo
-        $vehicle=vehicle::find($vehicle_id);
-        $vehicle->drivers()->updateExistingPivot($driver,['select'=>'1'],false);//Acualiza
-        return response()->json(['rpt'=>'success']);
-      } catch (\Throwable $e) {
-         echo "Error";
-      }
+
+        //$driver = JWTAuth::parseToken()->authenticate();
+        try {
+          $driver=$request->driver_id;// id del vehiculo seleccionado
+          $vehicle_id=$request->vehicle_id;//id del vehiculo
+          $vehicle=vehicle::find($vehicle_id);
+          $query=DB::SELECT('select count(*) as sum from driver_vehicle where vehicle_id=? and opt=?', array($vehicle_id,1) );
+          if ($query[0]->sum==0) {
+            $vehicle->drivers()->updateExistingPivot($driver,['opt'=>'1'],false);//Acualiza
+            return response()->json(['rpt'=>'success']);
+          }else {
+            return response()->json(['rpt'=>'Existe']);
+          }
+        } catch (\Exception $e) {
+          return response()->json(['rpt'=>'Error']);
+        }
+
+
+
+        }
+
+  }
+
+
+
 
 
 
       // $vehicle->drivers()->sync((array) $request->driver);SEPARATOR '"'/'"'
       //echo 'vehicle +>'.$request->vehicle.'DRIVER ->'.$request->driver;
-
-    }
-
-}
