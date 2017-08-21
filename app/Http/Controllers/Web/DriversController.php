@@ -165,6 +165,7 @@ class DriversController extends Controller
             $driver=                  Driver::findOrFail($request->id);
             $licence=                 Licence::findOrFail($driver->id);
             $licence->lic_no=         $request->lic_no;
+            $licence->lic_validity=$request->lic_validity;
             $licence->category_id=    $request->category_id;
             $licence->type_id=        $request->type_id;
             $driver->dri_name =       $request->dri_name;

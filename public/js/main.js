@@ -74,6 +74,7 @@ $(document).on("submit",".form_enfffftrada",function(e){
 });
 function loadData(url,data){
   $.get(url,function(data){
+    console.log('Entra');
     $("#contenido_principal").html(data);
   })
 }

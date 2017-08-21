@@ -46,8 +46,11 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/view/history','Api\ApiHistoryController@viewHistoryDriver')->middleware('driver');
     //Route::post('/test','Api\ApiAuthdriver@test')->middleware('driver');
 
-    //funcion documentos
+    //funcion documentos vencidos
     Route::post('/documents','Api\ApiDocumentsController@documents')->middleware('driver');
+
+    //funcion licencias vencidos
+    Route::post('/licences','Api\ApiDocumentsController@licences')->middleware('driver');
 
 
 

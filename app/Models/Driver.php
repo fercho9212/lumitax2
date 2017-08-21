@@ -50,5 +50,16 @@ class Driver extends Authenticatable
         }
       return $rpt;
     }
+
+    public function licenceexpirated($iddriver){
+      $sql="";
+      $sql.="select l.lic_validity AS vigencia ";
+      $sql.="FROM licences l  ";
+      $sql.="INNER JOIN drivers d on l.id=d.id  ";
+      $sql.="where (l.lic_validity BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH)) ";
+      $sql.="AND d.id=? ";
+      $rpt=DB::SELECT($sql,array($iddriver));
+      return $rpt;
+    }
 //update driver_vehicle set opt=0  WHERE driver_id=1 and vehicle_id=1
 }

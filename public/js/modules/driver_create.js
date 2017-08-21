@@ -1,14 +1,14 @@
 $(function () {
 
                 $('#date_vigencia').datetimepicker({
-                    defaultDate: "2017-06-27",
+                    defaultDate: "2017-08-21",
                     format: 'YYYY-MM-DD'
                 });
 
                 $('#create_driver').validator();
                 $('#myDropzone').validator();
                 $('.selectpicker').selectpicker();
-
+                console.log('entra driver_create');
 
               var myDropzone = new Dropzone("div#myDropzone", {
                     url:"/drivers",

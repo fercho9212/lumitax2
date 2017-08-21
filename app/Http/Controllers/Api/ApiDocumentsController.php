@@ -25,14 +25,14 @@ class ApiDocumentsController extends Controller
 
     //Función que describe si ahí documentos vencidos
     public function licences(Request $request){
-      $doc=new Document;
-      $cant=$doc->countLicenceVen($request->idvehicle);
-      if ($cant>0) {
-        $r='expirate';
+      $driver=new Driver;
+      $cant=$driver->licenceexpirated($request->iddriver);
+      if (empty($cant[0])) {
+        $rpt='success';
       }else {
-        $r='good';
+         $rpt=$cant[0]->vigencia;
       }
-      return response()->json(['rpt'=>$r]);
+      return response()->json(['rpt'=>$rpt]);
     }
 
 }

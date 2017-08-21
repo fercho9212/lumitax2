@@ -269,7 +269,7 @@
                 <div class="form-group">
                   <label for="exampleInputPassword1">Repetir Contraseña</label>
                   <div class="input-group">
-                    <input name="password" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm password" required>
+                    <input name="password" type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm password" required>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                   </div>
                 </div>
@@ -280,7 +280,7 @@
 </div>
 <!-- /.End panel Licence -->
   <div class="box-footer">
-    <button type="submit" id="submit-all" class="btn btn-primary">Submit</button>
+    <button type="submit" id="submit-all" class="btn btn-primary">GUARDAR</button>
   </div>
 </form>
 

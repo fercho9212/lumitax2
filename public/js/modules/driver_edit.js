@@ -2,10 +2,10 @@
   $(function () {
                 //$('form').validator();
                 $('#date_vigencia').datetimepicker({
-                  defaultDate: "2017-06-27",
+
                   format: 'YYYY-MM-DD'
                 });
-
+  console.log('entra driver_update');
                 $('#update_driver').validator();
 
                 $('.selectpicker').selectpicker();
@@ -16,7 +16,7 @@
 
               var id=$('#id').val();
               var toke=$('#token').val();
-              console.log(toke);
+
 
               var myDropzone = new Dropzone("div#myDropzone", {
                     url:"/drivers/"+id+"/update/photo",
@@ -120,7 +120,7 @@
                           if (data.rpt=='success') {
                             swal("Good job!", "You clicked the button!", "success");
                             var url='/drivers/'+id+'/edit'
-                            loadData(url);
+                            loadData(url,data);
                           }else {
                             sweetAlert("Oops...", "Something went wrong!", "error");
                           }

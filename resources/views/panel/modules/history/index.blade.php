@@ -56,7 +56,8 @@
 
     </table>
 -->
-    <table class="table table-borderless" id="tablehistory">
+<div class="table-responsive text-center">
+    <table class="table table-striped table-bordered dt-responsive display nowrap" id="tablehistory">
       <thead>
           <tr>
               <th>CC.driver</th>
@@ -64,10 +65,11 @@
               <th>Conductor</th>
               <th>Pasajero</th>
               <th>Fecha Solicitud</th>
-              <th>Destino</th>
+              <th>Origen</th>
               <th>Estado</th>
               <th>Pago</th>
               <th>Precio</th>
+              <th>Destino</th>
               <th>Fecha destino</th>
 
 
@@ -81,17 +83,19 @@
             <th>Conductor</th>
             <th>Pasajero</th>
             <th>Fecha Solicitud</th>
-            <th>Destino</th>
+            <th>Origen</th>
             <th>Estado</th>
             <th>Pago</th>
             <th>Precio</th>
+            <th>Destino</th>
             <th>Fecha destino</th>
 
 
           </tr>
       </tfoot>
-  </div>
+
 </table>
+</div>
   <script type="text/javascript">
   $(document).ready(function() {
 
@@ -111,6 +115,7 @@
                 { data: 'state' },
                 { data: 'payment' },
                 { data: 'price' },
+                { data: 'address_end' },
                 { data: 'date_end' },
 
                   ]
@@ -118,9 +123,7 @@
 
 
 
-setInterval(function () {
-      table.ajax.reload();
-}, 1000);
+
 
 
   } );
