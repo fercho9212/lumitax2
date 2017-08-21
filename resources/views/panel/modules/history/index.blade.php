@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.15/api/fnReloadAjax.js">
+<!--
 <table cellpadding="3" cellspacing="0" border="0" style="width: 67%; margin: 0 auto 2em auto;">
         <thead>
             <tr>
@@ -54,7 +55,7 @@
         </tbody>
 
     </table>
-
+-->
     <table class="table table-borderless" id="tablehistory">
       <thead>
           <tr>
@@ -68,7 +69,7 @@
               <th>Pago</th>
               <th>Precio</th>
               <th>Fecha destino</th>
-              <th>Destino</th>
+
 
 
           </tr>
@@ -85,7 +86,7 @@
             <th>Pago</th>
             <th>Precio</th>
             <th>Fecha destino</th>
-            <th>Destino</th>
+
 
           </tr>
       </tfoot>
@@ -94,34 +95,32 @@
   <script type="text/javascript">
   $(document).ready(function() {
 
-  var table=$('#tablehistory').DataTable( {
-        "ajax": {
-                "url": "/gethistory",
-                "type": "GET",
-                "dataSrc": 'data',
-           },
-           columns: [
-            { data: 'ccdriver' },
-            { data: 'placa' },
-            { data: 'driver' },
-            { data: 'passenger' },
-            { data: 'date_start' },
-            { data: 'address_start' },
-            { data: 'state' },
-            { data: 'payment' },
-            { data: 'price' },
-            { data: 'date_end' },
-            { data: 'address_end' },
-              ]
+      var table=$('#tablehistory').DataTable( {
+            "ajax": {
+                    "url": "/gethistory",
+                    "type": "GET",
+                    "dataSrc": 'data',
+               },
+               columns: [
+                { data: 'ccdriver' },
+                { data: 'placa' },
+                { data: 'driver' },
+                { data: 'passenger' },
+                { data: 'date_start' },
+                { data: 'address_start' },
+                { data: 'state' },
+                { data: 'payment' },
+                { data: 'price' },
+                { data: 'date_end' },
+
+                  ]
+      } );
 
 
 
-
-
-
-  } );
-
-
+setInterval(function () {
+      table.ajax.reload();
+}, 1000);
 
 
   } );

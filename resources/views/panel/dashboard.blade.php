@@ -36,6 +36,7 @@
 					<div class="panel-heading"><center>LUMITAX</center></div>
 					<div class="panel-body">
 						<div id="contenido_principal">
+								@include('panel.modules.control')
 
 						</div>
 						<!-- load-->

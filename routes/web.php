@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', 'PanelController@index');
+Route::get('/graph', 'PanelController@graph');
 Route::get('/frm_create_driver', 'Dashboard\FormsController@frm_create_driver');
 Route::group(['namespace' => 'web'], function () {
     Route::get('drivers/msg/', 'DriversController@sendMsg');

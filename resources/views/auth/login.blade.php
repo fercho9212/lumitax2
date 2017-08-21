@@ -3,7 +3,7 @@
 @section('panel.htmlheader_title')
     Log in
 @endsection
-
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
 @section('content')
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -35,29 +35,30 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="row">
+          <!--
             <div class="col-xs-8">
                 <div class="checkbox icheck">
                     <label>
-                        <input type="checkbox" name="remember"> {{ trans('adminlte_lang::message.remember') }}
+                        <input type="checkbox" name="remember"> {{-- trans('adminlte_lang::message.remember') --}}
                     </label>
                 </div>
             </div><!-- /.col -->
+
             <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat">{{ trans('adminlte_lang::message.buttonsign') }}</button>
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Siguiente</button>
             </div><!-- /.col -->
         </div>
     </form>
 
   <!--  @include('auth.partials.social_login')
 
-    <a href="{{ url('/password/reset') }}">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>
-    <a href="{{ url('/register') }}" class="text-center">{{ trans('adminlte_lang::message.registermember') }}</a>
+    <a href="{{-- url('/password/reset') --}}">{{-- trans('adminlte_lang::message.forgotpassword') --}}</a><br>
+    <a href="{{-- url('/register') --}}" class="text-center">{{-- trans('adminlte_lang::message.registermember') --}}</a>
 -->
 </div><!-- /.login-box-body -->
 
-</div><!-- /.login-box -->
-
-   @include('panel.layouts.partials.scripts_auth')
+</div><
+{{--@include('panel.layouts.partials.scripts_auth')--}}
 
     <script>
         $(function () {

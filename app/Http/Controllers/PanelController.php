@@ -9,6 +9,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Models\Driver;
+use App\Models\Passenger;
+use App\Models\History;
+use App\Models\Vehicle;
 
 /**
  * Class HomeController
@@ -33,6 +37,18 @@ class PanelController extends Controller
      */
     public function index()
     {
-        return view('panel.dashboard');
+        $countDri=Driver::count();
+        $countPass=Passenger::count();
+        $countServe=History::count();
+        $countVeh=Vehicle::count();
+        return view('panel.dashboard',['countDri'=>$countDri,
+                                      'countPass'=>$countPass,
+                                      'countServe'=>$countServe,
+                                      'countVeh'=>$countVeh
+      ]);
+    }
+    public function graph(){
+      $countServe=History::count();
+      return response()->json($countServe);
     }
 }
