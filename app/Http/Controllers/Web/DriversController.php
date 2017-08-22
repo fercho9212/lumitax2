@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Validator;
 use App\Models\Driver;
 use App\Models\Licence;
-use App\Models\state;
+use App\Models\State;
 use App\Models\Categorylicence AS Category;
 use App\Models\Typeslicence AS Type;
 use Flash;
