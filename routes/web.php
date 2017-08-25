@@ -24,6 +24,11 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('drivers/msg/', 'DriversController@sendMsg');
     Route::post('drivers/msg/', 'DriversController@getToMsg');
     Route::resource('drivers', 'DriversController');
+
+
+    Route::resource('users', 'UsersController');
+
+
     Route::post('drivers/{id}/update/photo', 'DriversController@updatePhoto');
 
 

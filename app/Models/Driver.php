@@ -43,7 +43,7 @@ class Driver extends Authenticatable
         $acum=DB::SELECT('select dri_qual as qualification from drivers WHERE id=?',array($iddriver));
         $acumulado=$acum[0]->qualification;
         $qualification=(($acumulado*$cantidad)+$value)/($cantidad+1);
-        DB::SELECT('update drivers set dri_qual=?  WHERE id=?',array($qualification,$iddriver));
+        DB::UPDATE('update drivers set dri_qual=?  WHERE id=? ', array($qualification,$iddriver));
           $rpt='success';
         } catch (Exception $e) {
           $rpt='error';

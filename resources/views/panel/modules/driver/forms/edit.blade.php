@@ -350,7 +350,7 @@
 
                              loadData(urlView);
                           }else{
-                            console.log('Error->'+responseText);
+                            console.log('Error->'+responseText.rpt);
 
                           }
                         });

@@ -20,7 +20,7 @@
                 <th class="text-center">Typo</th>
                 <th class="text-center">Category</th>
                 <th class="text-center">Vigencia</th>
-                <th class="text-center">Acción</th>
+                @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)<th class="text-center">Acción</th>@endif
             </tr>
         </thead>
         @foreach($drivers as $driver)
@@ -35,8 +35,8 @@
                 <td>{{$driver->licence->typeslicence->type}}</td>
                 <td>{{$driver->licence->categorylicence->category}}</td>
                 <td>{{$driver->licence->lic_validity}}</td>
-                <td>
-                      <button onclick="edit({{$driver->id}})" class="update btn btn-info" data-id="{{$driver->id}}"
+                @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)
+                    <td>  <button onclick="edit({{$driver->id}})" class="update btn btn-info" data-id="{{$driver->id}}"
                           data-name="{{$driver->name}}">
                           <span class="glyphicon glyphicon-edit"></span>
                       </button>
@@ -44,7 +44,9 @@
                           data-name="{{$driver->dri_name}}">
                           <span class="glyphicon glyphicon-trash"></span>
                       </button>
+
                   </td>
+                @endif
                 </tr>
                 @endif
         @endforeach

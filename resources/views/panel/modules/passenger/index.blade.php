@@ -49,7 +49,7 @@
                   <th class="text-center">Email</th>
                   <th class="text-center">Tel:Movíl</th>
                   <th class="text-center">Estado</th>
-                  <th class="text-center">Acción</th>
+                  @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)<th class="text-center">Acción</th>@endif
                   <th class="text-center">Registrado el</th>
               </tr>
           </thead>
@@ -63,8 +63,9 @@
                   <td>{{$passenger->pas_movil}}</td>
                   <td>{{$passenger->state->state}}</td>
                   <td>{{$passenger->created_at}}</td>
-                  <td>
-                        <button  class="update btn btn-info btn-circle-medium" data-id="{{$passenger->id}}"
+
+                    @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)
+                    <td>    <button  class="update btn btn-info btn-circle-medium" data-id="{{$passenger->id}}"
                                           data-name="{{$passenger->pas_name}}"
                                           data-last="{{$passenger->pas_last}}"
                                           data-email="{{$passenger->email}}"
@@ -77,7 +78,9 @@
                         <button   class="btn-circle-medium btn btn-danger" data-toggle="modal"  data-target="#dataDelete" onclick="delete_passenger({{$passenger->id}})">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
-                    </td>
+                        </td>
+                      @endif
+
                   </tr>
       @endforeach
       </table>

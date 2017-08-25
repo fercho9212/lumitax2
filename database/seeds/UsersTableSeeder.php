@@ -16,11 +16,13 @@ class UsersTableSeeder extends Seeder
          'name'      =>  'Ferney Jerez',
          'email'     =>  'ferney9212@gmail.com',
          'password'  =>   bcrypt('FERfer123.'),
+         'typesrole_id'  =>   '1',
        ]);
        \DB::table('users')->insert([
           'name'      =>  'Administrador',
           'email'     =>  'admin@gmail.com',
           'password'  =>   bcrypt('@lumi_tax'),
+          'typesrole_id'  =>   '1',
         ]);
        $faker=Faker::create();
        for ($i=0; $i < 5; $i++) {
@@ -28,6 +30,7 @@ class UsersTableSeeder extends Seeder
             'name'      =>  $faker->firstName,
             'email'     =>  $faker->lastName,
             'password'  =>   bcrypt('FERfer123.'),
+            'typesrole_id'  =>   '1',
           ]);
        }
 

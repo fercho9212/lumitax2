@@ -23,7 +23,6 @@ function load_frm(opt){
 
   // Functions of module history
   if (opt==50){var url="/history/"; console.log('Entra a history')}
-  if (opt==60){var url="/users/"; console.log('Entra a Administradores')}
 
     $.ajax({
           async: true,
@@ -143,17 +142,19 @@ function deleteNormal(urlDelte,token,urlSuccess){
             },
             success: function(data) {
               // swal("Deleted!", "Registro Eliminado.", "success");
+
                 if (data.rpt=='success') {
                   loadData(urlSuccess,data);
-                  swal("Registro Eliminado!", "You clicked the button!", "success");
+                  swal("Registro Eliminado!", "You clicked the button!", "success")
                 }else if (data.rpt=='error') {//Numero de error en las realaciones de vhiculación
-                  swal("Error!", "Por favor Comunicarse con el administrador ", "warning");
+                  swal("Error!", "Por favor Comunicarse con el administrador ", "warning")
                   loadData(urlSuccess,data);
                 }
+
               // loadData(urlSuccess,data);
             },
             error: function(data){
-              console.log('Errorttttta->'+data);
+              console.log('Errorttttta->'+data)
             }
         });
 }

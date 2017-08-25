@@ -28,7 +28,7 @@ class Passenger extends Authenticatable
             $acum=DB::SELECT('select pas_qual as qualification from passengers WHERE id=?',array($id_passenger));
             $acumulado=$acum[0]->qualification;
             $qualification=(($acumulado*$cantidad)+$value)/($cantidad+1);
-            DB::SELECT('update passengers set pas_qual=?  WHERE id=?',array($qualification,$id_passenger));
+            DB::UPDATE('update passengers set pas_qual=?  WHERE id=?',array($qualification,$id_passenger));
             $rpt='success';
           } catch (Exception $e) {
             $rpt='error';

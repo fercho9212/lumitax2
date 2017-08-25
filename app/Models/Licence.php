@@ -16,7 +16,7 @@ class Licence extends Model
     return $this->belognsTo('App\Models\Driver','id');
   }
   public function categorylicence(){
-    return $this->belongsTo('App\Models\categorylicence','category_id');
+    return $this->belongsTo('App\Models\Categorylicence','category_id');
   }
   public function typeslicence(){
     return $this->belongsTo('App\Models\Typeslicence','type_id');

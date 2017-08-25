@@ -6,7 +6,7 @@
             <tr>
 
                 <th class="text-center">View</th>
-                <th class="text-center">Action</th>
+              @if (Auth::user()->typesrole_id==1 && Auth::user()->typesrole_id==2)  <th class="text-center">Action</th> @endif
                 <th class="text-center">Placa</th>
                 <th class="text-center">Servicio</th>
                 <th class="text-center">Modelo</th>
@@ -37,19 +37,20 @@
 
                 <tr class="driver{{$vehicle->id}}">
                   <td></td>
-                  <td>
-                    <a href="/vehicles/{{$vehicle->id}}/show">
-                    <button   class="update btn btn-warning">
-                        <span class="glyphicon glyphicon-edit"></span>
-                    </button>
-                    </a>
+                  @if (Auth::user()->typesrole_id==1 && Auth::user()->typesrole_id==2)
+                    <td>
+                      <a href="/vehicles/{{$vehicle->id}}/show">
+                      <button   class="update btn btn-warning">
+                          <span class="glyphicon glyphicon-edit"></span>
+                      </button>
+                      </a>
 
-                        <button class="delete-modal  btn btn-danger" data-id="{{$vehicle->id}}"
-                            data-name="{{$vehicle->placa}}">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                    </td>
-
+                          <button class="delete-modal  btn btn-danger" data-id="{{$vehicle->id}}"
+                              data-name="{{$vehicle->placa}}">
+                              <span class="glyphicon glyphicon-trash"></span>
+                          </button>
+                      </td>
+                    @endif  
                 <td>{{$vehicle->placa}}</td>
                 <td><?php
                   if ($vehicle->leveles_id=='1') {

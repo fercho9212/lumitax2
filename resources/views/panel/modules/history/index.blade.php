@@ -1,4 +1,11 @@
 <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.15/api/fnReloadAjax.js">
+<style>
+tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+</style>
 <!--
 <table cellpadding="3" cellspacing="0" border="0" style="width: 67%; margin: 0 auto 2em auto;">
         <thead>
@@ -98,8 +105,32 @@
 </div>
   <script type="text/javascript">
   $(document).ready(function() {
+    $('#tablehistory tfoot th').each( function () {
+
+     var title = $(this).text();
+      $(this).html( '<input type="text" placeholder="Buscar Por:'+title+'" />' );
+
+    });
+
 
       var table=$('#tablehistory').DataTable( {
+
+        "dom": 'lBfrtip',
+
+        "buttons": [
+                    {
+                        extend: 'collection',
+                        text: 'Exportar',
+                        buttons: [
+                            'copy',
+                            'excel',
+                            'pdf',
+                            'print'
+                        ],
+                        className: 'btn btn-info',
+                    }
+                ],
+
             "ajax": {
                     "url": "/gethistory",
                     "type": "GET",
@@ -116,10 +147,22 @@
                 { data: 'payment' },
                 { data: 'price' },
                 { data: 'address_end' },
-                { data: 'date_end' },
+                { data: 'date_end' },]
 
-                  ]
-      } );
+
+    } );
+                table.columns().every( function () {
+                        var that = this;
+
+                     $( 'input', this.footer() ).on( 'keyup change', function () {
+                         if ( that.search() !== this.value ) {
+                             that
+                                 .search( this.value )
+                                 .draw();
+                         }
+                     });
+                 });
+
 
 
 

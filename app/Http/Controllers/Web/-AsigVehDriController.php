@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Controllers\Web;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Driver;
+use App\Models\Vehicle;
+use DB;
+
+class AsigVehDriController extends Controller
+{
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
+    public function create(){
+      $drivers=DB::table('drivers')->select('id','dri_cc as cc','dri_name as name')->get();
+      $vehicles=DB::table('vehicles')->select('id','placa','veh_model as model')->get();
+      $sql='';
+      $sql.='select d.id,d.dri_cc,d.dri_name, GROUP_CONCAT(DISTINCT(v.placa)) AS placa ';
+      $sql.='FROM drivers d INNER JOIN driver_vehicle dv ON d.id=dv.driver_id ';
+      $sql.='INNER JOIN vehicles v ON v.id=dv.vehicle_id  GROUP BY d.id,d.dri_cc,d.dri_name';
+      $driveh=DB::SELECT($sql);
+
+      return view('panel.modules.veh_driver.index',['drivers'=>$drivers,
+                                                    'vehicles'=>$vehicles,
+                                                    'drivehs'=>$driveh]);
+    }
+    public function ToAsign(Request $request){
+      $vehicle=Vehicle::find($request->vehicle);
+      $vehicle->drivers()->attach($request->driver);
+
+
+      // $vehicle->drivers()->sync((array) $request->driver);SEPARATOR '"'/'"'
+      //echo 'vehicle +>'.$request->vehicle.'DRIVER ->'.$request->driver;
+
+    }
+
+    public function destroy($id,$placa)
+    {
+
+       $array = explode(",", $placa);
+       $last=array_pop($array);
+       //DB::select( DB::raw("SELECT * FROM some_table WHERE some_col = '$someVariable'") )
+       $idv=DB::select("SELECT id FROM vehicles WHERE placa='$last'");
+       $driver = Driver::find($id);
+       $driver->vehicles()->detach($idv[0]->id);
+       echo 'ok';
+
+    }
+
+}

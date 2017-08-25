@@ -5,6 +5,14 @@
         </div>
         <div class="pull-left info">
             <p>{{ Auth::user()->name }}</p>
+            <p> @if (Auth::user()->typesrole_id==1)
+                    {{"SuperAdmin"}}
+                 @elseif (Auth::user()->typesrole_id==2)
+                    {{"Administrador"}}
+                @elseif (Auth::user()->typesrole_id==2)
+                    {{"Visitante"}}
+                 @endif
+                </p>
             <!-- Status -->
             <a href="#"><i class="fa fa-circle text-success"></i>Panel</a>
         </div>
@@ -29,26 +37,33 @@
 
 
     <li class="treeview">
+
         <a href="#"><i class='fa fa-link'></i> <span>Conductores</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-            <li class="active"><a href="javascript:void(0);" onclick="load_frm(1);">Crear</a></li>
+            @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2) <li class="active"><a href="javascript:void(0);" onclick="load_frm(1);">Crear</a></li> @endif
             <li ><a href="javascript:void(0);" onclick="load_frm(2);">Ver</a></li>
         </ul>
+
+
     </li>
     <li><a href="javascript:void(0);" onclick="load_frm(10);"><i class='fa fa-link'></i> <span>Usuarios</span></a></li>
     <li><a href="javascript:void(0);" onclick="load_frm(20);"><i class='fa fa-link'></i> <span>Asignación</span></a></li>
     <li class="treeview">
         <a href="#"><i class='fa fa-link'></i> <span>Vehículos</span> <i class="fa fa-angle-left pull-right"></i></a>
         <ul class="treeview-menu">
-            <li><a href="javascript:void(0);"  onclick="load_frm(32);">Crear</a></li>
+          @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)   <li><a href="javascript:void(0);"  onclick="load_frm(32);">Crear</a></li>@endif
             <li><a href="javascript:void(0);"  onclick="load_frm(30);">Vehículos Taxi</a></li>
             <li><a href="javascript:void(0);"  onclick="load_frm(31);">Vehículos Lujo</a></li>
             <li><a href="javascript:void(0);"  onclick="load_frm(33);">Vehículos Premium</a></li>
         </ul>
     </li>
-
+    <li><a href="javascript:void(0);" onclick="load_frm(20);"><i class='fa fa-link'></i> <span>Asignación</span></a></li>
     <li><a href="javascript:void(0);" onclick="load_frm(40);"><i class='fa fa-link'></i> <span>Seguros</span></a></li>
     <li><a href="javascript:void(0);" onclick="load_frm(50);"><i class='fa fa-link'></i> <span>Historial</span></a></li>
+    @if (Auth::user()->typesrole_id==1)
+            <li><a href="javascript:void(0);" onclick="load_frm(60);"><i class='fa fa-link'></i> <span>Administradores</span></a></li>
+   @endif
+
 
 
 </ul><!-- /.sidebar-menu -->

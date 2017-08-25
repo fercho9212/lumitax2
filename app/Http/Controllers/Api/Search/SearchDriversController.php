@@ -25,8 +25,8 @@ class SearchDriversController extends Controller
         $sql.=" INNER JOIN driver_vehicle dv ON d.id = dv.driver_id ";
         $sql.=" INNER JOIN vehicles v ON dv.vehicle_id = v.id ";
         $sql.=" WHERE ";
-        $sql.=" (v.baul_id = ? AND v.space_id = ?)";
-        $sql.=" AND v.leveles_id = ?";
+        $sql.=" (v.baul_id = ? AND v.space_id = ?) AND (d.apistate_id=1) AND(dv.opt=1)";
+        $sql.=" AND (v.leveles_id = ?)";
         $driver=DB::SELECT($sql,array($baul,$space,$type));
 
         foreach ($driver as $dri) {
