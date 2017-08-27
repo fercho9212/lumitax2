@@ -18,7 +18,7 @@ class CreateDriverVehicleTable extends Migration
             $table->integer('driver_id')->unsigned();
             $table->integer('vehicle_id');
             $table->integer('payments_id')->default(0);
-            $table->boolean('select')->default(0);//0->No Select 1->Vehiculo Seleccionado
+            $table->boolean('opt')->default(0);//0->No Select 1->Vehiculo Seleccionado
             $table->timestamps();
         });
     }

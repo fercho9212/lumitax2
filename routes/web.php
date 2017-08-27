@@ -77,6 +77,11 @@ Route::group(['namespace' => 'Web'], function () {
     Route::post('asig/create', 'AsigVehDriController@ToAsign');
     Route::delete('asig/delete/{id}/{placa}', 'AsigVehDriController@destroy');
 
+
+    //Tarjeta de control
+    Route::get('tcontrol', 'TcontrolController@index');
+    Route::post('tcontrol/search', 'TcontrolController@searchDriver'); //Busca conductor
+    Route::post('tcontrol/store', 'TcontrolController@store'); //Inserta Conductor
     //Seguro
     Route::resource('insurance','InsuranceController');
 

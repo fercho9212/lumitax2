@@ -24,6 +24,7 @@ function load_frm(opt){
   // Functions of module history
   if (opt==50){var url="/history/"; console.log('Entra a history')}
   if (opt==60){var url="/users/"; console.log('Entra a Administradores')}
+  if (opt==70){var url="/tcontrol/"; console.log('Entra a toperaction')}
 
     $.ajax({
           async: true,
