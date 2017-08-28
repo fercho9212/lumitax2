@@ -1,9 +1,11 @@
+@include('panel.modules.tcontrol.forms.edit')
+
 <div class="row">
 
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
   <div class="col-md-12">
     <div class="col-md-6 col-md-offset-3">
-      <center><label for="exampleInputEmail1" data-live-search="true">Clase</label></center>
+      <center><label for="exampleInputEmail1" data-live-search="true">Seleccione un Conductor</label></center>
       <div class="input-group">
         <select  name="dv_driver" class="selectpicker show-menu-arrow" id="selectDriver" data-live-search="true">
           <option value="">Seleccione...</option>
@@ -12,20 +14,23 @@
           @endforeach
         </select>
       </div>
+        <br><br>
     </div>
   </div><!--Cierra col-md-12-->
+
   <div id="driver" class="" >
     <form class="" action="index.html" method="post" id="tcontrol">
       {!! csrf_field() !!}
+
       <input type="hidden" name="dv_driver" id="dv_driver" value="">
-      <div class="col-md-12">
+      <div class="col-md-8 col-md-offset-2">
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label for="exampleInputEmail1">Nombre</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="dri_name" type="text" maxlength="30" class="form-control" id="dri_name" placeholder="Enter name" >
+                <input name="dri_name" type="text" maxlength="30" class="form-control" id="dri_name" placeholder="Enter name" disabled>
               </div>
               <div class="help-block with-errors"></div>
             </div>
@@ -35,13 +40,12 @@
               <label for="exampleInputPassword1">Identificación</label>
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="dri_cc" type="text" maxlength="30" class="form-control" id="dri_cc" placeholder="Enter last" >
+                <input name="dri_cc" type="text" maxlength="30" class="form-control" id="dri_cc" placeholder="Enter last" disabled>
               </div>
               <div class="help-block with-errors"></div>
             </div>
           </div>
         </div>
-
         <div class="row">
           <div class="col-md-6">
 
@@ -147,8 +151,6 @@
                 </tr>
             </thead>
             @foreach($dvs as $dv)
-
-
                     <tr class="driver{{$dv->id}}">
                     <td>{{$dv->dri_name}}</td>
                     <td>{{$dv->dri_cc}}</td>
@@ -159,9 +161,24 @@
                     <td>{{$dv->dv_date_ex}}</td>
                     <td>{{$dv->dv_date_ven}}</td>
                     <td>
-                      <button   class="btn-circle-medium btn btn-danger" data-toggle="modal"  data-target="#dataDelete" onclick="delete_passenger({{$dv->id}})">
-                          <span class="glyphicon glyphicon-trash"></span>
-                      </button>
+
+                      <button  class="update btn btn-info btn-circle-medium" data-id="{{$dv->id}}"
+                                            data-name="{{$dv->dri_name}}"
+                                            data-cc="{{$dv->dri_cc}}"
+                                            data-placa="{{$dv->placa}}"
+                                            data-no="{{$dv->dv_no}}"
+                                            data-nit="{{$dv->dv_nit}}"
+                                            data-state="{{$dv->idstate}}"
+                                            data-date_ex="{{$dv->dv_date_ex}}"
+                                            data-date_ven="{{$dv->dv_date_ven}}"
+                                            data-iddriver="{{$dv->idriver}}"
+                                            data-idvehicle="{{$dv->idvehicle}}"
+                              data-toggle="modal" data-target="#edit_passenger" >
+                              <span class="glyphicon glyphicon-edit"></span>
+                          </button>
+                          <button   class="btn-circle-medium btn btn-danger" data-toggle="modal"  data-target="#dataDelete" onclick="del_tjopt({{$dv->id}})">
+                              <span class="glyphicon glyphicon-trash"></span>
+                          </button>
                     </td>
                     </tr>
         @endforeach
@@ -175,14 +192,26 @@
 
 <script>
 $(function() {
+
   $('#date_i').datetimepicker({
 
     format: 'YYYY-MM-DD'
   });
-  $('#date_f').datetimepicker({
 
-    format: 'YYYY-MM-DD'
-  });
+
+
+        $('#date_f').datetimepicker({
+            useCurrent: false, //Important! See issue #1075
+            format: 'YYYY-MM-DD',
+        });
+        $("#date_i").on("dp.change", function (e) {
+            $('#date_f').data("DateTimePicker").minDate(e.date);
+        });
+        $("#date_f").on("dp.change", function (e) {
+            $('#date_i').data("DateTimePicker").maxDate(e.date);
+        });
+
+
 $('#table').dataTable();
 $('.selectpicker').selectpicker();
   $('#selectDriver').on('change', function(){
@@ -199,7 +228,7 @@ $('.selectpicker').selectpicker();
 
         success: function(data){
 
-            console.log(data.rpt);
+            console.log("dsads"+data.rpt);
             $("#dri_name").val(data.rpt[0].dri_name);
             $("#dri_cc").val(data.rpt[0].dri_cc);
             $("#dv_driver").val(data.rpt[0].id);
@@ -221,6 +250,7 @@ $('.selectpicker').selectpicker();
   });
   $('#tcontrol').submit(function(e){
       e.preventDefault();
+      var urlSuccess="/tcontrol/";
       var frm=$(this);
       var data=frm.serialize();
       var url='/tcontrol/store'
@@ -229,16 +259,18 @@ $('.selectpicker').selectpicker();
           url:url,
           data:data,
           success: function(data){
-            console.log(data.rpt)
+            console.log(data);
             if (data.rpt=='success') {
                       loadData('/tcontrol',data);
                       swal("Registro Insertado!", "You clicked the button!", "success")
             }else if (data=='1062') {//Captura una excepción de duplicidad de Error
               swal("Error!", "Dato ya se encuentra registrado!", "warning")
-              loadData(urlView,data);
+              loadData(urlSuccess,data);
             }else{
               alert('Error');
             }
+          },error: function(data){
+            msgError(data)
           },
 
       });
@@ -265,6 +297,42 @@ $('.selectpicker').selectpicker();
       });
 
   });
+ function del_tjopt(id){
+    var urlSuccess="/tcontrol/";
+    swal({
+          title: "Estas seguro?",
+          text: "Desea Eliminar el La Asignación y la tarjeta de control!",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Si, Eliminar!",
+          closeOnConfirm: false
+  },
+  function(){
+    $.ajax({
+              type: 'DELETE',
+              url: '/tcontrol/'+id+'/delete',
+              data: {
+                  '_token': $('input[name=_token]').val(),
+              },
+              success: function(data) {
+                    if (data.rpt=='success') {
+                      swal("Deleted!", "Registro Eliminado.", "success");
+                      loadData(urlSuccess,data);
+                    }else if (data.rpt=='error') {
+                      swal("Error!", "No se pudo Eliminar", "warning")
+                      loadData(urlSuccess,data);
+                    }
+                    console.log(data);
+                  //swal("Deleted!", "Registro Eliminado.", "success");
+                  //$('#table').find('.driver'+id).remove();
+              },error: function(jqXhr, json, errorThrown){
+                console.log(jqXhr+json+errorThrown);
+              }
+          });
+      });
+  }
+  /*
   $(document).on('click', '.delete_driveh', function() {
     var id=$(this).data('id');
     var placa=$(this).data('placa');
@@ -295,5 +363,6 @@ $('.selectpicker').selectpicker();
               }
           });
       });
-  });
+      */
+
 </script>

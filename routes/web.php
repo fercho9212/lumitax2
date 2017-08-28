@@ -82,6 +82,9 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('tcontrol', 'TcontrolController@index');
     Route::post('tcontrol/search', 'TcontrolController@searchDriver'); //Busca conductor
     Route::post('tcontrol/store', 'TcontrolController@store'); //Inserta Conductor
+    Route::delete('tcontrol/{id}/delete', 'TcontrolController@destroy'); //Eliminat tarjeta de control
+    Route::put('tcontrol/{id}/update', 'TcontrolController@update'); //Eliminat tarjeta de control
+
     //Seguro
     Route::resource('insurance','InsuranceController');
 
