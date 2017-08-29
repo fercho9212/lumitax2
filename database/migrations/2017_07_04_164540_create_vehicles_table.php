@@ -24,7 +24,7 @@ class CreateVehiclesTable extends Migration
 
           //$table->text('veh_observa');
           $table->integer('class_id')->unsigned();
-          $table->integer('state_id')->default(1)->index('fk_vehicles_states');
+          $table->integer('state_id')->index('fk_veh_state');
           $table->integer('typevehicle_id')->unsigned();//Motocicleta ,camioneta,taxi
           //$table->integer('typelines_id')->default(1)->index('fk_vehicles_lines');
           $table->integer('brand_id')->unsigned();//Marca, yhamaha,chevrolet

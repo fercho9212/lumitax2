@@ -12,6 +12,7 @@ use App\Models\Brandvehicle AS Brand;
 use App\Models\Typebodywork AS Bodywork;
 use App\Models\Baul AS Baul;
 use App\Models\Spacevehicle AS Space;
+use App\Models\State;
 use App\Http\Requests\Web\VehicleRequest;
 use App\Http\Requests\Web\VehicleComplementRequest;
 
@@ -58,12 +59,14 @@ class VehiclesController extends Controller
         $bodywork= Bodywork::all();
         $space=    Space::all();
         $baul=     Baul::all();
+        $state=    State::all();
         return view('panel.modules.vehicle.forms.create',['types'=>$type,
                                                           'brands'=>$brand,
                                                           'class'=>$class,
                                                           'bodyworks'=>$bodywork,
                                                           'spaces'=>$space,
                                                           'baules'=>$baul,
+                                                          'states'=>$state,
                                                         ]);
     }
 
@@ -79,7 +82,7 @@ class VehiclesController extends Controller
       //echo $request->all();
       try {
         $vehicle= New Vehicle();
-        $vehicle->placa           =$request->placa;
+        $vehicle->placa           =strtoupper($request->placa);
         $vehicle->veh_model       =$request->veh_model;
         $vehicle->veh_motor       =$request->veh_motor;
         //$vehicle->serie     =$request->veh_serie;
@@ -91,6 +94,7 @@ class VehiclesController extends Controller
         $vehicle->typevehicle_id  =$request->typevehicle_id;
         $vehicle->baul_id         =$request->baul_id;
         $vehicle->space_id        =$request->spacevehicle_id;
+        $vehicle->state_id        =$request->state_id;
 
         $vehicle->leveles_id= $request->leveles_id;
         $vehicle->save();
@@ -120,7 +124,7 @@ class VehiclesController extends Controller
         $vehicle->leveles_id      =$request->leveles_id;
         $vehicle->baul_id         =$request->baul_id;
         $vehicle->space_id        =$request->spacevehicle_id;
-
+        $vehicle->state_id        =$request->state_id;
         $vehicle->save();
         $complemt=New Vehiclecomplement();
         $complemt->id=$vehicle->id;
@@ -178,16 +182,19 @@ class VehiclesController extends Controller
     public function edit($id)
     {
         $vehicle=Vehicle::findOrFail($id);
-        $type   =  Type::all();
-        $brand  =  Brand::all();
-        $class  =  Clase::all();
+        $type    =  Type::all();
+        $brand   =  Brand::all();
+        $class   =  Clase::all();
         $bodywork= Bodywork::all();
+        $state   = State::all();
 
         return view('panel.modules.vehicle.ActionVehicle.forms.edit',['vehicle'=>$vehicle,
                                                                       'types'=>$type,
                                                                       'brands'=>$brand,
                                                                       'class'=>$class,
-                                                                      'bodyworks'=>$bodywork]);
+                                                                      'bodyworks'=>$bodywork,
+                                                                      'states'=>$state,
+                                                                    ]);
     }
 
     /**
@@ -211,6 +218,7 @@ class VehiclesController extends Controller
           $vehicle->brand_id        =$request->brand_id;
           $vehicle->typevehicle_id  =$request->typevehicle_id;
           $vehicle->leveles_id      =$request->leveles_id;
+          $vehicle->state_id        =$request->state_id;
           $vehicle->save();
           return response()->json(['rpt'=>'success']);
         } catch (\Exception $e) {
@@ -234,6 +242,7 @@ class VehiclesController extends Controller
         $vehicle->class_id        =$request->class_id;
         $vehicle->typevehicle_id  =$request->typevehicle_id;
         $vehicle->leveles_id      =$request->leveles_id;
+        $vehicle->state_id        =$request->state_id;
         $vehicle->save();
         $complemt->id=$vehicle->id;
         $complemt->vc_brakes=$request->vc_brakes;

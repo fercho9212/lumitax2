@@ -29,7 +29,7 @@ class DriversController extends Controller
     }
     public function index()
     {
-        $driver=driver::all();
+        $driver=driver::orderBy('created_at', 'DESC')->get();
         $licence=licence::all();
 
         return view('panel.modules.driver.forms.view',['drivers'=>$driver,'licences'=>$licence]);

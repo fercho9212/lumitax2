@@ -6,7 +6,7 @@
             <tr>
 
                 <th class="text-center">View</th>
-              @if (Auth::user()->typesrole_id==1 && Auth::user()->typesrole_id==2)  <th class="text-center">Action</th> @endif
+              @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)  <th class="text-center">Action</th> @endif
                 <th class="text-center">Placa</th>
                 <th class="text-center">Servicio</th>
                 <th class="text-center">Modelo</th>
@@ -29,7 +29,7 @@
                 <th class="text-center">Cilindranje</th>
                 <th class="text-center">Potencia</th>
                 <th class="text-center">Carrocería</th>
-
+                <th class="text-center">Estado</th>
             </tr>
         </thead>
         @foreach($vehicles as $vehicle)
@@ -37,7 +37,7 @@
 
                 <tr class="driver{{$vehicle->id}}">
                   <td></td>
-                  @if (Auth::user()->typesrole_id==1 && Auth::user()->typesrole_id==2)
+                  @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)
                     <td>
                       <a href="/vehicles/{{$vehicle->id}}/show">
                       <button   class="update btn btn-warning">
@@ -50,7 +50,7 @@
                               <span class="glyphicon glyphicon-trash"></span>
                           </button>
                       </td>
-                    @endif  
+                    @endif
                 <td>{{$vehicle->placa}}</td>
                 <td><?php
                   if ($vehicle->leveles_id=='1') {
@@ -81,7 +81,7 @@
                 <td>{{$vehicle->vehiclecomplement->vc_cylinder}}</td>
                 <td>{{$vehicle->vehiclecomplement->vc_power}}</td>
                 <td>{{$vehicle->vehiclecomplement->typebodywork->bodywork}}</td>
-
+                <td>{{$vehicle->state->state}}</td>
 
 
                 </tr>

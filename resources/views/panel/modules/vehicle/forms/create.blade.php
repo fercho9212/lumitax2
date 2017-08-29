@@ -130,7 +130,7 @@ $("form").keypress(function(e) {
                             var typ ="success";
                             var imageUrl ="/img/panel/premium.png";
                             SweetAlertWithImg(titl,typ,imageUrl);
-                            loadData('/vehicles/luxury');
+                            loadData('/vehicles/premium');
                       }
                       //console.log(':D'+data.rpt);
                     },error:function(data){

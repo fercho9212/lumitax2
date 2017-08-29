@@ -29,6 +29,7 @@
                 <th class="text-center">Cilindranje</th>
                 <th class="text-center">Potencia</th>
                 <th class="text-center">Carrocería</th>
+                <th class="text-center">Estado</th>
 
             </tr>
         </thead>
@@ -80,8 +81,8 @@
                 <td>{{$vehicle->vehiclecomplement->vc_cylinder}}</td>
                 <td>{{$vehicle->vehiclecomplement->vc_power}}</td>
                 <td>{{$vehicle->vehiclecomplement->typebodywork->bodywork}}</td>
-
-
+                <td>{{$vehicle->state->state}}</td>
+                
 
                 </tr>
 

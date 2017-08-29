@@ -1,5 +1,5 @@
 @include('panel.modules.tcontrol.forms.edit')
-
+@include('panel.modules.tcontrol.forms.view')
 <div class="row">
 
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -18,122 +18,13 @@
     </div>
   </div><!--Cierra col-md-12-->
 
+
+</div>
   <div id="driver" class="" >
-    <form class="" action="index.html" method="post" id="tcontrol">
-      {!! csrf_field() !!}
-
-      <input type="hidden" name="dv_driver" id="dv_driver" value="">
-      <div class="col-md-8 col-md-offset-2">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Nombre</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="dri_name" type="text" maxlength="30" class="form-control" id="dri_name" placeholder="Enter name" disabled>
-              </div>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="exampleInputPassword1">Identificación</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="dri_cc" type="text" maxlength="30" class="form-control" id="dri_cc" placeholder="Enter last" disabled>
-              </div>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-
-              <center><label for="exampleInputEmail1" data-live-search="true">Vehículo</label></center>
-              <div class="input-group">
-                <select  name="dv_vehicle" class="selectpicker show-menu-arrow" id="vehicle" data-live-search="true">
-                  <option value="">Seleccione...</option>
-
-                </select>
-              </div>
-            </div>
-
-          <div class="col-md-6">
-            <center><label for="exampleInputEmail1" data-live-search="true">Estado</label></center>
-            <div class="input-group">
-
-              <select  name="dv_state" class="selectpicker show-menu-arrow" id="state" data-live-search="true">
-                <option value="">Seleccione...</option>
-              </select>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Nit Empresa</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="dv_nit" type="text" maxlength="30" class="form-control" id="dri_name" placeholder="Enter name" >
-              </div>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="exampleInputPassword1">Número Único Trj Control</label>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="dv_no" type="text" maxlength="30" class="form-control" id="dri_cc" placeholder="Enter last" >
-              </div>
-              <div class="help-block with-errors"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="exampleInputPassword1">Fecha Desde</label>
-              <div class='input-group date' >
-               <input name="dv_date_e" type='text' class="form-control" id='date_i'/>
-               <span class="input-group-addon">
-                   <i class="glyphicon glyphicon-calendar"></i>
-               </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Fecha hasta</label>
-              <div class='input-group date' >
-               <input name="dv_date_f" type='text' class="form-control" id='date_f'/>
-               <span class="input-group-addon">
-                   <i class="glyphicon glyphicon-calendar"></i>
-               </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-
-      <div class="row">
-
-        <div class="col-md-4 col-md-offset-4">
-            <br><br>
-            <center><button type="submit" class="btn btn-primary">Guardar</button><center>
-        </div>
-      </div>
-    </form>
-
-
+    @include('panel.modules.tcontrol.forms.create')
   </div>
 
-<div class="reload_table">
+<div class="reload_table" id="reload-table">
   <div class="table-responsive text-center">
     <div class="table-responsive text-center">
         <table class="table table-borderless" id="table">
@@ -161,7 +52,6 @@
                     <td>{{$dv->dv_date_ex}}</td>
                     <td>{{$dv->dv_date_ven}}</td>
                     <td>
-
                       <button  class="update btn btn-info btn-circle-medium" data-id="{{$dv->id}}"
                                             data-name="{{$dv->dri_name}}"
                                             data-cc="{{$dv->dri_cc}}"
@@ -171,11 +61,27 @@
                                             data-state="{{$dv->idstate}}"
                                             data-date_ex="{{$dv->dv_date_ex}}"
                                             data-date_ven="{{$dv->dv_date_ven}}"
-                                            data-iddriver="{{$dv->idriver}}"
+                                            data-iddriver="{{$dv->iddriver}}"
+                                            data-idvehicle="{{$dv->idvehicle}}"
+                              data-toggle="modal" data-target="#viewcontrol" >
+                              <span class="glyphicon glyphicon-eye-open"></span>
+                        </button>
+
+
+                      <button  class="update btn btn-warning btn-circle-medium" data-id="{{$dv->id}}"
+                                            data-name="{{$dv->dri_name}}"
+                                            data-cc="{{$dv->dri_cc}}"
+                                            data-placa="{{$dv->placa}}"
+                                            data-no="{{$dv->dv_no}}"
+                                            data-nit="{{$dv->dv_nit}}"
+                                            data-state="{{$dv->idstate}}"
+                                            data-date_ex="{{$dv->dv_date_ex}}"
+                                            data-date_ven="{{$dv->dv_date_ven}}"
+                                            data-iddriver="{{$dv->iddriver}}"
                                             data-idvehicle="{{$dv->idvehicle}}"
                               data-toggle="modal" data-target="#edit_passenger" >
                               <span class="glyphicon glyphicon-edit"></span>
-                          </button>
+                        </button>
                           <button   class="btn-circle-medium btn btn-danger" data-toggle="modal"  data-target="#dataDelete" onclick="del_tjopt({{$dv->id}})">
                               <span class="glyphicon glyphicon-trash"></span>
                           </button>
@@ -190,179 +96,4 @@
 
 </div>
 
-<script>
-$(function() {
-
-  $('#date_i').datetimepicker({
-
-    format: 'YYYY-MM-DD'
-  });
-
-
-
-        $('#date_f').datetimepicker({
-            useCurrent: false, //Important! See issue #1075
-            format: 'YYYY-MM-DD',
-        });
-        $("#date_i").on("dp.change", function (e) {
-            $('#date_f').data("DateTimePicker").minDate(e.date);
-        });
-        $("#date_f").on("dp.change", function (e) {
-            $('#date_i').data("DateTimePicker").maxDate(e.date);
-        });
-
-
-$('#table').dataTable();
-$('.selectpicker').selectpicker();
-  $('#selectDriver').on('change', function(){
-    var selected = $(this).find("option:selected").val();
-    var tok=$('input[name=_token').val();
-
-    var url='/tcontrol/search';
-    $('#vehicle').html('<option value="">Seleccione...</option>').selectpicker('refresh');
-    $('#state').html('<option value="">Seleccione...</option>').selectpicker('refresh');
-    $.ajax({
-        type:'POST',
-        url:url,
-        data:{ id: selected, _token : tok} ,
-
-        success: function(data){
-
-            console.log("dsads"+data.rpt);
-            $("#dri_name").val(data.rpt[0].dri_name);
-            $("#dri_cc").val(data.rpt[0].dri_cc);
-            $("#dv_driver").val(data.rpt[0].id);
-            var _options =""
-            $.each(data.vehicles, function(i, value) {
-                  _options +=('<option value="'+ value.id+'">'+ value.placa +'</option>');
-                });
-            $('#vehicle').append(_options);
-            $("#vehicle").selectpicker("refresh");
-
-            var _optionstate =""
-            $.each(data.states, function(i, value) {
-                  _optionstate +=('<option value="'+ value.id+'">'+ value.state +'</option>');
-                });
-            $('#state').append(_optionstate);
-            $("#state").selectpicker("refresh");
-        },
-    });
-  });
-  $('#tcontrol').submit(function(e){
-      e.preventDefault();
-      var urlSuccess="/tcontrol/";
-      var frm=$(this);
-      var data=frm.serialize();
-      var url='/tcontrol/store'
-      $.ajax({
-          type:'POST',
-          url:url,
-          data:data,
-          success: function(data){
-            console.log(data);
-            if (data.rpt=='success') {
-                      loadData('/tcontrol',data);
-                      swal("Registro Insertado!", "You clicked the button!", "success")
-            }else if (data=='1062') {//Captura una excepción de duplicidad de Error
-              swal("Error!", "Dato ya se encuentra registrado!", "warning")
-              loadData(urlSuccess,data);
-            }else{
-              alert('Error');
-            }
-          },error: function(data){
-            msgError(data)
-          },
-
-      });
-
-  });
-});
-
-
-
-  $('#asig_drvh').DataTable();
-  $('#asig_veh_dri').submit(function(e){
-      e.preventDefault();
-      var frm=$(this);
-      var data=frm.serialize();
-      var url='tcontrol/search'
-      $.ajax({
-          type:'POST',
-          url:url,
-          data:data,
-          success: function(data){
-              loadData('/asig',data);
-          },
-
-      });
-
-  });
- function del_tjopt(id){
-    var urlSuccess="/tcontrol/";
-    swal({
-          title: "Estas seguro?",
-          text: "Desea Eliminar el La Asignación y la tarjeta de control!",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#DD6B55",
-          confirmButtonText: "Si, Eliminar!",
-          closeOnConfirm: false
-  },
-  function(){
-    $.ajax({
-              type: 'DELETE',
-              url: '/tcontrol/'+id+'/delete',
-              data: {
-                  '_token': $('input[name=_token]').val(),
-              },
-              success: function(data) {
-                    if (data.rpt=='success') {
-                      swal("Deleted!", "Registro Eliminado.", "success");
-                      loadData(urlSuccess,data);
-                    }else if (data.rpt=='error') {
-                      swal("Error!", "No se pudo Eliminar", "warning")
-                      loadData(urlSuccess,data);
-                    }
-                    console.log(data);
-                  //swal("Deleted!", "Registro Eliminado.", "success");
-                  //$('#table').find('.driver'+id).remove();
-              },error: function(jqXhr, json, errorThrown){
-                console.log(jqXhr+json+errorThrown);
-              }
-          });
-      });
-  }
-  /*
-  $(document).on('click', '.delete_driveh', function() {
-    var id=$(this).data('id');
-    var placa=$(this).data('placa');
-    swal({
-          title: "Estas seguro?",
-          text: "Desea Eliminar el La Asignación!",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#DD6B55",
-          confirmButtonText: "Si, Eliminar!",
-          closeOnConfirm: false
-  },
-  function(){
-    $.ajax({
-              type: 'DELETE',
-              url: '/asig/delete/'+id+'/'+placa,
-              data: {
-                  '_token': $('input[name=_token]').val(),
-              },
-              success: function(data) {
-                    if (data=='ok') {
-                      swal("Deleted!", "Registro Eliminado.", "success");
-                      loadData('/asig',data);
-                    }
-                    console.log(data);
-                  //swal("Deleted!", "Registro Eliminado.", "success");
-                  //$('#table').find('.driver'+id).remove();
-              }
-          });
-      });
-      */
-
-</script>
+<script src="{{ asset('/js/modules/tcontrol_create.js') }}" type="text/javascript"></script>

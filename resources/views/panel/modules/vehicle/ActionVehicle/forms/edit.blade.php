@@ -176,6 +176,21 @@
         </div>
         <div class="col-md-4">
 
+            <div class="form-group">
+            {!! Form::Label('item', 'Estado:') !!}
+            <select name="state_id"    class="custom-select form-control selectpicker" data-live-search="true" required>
+              <option value="">Seleccione...</option>
+              @foreach($states as $state)
+                  <option value="{{$state->id}}" @if($state->id==$vehicle->state_id) selected='selected' @endif >{{$state->state}}</option>
+              @endforeach
+            </select>
+            <div class="help-block with-errors"></div>
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
           <div class="form-group">
             <label for="exampleInputEmail1"></label>
             <div class="input-group">
@@ -373,8 +388,8 @@
                   </div> {{--End  box--}}
 
 <?php  }?>
-<button type="button" class="btn btn-secondary" >Guardar</button>
-<button  type="submit"   class="btn btn-primary">Submit</button>
+{{--<button type="button" class="btn btn-secondary" >Guardar</button>--}}
+<button  type="submit"   class="btn btn-primary">Guardar</button>
 </form>
 <script type="text/javascript">
 

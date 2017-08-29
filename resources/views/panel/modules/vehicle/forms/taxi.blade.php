@@ -142,7 +142,17 @@
             </div>
           </div>
         </div>
-
+        <div class="col-md-4">
+          <div class="form-group">
+          {!! Form::Label('item', 'Estado:') !!}
+          <select name="state_id"  data-trigger="change"  class="custom-select form-control selectpicker" data-live-search="true" required>
+            @foreach($states as $state)
+              <option  data-icon="glyphicon glyphicon-compressed" value="{{$state->id}}">{{$state->state}}</option>
+            @endforeach
+          </select>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
       </div>
   </div>{{--End row--}}
 

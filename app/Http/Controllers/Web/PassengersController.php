@@ -23,7 +23,7 @@ class PassengersController extends Controller
 
     public function index()
     {
-        $passenger=Passenger::orderBy("created_at",'ASC')->get();
+        $passenger=Passenger::orderBy('created_at', 'DESC')->get();
         $state=State::all();
         return view('panel.modules.passenger.index',['passengers'=>$passenger],['states'=>$state]);
     }

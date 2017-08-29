@@ -44,19 +44,22 @@
       <table class="table table-borderless" id="table">
           <thead>
               <tr>
+                  <th class="text-center">Calificación</th>
                   <th class="text-center">Nombre</th>
                   <th class="text-center">Apellaido</th>
                   <th class="text-center">Email</th>
                   <th class="text-center">Tel:Movíl</th>
                   <th class="text-center">Estado</th>
-                  @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)<th class="text-center">Acción</th>@endif
                   <th class="text-center">Registrado el</th>
+                  @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)<th class="text-center">Acción</th>@endif
+
               </tr>
           </thead>
           @foreach($passengers as $passenger)
 
 
                   <tr class="driver{{$passenger->id}}">
+                  <td><span class="glyphicon glyphicon-star-empty"></span>{{$passenger->pas_qual}}</td>
                   <td>{{$passenger->pas_name}}</td>
                   <td>{{$passenger->pas_last}}</td>
                   <td>{{$passenger->email}}</td>

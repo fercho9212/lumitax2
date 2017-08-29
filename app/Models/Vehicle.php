@@ -27,7 +27,9 @@ class Vehicle extends Model
     public function brandvehicle(){
       return $this->belongsTo('App\Models\Brandvehicle','brand_id');
     }
-
+    public function state(){
+      return $this->belongsTo('App\Models\State');
+    }
     public function drivers(){
       return $this->belongsToMany('App\Models\Driver')->withTimestamps();
     }
