@@ -96,7 +96,7 @@ class VehiclesController extends Controller
         $vehicle->space_id        =$request->spacevehicle_id;
         $vehicle->state_id        =$request->state_id;
 
-        $vehicle->leveles_id= $request->leveles_id;
+        $vehicle->leveles_id      =$request->leveles_id;
         $vehicle->save();
         $rpt='taxi';
         return response()->json(['rpt'=>$rpt]);

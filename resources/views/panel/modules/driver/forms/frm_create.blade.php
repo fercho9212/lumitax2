@@ -22,7 +22,7 @@
   <!-- Change /upload-target to your upload address -->
 
 
-<form role="form" method="POST" id="create_driver" action="create_driver" class="form_i" data-toggle="validator" enctype="multipart/form-data">
+<form role="form" method="POST" id="create_driver" action="create_driver" class="form_i" data-toggle="validator" enctype="multipart/form-data" data-toggle="validator">
   <!-- start roe-->
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
@@ -251,7 +251,6 @@
         <div class="box-header with-border">
           <h3 class="box-title">Datos de Acceso</h3>
         </div>
-
         <div class="row">
         <div class="col-md-12">
             <div class="">

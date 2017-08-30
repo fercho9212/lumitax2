@@ -44,4 +44,25 @@ class DocumentsController extends Controller
       return response()->json(['rpt'=>'Error']);
     }
   }
+  public function update(DocumentRequest $request,$id){
+    try {
+
+      $document=Document::findOrFail($id);
+      $document->doc_company  =    $request->doc_company;
+      $document->doc_policy   =    $request->doc_policy;
+      $document->description=  $request->description;
+      $document->doc_datei    =    $request->doc_datei;
+      $document->doc_datef    =    $request->doc_datef;
+      if ($document->save()) {
+         $rpt="success";
+      }else {
+        $rpt="error";
+      }
+      return response()->json(['rpt'=>$rpt]);
+    } catch (\Exception $e) {
+      return response()->json(['rpt'=>'error try']);
+    }
+
+
+  }
 }

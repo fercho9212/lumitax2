@@ -415,7 +415,7 @@
                           if (data.rpt=='success') {
                             console.log('loaddd.....');
 
-                            var url='/drivers/'+id+'/edit'
+                            var url='/drivers/';
                             swal("Registro actualizado!", "You clicked the button!", "success");
                             loadData(url,data);
                           }else {

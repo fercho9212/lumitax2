@@ -25,6 +25,7 @@ function load_frm(opt){
   if (opt==50){var url="/history/"; console.log('Entra a history')}
   if (opt==60){var url="/users/"; console.log('Entra a Administradores')}
   if (opt==70){var url="/tcontrol/"; console.log('Entra a toperaction')}
+  if (opt==80){ console.log('Entra a Publicidad')}
 
     $.ajax({
           async: true,

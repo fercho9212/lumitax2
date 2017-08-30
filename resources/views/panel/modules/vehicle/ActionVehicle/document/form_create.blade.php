@@ -17,7 +17,7 @@
         <label for="exampleInputPassword1">Compañia</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input name="doc_company" type="text" maxlength="30" class="form-control " id="exampleInputPassword1" placeholder="Password" required>
+          <input name="doc_company" type="text" maxlength="30" class="form-control " id="exampleInputPassword1" placeholder="Compañia" required>
         </div>
         <div class="help-block with-errors"></div>
       </div>
@@ -27,7 +27,7 @@
         <label for="exampleInputPassword1">No Poliza</label>
         <div class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-          <input name="doc_policy" type="text" maxlength="30" class="form-control " id="exampleInputPassword1" placeholder="Password" required>
+          <input name="doc_policy" type="text" maxlength="30" class="form-control " id="exampleInputPassword1" placeholder="No poliza" required>
         </div>
         <div class="help-block with-errors"></div>
       </div>
@@ -70,10 +70,12 @@
       </div>
     </div>
   </div>
-</div>
 
+</div>
     <div class="modal-footer">
-      <button  data-idv="{{$id}}" type="submit"   class="btn btn-primary">Submit</button>
+      <button  data-idv="{{$id}}" type="submit"   class="btn btn-primary">Guardar</button>
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
   </form>
+
+<script src="{{ asset('/js/modules/documents_all.js') }}" type="text/javascript"></script>

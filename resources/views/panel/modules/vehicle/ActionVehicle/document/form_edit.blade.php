@@ -1,7 +1,9 @@
 
-<form class="" action="index.html" method="post">
+<form class="" action="index.html" method="post" id="edit_doc">
   <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
   <input type="hidden" name="vehicle_id" id="idvehicle" value="{{$id}}">
+  <input type="hidden" name="doc_id" id="id">
+
 
   <div class="row">
 
@@ -70,6 +72,7 @@
     </div>
 </form>
 <script>
+
 /*
       var insu = $('#insurance_id').val();
       console.log('->'+insu)

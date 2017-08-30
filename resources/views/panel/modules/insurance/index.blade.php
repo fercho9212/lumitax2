@@ -26,7 +26,7 @@
                 <th>Insurance</th>
                 <th>Code</th>
                 <th>Descripction</th>
-                @if (Auth::user()->typesrole_id==1 && Auth::user()->typesrole_id==2)  <th>Action</th>@endif
+                @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)  <th>Action</th>@endif
 
             </tr>
         </thead>
@@ -37,7 +37,7 @@
                       <td>{{$insurce->ins_name}}</td>
                       <td>{{$insurce->ins_code}}</td>
                       <td>{{$insurce->ins_description}}</td>
-                      @if (Auth::user()->typesrole_id==1 && Auth::user()->typesrole_id==2)<td>
+                      @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)<td>
                           <button type="button" class="btn btn-info" name="button" data-id="{{$insurce->id}}"
                                                               data-name="{{$insurce->ins_name}}"
                                                               data-code="{{$insurce->ins_code}}"

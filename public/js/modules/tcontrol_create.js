@@ -19,7 +19,23 @@ $(function() {
         });
 
 
-$('#table').dataTable();
+$('#table').dataTable({
+  "dom": 'lBfrtip',
+
+  "buttons": [
+              {
+                  extend: 'collection',
+                  text: 'Exportar',
+                  buttons: [
+                      'copy',
+                      'excel',
+                      'pdf',
+                      'print'
+                  ],
+                  className: 'btn btn-info',
+              }
+          ],
+});
 $('.selectpicker').selectpicker();
   $('#selectDriver').on('change', function(){
     var selected = $(this).find("option:selected").val();

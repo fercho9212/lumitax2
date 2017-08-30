@@ -40,7 +40,7 @@
                     <label for="exampleInputEmail1">Correo</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input tabindex="3" name="email" type="text" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
+                      <input tabindex="3" name="email" type="email" maxlength="30" class="form-control" id="exampleInputEmail1" placeholder="Enter email" required>
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -77,7 +77,7 @@
                   <div class="form-group">
                     <label for="exampleInputPassword1">Repetir Contraseña</label>
                     <div class="input-group">
-                      <input tabindex="6" name="password" type="text" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+                      <input tabindex="6" name="password" type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
                       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                     </div>
                   </div>
@@ -99,7 +99,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button  type="submit"   class="btn btn-primary">Submit</button>
+                <button  type="submit"   class="btn btn-primary">Guardar</button>
               </div>
             </form>
           </div>
@@ -112,7 +112,7 @@
 
   $(document).ready(function(){
 
-      //$('#create_passenger').validator();
+      $('#create_passenger').validator();
       $('#create_passenger').on('submit',function(e){
           e.preventDefault();
           var url='/passengers';
@@ -162,7 +162,6 @@
 
 
   });
-
 
 
 </script>
