@@ -10,6 +10,12 @@ use App\Models\Vehiclecomplement;
 use Illuminate\Support\Facades\Input;
 
 class VehImagesController extends Controller{
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
+
   public function create($id){//id del vehicles
     $vehicle=Vehicle::findOrFail($id);
     return view('panel.modules.vehicle.ActionVehicle.photos.index',['vehicle'=>$vehicle]);

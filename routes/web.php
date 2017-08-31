@@ -92,4 +92,7 @@ Route::group(['namespace' => 'Web'], function () {
     //Historial
     Route::get('history', 'HistoryController@viewHistory');
     Route::get('gethistory', 'HistoryController@getDataHistory');
+
+    //Publicidad
+    Route::resource('images', 'AdvertisingController');
 });
