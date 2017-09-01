@@ -81,6 +81,12 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     //Calificación
     Route::post('/qualification','Api\ApiDriversController@Qualification')->middleware('driver');
 
+    //Publicidad
+    Route::post('/imgp','Api\ApiDriversController@Advertising')->middleware('driver');
+    Route::post('/register','Api\ApiDriversController@Register');
+    Route::post('/register/vehicle','Api\ApivehiclesController@Register');
+    Route::post('/register/vehicle/luxury','Api\ApivehiclesController@RegisterLuxury');
+
 });
 
 ///REQUEST

@@ -17,6 +17,8 @@ class AddForeignKeysToDriversTable extends Migration
       {
         $table->foreign('state_id', 'fk_dri_state')->references('id')->on('states')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         $table->foreign('apistate_id', 'fk_dri_api_state')->references('id')->on('apistates')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+        $table->foreign('register_id', 'fk_register')->references('id')->on('typeregisters')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+
       });
     }
 

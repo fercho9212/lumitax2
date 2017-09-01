@@ -117,6 +117,9 @@ function ajaxDelete(urlDelte,token,urlSuccess){
             data: {
                 '_token': token,
             },
+            beforeSend:function(){
+              $("#contenido_principal").html($("#cargador_empresa").html());
+            },
             success: function(data) {
               // swal("Deleted!", "Registro Eliminado.", "success");
 
