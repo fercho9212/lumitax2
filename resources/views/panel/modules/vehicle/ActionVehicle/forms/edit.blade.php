@@ -55,7 +55,7 @@
                 <label for="exampleInputPassword1">Número de Motor</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></span>
-                  <input name="veh_motor" value={{$vehicle->veh_motor}} type="number" maxlength="15" class="form-control" id="exampleInputmotor" placeholder="Número de Motor" required>
+                  <input name="veh_motor" value={{$vehicle->veh_motor}} type="text" maxlength="15" class="form-control" id="exampleInputmotor" placeholder="Número de Motor" required>
                 </div>
                 <div class="help-block with-errors"></div>
               </div>
@@ -203,7 +203,7 @@
       </div>
   </div>
 </div>
-<?php if ($vehicle->leveles_id=='2' or $vehicle->leveles_id=='3') {?>
+@if ($vehicle->leveles_id=='2' or $vehicle->leveles_id=='3')
   <br><br>
   <div class="row">
       <div class="col-md-12">
@@ -387,7 +387,7 @@
                           {{--End SERVICE LEVEL OF LUJO--}}
                   </div> {{--End  box--}}
 
-<?php  }?>
+@endif
 {{--<button type="button" class="btn btn-secondary" >Guardar</button>--}}
 <button  type="submit"   class="btn btn-primary">Guardar</button>
 </form>

@@ -30,6 +30,7 @@
                 <th class="text-center">Potencia</th>
                 <th class="text-center">Carrocería</th>
                 <th class="text-center">Estado</th>
+                <th class="text-center">Medio</th>
             </tr>
         </thead>
         @foreach($vehicles as $vehicle)
@@ -79,9 +80,14 @@
                 <td>{{$vehicle->vehiclecomplement->vc_sillateria}}</td>
                 <td>{{$vehicle->vehiclecomplement->vc_cellar}}</td>
                 <td>{{$vehicle->vehiclecomplement->vc_cylinder}}</td>
-                <td>{{$vehicle->vehiclecomplement->vc_power}}</td>
-                <td>{{$vehicle->vehiclecomplement->typebodywork->bodywork}}</td>
+                <td>{{$vehicle->vehiclecomplement->vc_power}}
+                @if (empty($vehicle->vehiclecomplement->typebodywork_id))
+                  <td>{{'No registra'}}</td>
+                @else
+                    <td>{{$vehicle->vehiclecomplement->typebodywork->bodywork}}</td>
+                @endif
                 <td>{{$vehicle->state->state}}</td>
+                <td>{{$vehicle->typeregister->type}}</td>
 
 
                 </tr>

@@ -36,6 +36,10 @@ class Driver extends Authenticatable
     public function vehicles(){
       return $this->belongsToMany('App\Models\Vehicle')->withTimestamps();
     }
+    public function typeregister(){
+      return $this->belongsTo('App\Models\Typeregister','register_id');
+    }
+
     public function qual($iddriver,$value){
       try {
         $cant=DB::SELECT('select  COUNT(*) as sum FROM driver_passenger d WHERE d.driver_id=?',array($iddriver));

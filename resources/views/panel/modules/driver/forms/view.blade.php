@@ -22,6 +22,7 @@
                 <th class="text-center">Category</th>
                 <th class="text-center">Vigencia</th>
                 <th class="text-center">Registrado el</th>
+                <th class="text-center">Medio</th>
                 @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)<th class="text-center">Acción</th>@endif
             </tr>
         </thead>
@@ -39,6 +40,7 @@
                 <td>{{$driver->licence->categorylicence->category}}</td>
                 <td>{{$driver->licence->lic_validity}}</td>
                 <td>{{$driver->created_at}}</td>
+                <td>{{$driver->typeregister->type}}</td>
                 @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)
                     <td>  <button onclick="edit({{$driver->id}})" class="update btn btn-info" data-id="{{$driver->id}}"
                           data-name="{{$driver->name}}">

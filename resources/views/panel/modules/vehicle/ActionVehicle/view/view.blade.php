@@ -89,8 +89,11 @@
 
                         <td class="col-black">Potencia</td>
                         <td>{{$vehicle->vehiclecomplement->vc_power}}</td>
-                        <td class="col-black">Tipo de carroceria</td>
-                        <td>{{$vehicle->vehiclecomplement->typebodywork->bodywork}}</td>
+                        @if (empty($vehicle->vehiclecomplement->typebodywork_id))
+                          <td>{{'No registra'}}</td>
+                        @else
+                            <td>{{$vehicle->vehiclecomplement->typebodywork->bodywork}}</td>
+                        @endif
                       </tr>
               </tbody>
              </table>

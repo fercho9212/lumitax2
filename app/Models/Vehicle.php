@@ -37,12 +37,15 @@ class Vehicle extends Model
       return $this->hasMany('App\Models\Imagevehicle');
     }
 
-
     public function baul(){
       return $this->belongsTo('App\Models\baul','baul_id');
     }
     public function spacevehicle(){
       return $this->belongsTo('App\Models\baul','space_id');
+    }
+
+    public function typeregister(){
+      return $this->belongsTo('App\Models\Typeregister','register_id');
     }
 
 }

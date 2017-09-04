@@ -35,6 +35,7 @@ class CreateVehiclesTable extends Migration
           $table->integer('leveles_id')->default(1)->index('fk_vehicles_levels');
           //$table->boolean('document')->default(0);
           //$table->integer('classvehicles_id')->default(1)->index('fk_veh_class');
+          $table->integer('register_id')->unsigned()->default(1);
           $table->timestamps();
 
         });

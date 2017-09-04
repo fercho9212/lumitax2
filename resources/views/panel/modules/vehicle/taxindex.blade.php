@@ -13,7 +13,8 @@
                 <th class="text-center">Clase</th>
                 <th class="text-center">Marca</th>
                 <th class="text-center">Estado</th>
-                <th class="text-center">Documentos</th>
+                <th class="text-center">Medio</th>
+                <th class="text-center">Acción</th>
             </tr>
         </thead>
         @foreach($vehicles as $vehicle)
@@ -40,6 +41,7 @@
                 <td>{{$vehicle->classvehicle->class}}</td>
                 <td>{{$vehicle->brandvehicle->brand}}</td>
                 <td>{{$vehicle->state->state}}</td>
+                <td>{{$vehicle->typeregister->type}}</td>
               {{-- <td>
                   @if ($vehicle->document=='0')
                     <button onclick="add_document({{$vehicle->id}})" class="delete-modal  btn btn-primary" data-id="{{$vehicle->id}}"

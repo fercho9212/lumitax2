@@ -84,8 +84,9 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     //Publicidad
     Route::post('/imgp','Api\ApiDriversController@Advertising')->middleware('driver');
     Route::post('/register','Api\ApiDriversController@Register');
-    Route::post('/register/vehicle','Api\ApivehiclesController@Register');
-    Route::post('/register/vehicle/luxury','Api\ApivehiclesController@RegisterLuxury');
+
+
+    Route::post('/register/vehicle','Api\ApivehiclesController@Register')->middleware('driver');
 
 });
 

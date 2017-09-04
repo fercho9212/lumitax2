@@ -19,7 +19,8 @@ class AddForeignKeyToVehicles extends Migration
             $table->foreign('baul_id','fk_vehicles_baul')->references('id')->on('sizes')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('space_id','fk_vehicles_space')->references('id')->on('sizes')->onUpdate('RESTRICT')->onDelete('RESTRICT');
             $table->foreign('state_id', 'fk_veh_state')->references('id')->on('states')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-
+            $table->foreign('brand_id', 'fk_veh_brand')->references('id')->on('brandvehicles')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('register_id', 'fk_register_vehicle')->references('id')->on('typeregisters')->onUpdate('RESTRICT')->onDelete('RESTRICT');
            });
     }
 
