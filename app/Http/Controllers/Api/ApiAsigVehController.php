@@ -51,6 +51,23 @@ class ApiAsigVehController extends Controller
 
      }
 
+     public function ToAsignApi(Request $request){
+       DB::beginTransaction();
+       try {
+         $id_vehicle=$request->id_vehicle;
+         $id_driver=$request->id_driver;
+         $vehicle=Vehicle::find($id_vehicle);
+         $vehicle->drivers()->attach($id_driver);
+         DB::commit();
+         return response()->json(['rpt'=>'success']);
+       } catch (Exception $e) {
+         DB::rollback();
+         return response()->json(['rpt'=>'error']);
+       }
+
+
+     }
+
   }
 
 

@@ -65,13 +65,20 @@ class ApiVehiclesController extends Controller
             $vehicle->vehiclecomplement()->save($complemt);
       }
       DB::commit();
-      return response()->json(['rpt'=>'success']);
+      return response()->json(['rpt'=>'success','id'=>$vehicle->id]);
     } catch (\Exception $e) {
       DB::rollback();
       return response()->json(['rpt'=>'error try']);
     }
 
-
-
     }
+
+
+    public function RegisterImgs(Request $request){
+      print_r($request->all());
+    }
+
+
+
+
 }

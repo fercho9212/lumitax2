@@ -62,6 +62,9 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     //Destruye asignación
     Route::post('/destroyveh','Api\ApiAsigVehController@destroyAsign')->middleware('driver');
 
+    //Función que asigna un conductor automaticamente con el vehículo inscrito
+    Route::post('/assign','Api\ApiAsigVehController@ToAsignApi');
+
 
     //function que actualiza la localización del conductor
     Route::PUT('/update/location','Api\ApiDriversController@UpdateLocation')->middleware('driver');
@@ -87,6 +90,7 @@ Route::group(['prefix'=>'v1/drivers'],function(){
 
 
     Route::post('/register/vehicle','Api\ApivehiclesController@Register')->middleware('driver');
+    Route::post('/register/vehicle/img','Api\ApivehiclesController@RegisterImgs');
 
 });
 

@@ -86,36 +86,6 @@ class ApiDriversController extends Controller
       $advertising=Advertising::all();
       return response()->json(['rpt'=>$advertising]);
     }
-    public function Register(Request $request){
-      $validator = Validator::make($request->all(), [
-          'dri_name' => 'required',
-          'dri_last' => 'required',
-          'email' => 'required|email|unique:drivers',
-          'password' => 'required',
-          'dri_movil' => 'required',
-          'dri_photo' => 'required',
-      ]);
-      if ($validator->fails()) {
-          return response()->json(['error'=>$validator->errors(),'rpt'=>'error'], 200);
-      }
-      try {
-        $driver=new Driver();
-        $driver->dri_name=            $request->name;
-        $driver->dri_last=            $request->last;
-        $driver->dri_cc=              $request->cc;
-        $driver->dri_address=         $request->address;
-        $driver->dri_movil=           $request->movil;
-        $driver->dri_phone=           $request->phone;
-        $driver->dri_photo=           $request->photo;
-        $driver->email=               $request->email;
-        $driver->password=            $request->password;
-        $driver->state_id=            2;
-        $driver->register_id=         2;
-        $driver->save();
-      } catch (\Exception $e) {
-        return response()->json(['error'=>'try','rpt'=>'error'], 200);
-      }
-    }
 
 
     public function Register(Request $request){
@@ -144,9 +114,13 @@ class ApiDriversController extends Controller
         $driver->state_id=            2;
         $driver->register_id=         2;
         $driver->save();
-      } catch (\Exception $e) {
-        return response()->json(['error'=>'try','rpt'=>'error'], 200);
+        return response()->json(['rpt'=>'success','iddriver'=>$driver->id]);
+      } catch (Exception $e) {
+        return response()->json(['rpt'=>'error']);
       }
+
+
+
     }
 
   }
