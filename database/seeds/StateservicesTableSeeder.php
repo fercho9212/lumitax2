@@ -22,6 +22,13 @@ class StateservicesTableSeeder extends Seeder
         \DB::table('stateservices')->insert([
                 'state'      =>  'Finalizado',
         ]);
+        //estados de  la tabla request_user
+        \DB::table('stateservices')->insert([
+                'state'      =>  'Aceptado',
+        ]);
+        \DB::table('stateservices')->insert([
+                'state'      =>  'Rechazado',
+        ]);
 
     }
 }

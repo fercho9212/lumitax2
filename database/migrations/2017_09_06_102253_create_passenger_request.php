@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDriverVehicleTable extends Migration
+class CreatePassengerRequest extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateDriverVehicleTable extends Migration
      */
     public function up()
     {
-        Schema::create('driver_vehicle', function (Blueprint $table) {
+        Schema::create('passenger_stateservice', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('driver_id')->unsigned();
-            $table->integer('vehicle_id');
-          //  $table->integer('payments_id')->default(0);
-            $table->boolean('opt')->default(0);//0->No Select 1->Vehiculo Seleccionado
+            $table->integer('passenger_id')->unsigned();
+            $table->integer('stateservice_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateDriverVehicleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('driver_vehicle');
+        Schema::dropIfExists('request_user');
     }
 }

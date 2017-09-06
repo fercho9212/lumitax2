@@ -4,15 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Stateservice extends Model
+class Request extends Model
 {
-      protected $table="stateservice";
+      protected $table="requests";
       protected $primaryKey = 'id';
 /*
       public function passengers(){
         return $this->hasMany('App\Models\Passenger');
       }
       */
-
+      public function passengers(){
+        return $this->belongsToMany('App\Models\Passenger')->withTimestamps();
+      }
 
 }

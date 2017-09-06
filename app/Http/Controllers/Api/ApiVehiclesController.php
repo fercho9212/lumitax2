@@ -19,7 +19,6 @@ class ApiVehiclesController extends Controller
       'veh_model'       => 'required|max:4',
       'space_id'        => 'required|max:1',
       'baul_id'         => 'required|max:1',
-      'veh_serie'       => 'required|max:15',
       'veh_color'       => 'required|max:15',
       'brand_id'        => 'required|max:15',
       'leveles_id'      => 'required|max:1',
@@ -36,7 +35,7 @@ class ApiVehiclesController extends Controller
       $vehicle->veh_motor=        'No registra';
       $vehicle->veh_serie=        'No registra';
       $vehicle->veh_vin=          'No registra';
-      $vehicle->veh_color=        'No registra';
+      $vehicle->veh_color=        $request->veh_color;
       $vehicle->class_id=         $request->class_id;
       $vehicle->state_id=         2;
       $vehicle->typevehicle_id=   $request->typevehicle_id;

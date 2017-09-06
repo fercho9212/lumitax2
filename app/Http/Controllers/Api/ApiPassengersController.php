@@ -29,14 +29,21 @@ class ApiPassengersController extends Controller
   }
 
   public function Qualification(){
-
     $driver=new Driver;
     $iddriver=Input::get('iddriver');
     $value=Input::get('quali');
     $qualification=$driver->qual($iddriver,$value);
     return response()->json(['rpt'=>$qualification]);
-
     }
+    //Guarda las solicitudos del pasajero
+
+  public function Request(){
+    $id_user    =Input::get('id_user');
+    $id_request =Input::get('id_request');
+    $passenger  =Passenger::find($id_user);
+    $passenger->stateServices()->attach($id_request);
+    return response()->json(['rpt'=>'success']);
+  }
 
 
 }

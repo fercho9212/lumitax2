@@ -21,6 +21,11 @@ class Passenger extends Authenticatable
       public function state(){
         return $this->belongsTo('App\Models\State');
       }
+
+      public function stateServices(){
+        return $this->belongsToMany('App\Models\Stateservice')->withTimestamps();
+      }
+
       public function qual($id_passenger,$value){
           try {
             $cant=DB::SELECT('select  COUNT(*) as sum FROM driver_passenger d WHERE d.passenger_id=?',array($id_passenger));

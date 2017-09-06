@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use JWTAuth;
 use App\Models\Driver;
+use App\Models\Licence;
 use App\Models\Passenger;
 use App\Models\Advertising;
 use Illuminate\Support\Facades\Input;
@@ -95,27 +96,39 @@ class ApiDriversController extends Controller
           'email' => 'required|email|unique:drivers',
           'password' => 'required',
           'dri_movil' => 'required',
-          'dri_photo' => 'required',
       ]);
       if ($validator->fails()) {
           return response()->json(['error'=>$validator->errors(),'rpt'=>'error'], 200);
       }
+      DB::beginTransaction();
       try {
-        $driver=new Driver();
-        $driver->dri_name=            $request->dri_name;
-        $driver->dri_last=            $request->dri_last;
-        $driver->dri_cc=              $request->dri_cc;
-        $driver->dri_address=         $request->dri_address;
-        $driver->dri_movil=           $request->dri_movil;
-        $driver->dri_phone=           $request->dri_phone;
-        $driver->dri_photo=           $request->dri_photo;
-        $driver->email=               $request->email;
-        $driver->password=            $request->password;
-        $driver->state_id=            2;
-        $driver->register_id=         2;
-        $driver->save();
-        return response()->json(['rpt'=>'success','iddriver'=>$driver->id]);
+            $driver=new Driver();
+            $driver->dri_name=            $request->dri_name;
+            $driver->dri_last=            $request->dri_last;
+            $driver->dri_cc=              $request->dri_cc;
+            $driver->dri_address=         $request->dri_address;
+            $driver->dri_movil=           $request->dri_movil;
+            $driver->dri_phone=           $request->dri_phone;
+            $driver->dri_photo=           'No data';
+            $driver->email=               $request->email;
+            $driver->password=            bcrypt($request->password);
+            $driver->state_id=            2;
+            $driver->register_id=         2;
+            if($driver->save()){
+              $licence=new Licence();
+              $licence->id=                 $driver->id;
+              $licence->lic_no=             $request->dri_cc;
+              $licence->lic_validity=       $request->lic_validity;
+              $licence->category_id=        $request->category_id;
+              $licence->type_id=            $request->type_id;
+              $licence->save();
+              DB::commit();
+              return response()->json(['rpt'=>'success','iddriver'=>$driver->id]);
+            }else {
+              return response()->json(['rpt'=>'error']);
+            }
       } catch (Exception $e) {
+        DB::rollback();
         return response()->json(['rpt'=>'error']);
       }
 
