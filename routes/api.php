@@ -31,11 +31,10 @@ Route::group(['prefix'=>'v1/passengers'],function(){
     Route::post('/test','Api\ApiAuthpassenger@test')->middleware('passenger');
     //Calificación
     Route::post('/qualification','Api\ApiPassengersController@Qualification')->middleware('passenger');
+
+
     //Función que guarda las solicitudes del pasajero
-    Route::post('/request','Api\ApiPassengersController@Request');
-    Route::get('/',function(){
-      echo "string";
-    });
+    Route::post('/request','Api\ApiPassengersController@Request')->middleware('passenger');
 });
 /**
  * Route Drivers
@@ -89,7 +88,7 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/imgp','Api\ApiDriversController@Advertising')->middleware('driver');
     Route::post('/register','Api\ApiDriversController@Register');
 
-
+    //Registra un vehículo
     Route::post('/register/vehicle','Api\ApivehiclesController@Register');
     Route::post('/register/vehicle/img','Api\ApivehiclesController@RegisterImgs');
 

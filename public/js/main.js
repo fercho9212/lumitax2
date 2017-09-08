@@ -26,6 +26,7 @@ function load_frm(opt){
   if (opt==60){var url="/users/"; console.log('Entra a Administradores')}
   if (opt==70){var url="/tcontrol/"; console.log('Entra a toperaction')}
   if (opt==80){ var url="/images/"; console.log('Entra a toperaction')}
+  if (opt==90){ var url="/requests/"; console.log('Entra a request')}
 
     $.ajax({
           async: true,

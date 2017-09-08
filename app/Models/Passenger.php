@@ -41,4 +41,9 @@ class Passenger extends Authenticatable
         return $rpt;
       }
 
+     public function request(){
+       $rq=DB::SELECT('select ps.id,p.pas_name,p.pas_last,s.state,ps.created_at from passenger_stateservice ps INNER JOIN passengers p on  p.id=ps.passenger_id INNER JOIN stateservices s on s.id=ps.stateservice_id ORDER BY ps.created_at DESC');
+       return (array)$rq;
+     }
+
 }

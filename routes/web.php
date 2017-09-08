@@ -95,4 +95,7 @@ Route::group(['namespace' => 'Web'], function () {
 
     //Publicidad
     Route::resource('images', 'AdvertisingController');
+
+    //solicitudes
+    Route::resource('requests','RequestsController');
 });

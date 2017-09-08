@@ -59,7 +59,8 @@
     <li><a href="javascript:void(0);" onclick="load_frm(70);"><i class='fa fa-link'></i> <span>Tarjeta Operación</span></a></li>
     {{--<li><a href="javascript:void(0);" onclick="load_frm(20);"><i class='fa fa-link'></i> <span>Asignación</span></a></li> --}}
     <li><a href="javascript:void(0);" onclick="load_frm(40);"><i class='fa fa-link'></i> <span>Seguros</span></a></li>
-    <li><a href="javascript:void(0);" onclick="load_frm(50);"><i class='fa fa-link'></i> <span>Historial</span></a></li>
+    <li><a href="javascript:void(0);" onclick="load_frm(50);"><i class='fa fa-link'></i> <span>Historial Servicios</span></a></li>
+    <li><a href="javascript:void(0);" onclick="load_frm(90);"><i class='fa fa-link'></i> <span>Solicitudes</span></a></li>
     <li><a href="javascript:void(0);" onclick="load_frm(80);"><i class='fa fa-link'></i> <span>Publicidad</span></a></li>
     @if (Auth::user()->typesrole_id==1)
             <li><a href="javascript:void(0);" onclick="load_frm(60);"><i class='fa fa-link'></i> <span>Administradores</span></a></li>
