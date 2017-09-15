@@ -65,7 +65,8 @@ $(function(){
         dom: 'Bfrtip',
         buttons: [
              'pdf', 'print',
-        ]
+        ],
+        "order": [[ 9, "desc" ]]
     });
   $(document).on('click', '.delete-modal', function() {
     var previousWindowKeyDown = window.onkeydown;

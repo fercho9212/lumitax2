@@ -90,7 +90,13 @@
     </div>
 
 <script>
-  $('#table').dataTable();
+   $('#table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+             'pdf', 'print',
+           ],
+        "order": [[ 6, "desc" ]]
+    });
  function delete_passenger(id){
    var urlDelte='/passengers/'+id;
    var token=$('input[name=_token]').val();

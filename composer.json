@@ -9,6 +9,7 @@
         "acacha/admin-lte-template-laravel": "2.*",
         "caouecs/laravel-lang": "~3.0",
         "doctrine/dbal": "^2.5",
+        "dompdf/dompdf": "^0.8.0",
         "fzaninotto/faker": "^1.6",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.3.*",

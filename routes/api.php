@@ -78,12 +78,13 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('set/state','Api\ApiDriversController@setState')->middleware('driver');
 
     Route::get('/',function(){
-      echo "string";
+      echo "/";
     });
 
     //Calificación
     Route::post('/qualification','Api\ApiDriversController@Qualification')->middleware('driver');
 
+    
     //Publicidad
     Route::post('/imgp','Api\ApiDriversController@Advertising')->middleware('driver');
     Route::post('/register','Api\ApiDriversController@Register');
@@ -91,6 +92,7 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     //Registra un vehículo
     Route::post('/register/vehicle','Api\ApivehiclesController@Register');
     Route::post('/register/vehicle/img','Api\ApivehiclesController@RegisterImgs');
+
 
 });
 

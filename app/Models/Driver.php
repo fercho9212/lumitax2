@@ -65,5 +65,15 @@ class Driver extends Authenticatable
       $rpt=DB::SELECT($sql,array($iddriver));
       return $rpt;
     }
+
+    public function typeregister(){
+      $sql="";
+      $sql.="select COUNT(d.id), t.type FROM drivers d JOIN typeregisters t";
+      $sql.="FROM licences l  ";
+      $sql.="ON d.register_id=t.id  ";
+      $sql.="GROUP BY  t.type ";
+      $rpt=DB::SELECT($sql);
+      return 'kkkkkkkkkkkkkkkk';
+    }
 //update driver_vehicle set opt=0  WHERE driver_id=1 and vehicle_id=1
 }

@@ -42,8 +42,8 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('vehicles', 'VehiclesController@index');
     Route::get('vehicles/create', 'VehiclesController@create');
     Route::post('vehicles/tax', 'VehiclesController@store');
-    Route::get('vehicles/{id}/edit','vehiclesController@edit');
-    Route::put('vehicles/{id}','vehiclesController@update');
+    Route::get('vehicles/{id}/edit','VehiclesController@edit');
+    Route::put('vehicles/{id}','VehiclesController@update');
 
     Route::delete('vehicles/{id}', 'VehiclesController@destroy');
 
@@ -52,7 +52,7 @@ Route::group(['namespace' => 'Web'], function () {
     Route::post('vehicles/luxury', 'VehiclesController@StoreLuxury');
     Route::get('vehicles/luxury', 'VehiclesController@indexluxury');
     Route::get('vehicles/{id}/show', 'VehiclesController@show');
-    Route::put('vehiclesluxury/{id}','vehiclesController@updateLuxury');
+    Route::put('vehiclesluxury/{id}','VehiclesController@updateLuxury');
 
     //Rutas de vehículos tipo premiun
     Route::get('vehicles/premium', 'VehiclesController@indexPremium');
@@ -98,4 +98,15 @@ Route::group(['namespace' => 'Web'], function () {
 
     //solicitudes
     Route::resource('requests','RequestsController');
+
+
+    /**
+     * Reportes
+     */
+    Route::get('/reports','ReportsController@index');
+    Route::post('/reports/driver','ReportsController@rportDriver');
+    Route::get('/pdf',function(){
+      $pdf=\PDF::loadView('vista');
+      return $pdf->download('jejeje.pdf');
+    });
 });

@@ -223,7 +223,9 @@ class DriversController extends Controller
     {
 
         $driver=Driver::findOrFail($id);
-        unlink(public_path('photos/drivers/'.$driver->dri_cc.'/'.$driver->dri_photo));
+        if ($driver->dri_photo!=NULL) {
+          unlink(public_path('photos/drivers/'.$driver->dri_cc.'/'.$driver->dri_photo));
+        }
         if ($driver->delete()) {
            return response()->json();
         }

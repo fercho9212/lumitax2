@@ -109,7 +109,7 @@ class ApiDriversController extends Controller
             $driver->dri_address=         $request->dri_address;
             $driver->dri_movil=           $request->dri_movil;
             $driver->dri_phone=           $request->dri_phone;
-            $driver->dri_photo=           'No data';
+            $driver->dri_photo=           '';
             $driver->email=               $request->email;
             $driver->password=            bcrypt($request->password);
             $driver->state_id=            2;
@@ -131,8 +131,6 @@ class ApiDriversController extends Controller
         DB::rollback();
         return response()->json(['rpt'=>'error']);
       }
-
-
 
     }
 

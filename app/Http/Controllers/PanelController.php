@@ -41,10 +41,13 @@ class PanelController extends Controller
         $countPass=Passenger::count();
         $countServe=History::count();
         $countVeh=Vehicle::count();
+
+
         return view('panel.dashboard',['countDri'=>$countDri,
                                       'countPass'=>$countPass,
                                       'countServe'=>$countServe,
-                                      'countVeh'=>$countVeh
+                                      'countVeh'=>$countVeh,
+                                      'countType'=>$mov,
       ]);
     }
     public function graph(){
