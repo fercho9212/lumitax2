@@ -21,7 +21,7 @@ class Driver extends Authenticatable
     * @var array
     */
     protected $hidden = [
-       'dri_cc', 'remember_token',
+        'remember_token',
     ];
 
     public function state(){
@@ -38,6 +38,9 @@ class Driver extends Authenticatable
     }
     public function typeregister(){
       return $this->belongsTo('App\Models\Typeregister','register_id');
+    }
+    public function imagedrivers(){
+      return $this->hasMany('App\Models\Imagedriver');
     }
 
     public function qual($iddriver,$value){
@@ -66,7 +69,7 @@ class Driver extends Authenticatable
       return $rpt;
     }
 
-    public function typeregister(){
+    public function typeregisteropt(){
       $sql="";
       $sql.="select COUNT(d.id), t.type FROM drivers d JOIN typeregisters t";
       $sql.="FROM licences l  ";

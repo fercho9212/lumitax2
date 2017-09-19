@@ -47,7 +47,7 @@ class PanelController extends Controller
                                       'countPass'=>$countPass,
                                       'countServe'=>$countServe,
                                       'countVeh'=>$countVeh,
-                                      'countType'=>$mov,
+                                    
       ]);
     }
     public function graph(){

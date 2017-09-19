@@ -32,6 +32,8 @@ class AddForeignKeysToDriversTable extends Migration
       Schema::table('drivers', function(Blueprint $table)
         {
           $table->dropForeign('fk_dri_state');
+          $table->dropForeign('fk_dri_api_state');
+          $table->dropForeign('fk_register');
         });
     }
 }

@@ -34,7 +34,10 @@ class AddForeignKeyToVehicles extends Migration
         Schema::table('vehicles', function (Blueprint $table) {
             $table->dropForeign('fk_vehicles_types');
             $table->dropForeign('fk_vehicles_class');
-            $table->dropForeign('fk_vehicles_brand');
+            $table->dropForeign('fk_veh_state');
+            $table->dropForeign('fk_veh_brand');
+            $table->dropForeign('fk_vehicles_space');
+            $table->dropForeign('fk_vehicles_baul');
         });
     }
 }

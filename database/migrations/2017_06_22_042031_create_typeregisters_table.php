@@ -26,6 +26,6 @@ class CreateTyperegistersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('typesregister');
+        Schema::dropIfExists('typeregisters');
     }
 }

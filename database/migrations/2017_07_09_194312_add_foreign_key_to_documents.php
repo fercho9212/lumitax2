@@ -29,7 +29,7 @@ class AddForeignKeyToDocuments extends Migration
     {
         Schema::table('documents', function (Blueprint $table) {
           $table->dropForeign('fk_doc_vehicle');
-        //  $table->dropForeign('fk_doc_insurance');
+          $table->dropForeign('fk_doc_insurance');
         });
     }
 }

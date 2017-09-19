@@ -34,6 +34,7 @@ class AddForeignKeysToDriverPassenger extends Migration
           $table->dropForeign('fk_dp_passenger');
           $table->dropForeign('fk_dp_driver');
           $table->dropForeign('fk_dp_payment');
+          $table->dropForeign('fk_dp_state');
         });
     }
 }

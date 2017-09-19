@@ -1,4 +1,4 @@
-<h3>{{$countType}}</h3>
+
 <div class="row">
 	<div class="col-lg-3 col-xs-6">
 

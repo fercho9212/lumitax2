@@ -23,7 +23,11 @@ Route::get('/frm_create_driver', 'Dashboard\FormsController@frm_create_driver');
 Route::group(['namespace' => 'Web'], function () {
     Route::get('drivers/msg/', 'DriversController@sendMsg');
     Route::post('drivers/msg/', 'DriversController@getToMsg');
+    Route::post('/drimages/store','DriImagesController@store');
     Route::resource('drivers', 'DriversController');
+
+    //Imágenes de drivers
+  //  Route::post('/drimages/store','DriImagesController@store');
 
 
     Route::resource('users', 'UsersController');

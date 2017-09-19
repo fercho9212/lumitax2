@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeyToPassengerRequest extends Migration
+class AddForeignKeyToPassengerStateservice extends Migration
 {
     /**
      * Run the migrations.
@@ -26,8 +26,9 @@ class AddForeignKeyToPassengerRequest extends Migration
      */
     public function down()
     {
-        Schema::table('request_passenger', function (Blueprint $table) {
-            //
+        Schema::table('passenger_stateservice', function (Blueprint $table) {
+            $table->dropForeign('fk_rp_passenger_state');
+            $table->dropForeign('fk_rp_passenger');
         });
     }
 }

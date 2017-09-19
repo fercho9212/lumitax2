@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePassengerRequest extends Migration
+class CreatePassengerStateservice extends Migration
 {
     /**
      * Run the migrations.
@@ -28,6 +28,6 @@ class CreatePassengerRequest extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('request_user');
+        Schema::dropIfExists('passenger_stateservice');
     }
 }
