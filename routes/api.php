@@ -41,6 +41,10 @@ Route::group(['prefix'=>'v1/passengers'],function(){
  */
 Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/auth','Api\ApiAuthdriver@authenticate');
+    Route::post('/photo','Api\ApiDriversController@updatePhoto');
+
+    Route::post('/imgdoc','Api\ApiDriversController@upDocuments');
+
     Route::post('/profile','Api\ApiDriversController@profile')->middleware('driver');
     Route::post('/history','Api\ApiHistoryController@saveHistory')->middleware('driver');
     Route::post('/view/history','Api\ApiHistoryController@viewHistoryDriver')->middleware('driver');
@@ -84,7 +88,7 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     //Calificación
     Route::post('/qualification','Api\ApiDriversController@Qualification')->middleware('driver');
 
-    
+
     //Publicidad
     Route::post('/imgp','Api\ApiDriversController@Advertising')->middleware('driver');
     Route::post('/register','Api\ApiDriversController@Register');

@@ -19,6 +19,15 @@ class DriImagesController extends Controller{
     return view('panel.modules.driver.forms.edit',['driver'=>$driver]);
   }
 
+  public function destroy($id){
+    $file=Imagedriver::findOrFail($id);
+    unlink('driImgDoc/documents/'.$file->driver->dri_cc.'/'.$file->path);
+    if ($file->delete()) {
+       return response()->json(['rpt'=>'success']);
+    }
+  }
+
+
   public function store(Request $request){
 
       $file=$request->file('file');
@@ -29,14 +38,12 @@ class DriImagesController extends Controller{
       if ($total<6) {
           $dir='driImgDoc/documents/'.$driver->dri_cc;
           $file->move($dir,$filename);
-
           $photos=new Imagedriver;
           $photos->img_name=$file->getClientOriginalName();
           $photos->path=$filename;
           $photos->driver_id=$iddriver;
-          //$photos->v()->associate($driver);
+          $photos->driver()->associate($driver);
           $photos->save();
-
           return $photos;
   }
   return 'Error';

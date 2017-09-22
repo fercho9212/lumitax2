@@ -24,7 +24,9 @@ Route::group(['namespace' => 'Web'], function () {
     Route::get('drivers/msg/', 'DriversController@sendMsg');
     Route::post('drivers/msg/', 'DriversController@getToMsg');
     Route::post('/drimages/store','DriImagesController@store');
-    Route::resource('drivers', 'DriversController');
+    Route::resource('/drivers', 'DriversController');
+    Route::delete('/drimages/{id}/delete','DriImagesController@destroy');
+
 
     //Imágenes de drivers
   //  Route::post('/drimages/store','DriImagesController@store');
