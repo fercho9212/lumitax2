@@ -32,11 +32,11 @@
         </div>
       </div>
     </div>
-    @if (Auth::user()->typesrole_id==1 && Auth::user()->typesrole_id==2)
+    @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
-            <center><input type="submit" name="" class="btn btn-primary" value="Send"><center>
+            <center><input type="submit" name="" class="btn btn-primary" value="Crear"><center>
           </div>
         </div>
       </div>

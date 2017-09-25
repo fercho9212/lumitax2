@@ -62,6 +62,77 @@
 	</div>
 	<!-- ./col -->
 </div>
+
+<div class="row">
+	<div class="col-lg-6 col-xs-6">
+
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+		<div id="container" style=""></div>
+		<!-- small box -->
+
+		<script>
+		// Radialize the colors
+Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+	return {
+			radialGradient: {
+					cx: 0.5,
+					cy: 0.3,
+					r: 0.7
+			},
+			stops: [
+					[0, color],
+					[1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+			]
+	};
+});
+
+// Build the chart
+Highcharts.chart('container', {
+	chart: {
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false,
+			type: 'pie'
+	},
+	title: {
+			text: 'Registro Conductores'
+	},
+	tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	},
+	plotOptions: {
+			pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+							enabled: true,
+							format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+							style: {
+									color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+							},
+							connectorColor: 'silver'
+					}
+			}
+	},
+	series: [{
+			name: 'Brands',
+			data: [
+
+					@foreach ($typeRegister as $data)
+
+						{ name: "{{$data->type}}", y: {{$data->total}}},
+					@endforeach
+			]
+	}]
+});
+		</script>
+
+
+	</div>
+
+</div>
 <!-- /.row -->
 <!-- Main row -->
 

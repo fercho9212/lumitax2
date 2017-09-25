@@ -8,8 +8,8 @@
 
 --}}
 
-<div class="">
-    <table class="display nowrap"  id="table">
+<div class="table-responsive text-center">
+    <table class="table table-striped table-bordered dt-responsive display nowrap"  id="table">
         <thead>
             <tr>
               <th class="text-center"><span class="glyphicon glyphicon-star-empty"></span></th>
