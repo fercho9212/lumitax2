@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use DB;
 class Vehicle extends Model
 {
     //
@@ -46,6 +46,16 @@ class Vehicle extends Model
 
     public function typeregister(){
       return $this->belongsTo('App\Models\Typeregister','register_id');
+    }
+
+    public function typeregisteropt(){
+      $sql="";
+      $sql.="select COUNT(v.id) as total, t.type ";
+      $sql.="FROM vehicles v ";
+      $sql.="JOIN typeregisters t  ON v.register_id=t.id  ";
+      $sql.="GROUP BY  t.type";
+      $rpt=DB::SELECT($sql);
+      return $rpt;
     }
 
 }

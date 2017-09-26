@@ -41,9 +41,12 @@ Route::group(['prefix'=>'v1/passengers'],function(){
  */
 Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/auth','Api\ApiAuthdriver@authenticate');
+    //función foto de perfil del conductor
     Route::post('/photo','Api\ApiDriversController@updatePhoto');
-
+    //función que sube documentos del conductor
     Route::post('/imgdoc','Api\ApiDriversController@upDocuments');
+    //Función que sube los documentos del vehículo registrado por el conductor
+    Route::post('/docvehicle','Api\ApiVehiclesController@upDocuments');
 
     Route::post('/profile','Api\ApiDriversController@profile')->middleware('driver');
     Route::post('/history','Api\ApiHistoryController@saveHistory')->middleware('driver');

@@ -13,18 +13,28 @@ class BrandVehiclesTableSeeder extends Seeder
     {
         $faker=Faker::create();
 
-          \DB::table('brandvehicles')->insert([
-             'brand'      =>  'CREVROLET',
-           ]);
-           \DB::table('brandvehicles')->insert([
-              'brand'      =>  'BRAND',
-            ]);
             \DB::table('brandvehicles')->insert([
-               'brand'      =>  'HYUNDAI',
+               'brand'      =>  'Hyundai',
              ]);
-            \DB::table('brandvehicles')->insert([
-                'brand'      =>  'RENAULT',
-            ]);	
+             \DB::table('brandvehicles')->insert([
+                'brand'      =>  'Kya',
+              ]);
+              \DB::table('brandvehicles')->insert([
+                 'brand'      =>  'Jac',
+               ]);
+              \DB::table('brandvehicles')->insert([
+                  'brand'      =>  'Faw',
+              ]);
+              \DB::table('brandvehicles')->insert([
+                  'brand'      =>  'Chery',
+              ]);
+              \DB::table('brandvehicles')->insert([
+                  'brand'      =>  'Chevrolet',
+              ]);
+              \DB::table('brandvehicles')->insert([
+                  'brand'      =>  'Otros',
+              ]);
+
 
     }
 }

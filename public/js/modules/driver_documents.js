@@ -38,7 +38,7 @@ var handleDropZoneFileUpload={
           );
     }else {
           var imageList=$('#gallery-images ul');
-          var imageSrc='/driImgDoc/documents/'+response.driver.dri_cc+'/'+response.path;
+          var imageSrc='photos/drivers/'+response.driver.dri_cc+'/documents/'+response.path;
           var html='';
           html+='<li>';
           html+='   <a href="'+imageSrc+'" target="_blank" +data-lightbox="roadtrip">'
@@ -46,7 +46,7 @@ var handleDropZoneFileUpload={
           html+='   </a>';
           html+='<br>';
           html+='<center>';
-          html+='   <button type="button" class="btn btn btn-danger" name="button"  onclick="deletePhoto('+response.id+','+response.driver.id+')">'
+          html+='   <button type="button" class="btn btn btn-danger" name="button"  onclick="DeleteDocument('+response.id+','+response.driver.id+')">'
           html+='   <span class="glyphicon glyphicon glyphicon-trash"></span></button>';
           html+='</center>';
           html+='<br></li>';
@@ -58,7 +58,7 @@ var handleDropZoneFileUpload={
 
 
 });
-function deletePhoto(idimage,iddriver){
+function DeleteDocument(idimage,iddriver){
   var urlDelte='/drimages/'+idimage+'/delete/';
   var token=$('input[name="_token"]').val();
   var urlSuccess='/drivers/'+iddriver+'/edit'
@@ -72,7 +72,37 @@ function deletePhoto(idimage,iddriver){
         closeOnConfirm: false
 },
 function(){
-  ajaxDelete(urlDelte,token,urlSuccess);
+  ajaxDeleteDoc(urlDelte,token,urlSuccess);
 });
+
+function ajaxDeleteDoc(urlDelte,token,urlSuccess){
+  $.ajax({
+            type: 'DELETE',
+            url: urlDelte,
+            data: {
+                '_token': token,
+            },
+            success: function(data) {
+              // swal("Deleted!", "Registro Eliminado.", "success");
+                if (data.rpt=='success') {
+                  $("#info").removeClass("active");
+                  $("#document").addClass("active");
+                  loadData(urlSuccess,data);
+                  $("#info").removeClass("active");
+                  $("#document").addClass("active");
+                  swal("Registro Eliminado!", "You clicked the button!", "success");
+
+                }else if (data.rpt=='error') {//Numero de error en las realaciones de vhiculación
+                  swal("Error!", "Por favor Comunicarse con el administrador ", "warning");
+                  loadData(urlSuccess,data);
+                }
+              // loadData(urlSuccess,data);
+            },
+            error: function(data){
+              console.log('Errorttttta->'+data);
+            }
+        });
+}
+
 
 }

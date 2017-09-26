@@ -21,7 +21,7 @@ class DriImagesController extends Controller{
 
   public function destroy($id){
     $file=Imagedriver::findOrFail($id);
-    unlink('driImgDoc/documents/'.$file->driver->dri_cc.'/'.$file->path);
+    unlink('photos/drivers/'.$file->driver->dri_cc.'/documents/'.$file->path);
     if ($file->delete()) {
        return response()->json(['rpt'=>'success']);
     }
@@ -36,7 +36,7 @@ class DriImagesController extends Controller{
       $driver=Driver::find($iddriver);
       $total=$driver->imagedrivers()->count();
       if ($total<6) {
-          $dir='driImgDoc/documents/'.$driver->dri_cc;
+          $dir='photos/drivers/'.$driver->dri_cc.'/documents';
           $file->move($dir,$filename);
           $photos=new Imagedriver;
           $photos->img_name=$file->getClientOriginalName();

@@ -28,8 +28,8 @@
   <div class="panel with-nav-tabs panel-default">
       <div class="panel-heading">
               <ul class="nav nav-tabs">
-                  <li class="active"><a href="#tab1primary" data-toggle="tab"><i class="glyphicon glyphicon-user"></i>Información</a></li>
-                  <li><a href="#tab2primary" data-toggle="tab"><i class="glyphicon glyphicon-folder-open"></i>Documentos</a></li>
+                  <li class="active" id="info"><a href="#tab1primary" data-toggle="tab"><i class="glyphicon glyphicon-user"></i> .Información</a></li>
+                  <li id="document"><a href="#tab2primary" data-toggle="tab"><i class="glyphicon glyphicon-folder-open"></i> .Documentos</a></li>
               </ul>
       </div>
       <div class="panel-body">

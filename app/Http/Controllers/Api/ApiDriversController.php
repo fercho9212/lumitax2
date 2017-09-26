@@ -174,7 +174,7 @@ class ApiDriversController extends Controller
                 $photos->driver()->associate($driver);
                 $photos->save();
                 $dir='photos/drivers/'.$driver->dri_cc.'/documents';
-                $files->move($dir,$photos->img_name);
+                $files->move($dir,$photos->path);
         }
         return response()->json(['rpt'=>'success']);
       } catch (\Exception $e) {

@@ -125,7 +125,7 @@ function ajaxDelete(urlDelte,token,urlSuccess){
             },
             success: function(data) {
               // swal("Deleted!", "Registro Eliminado.", "success");
-
+            //  console.log("DSD"+data);
                 if (data.rpt=='success') {
                   loadData(urlSuccess,data);
                   swal("Registro Eliminado!", "You clicked the button!", "success")

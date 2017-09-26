@@ -59,11 +59,11 @@ class VehImagesController extends Controller{
 */
   }
   public function destroy($id){
-    $file=Imagevehicle::findOrFail($id);
+    /*$file=Imagevehicle::findOrFail($id);
     unlink('/home/transp/treesign.co/vehicle/'.$file->vehicle->placa.'/'.$file->path);
     if ($file->delete()) {
        return response()->json(['rpt'=>'success']);
-    }
+    }*/
   }
 
 }

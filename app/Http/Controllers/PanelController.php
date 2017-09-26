@@ -38,17 +38,20 @@ class PanelController extends Controller
     public function index()
     {
         $driver=new Driver;
+        $vehicle=new Vehicle;
         $countDri=Driver::count();
         $countPass=Passenger::count();
         $countServe=History::count();
         $countVeh=Vehicle::count();
         $typeRegister=$driver->typeregisteropt();
+        $typeRegvehicle=$vehicle->typeregisteropt();
 
         return view('panel.dashboard',['countDri'=>$countDri,
                                       'countPass'=>$countPass,
                                       'countServe'=>$countServe,
                                       'countVeh'=>$countVeh,
                                       'typeRegister'=>$typeRegister,
+                                      'typeRegvehicle'=>$typeRegvehicle,
 
       ]);
     }

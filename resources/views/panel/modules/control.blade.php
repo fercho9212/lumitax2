@@ -132,6 +132,62 @@ Highcharts.chart('container', {
 
 	</div>
 
+
+
+
+	<div class="col-lg-6 col-xs-6">
+		<div id="container2" style=""></div>
+		<!-- small box -->
+
+		<script>
+		// Radialize the colors
+
+
+// Build the chart
+Highcharts.chart('container2', {
+	chart: {
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false,
+			type: 'pie'
+	},
+	title: {
+			text: 'Registro Vehículos'
+	},
+	tooltip: {
+			pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	},
+	plotOptions: {
+			pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+							enabled: true,
+							format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+							style: {
+									color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+							},
+							connectorColor: 'silver'
+					}
+			}
+	},
+	series: [{
+			name: 'Brands',
+			data: [
+
+					@foreach ($typeRegvehicle as $datav)
+
+						{ name: "{{$datav->type}}", y: {{$datav->total}}},
+					@endforeach
+			]
+	}]
+});
+		</script>
+
+
+
+	</div
+
 </div>
 <!-- /.row -->
 <!-- Main row -->

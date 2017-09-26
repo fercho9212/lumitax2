@@ -10,6 +10,7 @@ use Validator;
 use App\Models\Vehicle;
 use App\Models\VehicleComplement;
 use App\Models\Driver;
+use App\Models\Imagevehicle;
 use DB;
 class ApiVehiclesController extends Controller
 {
@@ -72,9 +73,34 @@ class ApiVehiclesController extends Controller
 
     }
 
-
-    public function RegisterImgs(Request $request){
-      print_r($request->all());
+/**
+ * [upDocuments Función que sube los documentos del vehículo]
+ * @param  Request $request [description]
+ * @return [type]           [description]
+ */
+    public function upDocuments(Request $request){
+      try {
+            $array=[
+              $request->file('file1'),
+              $request->file('file2'),
+              $request->file('file3'),
+              $request->file('file4')
+            ];
+            $vehicle=Vehicle::findOrFail($request->id_vehicle);
+            foreach ($array as $files) {
+                $photos=new Imagevehicle;
+                $photos->img_name=$files->getClientOriginalName();
+                $photos->path=uniqid().$files->getClientOriginalName();
+                $photos->vehicle_id=$vehicle->id;
+                $photos->vehicle()->associate($vehicle);
+                $photos->save();
+                $dir='vehicle/'.$vehicle->placa;
+                $files->move($dir,$photos->path);
+        }
+        return response()->json(['rpt'=>'success']);
+      } catch (\Exception $e) {
+        return response()->json(['rpt'=>'error']);
+      }
     }
 
 

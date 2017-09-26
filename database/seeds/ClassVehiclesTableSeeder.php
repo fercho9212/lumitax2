@@ -14,16 +14,16 @@ class ClassVehiclesTableSeeder extends Seeder
         $faker=Faker::create();
 
           \DB::table('classvehicles')->insert([
-             'class'      =>  'SEDAN',
+             'class'      =>  'Compacto',
            ]);
            \DB::table('classvehicles')->insert([
-              'class'      =>  'VAN',
+              'class'      =>  'Sedan',
             ]);
             \DB::table('classvehicles')->insert([
-               'class'      =>  'RUSTICO',
+               'class'      =>  'Camioneta',
              ]);
              \DB::table('classvehicles')->insert([
-                'class'      =>  ' COMPACTO',
+                'class'      =>  'Van',
               ]);
     }
 }

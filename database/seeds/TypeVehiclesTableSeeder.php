@@ -14,17 +14,35 @@ class TypeVehiclesTableSeeder extends Seeder
         $faker=Faker::create();
 
           \DB::table('typevehicles')->insert([
-             'type'      =>  'Camioneta',
+             'type'      =>  'Atos',
            ]);
            \DB::table('typevehicles')->insert([
-              'type'      =>  'Automovíl',
+              'type'      =>  'i10',
             ]);
           \DB::table('typevehicles')->insert([
-               'type'      =>  'Furgón',
+               'type'      =>  'Verna',
              ]);
            \DB::table('typevehicles')->insert([
-                  'type'   => 'Vehículo mixto adaptable',
+                  'type'   => 'Soul',
           ]);
+          \DB::table('typevehicles')->insert([
+                 'type'   => 'Picanto',
+         ]);
+         \DB::table('typevehicles')->insert([
+                'type'   => 'Starjac',
+              ]);
+         \DB::table('typevehicles')->insert([
+                     'type'   => 'CA',
+                   ]);
+          \DB::table('typevehicles')->insert([
+                               'type'   => 'Tigo',
+                             ]);
+          \DB::table('typevehicles')->insert([
+                                'type'   => 'Chevitaxi',
+                              ]);
+          \DB::table('typevehicles')->insert([
+                                  'type'   => 'Otros',
+                                                  ]);
 
     }
 }
