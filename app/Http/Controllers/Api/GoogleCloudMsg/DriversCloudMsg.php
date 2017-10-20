@@ -15,7 +15,7 @@ class DriversCloudMsg extends Controller{
   /*
   *@to token firebase driver
   */
-  public function send($to,$message,$idSerach){
+  public function send($to,$message,$idSerach=!NULL){
 
     $body=array('body' => $message);
 

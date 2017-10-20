@@ -106,8 +106,8 @@ Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/register','Api\ApiDriversController@Register');
 
     //Registra un vehículo
-    Route::post('/register/vehicle','Api\ApivehiclesController@Register');
-    Route::post('/register/vehicle/img','Api\ApivehiclesController@RegisterImgs');
+    Route::post('/register/vehicle','Api\ApiVehiclesController@Register');
+    Route::post('/register/vehicle/img','Api\ApiVehiclesController@RegisterImgs');
 
 
 });
@@ -129,5 +129,5 @@ Route::group(['prefix'=>'v1/search'],function(){
 //RESPONSE DE MESNAJES
 Route::group(['prefix'=>'v1/response/push'],function(){
   Route::post('drivers','Api\Response\DriverResponseController@ConfirmateService')->middleware('driver');
-  Route::post('passengers','Api\Response\PassengerResponseController@ResponseService')->middleware('passenger');;
+  Route::post('passengers','Api\Response\PassengerResponseController@ResponseService')->middleware('passenger');
 });

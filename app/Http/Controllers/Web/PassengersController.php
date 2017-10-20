@@ -110,10 +110,11 @@ class PassengersController extends Controller
     public function update(Request $request, $id)
     {
       $validator = Validator::make($request->all(), [
-          'pas_name'=>'required',
-          'pas_last'=>'required',
-          'email'=>'required|email',
+          'pas_name'=>'required|max:30',
+          'pas_last'=>'required|max:30',
+          'email'=>'required|email|unique:passengers,email,'.$id,
           'state_id' => 'required',
+          'pas_movil'=>'required|numeric'
       ]);
       if ($validator->fails()) {
           return response()->json(['error'=>$validator->errors()->all()]);

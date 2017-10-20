@@ -38,10 +38,10 @@ class Vehicle extends Model
     }
 
     public function baul(){
-      return $this->belongsTo('App\Models\baul','baul_id');
+      return $this->belongsTo('App\Models\Baul','baul_id');
     }
     public function spacevehicle(){
-      return $this->belongsTo('App\Models\baul','space_id');
+      return $this->belongsTo('App\Models\Baul','space_id');
     }
 
     public function typeregister(){
