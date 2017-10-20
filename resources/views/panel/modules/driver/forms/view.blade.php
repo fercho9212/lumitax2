@@ -8,6 +8,51 @@
 
 --}}
 
+<style>
+.modal {
+text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+.modal:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 100%;
+}
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.modal-header-primary {
+	color:#fff;
+  padding:9px 15px;
+  border-bottom:1px solid #eee;
+  background-color: #337ab7;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+   border-top-left-radius: 5px;
+   border-top-right-radius: 5px;
+}
+</style>
+<!-- load-->
+  <div style="display: none" id="load_modal" align="center">
+          <br><br><br><br>
+                <center><img src="img/load.gif" align="middle" alt="cargador" width="60%" height="20%"> &nbsp;</center>
+                <br><br>
+               <hr style="color:#003" width="50%">
+               <br>
+  </div>
+<!-- end load-->
+
+@include('panel.modules.driver.forms.modalVehicle')
+
+
 <div class="table-responsive text-center">
     <table class="table table-striped table-bordered dt-responsive display nowrap"  id="table">
         <thead>
@@ -42,7 +87,13 @@
                 <td>{{$driver->created_at}}</td>
                 <td>{{$driver->typeregister->type}}</td>
                 @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2)
-                    <td>  <button onclick="edit({{$driver->id}})" class="update btn btn-info" data-id="{{$driver->id}}"
+
+                    <td>
+                      <button onclick="" class="update btn btn-warning" data-id="{{$driver->id}}" data-toggle="modal" data-target="#frmdriver"
+                          data-name="{{$driver->name}}">
+                          <span class="fa fa-taxi"></span>
+                      </button>
+                      <button onclick="edit({{$driver->id}})" class="update btn btn-info" data-id="{{$driver->id}}"
                           data-name="{{$driver->name}}">
                           <span class="glyphicon glyphicon-edit"></span>
                       </button>
@@ -50,6 +101,7 @@
                           data-name="{{$driver->dri_name}}">
                           <span class="glyphicon glyphicon-trash"></span>
                       </button>
+
 
                   </td>
                 @endif
@@ -59,63 +111,4 @@
     @endforeach
     </table>
 </div>
-<script>
-$(function(){
-  $('#table').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-             'pdf', 'print',
-        ],
-        "order": [[ 9, "desc" ]]
-    });
-  $(document).on('click', '.delete-modal', function() {
-    var previousWindowKeyDown = window.onkeydown;
-        var id=$(this).data('id');
-        swal({
-              title: "Estas seguro?",
-              text: "Desea Eliminar el Conductor!",
-              type: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#DD6B55",
-              confirmButtonText: "Si, Eliminar!",
-              closeOnConfirm: false
-      },
-      function(){
-        window.onkeydown = previousWindowKeyDown;
-           $.ajax({
-                     type: 'DELETE',
-                     url: '/drivers/'+id,
-                     data: {
-                         '_token': $('input[name=_token]').val(),
-                     },
-                     success: function(data) {
-                         swal("Deleted!", "Registro Eliminado.", "success");
-                         $('#table').find('.driver'+id).remove();
-                     }
-                 });
-          });
-  });
-
-  });
-
-  function edit(id){
-    var idd=id;
-    var url='/drivers/'+idd+'/edit'
-    $.ajax({
-              type: 'GET',
-              url: url,
-              data: {
-                  '_token': $('input[name=_token]').val(),
-              },
-              beforeSend:function(){
-                $("#contenido_principal").html($("#cargador_empresa").html());
-              },
-              complete:function(){
-              },
-              success: function(data) {
-                $("#contenido_principal").html(data);
-              }
-          });
-  }
-
-</script>
+<script src="{{ asset('/js/modules/driver_index.js') }}" type="text/javascript"></script>

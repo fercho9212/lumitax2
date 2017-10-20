@@ -46,4 +46,17 @@ class Passenger extends Authenticatable
        return (array)$rq;
      }
 
+     /**
+      * verifica si existe emal
+      */
+     function verify($mail){
+       $sql="";
+       $sql.="select count(d.id) as sum ";
+       $sql.="FROM passengers d ";
+       $sql.="WHERE d.email=?";
+       $query=DB::SELECT($sql,array($mail));
+       return $query[0]->sum;
+     }
+
+
 }

@@ -68,7 +68,7 @@
                       <div class="form-group">
                         <label for="exampleInputEmail1">Cédula</label>
                         <div class="input-group">
-                          <input name="dri_cc" type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter identification" required>
+                          <input name="dri_cc" type="number" min="0" class="form-control" id="exampleInputEmail1" placeholder="Enter identification" required>
                           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                         </div>
                       <div class="help-block with-errors"></div>
@@ -113,7 +113,7 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Número: Celular</label>
                   <div class="input-group">
-                    <input name="dri_movil" type="number" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter Cell phone" required>
+                    <input name="dri_movil" type="number" min="0" maxlength="12" class="form-control" id="exampleInputEmail1" placeholder="Enter Cell phone" required>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
                   </div>
                   <div class="help-block with-errors"></div>
@@ -188,7 +188,7 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Numero de Licencia</label>
                     <div class="input-group">
-                      <input name="lic_no" type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter License" required>
+                      <input name="lic_no" type="number" min="0" class="form-control" id="exampleInputEmail1" placeholder="Enter License" required>
                       <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
                     </div>
                     <div class="help-block with-errors"></div>

@@ -25,11 +25,11 @@ class DriverRequest extends FormRequest
     {
       if ($this->method()=='PUT') {
         return [
-          'dri_cc' => 'required',
+          'dri_cc' => 'required|unique:drivers,dri_cc,'.$this->id,
           'dri_name' => 'required',
           'dri_last' => 'required',
           'dri_address' => 'required',
-          'dri_movil' => 'required',
+          'dri_movil' => 'required|unique:drivers,dri_movil,'.$this->id,
           'dri_phone' => 'required',
           'state_id' => 'required',
           'email' => 'required|email|unique:drivers,email,'.$this->id,
@@ -39,11 +39,11 @@ class DriverRequest extends FormRequest
         ];
       }else {
         return [
-          'dri_cc' => 'required',
+          'dri_cc' => 'required|unique:drivers',
           'dri_name' => 'required',
           'dri_last' => 'required',
           'dri_address' => 'required',
-          'dri_movil' => 'required',
+          'dri_movil' => 'required|unique:drivers',
           'dri_phone' => 'required',
           'state_id' => 'required',
           'email' => 'required|email|unique:drivers,email,'.$this->id,

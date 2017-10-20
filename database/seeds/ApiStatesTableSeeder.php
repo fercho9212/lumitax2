@@ -12,10 +12,13 @@ class ApiStatesTableSeeder extends Seeder
     public function run()
     {
       $faker=Faker::create();
-      for ($i=0; $i < 5; $i++) {
-        \DB::table('apistates')->insert([
-           'api_state'      =>  $faker->company,
-         ]);
-      }
+
+      \DB::table('apistates')->insert([
+         'api_state'      =>  'libre',
+       ]);
+
+       \DB::table('apistates')->insert([
+          'api_state'      =>  'ocupado',
+        ]);
     }
 }

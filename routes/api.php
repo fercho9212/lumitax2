@@ -12,9 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/',function(){
-  echo "Comunication success";
-});
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('jwt.auth');
@@ -26,13 +24,18 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix'=>'v1/passengers'],function(){
     Route::post('/auth','Api\ApiAuthpassenger@authenticate');
     Route::post('/register','Api\ApiAuthpassenger@register');
+    //Verifica si existe un correo
+    Route::post('/verifyemail','Api\ApiPassengersController@verifyemail');
+    //Atualiza el passwor
+    Route::post('/setemail','Api\ApiPassengersController@updateemail');
+
     Route::post('/profile','Api\ApiPassengersController@profile')->middleware('passenger');
     Route::post('/view/history','Api\ApiHistoryController@viewHistoryPassenger')->middleware('passenger');
     Route::post('/test','Api\ApiAuthpassenger@test')->middleware('passenger');
     //Calificación
     Route::post('/qualification','Api\ApiPassengersController@Qualification')->middleware('passenger');
 
-
+    Route::post('/qualification','Api\ApiPassengersController@Qualification')->middleware('passenger');
     //Función que guarda las solicitudes del pasajero
     Route::post('/request','Api\ApiPassengersController@Request')->middleware('passenger');
 });
@@ -41,6 +44,10 @@ Route::group(['prefix'=>'v1/passengers'],function(){
  */
 Route::group(['prefix'=>'v1/drivers'],function(){
     Route::post('/auth','Api\ApiAuthdriver@authenticate');
+    //Verifica si existe un correo
+    Route::post('/verifycc','Api\ApiDriversController@verifyemail');
+    //actualiza password
+    Route::post('/updateemail','Api\ApiDriversController@updateemail');
     //función foto de perfil del conductor
     Route::post('/photo','Api\ApiDriversController@updatePhoto');
     //función que sube documentos del conductor
@@ -94,6 +101,8 @@ Route::group(['prefix'=>'v1/drivers'],function(){
 
     //Publicidad
     Route::post('/imgp','Api\ApiDriversController@Advertising')->middleware('driver');
+
+    //registro del conductor
     Route::post('/register','Api\ApiDriversController@Register');
 
     //Registra un vehículo

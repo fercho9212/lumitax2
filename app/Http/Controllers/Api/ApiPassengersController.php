@@ -45,5 +45,36 @@ class ApiPassengersController extends Controller
     return response()->json(['rpt'=>'success']);
   }
 
+  /**
+   * Función que verifica si existe el correo para recuperación de password
+   */
+  public function verifyemail(Request $request){
+    $passenger=new Passenger();
+    $r=$passenger->verify($request->email);
+    if ($r==1) {
+      $rpt="success";
+    }else {
+      $rpt="error";
+    }
+    return response()->json(['rpt'=>$rpt]);
+  }
+  public function updateemail(Request $request){
+    $validator = \Validator::make($request->all(), [
+        'email' => 'required',
+        'password' => 'required',
+    ]);
+    if ($validator->fails()) {
+        return response()->json(['error'=>$validator->errors(),'rpt'=>'error']);
+    }
+    try {
+      $email=Input::get('email');
+      $password=bcrypt(Input::get('password'));
+      DB::table('passengers')->where('email', $email)->update(['password' =>$password]);
+      return  response()->json(['rpt'=>'success']);
+    } catch (\Exception $e) {
+      return  response()->json(['rpt'=>'error']);
+    }
+  }
+
 
 }

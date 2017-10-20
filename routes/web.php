@@ -21,8 +21,14 @@ Route::get('/dashboard', 'PanelController@index');
 Route::get('/graph', 'PanelController@graph');
 Route::get('/frm_create_driver', 'Dashboard\FormsController@frm_create_driver');
 Route::group(['namespace' => 'Web'], function () {
+    //Función que muestra la interfaz del modulo de mensajes
     Route::get('drivers/msg/', 'DriversController@sendMsg');
+    //Función que envia el mesaje
+    Route::post('drivers/broadcastmsg/', 'DriversController@broadcastMsg');
+    //Función que muestra los vehiculos por Conductor
+    Route::post('drivers/vehicles', 'DriversController@getVehicles');
     Route::post('drivers/msg/', 'DriversController@getToMsg');
+    Route::get('drivers/getdriver/', 'DriversController@getDriver');
     Route::post('/drimages/store','DriImagesController@store');
     Route::resource('/drivers', 'DriversController');
     Route::delete('/drimages/{id}/delete','DriImagesController@destroy');

@@ -78,5 +78,52 @@ class Driver extends Authenticatable
       $rpt=DB::SELECT($sql);
       return $rpt;
     }
+
+  /**
+   * Función que obtien los vehículos por conductor
+   */
+   public function getVehicles($iddriver){
+     $sql="";
+     $sql.="select v.placa, v.id ";
+     $sql.="FROM drivers d ";
+     $sql.="INNER JOIN driver_vehicle dv ON d.id=dv.driver_id ";
+     $sql.="INNER JOIN vehicles v ON v.id = dv.vehicle_id ";
+     $sql.="WHERE d.id=?";
+     $rpt=DB::SELECT($sql,array($iddriver));
+     return $rpt;
+   }
+   /**
+    * verifica si existe emal
+    */
+   function verify($cc){
+     $sql="";
+     $sql.="select count(d.id) as sum, ";
+     $sql.="d.email as email ";
+     $sql.="FROM drivers d ";
+     $sql.="WHERE d.dri_cc=? ";
+     $sql.="GROUP BY d.email ";
+     $query=DB::SELECT($sql,array($cc));
+     $array=[$query[0]->sum,$query[0]->email];
+     return $array;
+   }
 //update driver_vehicle set opt=0  WHERE driver_id=1 and vehicle_id=1
+//
+  /**
+   * Selecciona los conductores para el envio ee mensaje
+   */
+   function getDriverMsg(){
+       $sql="";
+       $sql.="select ";
+       $sql.="d.id, ";
+       $sql.="d.dri_name, ";
+       $sql.="d.dri_last, ";
+       $sql.="d.dri_movil, ";
+       $sql.="d.dri_address, ";
+       $sql.="d.dri_cc, ";
+       $sql.="d.created_at ";
+       $sql.="FROM ";
+       $sql.="drivers d ";
+       $driver=DB::SELECT($sql);
+       return $driver;
+   }
 }

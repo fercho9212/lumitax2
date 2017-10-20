@@ -74,7 +74,7 @@ class DriversController extends Controller
           $input['password']=bcrypt($input['password']);
 
           $input['dri_photo']=$filename;
-          $input['apistate_id']=1;
+          $input['apistate_id']=2;
           $driver=Driver::create($input);
           //$driver=Driver::find($driver);
 
@@ -202,16 +202,106 @@ class DriversController extends Controller
       }
 
 
-    //function que envia mesajes push
+    //function que muestra la interfaz mesajes push
     public function sendMsg(){
-      $drivers=driver::all();
-      return view('panel.modules.driver.msg.index',['drivers'=>$drivers]);
+
+     return view('panel.modules.driver.msg.index');
 
     }
-    public function getToMsg(Request $request){
+    //function que envia los mensajes push
+    public function broadcastmsg(Request $request){
+      try {
+          $data=explode(",",$request->data);
+          $msg=$request->msg;
+          $in = '(' . implode(',', $data) .') ';
+          $sql="";
+          $sql.="select d.id,d.token_api FROM drivers d where d.id IN ".$in;
+          $rpt=DB::SELECT($sql,array($request->data));
+          foreach($rpt as $object)
+            {
+                if ($object->token_api==null) {
+                   unset($object->token_api);
+                }else {
+                  $tokens[] = $object->token_api;
+                }
+            }
+          if (empty($tokens)) {
+            return response()->json(['rpt'=>'No contiene token']);
+          }
+          else {
+            $rpt=$this->SendMsgMuticast($tokens,$msg);
+            if ($rpt=='error') {
+               return 'error';
+            }else {
+              return $rpt;
+            }
+
+          }
+      } catch (\Exception $e) {
+        return response()->json(['rpt'=>'error']);
+        }
+      }
+    public function SendMsgMuticast($tokens,$msg){
+        try {
+                   //FCM api URL
+                $url = 'https://fcm.googleapis.com/fcm/send';
+                //api_key available in Firebase Console -> Project Settings -> CLOUD MESSAGING -> Server key
+                $server_key = 'AIzaSyASYXnNkxlyNxlApKAgs4MSreagyxTgs3c';
+                $fields = array();
+                $body=array('body' => $msg);
+                $fields['data'] = $body;
+                if(is_array($tokens)){
+                  $fields['registration_ids'] = $tokens;
+                }else{
+                  $fields['to'] = $tokens;
+                }
+                //header with content_type api key
+                $headers = array(
+                  'Content-Type:application/json',
+                  'Authorization:key='.$server_key
+                );
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+                $result = curl_exec($ch);
+                if ($result === FALSE) {
+                  die('FCM Send Error: ' . curl_error($ch));
+                }
+                curl_close($ch);
+                return $result;
+
+        } catch (\Exception $e) {
+           $error="error";
+           return $error;
+        }
+
+    }
+
+
+    public function getDriver(){
+      $driver=new Driver;
+      $array=$driver->getDriverMsg();
+      return response()->json(['data'=>$array]);
+    }
+  /*  public function getToMsg(Request $request){
       $tokens=explode(',',$request->token_api);
       print_r($tokens);
-    }
+    }*/
+    /**
+     * Función que muestra los vehículos por conductor
+     */
+     public function getVehicles(Request $request){
+       $dri=new Driver();
+       $driver=Driver::findOrFail($request->id);
+       $query=$dri->getVehicles($driver->id);
+       return response()->json(['rpt'=>$query]);
+
+     }
 
 
 
@@ -232,4 +322,5 @@ class DriversController extends Controller
            return response()->json();
         }
     }
+
 }

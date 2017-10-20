@@ -52,6 +52,7 @@ class PanelController extends Controller
                                       'countVeh'=>$countVeh,
                                       'typeRegister'=>$typeRegister,
                                       'typeRegvehicle'=>$typeRegvehicle,
+                                      'value'=>'main',
 
       ]);
     }

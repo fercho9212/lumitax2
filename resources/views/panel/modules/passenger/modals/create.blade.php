@@ -50,7 +50,7 @@
                     <label for="exampleInputPassword1">Telefono Movil</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input tabindex="4" name="pas_movil" type="text" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Telefono movíl" required>
+                      <input tabindex="4" name="pas_movil" type="number" min="0" maxlength="30" class="form-control" id="exampleInputPassword1" placeholder="Telefono movíl" required>
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>

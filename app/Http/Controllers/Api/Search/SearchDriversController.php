@@ -25,9 +25,22 @@ class SearchDriversController extends Controller
         $sql.=" INNER JOIN driver_vehicle dv ON d.id = dv.driver_id ";
         $sql.=" INNER JOIN vehicles v ON dv.vehicle_id = v.id ";
         $sql.=" WHERE ";
-        $sql.=" (v.baul_id = ? AND v.space_id = ?) AND (d.apistate_id=1) AND(dv.opt=1)";
+        $sql.=" (d.apistate_id=1) AND(dv.opt=1)";
         $sql.=" AND (v.leveles_id = ?)";
-        $driver=DB::SELECT($sql,array($baul,$space,$type));
+        if ($baul == 1 && $space == 1) {
+          $sql.=" AND (v.baul_id = ? AND v.space_id = ?)";
+          $driver=DB::SELECT($sql,array($type,$baul,$space));
+        }else
+        if ($baul == 1) {
+          $sql.=" AND (v.baul_id = ? )";
+          $driver=DB::SELECT($sql,array($type,$baul));
+        }else
+        if ($space == 1) {
+          $sql.=" AND (v.space_id = ? )";
+          $driver=DB::SELECT($sql,array($type,$space));
+        }else {
+          $driver=DB::SELECT($sql,array($type));
+        }
 
         foreach ($driver as $dri) {
                 $a=true;
@@ -79,7 +92,7 @@ class SearchDriversController extends Controller
      if ($idSerach!=null) {
         $to=$driver->getTokenDriver($idSerach);
         $push->setData($body);
-        $rpt=$DriverCloud->send($to,$push->getPush());
+        $rpt=$DriverCloud->send($to,$push->getPush(),$idSerach);
         return response()->json($rpt);
       }else {
         return response()->json(['rpt'=>'error','result'=>'none']);

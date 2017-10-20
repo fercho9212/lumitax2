@@ -92,11 +92,12 @@ class ApiDriversController extends Controller
 
     public function Register(Request $request){
       $validator = Validator::make($request->all(), [
+          'dri_cc' => 'required|unique:drivers',
           'dri_name' => 'required',
           'dri_last' => 'required',
           'email' => 'required|email|unique:drivers',
           'password' => 'required',
-          'dri_movil' => 'required',
+          'dri_movil' => 'required|unique:drivers',
       ]);
       if ($validator->fails()) {
           return response()->json(['error'=>$validator->errors(),'rpt'=>'error'], 200);
@@ -116,6 +117,7 @@ class ApiDriversController extends Controller
             $driver->password=            bcrypt($request->password);
             $driver->state_id=            2;
             $driver->register_id=         2;
+            $driver->apistate_id=         2;
 
             if($driver->save()){
 
@@ -179,9 +181,54 @@ class ApiDriversController extends Controller
         return response()->json(['rpt'=>'success']);
       } catch (\Exception $e) {
         return response()->json(['rpt'=>'error']);
+        }
       }
+      /**
+       * Función que verifica si existe el correo para recuperación de password
+       */
+      public function verifyemail(Request $request){
+        $validator = \Validator::make($request->all(), [
+            'cc' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors(),'rpt'=>'error'], 200);
+        }
+
+        try {
+          $driver=new Driver();
+          $r=$driver->verify($request->cc);
+          if ($r[0]==1) {
+            $rpt="success";
+          }else {
+            $rpt="error";
+          }
+          return response()->json(['rpt'=>$rpt,'email'=>$r[1]]);
+        } catch (\Exception $e) {
+          return response()->json(['rpt'=>'error']);
+        }
 
 
-
-    }
+      }
+      /**
+       * [updateemail función que actualiza la contraseña del conductor]
+       * @param  Request $request [description]
+       * @return [type]           [description]
+       */
+      public function updateemail(Request $request){
+        $validator = \Validator::make($request->all(), [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors(),'rpt'=>'error'], 200);
+        }
+        try {
+          $email=Input::get('email');
+          $password=bcrypt(Input::get('password'));
+          DB::table('drivers')->where('email', $email)->update(['password' =>$password]);
+          return  response()->json(['rpt'=>'success']);
+        } catch (\Exception $e) {
+          return  response()->json(['rpt'=>'error']);
+        }
+      }
 }

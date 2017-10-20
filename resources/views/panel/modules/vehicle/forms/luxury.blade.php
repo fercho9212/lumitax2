@@ -71,7 +71,7 @@
                   <label for="exampleInputEmail1">Puertas Laterales</label>
                   <div class="input-group">
 
-                      <input name="vc_doors" type="number" class="form-control" id="exampleInputEmail1" maxlength="2"  placeholder="Puertas Laterales" required>
+                      <input name="vc_doors" type="number" class="form-control" min="0" id="exampleInputEmail1" maxlength="2"  placeholder="Puertas Laterales" required>
 
                       <span class="input-group-addon"><i class="glyphicon glyphicon-stop"></i></span>
 
@@ -85,7 +85,7 @@
                <div class="form-group">
                 <label for="exampleInputEmail1">Air Bags</label>
                  <div class="input-group">
-                   <input name="vc_airbags" type="number" class="form-control" maxlength="2"  id="airbag" placeholder="Cantidad" required>
+                   <input name="vc_airbags" type="number" min="0" class="form-control" maxlength="2"  id="airbag" placeholder="Cantidad" required>
                    <span class="input-group-addon"><i class="glyphicon glyphicon-link"></i></span>
                  </div>
                  <div class="help-block with-errors"></div>
@@ -95,9 +95,9 @@
 
               <div class="col-md-2">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Capacidad Psajeros</label>
+                  <label for="exampleInputEmail1">Capacidad Pasajeros</label>
                   <div class='input-group' >
-                   <input name="vc_passagers" type='number' class="form-control" maxlength="2" placeholder="Camtidad pasajeros" id='passeng' required/>
+                   <input name="vc_passagers" type='number' min="0" class="form-control" maxlength="2" placeholder="Camtidad pasajeros" id='passeng' required/>
                    <span class="input-group-addon">
                        <i class="glyphicon glyphicon-user"></i>
                    </span>
@@ -111,10 +111,10 @@
                   <label for="exampleInputEmail1">Espacio Minimo</label>
                   <div class="input-group">
                     <div class="col-md-6">
-                      <input name="vc_ancho" type="number" class="form-control" id="exampleInputEmail1" placeholder="Ancho" required>
+                      <input name="vc_ancho" type="number" min="0" class="form-control" id="exampleInputEmail1" placeholder="Ancho" required>
                     </div>
                     <div class="col-md-6">
-                      <input name="vc_alto" type="number" class="form-control" id="exampleInputEmail1" placeholder="Alto" required>
+                      <input name="vc_alto" type="number" min="0" class="form-control" id="exampleInputEmail1" placeholder="Alto" required>
                     </div>
                   </div>
                   <div class="help-block with-errors"></div>
@@ -147,7 +147,7 @@
                                      <div class="form-group">
                                       <label for="exampleInputEmail1">Cilindraje</label>
                                        <div class="input-group">
-                                         <input name="vc_cylinder" type="number" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                         <input name="vc_cylinder" type="number" min="0" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                                          <span class="input-group-addon"><i class="glyphicon glyphicon-copyright-mark"></i></span>
                                        </div>
                                        <div class="help-block with-errors"></div>

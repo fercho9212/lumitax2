@@ -23,7 +23,7 @@ class ApiVehiclesController extends Controller
       'veh_color'       => 'required|max:15',
       'brand_id'        => 'required|max:15',
       'leveles_id'      => 'required|max:1',
-      'typevehicle_id'  => 'required|max:1',
+      'typevehicle_id'  => 'required|max:2',
     ]);
     if ($validator->fails()) {
         return response()->json(['error'=>$validator->errors(),'rpt'=>'error'], 200);
@@ -31,7 +31,7 @@ class ApiVehiclesController extends Controller
     DB::beginTransaction();
     try {
       $vehicle=new vehicle();
-      $vehicle->placa=            $request->placa;
+      $vehicle->placa=            strtoupper($request->placa);
       $vehicle->veh_model=        $request->veh_model;
       $vehicle->veh_motor=        'No registra';
       $vehicle->veh_serie=        'No registra';

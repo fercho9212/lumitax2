@@ -39,7 +39,7 @@
                 <label for="exampleInputPassword1">Número de Motor</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-tasks"></i></span>
-                  <input name="veh_motor" type="number" maxlength="15" class="form-control" id="exampleInputmotor" placeholder="Número de Motor" required>
+                  <input name="veh_motor" type="number" min="0" maxlength="15" class="form-control" id="exampleInputmotor" placeholder="Número de Motor" required>
                 </div>
                 <div class="help-block with-errors"></div>
               </div>

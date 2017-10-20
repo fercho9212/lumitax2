@@ -12,8 +12,6 @@
                 <th class="text-center">Modelo</th>
                 <th class="text-center">Motor</th>
                 <th class="text-center">Serie</th>
-                <th class="text-center">Vin</th>
-                <th class="text-center">Color</th>
                 <th class="text-center">Tipo</th>
                 <th class="text-center">Clase</th>
                 <th class="text-center">Marca</th>
@@ -29,8 +27,10 @@
                 <th class="text-center">Cilindranje</th>
                 <th class="text-center">Potencia</th>
                 <th class="text-center">Carrocería</th>
-                <th class="text-center">Estado</th>
+                <th class="text-center">Espacio</th>
+                <th class="text-center">Baúl</th>
                 <th class="text-center">Medio</th>
+                <th class="text-center">Fecha de registro</th>
             </tr>
         </thead>
         @foreach($vehicles as $vehicle)
@@ -64,13 +64,11 @@
                 <td>{{$vehicle->veh_model}}</td>
                 <td>{{$vehicle->veh_motor}}</td>
                 <td>{{$vehicle->veh_serie}}</td>
-                <td>{{$vehicle->veh_vin}}</td>
-                <td>{{$vehicle->veh_color}}</td>
                 <td>{{$vehicle->typevehicle->type}}</td>
                 <td>{{$vehicle->classvehicle->class}}</td>
                 <td>{{$vehicle->brandvehicle->brand}}</td>
                 <td>{{$vehicle->vehiclecomplement->vc_brakes}}</td>
-                <td>{{$vehicle->vehiclecomplement->vc_airbags}}</td>
+                <td>{{$vehicle->vehiclecomplement->vc_Airbags}}</td>
                 <td> @if( $vehicle->vehiclecomplement->vc_head=='1' ) SI @else NO @endif</td>
                 <td>{{$vehicle->vehiclecomplement->vc_doors}}</td>
                 <td>{{$vehicle->vehiclecomplement->vc_cabin}}</td>
@@ -85,9 +83,10 @@
                 @else
                     <td>{{$vehicle->vehiclecomplement->typebodywork->bodywork}}</td>
                 @endif
-                <td>{{$vehicle->state->state}}</td>
+                <td>{{$vehicle->spacevehicle->size}}</td>
+                <td>{{$vehicle->baul->size}}</td>
                 <td>{{$vehicle->typeregister->type}}</td>
-
+                <td>{{$vehicle->created_at}}</td>
 
                 </tr>
 
@@ -101,24 +100,24 @@
 
 
 
-    $('#table').DataTable({
-      "processing": true,
-      "dom": 'lBfrtip',
+      $('#table').DataTable({
+        "processing": true,
+        "dom": 'lBfrtip',
 
-      "buttons": [
-                  {
-                      extend: 'collection',
-                      text: 'Export',
-                      buttons: [
-                          'copy',
-                          'excel',
-                          'csv',
-                          'pdf',
-                          'print'
-                      ]
-                  }
-              ]
-      });
+        "buttons": [
+                    {
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: [
+                            'copy',
+                            'excel',
+                            'csv',
+                            'pdf',
+                            'print'
+                        ]
+                    }
+                ]
+        });
 
     $(document).on('click', '.delete-modal', function() {
 

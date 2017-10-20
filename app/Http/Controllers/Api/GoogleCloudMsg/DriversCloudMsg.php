@@ -15,7 +15,7 @@ class DriversCloudMsg extends Controller{
   /*
   *@to token firebase driver
   */
-  public function send($to,$message){
+  public function send($to,$message,$idSerach){
 
     $body=array('body' => $message);
 
@@ -45,7 +45,7 @@ class DriversCloudMsg extends Controller{
       $rpt['rpt']='success';
       $rpt['token']=$to;
       $rpt['result']=$result;
-
+      $rpt['id']=$idSerach;
     return $rpt;
     }
   }

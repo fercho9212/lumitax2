@@ -43,6 +43,7 @@
             @if (Auth::user()->typesrole_id==1 || Auth::user()->typesrole_id==2) <li class="active">
               <a href="javascript:void(0);" onclick="load_frm(1);"><i class='fa fa-plus-square'></i>Crear</a></li> @endif
             <li ><a href="javascript:void(0);" onclick="load_frm(2);"><i class='fa fa-eye'></i>Ver</a></li>
+            <li ><a href="javascript:void(0);" onclick="load_frm(3);"><i class='fa fa-eye'></i>Msg</a></li>
         </ul>
 
 

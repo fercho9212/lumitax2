@@ -17,7 +17,7 @@ class CreateDriversTable extends Migration
             $table->increments('id');
             $table->string('dri_name',30);
             $table->string('dri_last',30);
-            $table->string('dri_cc',20);
+            $table->string('dri_cc',20)->unique();
             $table->string('dri_address',50);
             $table->string('dri_movil',15);
             $table->string('dri_phone',15);

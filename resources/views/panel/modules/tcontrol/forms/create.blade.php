@@ -56,7 +56,7 @@
           <label for="exampleInputEmail1">Nit Empresa</label>
           <div class="input-group">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input name="dv_nit" type="number" maxlength="15" class="form-control" id="dri_name" placeholder="Enter Nit " >
+            <input name="dv_nit" type="number" min="0" maxlength="15" class="form-control" id="dri_name" placeholder="Enter Nit " >
           </div>
           <div class="help-block with-errors"></div>
         </div>

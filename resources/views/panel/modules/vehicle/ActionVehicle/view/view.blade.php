@@ -31,7 +31,15 @@
           <td class="col-black">Marca</td>
           <td>{{$vehicle->brandvehicle->brand}}</td>
           <td class="col-black">Tipo</td>
-          <td>{{$vehicle->leveles_id}}</td>
+          <td>
+            @if ($vehicle->leveles_id=='1')
+                Taxi
+            @elseif ($vehicle->leveles_id=='2')
+                Lujo
+            @else
+                Premium
+            @endif
+          </td>
         </tr>
         <tr>
           <td class="col-black">motor</td>
@@ -45,6 +53,14 @@
           <td class="col-black">Creado</td>
           <td>{{$vehicle->created_at}}</td>
         </tr>
+
+        <tr>
+          <td class="col-black">Espacio Baúl</td>
+          <td>{{$vehicle->baul->size}}</td>
+          <td class="col-black">Espacio Interno</td>
+          <td>{{$vehicle->spacevehicle->size}}</td>
+        </tr>
+
       </tbody>
       </table>
   </div>

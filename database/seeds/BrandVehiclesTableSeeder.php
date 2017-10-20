@@ -19,10 +19,10 @@ class BrandVehiclesTableSeeder extends Seeder
              \DB::table('brandvehicles')->insert([
                 'brand'      =>  'Kya',
               ]);
-              \DB::table('brandvehicles')->insert([
+             \DB::table('brandvehicles')->insert([
                  'brand'      =>  'Jac',
                ]);
-              \DB::table('brandvehicles')->insert([
+            \DB::table('brandvehicles')->insert([
                   'brand'      =>  'Faw',
               ]);
               \DB::table('brandvehicles')->insert([

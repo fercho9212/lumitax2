@@ -36,9 +36,13 @@ function load_frm(opt){
           url : url,
           datatype:'json',
           beforeSend:function(){
+            console.log('LOAD....');
+            $("#panelcontrol").remove();
             $("#contenido_principal").html($("#cargador_empresa").html());
+
           },
           success : function(resul){
+
                   $("#contenido_principal").html(resul);
         },
           error:function(data){

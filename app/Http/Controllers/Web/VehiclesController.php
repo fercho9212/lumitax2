@@ -111,7 +111,7 @@ class VehiclesController extends Controller
     public function StoreLuxury(VehicleComplementRequest $request){
       try {
         $vehicle= New Vehicle();
-        $vehicle->placa           =$request->placa;
+        $vehicle->placa           =strtoupper($request->placa);
         $vehicle->veh_model       =$request->veh_model;
         $vehicle->veh_motor       =$request->veh_motor;
         //$vehicle->serie     =$request->veh_serie;
@@ -208,7 +208,7 @@ class VehiclesController extends Controller
     {
         $vehicle=Vehicle::findOrFail($id);
         try {
-          $vehicle->placa=$request->placa;
+          $vehicle->placa=strtoupper($request->placa);
           $vehicle->veh_model=$request->veh_model;
           $vehicle->veh_motor=$request->veh_motor;
           $vehicle->veh_serie=$request->veh_serie;
@@ -231,7 +231,7 @@ class VehiclesController extends Controller
       try {
         $vehicle=Vehicle::findOrFail($id);
         $complemt=Vehiclecomplement::findOrFail($vehicle->id);
-        $vehicle->placa           =$request->placa;
+        $vehicle->placa           =strtoupper($request->placa);
         $vehicle->veh_model       =$request->veh_model;
         $vehicle->veh_motor       =$request->veh_motor;
         //$vehicle->serie     =$request->veh_serie;

@@ -7,13 +7,13 @@
                 <th class="text-center">Modelo</th>
                 <th class="text-center">Motor</th>
                 <th class="text-center">Serie</th>
-                <th class="text-center">Vin</th>
-                <th class="text-center">Color</th>
                 <th class="text-center">Tipo</th>
                 <th class="text-center">Clase</th>
                 <th class="text-center">Marca</th>
-                <th class="text-center">Estado</th>
+                <th class="text-center">Espacio</th>
+                <th class="text-center">Baúl</th>
                 <th class="text-center">Medio</th>
+                <th class="text-center">Fecha registro</th>
                 <th class="text-center">Acción</th>
             </tr>
         </thead>
@@ -35,13 +35,13 @@
                 <td>{{$vehicle->veh_model}}</td>
                 <td>{{$vehicle->veh_motor}}</td>
                 <td>{{$vehicle->veh_serie}}</td>
-                <td>{{$vehicle->veh_vin}}</td>
-                <td>{{$vehicle->veh_color}}</td>
                 <td>{{$vehicle->typevehicle->type}}</td>
                 <td>{{$vehicle->classvehicle->class}}</td>
                 <td>{{$vehicle->brandvehicle->brand}}</td>
-                <td>{{$vehicle->state->state}}</td>
+                <td>{{$vehicle->spacevehicle->size}}</td>
+                <td>{{$vehicle->baul->size}}</td>
                 <td>{{$vehicle->typeregister->type}}</td>
+                <td>{{$vehicle->created_at}}</td>
               {{-- <td>
                   @if ($vehicle->document=='0')
                     <button onclick="add_document({{$vehicle->id}})" class="delete-modal  btn btn-primary" data-id="{{$vehicle->id}}"
@@ -91,7 +91,24 @@
 
 
   <script type="text/javascript">
-    $('#table').DataTable();
+  $('#table').DataTable({
+        "processing": true,
+        dom: 'Bfrtip',
+        "buttons": [
+                    {
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: [
+                            'copy',
+                            'excel',
+                            'csv',
+                            'pdf',
+                            'print'
+                        ]
+                    }
+                ],
+        "order": [[ 11, "desc" ]]
+    });
     function add_document(id){
       url='/documents/'+id;
       $.ajax({
