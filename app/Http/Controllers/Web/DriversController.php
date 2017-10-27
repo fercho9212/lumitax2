@@ -246,7 +246,7 @@ class DriversController extends Controller
                    //FCM api URL
                 $url = 'https://fcm.googleapis.com/fcm/send';
                 //api_key available in Firebase Console -> Project Settings -> CLOUD MESSAGING -> Server key
-                $server_key = 'AIzaSyASYXnNkxlyNxlApKAgs4MSreagyxTgs3c';
+                $server_key = 'AIzaSyDH6vw5eVwTE6H-uPwfoe2ieX2jnPovjOE';
                 $fields = array();
                 $body=array('body' => $msg);
                 $fields['data'] = $body;

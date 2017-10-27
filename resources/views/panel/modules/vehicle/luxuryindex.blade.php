@@ -105,7 +105,7 @@
     $('#table').DataTable({
       "processing": true,
       "dom": 'lBfrtip',
-
+      "order": [[ 25, "desc" ]],
       "buttons": [
                   {
                       extend: 'collection',

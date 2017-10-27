@@ -62,7 +62,18 @@ class DocumentsController extends Controller
     } catch (\Exception $e) {
       return response()->json(['rpt'=>'error try']);
     }
-
-
   }
+//Documetos próximos a vencer
+ public function docuExpired(){
+    $document=new Document;
+    $rpt=$document->docuExpired();
+    return view('panel.modules.document.expiratedNext',['document'=>$rpt]);
+ }
+ //Documetos Vencidos
+  public function expirated(){
+     $document=new Document;
+     $rpt=$document->expirated();
+     return view('panel.modules.document.expirated',['document'=>$rpt]);
+  }
+
 }

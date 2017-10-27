@@ -84,7 +84,9 @@ Route::group(['namespace' => 'Web'], function () {
     Route::post('/documents/store', 'DocumentsController@store');
     Route::delete('/documents/{id}/delete', 'DocumentsController@destroy');
     Route::put('/documents/{id}/update', 'DocumentsController@update');
-
+    Route::get('documents/docexpitared','DocumentsController@docuExpired');
+    Route::get('documents/expitared','DocumentsController@expirated');
+    
     //Asignación
     Route::get('asig', 'AsigVehDriController@create');
     Route::post('asig/create', 'AsigVehDriController@ToAsign');

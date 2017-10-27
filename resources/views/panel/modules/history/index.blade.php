@@ -116,7 +116,7 @@ tfoot input {
       var table=$('#tablehistory').DataTable( {
 
         "dom": 'lBfrtip',
-
+        "order": [[ 4, "desc" ]],
         "buttons": [
                     {
                         extend: 'collection',

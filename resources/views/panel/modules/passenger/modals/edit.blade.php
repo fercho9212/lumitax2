@@ -41,7 +41,7 @@
                     <label for="exampleInputEmail1">Correo</label>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                      <input  name="email" type="text" tabindex="3" maxlength="30" class="form-control" id="email" placeholder="Enter email" >
+                      <input  name="email" type="email" maxlength="30"  maxlength="30" class="form-control" id="email" placeholder="Enter email" required >
                     </div>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -64,27 +64,28 @@
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="input" >Nueva contraseña</label>
-                      <div class="input-group ">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input class="form-control" id="password" type="password" name="password" data-minLength="5" data-error="some error" required/>
-                      </div>
-                      <div class="help-block with-errors"></div>
+                  <label for="exampleInputEmail1">Contraseña</label>
+                  <div class="input-group">
+                    <input name="password" type="password" data-minlength="6" class="form-control" id="inputPassword" readonly
+                        onfocus="this.removeAttribute('readonly');" placeholder="Password" >
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                  </div>
+                   <div class="help-block">Minimum of 6 characters</div>
                    </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="input" >Password</label>
-                       <div class="input-group ">
-                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                         <input class="form-control " id="password2" type="password" name="password2" data-match="#password" data-minLength="5" data-match-error="some error 2"  required/>
+
+                   <div class="col-md-6">
+                     <div class="form-group">
+                       <label for="exampleInputPassword1">Repetir Contraseña</label>
+                       <div class="input-group">
+                         <input name="confiPass" type="password" class="form-control" id="inputPasswordConfirm"   data-match-error="Whoops, these don't match" placeholder="Confirm password">
+                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                        </div>
-                     <div class="help-block with-errors"></div>
+                     </div>
+                     <div class="help-block">Minimum of 6 characters</div>
                    </div>
                 </div>
               </div>
-                </div>
+
                 <div class="row">
                   <div class="form-group">
                     <div class="col-md-6 col-md-offset-3" id="state">
@@ -111,6 +112,12 @@
   </div>
 </div>
 <script type="text/javascript">
+$(function () {
+          $('#edit_passenger').validator();
+          $("input[name=password]").change(function () {
+            $("input[name=confiPass]").prop('required',true);
+          });
+      });
 
     $('#edit_passenger').on("shown.bs.modal", function (event) {
         $("body").removeClass("modal-open");
@@ -136,9 +143,11 @@
     });
 
       $('#send').click(function(e){
+
         var frm=$(this);
         var id=$('#id').val();
         var url='/passengers/'+id;
+        var urlerror='/passengers/';
         var data=$("form").serialize();
         $.ajax({
               type: 'PUT',
@@ -160,7 +169,7 @@
                         type: "warning",
                         showConfirmButton: true
                       },function(){
-                                  loadData(url,data);
+                                  loadData(urlerror,data);
                       });
 
                   $.each( data.error, function( key, value ) {

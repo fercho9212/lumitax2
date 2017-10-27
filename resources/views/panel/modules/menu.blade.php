@@ -61,6 +61,13 @@
     <li><a href="javascript:void(0);" onclick="load_frm(70);"><i class='glyphicon glyphicon-credit-card'></i> <span>Tarjeta Operación</span></a></li>
     {{--<li><a href="javascript:void(0);" onclick="load_frm(20);"><i class='fa fa-link'></i> <span>Asignación</span></a></li> --}}
     <li><a href="javascript:void(0);" onclick="load_frm(40);"><i class='glyphicon glyphicon-file'></i> <span>Seguros</span></a></li>
+    <li class="treeview">
+        <a href="#"><i class='glyphicon glyphicon-folder-open'></i> <span>Documetos</span> <i class="fa fa-angle-left pull-right"></i></a>
+        <ul class="treeview-menu">
+            <li><a href="javascript:void(0);"  onclick="load_frm(110);"><i class='glyphicon glyphicon-minus-sign'></i>Proxímos a vencer</a></li>
+            <li><a href="javascript:void(0);"  onclick="load_frm(111);"><i class='glyphicon glyphicon-remove-sign'></i>Vencidos</a></li>
+        </ul>
+    </li>
     <li><a href="javascript:void(0);" onclick="load_frm(50);"><i class='glyphicon glyphicon-th'></i> <span>Historial Servicios</span></a></li>
     <li><a href="javascript:void(0);" onclick="load_frm(90);"><i class='glyphicon glyphicon-list-alt'></i> <span>Solicitudes</span></a></li>
     {{--<li><a href="javascript:void(0);" onclick="load_frm(100);"><i class='fa fa-link'></i> <span>Reportes</span></a></li>--}}

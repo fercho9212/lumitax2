@@ -114,7 +114,9 @@ class PassengersController extends Controller
           'pas_last'=>'required|max:30',
           'email'=>'required|email|unique:passengers,email,'.$id,
           'state_id' => 'required',
-          'pas_movil'=>'required|numeric'
+          'pas_movil'=>'required|numeric',
+          'password' => 'required|min:6',
+          'confiPass' => 'required|min:6|same:password',
       ]);
       if ($validator->fails()) {
           return response()->json(['error'=>$validator->errors()->all()]);

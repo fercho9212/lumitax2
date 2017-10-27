@@ -8,7 +8,7 @@ use JWTAuth;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use App\Models\Vehicle;
-use App\Models\VehicleComplement;
+use App\Models\Vehiclecomplement;
 use App\Models\Driver;
 use App\Models\Imagevehicle;
 use DB;

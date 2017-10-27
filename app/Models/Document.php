@@ -29,5 +29,43 @@ class Document extends Model
     $cant=$query[0]->total;
     return $cant;
   }
+  //Consulta documentos proximos a vencer
+  public function docuExpired(){
+    $sql="";
+    $sql.=" SELECT ";
+    $sql.=" v.id as idv, ";
+    $sql.=" v.placa,";
+    $sql.=" i.ins_name,";
+    $sql.=" d.doc_datei,";
+    $sql.=" doc_datef,";
+    $sql.=" doc_company";
+    $sql.=" FROM";
+    $sql.=" documents d ";
+    $sql.=" INNER JOIN vehicles v ON d.vehicle_id = v.id ";
+    $sql.=" INNER JOIN insurance i ON i.id = d.insurance_id ";
+    $sql.=" WHERE ";
+    $sql.=" doc_datef BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH) ";
+    $query=DB::select($sql);
+    return $query;
+  }
+  //Consulta documentos ya 
+  public function expirated(){
+    $sql="";
+    $sql.=" select ";
+    $sql.=" v.id as idv, ";
+    $sql.=" v.placa, ";
+    $sql.=" i.ins_name, ";
+    $sql.=" d.doc_datei, ";
+    $sql.=" doc_datef, ";
+    $sql.=" doc_company ";
+    $sql.=" FROM ";
+    $sql.=" documents d ";
+    $sql.=" INNER JOIN vehicles v ON d.vehicle_id = v.id ";
+    $sql.=" INNER JOIN insurance i ON i.id = d.insurance_id ";
+    $sql.=" WHERE ";
+    $sql.=" doc_datef <= CURRENT_TIMESTAMP ";
+    $query=DB::select($sql);
+    return $query;
+  }
 
 }

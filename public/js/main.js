@@ -29,6 +29,8 @@ function load_frm(opt){
   if (opt==90){ var url="/requests/"; console.log('Entra a request')}
   //Reportes
   if (opt==100){ var url="/reports/"; console.log('Entra a reportes')}
+  if (opt==110){ var url="documents/docexpitared"; console.log('Entra a documentos')}
+  if (opt==111){ var url="documents/expitared"; console.log('Entra a documentos ')}
 
     $.ajax({
           async: true,

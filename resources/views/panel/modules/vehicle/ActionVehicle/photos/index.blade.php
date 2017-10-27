@@ -25,7 +25,7 @@
         <ul>
           @foreach ($vehicle->imagevehciles as $image)
             <li>
-              <a href="/vehicle/{{$image->path}}" target="_blank" data-lightbox="roadtrip">
+              <a href="{{url('/vehicle/'.$vehicle->placa.'/'.$image->path)}}" target="_blank" data-lightbox="roadtrip">
                 <img src="{{url('/vehicle/'.$vehicle->placa.'/'.$image->path)}}" alt="">
               </a>
               <br>

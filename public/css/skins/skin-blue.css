@@ -44,7 +44,8 @@
   }
 }
 .skin-blue .main-header .logo {
-  background-color: #367fa9;
+  background-color: #ffdd00 !important;
+  /*background-color: #367fa9;*/
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
@@ -153,7 +154,7 @@
     background-color: #000b15  !important;
 }
 .skin-blue .main-header .logo {
-    background-color: #cdd4ee !important;
+    background-color: #ffdd00 !important;
     color: #060606 !important;
     border-bottom: 0 solid transparent !important;
 }
